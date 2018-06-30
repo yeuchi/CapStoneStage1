@@ -33,11 +33,13 @@ If you don't have an app idea of your own, feel free to choose one of these:
 - Fitness app
 - Podcast app
 - Travel app
-- Reddit app. 
+- Reddit app 
 https://docs.google.com/document/d/106i--s7OS-aiP8Kr1-e9ysqs0AgXkV9_Prg0zEK82Dw/pub?embedded=true
 
 #### Required Tasks
-Review the requirements for the app in this rubric https://review.udacity.com/#!/rubrics/64/view
+Review the requirements for the app in this rubric 
+https://review.udacity.com/#!/rubrics/64/view
+
 Make a copy of this template 
 https://docs.google.com/document/d/1gKP6RxykeekNk5bYxXIKjEitKDPdxpRyIaa9t50bLSA/edit
 
