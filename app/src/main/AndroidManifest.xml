@@ -22,7 +22,10 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ConfigActivity"
-            android:label="@string/title_activity_config"></activity>
+            android:label="@string/title_activity_config" />
+        <activity
+            android:name=".TabActivity"
+            android:label="@string/title_activity_tab"></activity>
     </application>
 
 </manifest>
