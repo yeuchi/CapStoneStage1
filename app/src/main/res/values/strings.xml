@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">CapStoneStage1</string>
+    <string name="title_activity_viewer">ViewerActivity</string>
+    <string name="title_activity_config">ConfigActivity</string>
 </resources>

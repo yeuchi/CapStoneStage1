@@ -16,6 +16,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ViewerActivity"
+            android:label="@string/title_activity_viewer"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ConfigActivity"
+            android:label="@string/title_activity_config"></activity>
     </application>
 
 </manifest>
