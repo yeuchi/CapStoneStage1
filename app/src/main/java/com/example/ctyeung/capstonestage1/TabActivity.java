@@ -44,10 +44,16 @@ public class TabActivity extends AppCompatActivity {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
 
         // Add Fragments to adapter one by one
-        adapter.addFragment(new TabFragment1(), "Address");
-        adapter.addFragment(new TabFragment2(), "Text");
-        adapter.addFragment(new TabFragment3(), "Shape");
-        adapter.addFragment(new TabFragment4(), "Preview");
+        Fragment fragment1 = new TabFragment1();
+        Fragment fragment2 = new TabFragment2();
+        Fragment fragment3 = new TabFragment3();
+        Fragment fragment4 = new TabFragment4();
+
+
+        adapter.addFragment(fragment1, "Address");
+        adapter.addFragment(fragment2, "Text");
+        adapter.addFragment(fragment3, "Shape");
+        adapter.addFragment(fragment4, "Preview");
         viewPager.setAdapter(adapter);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
