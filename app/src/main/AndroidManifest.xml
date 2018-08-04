@@ -26,6 +26,10 @@
         <activity
             android:name=".TabActivity"
             android:label="@string/title_activity_tab"></activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

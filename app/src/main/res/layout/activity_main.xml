@@ -39,11 +39,24 @@
         app:layout_constraintStart_toEndOf="@+id/btnViewer"
         app:layout_constraintTop_toBottomOf="@+id/btnViewer" />
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:scaleType="fitCenter"
+        android:src="@drawable/randombackground" />
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:fontFamily="Roboto"
+        android:gravity="center"
+        android:text="RAND  M"
+        android:textColor="@color/colorPrimary"
+
+        android:textSize="50dp"
+        app:fontFamily="@font/stalinist_one"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
