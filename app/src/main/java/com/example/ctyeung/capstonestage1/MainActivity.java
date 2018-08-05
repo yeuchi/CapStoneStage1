@@ -9,6 +9,10 @@ import android.widget.Button;
 import android.view.View;
 import android.content.Intent;
 import com.example.ctyeung.capstonestage1.ViewerActivity;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.widget.Toolbar;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -44,5 +48,41 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_tab, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int itemId = item.getItemId();
+        Intent intent=null;
+
+        switch (itemId) {
+
+            case R.id.configuration:
+                // load configuration activity
+                intent = new Intent(context, ConfigActivity.class);
+                break;
+
+            case R.id.share:
+                // share activity
+                intent = new Intent(context, TabActivity.class);
+                break;
+        }
+
+        if(null!=intent)
+        {
+            startActivity(intent);
+            return true;
+        }
+
+        return false;
     }
 }
