@@ -31,6 +31,7 @@ import com.example.ctyeung.capstonestage1.TabFragment1;
  * Tab pages
  * https://www.truiton.com/2015/06/android-tabs-example-fragments-viewpager/
  * http://www.gadgetsaint.com/android/create-viewpager-tabs-android/#.W13LpC2ZPOQ
+ * http://www.gadgetsaint.com/android/create-viewpager-tabs-android/#.W2Yc2S2ZPOR
  */
 public class TabActivity extends AppCompatActivity {
 
