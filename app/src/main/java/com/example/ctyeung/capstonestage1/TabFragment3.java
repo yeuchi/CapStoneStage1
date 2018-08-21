@@ -11,6 +11,7 @@ import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.graphics.drawable.PictureDrawable;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import com.caverock.androidsvg.SVG;
 import com.caverock.androidsvg.SVGImageView;
@@ -41,6 +42,16 @@ public class TabFragment3 extends Fragment {
             {
                 SVGImageView svgImageView = new SVGImageView(context);
                 svgImageView.setImageAsset(s);
+                svgImageView.setBackgroundColor(88888888);
+                int len=200;
+                RelativeLayout.LayoutParams rllp = new RelativeLayout.LayoutParams(len,len);
+                rllp.bottomMargin=20;
+                rllp.topMargin=20;
+                rllp.leftMargin=20;
+                rllp.rightMargin=20;
+
+                svgImageView.setLayoutParams(rllp);
+
                 layout.addView(svgImageView, 0);
             }
         }
