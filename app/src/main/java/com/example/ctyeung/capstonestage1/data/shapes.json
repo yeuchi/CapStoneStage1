@@ -1,0 +1,12 @@
+{"shapes":[ {"name":"telephone", "path":"/telephone.svg"},
+            {"name":"camera", "path":"/camera-shutter.svg"},
+            {"name":"coffee-cup", "path":"/coffee-cup.svg"},
+            {"name":"house", "path":"/house.svg"},
+            {"name":"music", "path":"/music.svg"},
+            {"name":"present", "path":"/present.svg"},
+            {"name":"rocket", "path":"/rocket.svg"},
+            {"name":"sharing", "path":"/sharing.svg"},
+            {"name":"shopping-cart", "path":"/shopping-cart.svg"},
+            {"name":"star-button", "path":"/star-button.svg"},
+            {"name":"truck", "path":"/truck.svg"},
+            {"name":"umbrella", "path":"/umbrella.svg"}]}

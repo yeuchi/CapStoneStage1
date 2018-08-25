@@ -24,12 +24,11 @@
         android:columnCount="5"
         android:fadingEdge="horizontal|vertical"
         android:padding="5dp">
-        <!--
+
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_shapes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
-            -->
 
     </GridLayout>
 
