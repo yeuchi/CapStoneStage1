@@ -156,7 +156,16 @@ public class TabFragment3 extends Fragment implements ShapeGridAdapter.ListItemC
 
     private void populateShapeGrid()
     {
-        mAdapter = new ShapeGridAdapter(shapes, mListener);
+        String[] list = null;
+        try
+        {
+            list = context.getAssets().list("");
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        mAdapter = new ShapeGridAdapter(list, shapes, mListener);
         mNumbersList.setAdapter(mAdapter);
         mNumbersList.setHasFixedSize(true);
     }

@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.caverock.androidsvg.SVG;
 import com.caverock.androidsvg.SVGImageView;
 import com.example.ctyeung.capstonestage1.data.ShapeSVG;
 import com.example.ctyeung.capstonestage1.utilities.NetworkUtils;
@@ -30,23 +31,28 @@ public class ShapeGridAdapter extends RecyclerView.Adapter<ShapeGridAdapter.Numb
     private int viewHolderCount;
     private int mNumberItems;
     private List<ShapeSVG> shapes;
+    private String[] listSVG = null;
+
 
     public interface ListItemClickListener
     {
         void onListItemClick(int clickItemIndex);
     }
 
-    public ShapeGridAdapter( List<ShapeSVG> list,
+    public ShapeGridAdapter( String[] listSVG,
+                             List<ShapeSVG> list,
                              ListItemClickListener listener) {
        // this.movies = movies;
         mOnClickListener = listener;
         viewHolderCount = 0;
         this.shapes = list;
+        this.listSVG = listSVG;
     }
 
     @Override
     public NumberViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
         Context context = viewGroup.getContext();
+
         int layoutIdForListItem = R.layout.recyclerview_item;
         LayoutInflater inflater = LayoutInflater.from(context);
         boolean shouldAttachToParentImmediately = false;
@@ -149,20 +155,31 @@ public class ShapeGridAdapter extends RecyclerView.Adapter<ShapeGridAdapter.Numb
 
         protected void handleSVG(String str)
         {
-            /*
-            int len=200;
-            RelativeLayout.LayoutParams rllp = new RelativeLayout.LayoutParams(len,len);
-            /*rllp.bottomMargin=20;
-            rllp.topMargin=20;
-            rllp.leftMargin=20;
-            rllp.rightMargin=20;
-
-            viewHolderImage.setLayoutParams(rllp);
-*/
-            //Uri uri = NetworkUtils.buildSVGUrl(shapeSVG.getName());
-
             if(null!=str && !str.isEmpty())
-                viewHolderImage.setImageAsset(str);
+            {
+               /* int len=200;
+                RelativeLayout.LayoutParams rllp = new RelativeLayout.LayoutParams(len,len);
+                rllp.bottomMargin=20;
+                rllp.topMargin=20;
+                rllp.leftMargin=20;
+                rllp.rightMargin=20;
+
+                viewHolderImage.setLayoutParams(rllp);
+                */
+
+                try
+                {
+                    SVG svg = SVG.getFromString(str);
+                    if(null==svg)
+                        throw new Exception("Invalid SVG string");
+
+                    viewHolderImage.setSVG(svg);
+                }
+                catch (Exception ex)
+                {
+                    ex.printStackTrace();
+                }
+            }
         }
 
         @Override

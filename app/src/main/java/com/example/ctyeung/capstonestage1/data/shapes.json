@@ -1,5 +1,5 @@
 {"shapes":[ {"name":"telephone", "path":"/telephone.svg"},
-            {"name":"camera", "path":"/camera-shutter.svg"},
+            {"name":"camera-shutter", "path":"/camera-shutter.svg"},
             {"name":"coffee-cup", "path":"/coffee-cup.svg"},
             {"name":"house", "path":"/house.svg"},
             {"name":"music", "path":"/music.svg"},
