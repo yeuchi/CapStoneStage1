@@ -184,35 +184,48 @@ public class TabFragment3 extends Fragment implements ShapeGridAdapter.ListItemC
 
         // Get parent view dimensions
         RelativeLayout layout = (RelativeLayout)root.findViewById(R.id.shapes_view_group);
-        int numChildren = layout.getChildCount();
+        int viewCount = layout.getChildCount()+1;
 
         int h = layout.getHeight();
-        int w = layout.getWidth() / (numChildren+1);
+        int w = layout.getWidth() / viewCount;
         int len = (h>w)?w:h;
 
-        int offsetX = (layout.getWidth() - (numChildren+1) * len) /2;
+        int offsetX = (layout.getWidth() - viewCount * len) /2;
         int offsetY = (h - len)/2;
 
-        RelativeLayout.LayoutParams rllp;
-
         // resize existing children
-        if(numChildren>0)
+        if(viewCount>1)
+            updateSVGsLayout(layout, len, offsetX, offsetY);
+
+        insertSVG(layout, selected, len, offsetX, offsetY);
+    }
+
+    private void updateSVGsLayout(RelativeLayout layout,
+                                  int len,
+                                  int offsetX,
+                                  int offsetY)
+    {
+        for(int i=0; i<layout.getChildCount(); i++)
         {
-            for(int i=0; i<layout.getChildCount(); i++)
-            {
-                rllp = new RelativeLayout.LayoutParams(len, len);
-                SVGImageView svg = (SVGImageView)layout.getChildAt(i);
-                rllp.leftMargin = offsetX + (i * len);
-                rllp.topMargin = offsetY;
+            RelativeLayout.LayoutParams rllp = new RelativeLayout.LayoutParams(len, len);
+            SVGImageView svg = (SVGImageView)layout.getChildAt(i);
+            rllp.leftMargin = offsetX + (i * len);
+            rllp.topMargin = offsetY;
 
-                svg.setLayoutParams(rllp);
-            }
+            svg.setLayoutParams(rllp);
         }
+    }
 
+    private void insertSVG(RelativeLayout layout,
+                           ShapeSVG selected,
+                           int len,
+                           int offsetX,
+                           int offsetY)
+    {
         // size new addition
-        rllp = new RelativeLayout.LayoutParams(len, len);
+        RelativeLayout.LayoutParams rllp = new RelativeLayout.LayoutParams(len, len);
         rllp.topMargin = offsetY;
-        rllp.leftMargin = offsetX + numChildren*len;
+        rllp.leftMargin = offsetX + layout.getChildCount()*len;
 
         // create new addition
         SVGImageView svgImageView = new SVGImageView(context);
