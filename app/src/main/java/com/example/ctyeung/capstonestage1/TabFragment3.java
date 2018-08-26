@@ -178,32 +178,45 @@ public class TabFragment3 extends Fragment implements ShapeGridAdapter.ListItemC
         if(mToast!=null)
             mToast.cancel();
 
-        // launch detail activity
+        // retrieve selected shape svg
         ShapeSVG selected = shapes.get(clickItemIndex);
         String name = selected.getName();
 
-        // render it on page -> create instance and insert into layout
+        // Get parent view dimensions
         RelativeLayout layout = (RelativeLayout)root.findViewById(R.id.shapes_view_group);
+        int numChildren = layout.getChildCount();
+
         int h = layout.getHeight();
-        int w = layout.getWidth();
+        int w = layout.getWidth() / (numChildren+1);
         int len = (h>w)?w:h;
 
-        int offsetX = (w - len)/2;
+        int offsetX = (layout.getWidth() - (numChildren+1) * w) /2;
         int offsetY = (h - len)/2;
 
+        RelativeLayout.LayoutParams rllp = new RelativeLayout.LayoutParams(len, len);
+        rllp.topMargin = offsetY;
+
+        // resize existing children
+        if(numChildren>0)
+        {
+            for(int i=0; i<layout.getChildCount(); i++)
+            {
+                SVGImageView svg = (SVGImageView)layout.getChildAt(i);
+                //svg.layout(left, offsetY, len, len);
+                rllp.leftMargin = offsetX + (i * len);
+                svg.setLayoutParams(rllp);
+            }
+        }
+
+        // size new addition
+        rllp = new RelativeLayout.LayoutParams(len, len);
+        rllp.topMargin = offsetY;
+        rllp.leftMargin = offsetX + numChildren*len;
+
+        // create new addition
         SVGImageView svgImageView = new SVGImageView(context);
         svgImageView.setSVG(selected.GetSVG());
-
-        /*
-         * how to size it ?
-         * 1. large if only 1 image
-         * 2. split size if more than 1
-         */
-
-        RelativeLayout.LayoutParams rllp = new RelativeLayout.LayoutParams(len,len);
-        rllp.leftMargin = offsetX;
-        rllp.topMargin = offsetY;
-        
+        svgImageView.setLayoutParams(rllp);
         layout.addView(svgImageView, rllp);
     }
 }
