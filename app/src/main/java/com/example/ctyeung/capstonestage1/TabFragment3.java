@@ -190,20 +190,21 @@ public class TabFragment3 extends Fragment implements ShapeGridAdapter.ListItemC
         int w = layout.getWidth() / (numChildren+1);
         int len = (h>w)?w:h;
 
-        int offsetX = (layout.getWidth() - (numChildren+1) * w) /2;
+        int offsetX = (layout.getWidth() - (numChildren+1) * len) /2;
         int offsetY = (h - len)/2;
 
-        RelativeLayout.LayoutParams rllp = new RelativeLayout.LayoutParams(len, len);
-        rllp.topMargin = offsetY;
+        RelativeLayout.LayoutParams rllp;
 
         // resize existing children
         if(numChildren>0)
         {
             for(int i=0; i<layout.getChildCount(); i++)
             {
+                rllp = new RelativeLayout.LayoutParams(len, len);
                 SVGImageView svg = (SVGImageView)layout.getChildAt(i);
-                //svg.layout(left, offsetY, len, len);
                 rllp.leftMargin = offsetX + (i * len);
+                rllp.topMargin = offsetY;
+
                 svg.setLayoutParams(rllp);
             }
         }
