@@ -43,10 +43,11 @@ public class TabFragment3 extends Fragment implements ShapeGridAdapter.ListItemC
     private SVGImageView imageView;
     private List<ShapeSVG> shapes;
     private Context context;
+    private View root;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View root = inflater.inflate(R.layout.tab_fragment_3, container, false);
+        root = inflater.inflate(R.layout.tab_fragment_3, container, false);
         mListener = this;
         context = root.getContext();
         mNumbersList = (RecyclerView) root.findViewById(R.id.rv_shapes);
@@ -156,6 +157,7 @@ public class TabFragment3 extends Fragment implements ShapeGridAdapter.ListItemC
 
     private void populateShapeGrid()
     {
+        /* for debugging only !
         String[] list = null;
         try
         {
@@ -164,8 +166,8 @@ public class TabFragment3 extends Fragment implements ShapeGridAdapter.ListItemC
         catch (IOException e) {
             e.printStackTrace();
         }
-
-        mAdapter = new ShapeGridAdapter(list, shapes, mListener);
+        */
+        mAdapter = new ShapeGridAdapter(shapes, mListener);
         mNumbersList.setAdapter(mAdapter);
         mNumbersList.setHasFixedSize(true);
     }
@@ -180,6 +182,28 @@ public class TabFragment3 extends Fragment implements ShapeGridAdapter.ListItemC
         ShapeSVG selected = shapes.get(clickItemIndex);
         String name = selected.getName();
 
-        // render it on email page
+        // render it on page -> create instance and insert into layout
+        RelativeLayout layout = (RelativeLayout)root.findViewById(R.id.shapes_view_group);
+        int h = layout.getHeight();
+        int w = layout.getWidth();
+        int len = (h>w)?w:h;
+
+        int offsetX = (w - len)/2;
+        int offsetY = (h - len)/2;
+
+        SVGImageView svgImageView = new SVGImageView(context);
+        svgImageView.setSVG(selected.GetSVG());
+
+        /*
+         * how to size it ?
+         * 1. large if only 1 image
+         * 2. split size if more than 1
+         */
+
+        RelativeLayout.LayoutParams rllp = new RelativeLayout.LayoutParams(len,len);
+        rllp.leftMargin = offsetX;
+        rllp.topMargin = offsetY;
+        
+        layout.addView(svgImageView, rllp);
     }
 }
