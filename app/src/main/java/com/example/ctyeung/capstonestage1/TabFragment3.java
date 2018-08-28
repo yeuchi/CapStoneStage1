@@ -20,7 +20,7 @@ import android.widget.Toast;
 import com.caverock.androidsvg.SVG;
 import com.caverock.androidsvg.SVGImageView;
 import com.example.ctyeung.capstonestage1.data.ShapeFactory;
-import com.example.ctyeung.capstonestage1.data.ShapePreviewHelper;
+import com.example.ctyeung.capstonestage1.data.ShapePreview;
 import com.example.ctyeung.capstonestage1.data.ShapeSVG;
 import com.example.ctyeung.capstonestage1.utilities.JSONhelper;
 import com.example.ctyeung.capstonestage1.utilities.NetworkUtils;
@@ -45,12 +45,12 @@ public class TabFragment3 extends Fragment implements ShapeGridAdapter.ListItemC
     private List<ShapeSVG> shapes;
     private Context context;
     private View root;
-    private ShapePreviewHelper shapePreviewHelper;
+    private ShapePreview shapePreview;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         root = inflater.inflate(R.layout.tab_fragment_3, container, false);
-        shapePreviewHelper = new ShapePreviewHelper(root);
+        shapePreview = new ShapePreview(root);
         mListener = this;
         context = root.getContext();
         mNumbersList = (RecyclerView) root.findViewById(R.id.rv_shapes);
@@ -144,61 +144,12 @@ public class TabFragment3 extends Fragment implements ShapeGridAdapter.ListItemC
         ShapeSVG selected = shapes.get(clickItemIndex);
 
         // resize existing children
-        if(shapePreviewHelper.childCount(false)>0)
-            updateSVGsLayout(true);
+        if(shapePreview.childCount(false)>0)
+            shapePreview.updateSVGsLayout(true);
 
-        insertSVG(selected);
+        shapePreview.insertSVG(selected);
     }
 
-    /*
-     * Update RelativeLayout view that contains N SVGs.
-     * - call this after insert or removal of SVG to resize + align SVGs for best fit.
-     * - input signature 'plusOne' => true when insert.
-     * - input signature 'plusOne' => false when remove.
-     */
-    private void updateSVGsLayout(boolean plusOne)
-    {
-        int len = shapePreviewHelper.minLength(plusOne);
-        int padX = shapePreviewHelper.paddingX(plusOne);
-        int padY = shapePreviewHelper.paddingY(plusOne);
-        for(int i=0; i<shapePreviewHelper.childCount(false); i++)
-        {
-            RelativeLayout.LayoutParams rllp = new RelativeLayout.LayoutParams(len, len);
-            SVGImageView svg = (SVGImageView)shapePreviewHelper.layout.getChildAt(i);
-            rllp.leftMargin = padX + (i * len);
-            rllp.topMargin = padY;
 
-            svg.setLayoutParams(rllp);
-        }
-    }
 
-    /*
-     * Insert a SVG into RelativeLayout view container.
-     * - input signature 'selected' is a ShapeSVG object.
-     */
-    private void insertSVG(ShapeSVG selected)
-    {
-        int len = shapePreviewHelper.minLength(true);
-        int padX = shapePreviewHelper.paddingX(true);
-        int padY = shapePreviewHelper.paddingY(true);
-        RelativeLayout.LayoutParams rllp = new RelativeLayout.LayoutParams(len, len);
-        rllp.topMargin = padY;
-        rllp.leftMargin = padX + shapePreviewHelper.childCount(false)*len;
-
-        // create new addition
-        SVGImageView svgImageView = new SVGImageView(context);
-        svgImageView.setSVG(selected.GetSVG());
-        shapePreviewHelper.layout.addView(svgImageView, rllp);
-
-        // add a click listener for removal
-        svgImageView.setOnClickListener(new View.OnClickListener()
-        {
-            public void onClick(View view)
-            {
-                // delete item from RelativeLayout parent container.
-                ((ViewGroup)view.getParent()).removeView(view);
-                updateSVGsLayout(false);
-            }
-        });
-    }
 }
