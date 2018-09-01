@@ -12,6 +12,7 @@ public class ShapePreview
 {
     public RelativeLayout layout;
     private View view;
+    public boolean isDirty = false;
 
     public ShapePreview(View view)
     {
@@ -91,6 +92,8 @@ public class ShapePreview
      */
     public void insertSVG(ShapeSVG selected)
     {
+        isDirty = true; // view has been updated
+
         int len = this.minLength(true);
         int padX = this.paddingX(true);
         int padY = this.paddingY(true);
@@ -109,10 +112,14 @@ public class ShapePreview
         {
             public void onClick(View view)
             {
+                isDirty = true; // changes has been made
+
                 // delete item from RelativeLayout parent container.
                 ((ViewGroup)view.getParent()).removeView(view);
                 updateSVGsLayout(false);
             }
         });
     }
+
+
 }

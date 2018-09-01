@@ -1,6 +1,7 @@
 package com.example.ctyeung.capstonestage1;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -22,6 +23,7 @@ import com.caverock.androidsvg.SVGImageView;
 import com.example.ctyeung.capstonestage1.data.ShapeFactory;
 import com.example.ctyeung.capstonestage1.data.ShapePreview;
 import com.example.ctyeung.capstonestage1.data.ShapeSVG;
+import com.example.ctyeung.capstonestage1.utilities.BitmapRenderer;
 import com.example.ctyeung.capstonestage1.utilities.JSONhelper;
 import com.example.ctyeung.capstonestage1.utilities.NetworkUtils;
 
@@ -34,7 +36,12 @@ import java.io.InputStream;
 import java.net.URL;
 import java.util.List;
 
+/*
+ * Shape fragment - compose shape(s) message in this fragment
+ */
 public class TabFragment3 extends Fragment implements ShapeGridAdapter.ListItemClickListener{
+
+    public static String PNG_FILENAME = "shapeSVG.png";
 
     private ShapeGridAdapter mAdapter;
     private RecyclerView mNumbersList;
@@ -62,6 +69,33 @@ public class TabFragment3 extends Fragment implements ShapeGridAdapter.ListItemC
         return root;
     }
 
+    /*
+     * setUserVisibleHint - switching view or activity
+     * - if isDirty: take a snap shot of the svg and archive to file for preview fragment
+     */
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser)
+    {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser)
+        {
+        }
+        else
+        {
+            //do when hidden
+            if(null!=shapePreview && shapePreview.isDirty) // selected SVG layout
+            {
+                RelativeLayout view = root.findViewById(R.id.shapes_view_group);
+                Bitmap bitmap = BitmapRenderer.create(view);
+                String path = BitmapRenderer.Archive(context, bitmap, PNG_FILENAME);
+            }
+        }
+    }
+
+    /*
+     * SVGs in grid-view is available on network.
+     * - go fetch the path and load it in background
+     */
     private void requestShapes()
     {
         URL url = NetworkUtils.buildShapesJsonUrl();
@@ -69,6 +103,9 @@ public class TabFragment3 extends Fragment implements ShapeGridAdapter.ListItemC
         task.execute(url);
     }
 
+    /*
+     * Async task to load SVG list (grid view images)
+     */
     public class GithubQueryTask extends AsyncTask<URL, Void, String>
     {
         public GithubQueryTask()
@@ -103,6 +140,10 @@ public class TabFragment3 extends Fragment implements ShapeGridAdapter.ListItemC
         }
     }
 
+    /*
+     * handleShapeJson - network returns json of svg list
+     * - go load these svgs from network into grid-view
+     */
     private void handleShapeJson(String str)
     {
         shapes = null;
@@ -122,6 +163,9 @@ public class TabFragment3 extends Fragment implements ShapeGridAdapter.ListItemC
         }
     }
 
+    /*
+     * populatShapeGrid - initialize grid-view with svg in each recycler view
+     */
     private void populateShapeGrid()
     {
         mAdapter = new ShapeGridAdapter(shapes, mListener);
