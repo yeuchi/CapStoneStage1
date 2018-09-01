@@ -2,6 +2,7 @@ package com.example.ctyeung.capstonestage1;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -10,20 +11,29 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.example.ctyeung.capstonestage1.data.RandomDotData;
+import com.example.ctyeung.capstonestage1.data.SharedPrefUtility;
+import com.example.ctyeung.capstonestage1.utilities.BitmapRenderer;
+import com.example.ctyeung.capstonestage1.utilities.RandomDotRenderer;
+
+/*
+ * Preview fragment - load bitmaps and dither them for preview.
+ */
 public class TabFragment4 extends Fragment {
 
     private Context mContext;
+    private View root;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        View rootView = inflater.inflate(R.layout.tab_fragment_4, container, false);
-        mContext = rootView.getContext();
+        View root = inflater.inflate(R.layout.tab_fragment_4, container, false);
+        mContext = root.getContext();
 
         // Render Preview here ...
 
 
-        Button btnSend = (Button)rootView.findViewById(R.id.btnSend);
+        Button btnSend = (Button)root.findViewById(R.id.btnSend);
         btnSend.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -33,7 +43,7 @@ public class TabFragment4 extends Fragment {
             }
         });
 
-        Button btnCancel = (Button)rootView.findViewById(R.id.btnCancel);
+        Button btnCancel = (Button)root.findViewById(R.id.btnCancel);
         btnCancel.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -46,6 +56,33 @@ public class TabFragment4 extends Fragment {
             }
         });
 
-        return rootView;
+        return root;
+    }
+
+    /*
+     * setUserVisibleHint - switching view or activity
+     * - check for bitmap updates -> re-render !
+     */
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser)
+    {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser)
+        {
+            // has text or shapes changed ?
+            boolean isTextDirty = SharedPrefUtility.getTextDirty(mContext);
+            boolean isShapeDirty = SharedPrefUtility.getShapeDirty(mContext);
+            if(isTextDirty || isShapeDirty)
+            {
+                // re-render preview
+                Bitmap bmpText = BitmapRenderer.Load(TabFragment2.PNG_FILENAME);
+                Bitmap bmpShape = BitmapRenderer.Load(TabFragment3.PNG_FILENAME);
+                RandomDotData data = RandomDotRenderer.CreateInterlaced(bmpText, bmpShape);
+            }
+        }
+        else
+        {
+
+        }
     }
 }

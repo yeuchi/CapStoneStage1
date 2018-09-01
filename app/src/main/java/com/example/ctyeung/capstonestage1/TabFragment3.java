@@ -23,6 +23,7 @@ import com.caverock.androidsvg.SVGImageView;
 import com.example.ctyeung.capstonestage1.data.ShapeFactory;
 import com.example.ctyeung.capstonestage1.data.ShapePreview;
 import com.example.ctyeung.capstonestage1.data.ShapeSVG;
+import com.example.ctyeung.capstonestage1.data.SharedPrefUtility;
 import com.example.ctyeung.capstonestage1.utilities.BitmapRenderer;
 import com.example.ctyeung.capstonestage1.utilities.JSONhelper;
 import com.example.ctyeung.capstonestage1.utilities.NetworkUtils;
@@ -66,6 +67,7 @@ public class TabFragment3 extends Fragment implements ShapeGridAdapter.ListItemC
         mNumbersList.setLayoutManager(layoutManager);
 
         requestShapes();
+        SharedPrefUtility.setShapeDirty(context, false);
         return root;
     }
 
@@ -88,6 +90,7 @@ public class TabFragment3 extends Fragment implements ShapeGridAdapter.ListItemC
                 RelativeLayout view = root.findViewById(R.id.shapes_view_group);
                 Bitmap bitmap = BitmapRenderer.create(view);
                 String path = BitmapRenderer.Archive(context, bitmap, PNG_FILENAME);
+                SharedPrefUtility.setShapeDirty(context, true);
             }
         }
     }

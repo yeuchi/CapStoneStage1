@@ -12,6 +12,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.ctyeung.capstonestage1.data.ShapePreview;
+import com.example.ctyeung.capstonestage1.data.SharedPrefUtility;
 import com.example.ctyeung.capstonestage1.utilities.BitmapRenderer;
 
 /*
@@ -25,6 +26,7 @@ public class TabFragment2 extends Fragment {
     private View root;
     private ShapePreview shapePreview;
     private InputMethodManager mgr;
+    private SharedPrefUtility sharedPref;
 
     @Override
     public View onCreateView(LayoutInflater inflater,
@@ -35,7 +37,7 @@ public class TabFragment2 extends Fragment {
 
         shapePreview = new ShapePreview(root);
         context = root.getContext();
-
+        SharedPrefUtility.setTextDirty(context, false);
         return root;
     }
 
@@ -60,6 +62,7 @@ public class TabFragment2 extends Fragment {
                 RelativeLayout view = root.findViewById(R.id.shapes_view_group);
                 Bitmap bitmap = BitmapRenderer.create(view);
                 String path = BitmapRenderer.Archive(context, bitmap, PNG_FILENAME);
+                SharedPrefUtility.setTextDirty(context, true);
             }
         }
     }
