@@ -63,7 +63,6 @@ public class ShapePreview
         return (layout.getHeight() - minLength(plusOne)) / 2;
     }
 
-
     /*
      * Update RelativeLayout view that contains N SVGs.
      * - call this after insert or removal of SVG to resize + align SVGs for best fit.
@@ -120,6 +119,4 @@ public class ShapePreview
             }
         });
     }
-
-
 }

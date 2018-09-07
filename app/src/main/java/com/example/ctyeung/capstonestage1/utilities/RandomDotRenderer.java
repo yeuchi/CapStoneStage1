@@ -5,7 +5,8 @@ import android.graphics.Bitmap;
 import com.example.ctyeung.capstonestage1.data.RandomDotData;
 
 /*
- * take bitmap and render into a pair of random dot images
+ * render dot bitmaps as preview.
+ * - this should be converted into NDK C++ for performance.
  */
 public class RandomDotRenderer
 {

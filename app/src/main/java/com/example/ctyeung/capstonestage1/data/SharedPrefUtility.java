@@ -14,6 +14,37 @@ public class SharedPrefUtility
     public static final String TEXT_IS_DIRTY = "textIsDirty";
     public static final String SHAPE_IS_DIRTY = "shapeIsDirty";
 
+    public static final String DOT_MODE = "dotMode";
+    public enum DotModeEnum
+    {
+        STEREO_PAIR,
+        INTERLACED
+    }
+
+    /*
+     * Config: dot mode - stereo / interlaced
+     */
+    public static DotModeEnum getDotMode(Context context)
+    {
+        SharedPreferences sharedPreferences = getSharedPref(context);
+
+        boolean isDotStereo = (sharedPreferences.contains(DOT_MODE))?
+                                sharedPreferences.getBoolean(DOT_MODE, true): false;
+
+        return (isDotStereo)? DotModeEnum.STEREO_PAIR:DotModeEnum.INTERLACED;
+    }
+
+    public static void setDotMode(Context context,
+                                  DotModeEnum mode)
+    {
+        SharedPreferences sharedPreferences = getSharedPref(context);
+
+        boolean isDotStereo = (mode == DotModeEnum.STEREO_PAIR)? true:false;
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean(TEXT_IS_DIRTY, isDotStereo);
+        editor.commit();
+    }
+
     /*
      * Text fragment: is dirty - preview needs re-rendering
      */
