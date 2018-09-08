@@ -3,16 +3,17 @@ package com.example.ctyeung.capstonestage1.data;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-/**
- * Created by ctyeung on 12/24/17.
+/*
+ * Persistence of application data
  */
-
 public class SharedPrefUtility
 {
     public static final String mypreference = "mypref";
-    public static final String MAIN_SCROLL = "mainScroll";
     public static final String TEXT_IS_DIRTY = "textIsDirty";
     public static final String SHAPE_IS_DIRTY = "shapeIsDirty";
+
+    public static final String IMAGE_HEIGHT = "imageHeight";        // image height in pixels (width is same as height)
+    public static final String INTERLACE_WIDTH = "interlaceWidth";  // number of pixels per slice
 
     public static final String DOT_MODE = "dotMode";
     public enum DotModeEnum
@@ -27,10 +28,8 @@ public class SharedPrefUtility
     public static DotModeEnum getDotMode(Context context)
     {
         SharedPreferences sharedPreferences = getSharedPref(context);
-
         boolean isDotStereo = (sharedPreferences.contains(DOT_MODE))?
                                 sharedPreferences.getBoolean(DOT_MODE, true): false;
-
         return (isDotStereo)? DotModeEnum.STEREO_PAIR:DotModeEnum.INTERLACED;
     }
 
@@ -38,7 +37,6 @@ public class SharedPrefUtility
                                   DotModeEnum mode)
     {
         SharedPreferences sharedPreferences = getSharedPref(context);
-
         boolean isDotStereo = (mode == DotModeEnum.STEREO_PAIR)? true:false;
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putBoolean(TEXT_IS_DIRTY, isDotStereo);
@@ -46,45 +44,44 @@ public class SharedPrefUtility
     }
 
     /*
-     * Text fragment: is dirty - preview needs re-rendering
+     * Config: image height or interlace pixel width
      */
-    public static boolean getTextDirty(Context context)
+    public static int getDimension( String key,
+                                    Context context)
     {
         SharedPreferences sharedPreferences = getSharedPref(context);
-
-        return (sharedPreferences.contains(TEXT_IS_DIRTY))?
-                sharedPreferences.getBoolean(TEXT_IS_DIRTY, false):
-                false;
+        return sharedPreferences.getInt(key, -1);
     }
 
-    public static void setTextDirty(Context context,
-                                    boolean isDirty)
+    public static void setDimension(String key,
+                                    Context context,
+                                    int value)
     {
         SharedPreferences sharedPreferences = getSharedPref(context);
-
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putBoolean(TEXT_IS_DIRTY, isDirty);
+        editor.putInt(key, value);
         editor.commit();
     }
 
     /*
-     * Shape fragment: is dirty - preview needs re-rendering
+     * Text fragment: is dirty - preview needs re-rendering
      */
-    public static boolean getShapeDirty(Context context)
+    public static boolean getIsDirty(String key,       // text or shape
+                                     Context context)
     {
         SharedPreferences sharedPreferences = getSharedPref(context);
-
-        return (sharedPreferences.contains(SHAPE_IS_DIRTY))?
-                sharedPreferences.getBoolean(SHAPE_IS_DIRTY, false):
+        return (sharedPreferences.contains(key))?
+                sharedPreferences.getBoolean(key, false):
                 false;
     }
 
-    public static void setShapeDirty(Context context,
-                                     boolean isDirty)
+    public static void setIsDirty(String key,
+                                  Context context,
+                                  boolean isDirty)
     {
         SharedPreferences sharedPreferences = getSharedPref(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putBoolean(SHAPE_IS_DIRTY, isDirty);
+        editor.putBoolean(key, isDirty);
         editor.commit();
     }
 

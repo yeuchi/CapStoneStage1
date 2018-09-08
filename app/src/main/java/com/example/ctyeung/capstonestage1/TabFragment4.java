@@ -2,6 +2,7 @@ package com.example.ctyeung.capstonestage1;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -70,8 +71,8 @@ public class TabFragment4 extends Fragment {
         if (isVisibleToUser)
         {
             // has text or shapes changed ?
-            boolean isTextDirty = SharedPrefUtility.getTextDirty(mContext);
-            boolean isShapeDirty = SharedPrefUtility.getShapeDirty(mContext);
+            boolean isTextDirty = SharedPrefUtility.getIsDirty(SharedPrefUtility.TEXT_IS_DIRTY, mContext);
+            boolean isShapeDirty = SharedPrefUtility.getIsDirty(SharedPrefUtility.SHAPE_IS_DIRTY, mContext);
             if(isTextDirty || isShapeDirty)
             {
                 // re-render preview

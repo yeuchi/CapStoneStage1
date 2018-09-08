@@ -37,7 +37,7 @@ public class TabFragment2 extends Fragment {
 
         shapePreview = new ShapePreview(root);
         context = root.getContext();
-        SharedPrefUtility.setTextDirty(context, false);
+        SharedPrefUtility.setIsDirty(SharedPrefUtility.TEXT_IS_DIRTY, context, false);
         return root;
     }
 
@@ -62,7 +62,7 @@ public class TabFragment2 extends Fragment {
                 RelativeLayout view = root.findViewById(R.id.shapes_view_group);
                 Bitmap bitmap = BitmapRenderer.create(view);
                 String path = BitmapRenderer.Archive(context, bitmap, PNG_FILENAME);
-                SharedPrefUtility.setTextDirty(context, true);
+                SharedPrefUtility.setIsDirty(SharedPrefUtility.TEXT_IS_DIRTY, context, true);
             }
         }
     }

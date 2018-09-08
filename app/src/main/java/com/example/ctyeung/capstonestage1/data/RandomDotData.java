@@ -43,13 +43,13 @@ public class RandomDotData
     /*
      * Merge all images into a single final bitmap
      */
-    public Bitmap Render(DotTypeEnum type)
+    public Bitmap[] Render(DotTypeEnum type)
     {
         switch(type)
         {
             case LEFT:
             case RIGHT:
-                return createStereo(type);
+                return createStereo();
 
             default:
             case INTERLACED:
@@ -57,7 +57,10 @@ public class RandomDotData
         }
     }
 
-    private Bitmap createStereo(DotTypeEnum type)
+    /*
+     * create + return random dot stereograms pair
+     */
+    private Bitmap[] createStereo()
     {
         if(list.size()>1)
         {
@@ -66,11 +69,18 @@ public class RandomDotData
         return null;
     }
 
-    private Bitmap createInterlaced()
+    /*
+     * create + return single random dot interlaced image
+     */
+    private Bitmap[] createInterlaced()
     {
         if(list.size()>1)
         {
-            // render a bitmap
+            // 1st create stereo pair
+            Bitmap[] bitmaps = createStereo();
+
+            // interlace the 2 bitmaps
+
         }
         return null;
     }

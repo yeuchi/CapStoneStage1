@@ -67,7 +67,7 @@ public class TabFragment3 extends Fragment implements ShapeGridAdapter.ListItemC
         mNumbersList.setLayoutManager(layoutManager);
 
         requestShapes();
-        SharedPrefUtility.setShapeDirty(context, false);
+        SharedPrefUtility.setIsDirty(SharedPrefUtility.SHAPE_IS_DIRTY, context, false);
         return root;
     }
 
@@ -90,7 +90,7 @@ public class TabFragment3 extends Fragment implements ShapeGridAdapter.ListItemC
                 RelativeLayout view = root.findViewById(R.id.shapes_view_group);
                 Bitmap bitmap = BitmapRenderer.create(view);
                 String path = BitmapRenderer.Archive(context, bitmap, PNG_FILENAME);
-                SharedPrefUtility.setShapeDirty(context, true);
+                SharedPrefUtility.setIsDirty(SharedPrefUtility.SHAPE_IS_DIRTY, context, true);
             }
         }
     }

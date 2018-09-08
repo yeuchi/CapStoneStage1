@@ -7,6 +7,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+/*
+ * only landscape mode is supported for viewing of either interlaced or stereo-pair
+ * - might want to consider a VR SDK for viewing stereo ?
+ */
 public class ViewerActivity extends AppCompatActivity {
 
     @Override
