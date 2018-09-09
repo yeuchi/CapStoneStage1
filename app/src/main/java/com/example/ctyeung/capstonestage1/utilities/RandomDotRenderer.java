@@ -2,7 +2,9 @@ package com.example.ctyeung.capstonestage1.utilities;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
 
 import com.example.ctyeung.capstonestage1.data.RandomDotData;
 import com.example.ctyeung.capstonestage1.data.SharedPrefUtility;
@@ -51,14 +53,17 @@ public class RandomDotRenderer
          */
         RandomDotData data = new RandomDotData();
 
-
-
         for (int num=0; num<2; num++)
         {
             int xOffset = 0;
-            Bitmap bmp = dither(bmpText, bmpShape, xOffset);
+            bmpText = dither(bmpText);
+            bmpShape = dither(bmpShape);
+            Bitmap bmp = integrate(bmpText, bmpShape, xOffset);
             data.endQbmp(bmp);
 
+            /*
+             * horizontal offset for parallax
+             */
             xOffset += mBorderOffset;
         }
 
@@ -66,9 +71,25 @@ public class RandomDotRenderer
         return null;
     }
 
-    protected Bitmap dither(Bitmap bmpText,
-                            Bitmap bmpShape,
-                            int xOffset)
+    /*
+     * dither - convert text or shape image into random dots
+     * - use poisson would be best
+     */
+    protected Bitmap dither(Bitmap bmpSrc)
+    {
+        if(null!=bmpSrc)
+        {
+
+        }
+        return bmpSrc;
+    }
+
+    /*
+     * Integrate - overlay both text and shape image(s) onto background
+     */
+    protected Bitmap integrate( Bitmap bmpText,
+                                Bitmap bmpShape,
+                                int xOffset)
     {
         /*
          * assume images: text + shape together make a square image
@@ -83,14 +104,14 @@ public class RandomDotRenderer
         int yStart = 0;
         if(null!=bmpText)
         {
-            bmpDes = overlay(bmpDes, bmpText, yStart);
+            bmpDes = overlay(bmpDes, bmpText, xOffset, yStart);
             yStart += bmpText.getHeight();
         }
 
         if(null!=bmpShape &&
                 yStart < bmpDes.getHeight())
         {
-            bmpDes = overlay(bmpDes, bmpShape, yStart);
+            bmpDes = overlay(bmpDes, bmpShape, xOffset, yStart);
         }
         return bmpDes;
     }
@@ -98,19 +119,14 @@ public class RandomDotRenderer
     /*
      * Draw text or shape image onto destination background
      */
-    protected Bitmap overlay(Bitmap bmpDes,   // destination image
-                             Bitmap bmpSrc,   // source image: text or shape
-                             int yStart)      // starting point on destination image
+    protected Bitmap overlay(Bitmap bmpDes,     // destination image
+                             Bitmap bmpSrc,     // source image: text or shape
+                             int xOffset,       // image offset from border
+                             int yOffset)       // starting point on destination image
     {
-        for(int y=0; y<bmpSrc.getHeight(); y++)
-        {
-            for (int x=0; x<bmpSrc.getWidth(); x++)
-            {
-                /*
-                 * dither text or shape image into background image
-                 */
-            }
-        }
+        Canvas canvas = new Canvas(bmpDes);
+        Paint paint = new Paint(Paint.FILTER_BITMAP_FLAG);
+        canvas.drawBitmap(bmpSrc, xOffset, yOffset, paint);
         return bmpDes;
     }
 
