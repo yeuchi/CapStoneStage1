@@ -14,6 +14,7 @@ public class SharedPrefUtility
 
     public static final String IMAGE_HEIGHT = "imageHeight";        // image height in pixels (width is same as height)
     public static final String INTERLACE_WIDTH = "interlaceWidth";  // number of pixels per slice
+    public static final String BORDER_OFFSET = "border";            // image offset from background border
 
     public static final String DOT_MODE = "dotMode";
     public enum DotModeEnum

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.ContextWrapper;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.view.View;
 
 import java.io.File;
@@ -17,6 +18,33 @@ public class BitmapRenderer
 {
     public static String IMAGE_DIR = "imageDir";
 
+    /*
+     * dither random dot background
+     * - should use poisson distribution to produce
+     *   more visually appealing random images.
+     *   But for now .. random function to start.
+     */
+    public static Bitmap dither(int imageHeight)
+    {
+        Bitmap bitmap = Bitmap.createBitmap(imageHeight,
+                                            imageHeight,
+                                            Bitmap.Config.ARGB_8888);
+
+        for(int y=0; y<bitmap.getHeight(); y++)
+        {
+            for(int x=0; x<bitmap.getWidth(); x++)
+            {
+                int random = (int)(Math.random() * 255);
+                int pixel = Color.argb(255, random, random, random);
+                bitmap.setPixel(x,y, pixel);
+            }
+        }
+        return bitmap;
+    }
+
+    /*
+     * Create a bitmap from View; in fragments: text + shape
+     */
     public static Bitmap create(View view)
     {
         Bitmap bitmap = Bitmap.createBitmap(view.getWidth(),
@@ -27,6 +55,7 @@ public class BitmapRenderer
     }
 
     /*
+     * Save bitmap to file in fragments: text + shape
      * https://stackoverflow.com/questions/17674634/saving-and-reading-bitmaps-images-from-internal-memory-in-android
      */
     public static String Archive(Context context,

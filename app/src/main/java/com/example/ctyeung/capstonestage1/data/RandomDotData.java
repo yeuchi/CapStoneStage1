@@ -5,11 +5,10 @@ import android.graphics.Bitmap;
 import java.util.ArrayList;
 
 /*
- * rendered random dot data -- collection of random dot assets
- * - background (common for both left/right)
- * - left
- * - right
- * - or combined interlaced ?
+ * Data collection of a rendered result for preview
+ * assume the following bitmap order
+ * - 0:left, 1:right
+ * - 0:interlaced
  */
 public class RandomDotData
 {
@@ -19,71 +18,54 @@ public class RandomDotData
         RIGHT,
         INTERLACED
     }
-    private ArrayList<DotBitmap> list;
+    private ArrayList<Bitmap> list;
 
     /*
      * random dot data rendering
      */
-    public RandomDotData(int width,
-                         int height)
+    public RandomDotData()
     {
-        DotBitmap dotBmp = new DotBitmap(DotBitmap.BmpTypeEnum.BACKGROUND, width, height);
-        list = new ArrayList<DotBitmap>();
+        list = new ArrayList<Bitmap>();
+    }
+
+    /*
+     * enqueue a rendered bitmap for preview
+     */
+    public void endQbmp(Bitmap dotBmp)
+    {
         list.add(dotBmp);
     }
 
     /*
-     * add a shape or test image
+     * dequeue a rendered bitmap for display
      */
-    public void AddBmp(DotBitmap dotBmp)
+    public Bitmap deQbmp()
     {
-        list.add(dotBmp);
-    }
-
-    /*
-     * Merge all images into a single final bitmap
-     */
-    public Bitmap[] Render(DotTypeEnum type)
-    {
-        switch(type)
-        {
-            case LEFT:
-            case RIGHT:
-                return createStereo();
-
-            default:
-            case INTERLACED:
-                return createInterlaced();
-        }
-    }
-
-    /*
-     * create + return random dot stereograms pair
-     */
-    private Bitmap[] createStereo()
-    {
-        if(list.size()>1)
-        {
-            // render a bitmap
-        }
+        /*
+         * not support a dequeue to keep data structure immutable
+         * - use seek instead to access data
+         */
         return null;
     }
 
     /*
-     * create + return single random dot interlaced image
+     * retrieve a rendered dot bitmap for display; given an index
      */
-    private Bitmap[] createInterlaced()
+    public Bitmap seek(int index)
     {
-        if(list.size()>1)
-        {
-            // 1st create stereo pair
-            Bitmap[] bitmaps = createStereo();
+        if (index >= list.size())
+            return null;
 
-            // interlace the 2 bitmaps
-
-        }
-        return null;
+        return list.get(index);
     }
 
-
+    /*
+     * how many do we have ?
+     * - 1 if interlaced
+     * - 2 if stereo
+     */
+    public int Count()
+    {
+        return list.size();
+    }
 }

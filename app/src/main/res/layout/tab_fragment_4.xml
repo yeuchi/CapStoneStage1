@@ -25,4 +25,12 @@
         android:id="@+id/btnCancel"
         android:text="Cancel"/>
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/image_container">
+        <!-- insert random dot image(s) here -->
+    </LinearLayout>
+
 </LinearLayout>

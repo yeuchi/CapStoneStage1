@@ -23,6 +23,8 @@ public class ConfigActivity extends AppCompatActivity {
         // add a dialog box for interlace width
 
         // add a dialog for font selection
+
+        // add a dialog box for offset length
     }
 
     @Override
