@@ -6,6 +6,9 @@ import com.caverock.androidsvg.SVG;
 import com.example.ctyeung.capstonestage1.utilities.JSONhelper;
 import com.example.ctyeung.capstonestage1.utilities.ShapeHelper;
 
+/*
+ * SVG object class
+ */
 public class ShapeSVG
 {
     private JSONObject json;

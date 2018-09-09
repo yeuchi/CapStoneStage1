@@ -19,37 +19,18 @@
         android:layout_marginBottom="24dp">
 
         <RadioButton
-            android:id="@+id/radio_vr_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Virtual Reality View" />
-
-        <RadioButton
             android:id="@+id/radio_interlace_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Single Interlace View"/>
 
+        <RadioButton
+            android:id="@+id/radio_vr_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Virtual Reality View" />
+
     </RadioGroup>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginLeft="24dp"
-        android:layout_marginBottom="24dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Image height (pixels):"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/txt_image_height"
-            android:text="400"/>
-    </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -67,7 +48,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/txt_interlace_section_width"
-            android:text="400"/>
+            android:text="@dimen/interlace_width"/>
 
     </LinearLayout>
 
@@ -81,13 +62,52 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Image offset (pixels):"/>
+            android:text="Image height (pixels):"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/txt_image_offset"
-            android:text="400"/>
+            android:id="@+id/txt_image_height"
+            android:text="@dimen/image_height"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="24dp"
+        android:layout_marginBottom="24dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Border offset (pixels):"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/txt_border_offset"
+            android:text="@dimen/border_offset"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginLeft="24dp"
+        android:layout_marginBottom="24dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Parallax distance (pixels):"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/txt_parallax"
+            android:text="@dimen/parallax_distance"/>
 
     </LinearLayout>
 

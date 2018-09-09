@@ -17,13 +17,9 @@ public class RandomDotRenderer
 {
     private Bitmap bmpBackground;               // common background dithered image
     private Context mContext;                   // preview fragment ui context
-    private int mImageHeight;                   // height is common between stereo + interlaced
-    private int mBorderOffset;                  // image offset from border
 
     public RandomDotRenderer(Context context)
     {
-        mBorderOffset = SharedPrefUtility.getDimension(SharedPrefUtility.BORDER_OFFSET, mContext);
-
         mContext = context;
         createCommon();
     }
@@ -36,8 +32,8 @@ public class RandomDotRenderer
         /*
          * text + shape image(s) are in the center of background dither image
          */
-        mImageHeight = SharedPrefUtility.getDimension(SharedPrefUtility.IMAGE_HEIGHT, mContext) + 2*mBorderOffset;
-        bmpBackground = BitmapRenderer.dither(mImageHeight);
+        int height = RandomDotData.getImageHeight(mContext);
+        bmpBackground = BitmapRenderer.randomDot(height);
     }
 
     /*
@@ -52,19 +48,17 @@ public class RandomDotRenderer
          * NOTE: text + shape image in the middle of the background image
          */
         RandomDotData data = new RandomDotData();
+        int xOffset = RandomDotData.getBorderOffset(mContext);
 
         for (int num=0; num<2; num++)
         {
-            int xOffset = 0;
             bmpText = dither(bmpText);
             bmpShape = dither(bmpShape);
             Bitmap bmp = integrate(bmpText, bmpShape, xOffset);
             data.endQbmp(bmp);
 
-            /*
-             * horizontal offset for parallax
-             */
-            xOffset += mBorderOffset;
+            // horizontal offset for parallax
+            xOffset += RandomDotData.getParallaxDistance(mContext);
         }
 
 
@@ -79,13 +73,35 @@ public class RandomDotRenderer
     {
         if(null!=bmpSrc)
         {
+            int pixelBlack = 0;
+            int pixelWhite = 1;
 
+            for(int y=0; y<bmpSrc.getHeight(); y++)
+            {
+                for(int x=0; x<bmpSrc.getWidth(); x++)
+                {
+                    int src = bmpSrc.getPixel(x, y);
+
+                    // if pixel is 'on' -> dither
+                    int des = (Math.random() >= 0.5)?
+                            pixelWhite:
+                            pixelBlack;
+
+                    if(src != des) // if white
+                        bmpSrc.setPixel(x, y, des);
+                }
+            }
         }
         return bmpSrc;
     }
 
     /*
      * Integrate - overlay both text and shape image(s) onto background
+     * - User has option to select following:
+     *
+     * 1. text only
+     * 2. shape only
+     * 3. text + shape
      */
     protected Bitmap integrate( Bitmap bmpText,
                                 Bitmap bmpShape,
@@ -100,8 +116,10 @@ public class RandomDotRenderer
         /*
          * assume text on top of shape - always ?
          * - what about render them overlapping with different color dots (experiment later) ?
+         *
+         * - how do I scale image to fit for text + shape ?
          */
-        int yStart = 0;
+        int yStart = RandomDotData.getBorderOffset(mContext);
         if(null!=bmpText)
         {
             bmpDes = overlay(bmpDes, bmpText, xOffset, yStart);
@@ -141,6 +159,10 @@ public class RandomDotRenderer
         RandomDotData randomDotData = createStereoPair(bmpText, bmpShape);
 
         // slice-n-dice, interlace them into one image
+
+        /*
+         * CTY ... to do here !
+         */
 
         return null;
     }

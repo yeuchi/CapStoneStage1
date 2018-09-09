@@ -4,7 +4,9 @@ import android.content.Context;
 import android.content.ContextWrapper;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.util.DisplayMetrics;
 import android.view.View;
 
 import java.io.File;
@@ -24,11 +26,9 @@ public class BitmapRenderer
      *   more visually appealing random images.
      *   But for now .. random function to start.
      */
-    public static Bitmap dither(int imageHeight)
+    public static Bitmap randomDot(int imageHeight)
     {
-        Bitmap bitmap = Bitmap.createBitmap(imageHeight,
-                                            imageHeight,
-                                            Bitmap.Config.ARGB_8888);
+        Bitmap bitmap = blank(imageHeight, imageHeight);
 
         for(int y=0; y<bitmap.getHeight(); y++)
         {
@@ -45,27 +45,67 @@ public class BitmapRenderer
     /*
      * Create a bitmap from View; in fragments: text + shape
      */
-    public static Bitmap create(View view)
+    public static Bitmap blank(int width, int height)
     {
-        Bitmap bitmap = Bitmap.createBitmap(view.getWidth(),
-                                            view.getHeight(),
+        Bitmap bitmap = Bitmap.createBitmap(width,
+                                            height,
                                             Bitmap.Config.ARGB_8888);
 
         return bitmap;
     }
 
     /*
-     * Save bitmap to file in fragments: text + shape
-     * https://stackoverflow.com/questions/17674634/saving-and-reading-bitmaps-images-from-internal-memory-in-android
+     * Save View to file in fragments: text or shape
      */
     public static String Archive(Context context,
-                                  Bitmap bitmap,
+                                  View view,
                                   String filename)  // shapes.png
+    {
+        Bitmap bitmap = View2Bitmap(context, view);
+
+        if(null==bitmap)
+            return null;
+
+        return Persist2File(context, bitmap, filename);
+    }
+
+    /*
+     * view to bitmap
+     * https://stackoverflow.com/questions/34272310/android-convert-view-to-bitmap
+     */
+    protected static Bitmap View2Bitmap(Context context,
+                                        View view)
+    {
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        //((Activity) context).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        //view.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+
+        view.measure(displayMetrics.widthPixels, displayMetrics.heightPixels);
+        view.layout(0, 0, displayMetrics.widthPixels, displayMetrics.heightPixels);
+        //view.buildDrawingCache();
+
+        /*
+         * assume the view dimension is already a square ... !
+         * do I need to scale the bitmap ???
+         */
+        Bitmap bitmap = Bitmap.createBitmap(view.getMeasuredWidth(), view.getMeasuredHeight(), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
+        view.draw(canvas);
+
+        return bitmap;
+    }
+
+    /*
+     * bitmap to file
+     * https://stackoverflow.com/questions/17674634/saving-and-reading-bitmaps-images-from-internal-memory-in-android
+     */
+    protected static String Persist2File(Context context,
+                                         Bitmap bitmap,
+                                         String filename)
     {
         ContextWrapper wrapper = new ContextWrapper(context);
         // path to /data/data/yourapp/app_data/imageDir
         File directory = wrapper.getDir(IMAGE_DIR, Context.MODE_PRIVATE);
-
         File file = new File(directory,filename);
 
         FileOutputStream stream = null;
@@ -92,6 +132,10 @@ public class BitmapRenderer
         return directory.getAbsolutePath();
     }
 
+    /*
+     * Load bitmap from file
+     * - for preview fragment and viewer
+     */
     public static Bitmap Load(String filename)
     {
         try

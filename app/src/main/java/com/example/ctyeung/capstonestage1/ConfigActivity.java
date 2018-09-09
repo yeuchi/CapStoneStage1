@@ -18,13 +18,16 @@ public class ConfigActivity extends AppCompatActivity {
         // Enable the Up button
         ab.setDisplayHomeAsUpEnabled(true);
 
-        // add a dialog box for image height
 
         // add a dialog box for interlace width
 
+        // add a dialog box for image height
+
         // add a dialog for font selection
 
-        // add a dialog box for offset length
+        // add a dialog box for border offset length
+
+        // add a dialog for for parallax distance
     }
 
     @Override

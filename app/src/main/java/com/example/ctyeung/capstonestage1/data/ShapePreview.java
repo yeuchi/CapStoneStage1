@@ -8,6 +8,11 @@ import android.widget.RelativeLayout;
 import com.caverock.androidsvg.SVGImageView;
 import com.example.ctyeung.capstonestage1.R;
 
+/*
+ * Linear layout View at the bottom of Shape fragment
+ * - this is the container that holds and display all the SVG selectable elements.
+ * - like to use this for text fragment as well.
+ */
 public class ShapePreview
 {
     public RelativeLayout layout;

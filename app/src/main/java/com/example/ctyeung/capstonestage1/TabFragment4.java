@@ -20,8 +20,8 @@ import com.example.ctyeung.capstonestage1.utilities.RandomDotRenderer;
 /*
  * Preview fragment - load bitmaps and dither them for preview.
  */
-public class TabFragment4 extends Fragment {
-
+public class TabFragment4 extends Fragment
+{
     private Context mContext;
     private SharedPrefUtility.DotModeEnum mDotModeEnum;
     private RandomDotRenderer dotRenderer;
@@ -32,9 +32,6 @@ public class TabFragment4 extends Fragment {
     {
         View root = inflater.inflate(R.layout.tab_fragment_4, container, false);
         mContext = root.getContext();
-
-        // Render Preview 1st time
-        render();
 
         Button btnSend = (Button)root.findViewById(R.id.btnSend);
         btnSend.setOnClickListener(new View.OnClickListener()
@@ -59,6 +56,8 @@ public class TabFragment4 extends Fragment {
             }
         });
 
+        renderIfDirty();
+
         return root;
     }
 
@@ -72,33 +71,59 @@ public class TabFragment4 extends Fragment {
         super.setUserVisibleHint(isVisibleToUser);
         if (isVisibleToUser)
         {
-            render();
+            renderIfDirty();
         }
         else
         {
-
+            // not visible
         }
     }
 
     /*
      * display rendered content, create / insert containers
+     * - assume landscape for now
      */
     protected void display(RandomDotData randomDotData)
     {
-        /*
-         * empty the image container
-         */
+        // fragment not constructed yet
+        if(null==root)
+            return;
+
+        // empty the image container
         LinearLayout imageContainer = root.findViewById(R.id.image_container);
         imageContainer.removeAllViews();
+
+        // nothing to display
+        if(null==randomDotData)
+            return;
 
         /*
          * insert preview images into container
          */
-        for(int i=0; i<randomDotData.Count(); i++)
+        for(int i=0; i<randomDotData.count(); i++)
         {
             ImageView imageView = new ImageView(mContext);
+            Bitmap bmp = randomDotData.seek(i);
+            imageView.setImageBitmap(bmp);
+        }
+    }
 
+    /*
+     * load last image persisted after change (text + shape)
+     * - maybe only load image-dirty ?
+     */
+    protected void renderIfDirty()
+    {
+        // has text or shapes changed ?
+        boolean isTextDirty = SharedPrefUtility.getIsDirty(SharedPrefUtility.TEXT_IS_DIRTY, mContext);
+        boolean isShapeDirty = SharedPrefUtility.getIsDirty(SharedPrefUtility.SHAPE_IS_DIRTY, mContext);
 
+        if(isTextDirty || isShapeDirty)
+        {
+            render();
+
+            SharedPrefUtility.setIsDirty(SharedPrefUtility.TEXT_IS_DIRTY, mContext, false);
+            SharedPrefUtility.setIsDirty(SharedPrefUtility.SHAPE_IS_DIRTY, mContext, false);
         }
     }
 
@@ -107,30 +132,20 @@ public class TabFragment4 extends Fragment {
      */
     protected void render()
     {
-        // has text or shapes changed ?
-        boolean isTextDirty = SharedPrefUtility.getIsDirty(SharedPrefUtility.TEXT_IS_DIRTY, mContext);
-        boolean isShapeDirty = SharedPrefUtility.getIsDirty(SharedPrefUtility.SHAPE_IS_DIRTY, mContext);
+        RandomDotData randomDotData = null;
+        Bitmap bmpText = BitmapRenderer.Load(TabFragment2.PNG_FILENAME);
+        Bitmap bmpShape = BitmapRenderer.Load(TabFragment3.PNG_FILENAME);
 
-        if(isTextDirty || isShapeDirty)
+        // if something to render
+        if(null!=bmpText || null!=bmpShape)
         {
-            /*
-             * load last image persisted after change (text + shape)
-             * - maybe only load image-dirty ?
-             */
-            Bitmap bmpText = BitmapRenderer.Load(TabFragment2.PNG_FILENAME);
-            Bitmap bmpShape = BitmapRenderer.Load(TabFragment3.PNG_FILENAME);
-
-            /*
-             * render random dot type by configuration setting
-             */
+            // render random dot type by configuration setting
             mDotModeEnum = SharedPrefUtility.getDotMode(mContext);
-            RandomDotData randomDotData;
 
-            if(null==dotRenderer)
+            if (null == dotRenderer)
                 dotRenderer = new RandomDotRenderer(mContext);
 
-            switch (mDotModeEnum)
-            {
+            switch (mDotModeEnum) {
                 case INTERLACED:
                     randomDotData = dotRenderer.createInterlaced(bmpText, bmpShape);
                     break;
@@ -140,10 +155,9 @@ public class TabFragment4 extends Fragment {
                     randomDotData = dotRenderer.createStereoPair(bmpText, bmpShape);
                     break;
             }
-
-            /*
-             * display render content
-             */
         }
+
+        // display render content
+        display(randomDotData);
     }
 }

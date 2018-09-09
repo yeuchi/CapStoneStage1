@@ -3,6 +3,8 @@ package com.example.ctyeung.capstonestage1.data;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.example.ctyeung.capstonestage1.R;
+
 /*
  * Persistence of application data
  */
@@ -12,15 +14,38 @@ public class SharedPrefUtility
     public static final String TEXT_IS_DIRTY = "textIsDirty";
     public static final String SHAPE_IS_DIRTY = "shapeIsDirty";
 
-    public static final String IMAGE_HEIGHT = "imageHeight";        // image height in pixels (width is same as height)
     public static final String INTERLACE_WIDTH = "interlaceWidth";  // number of pixels per slice
+    public static final String IMAGE_HEIGHT = "imageHeight";        // image height in pixels (width is same as height)
     public static final String BORDER_OFFSET = "border";            // image offset from background border
+    public static final String PARALLAX_DIS = "parallaxDistance";   // parallax distance
 
     public static final String DOT_MODE = "dotMode";
     public enum DotModeEnum
     {
         STEREO_PAIR,
         INTERLACED
+    }
+
+    protected static int getDefaltValue(Context context,
+                                        String key)
+    {
+        switch (key)
+        {
+            case INTERLACE_WIDTH:
+                return (int)context.getResources().getDimension(R.dimen.interlace_width);
+
+
+            case IMAGE_HEIGHT:
+                return (int)context.getResources().getDimension(R.dimen.image_height);
+
+            case BORDER_OFFSET:
+                return (int)context.getResources().getDimension(R.dimen.border_offset);
+
+            case PARALLAX_DIS:
+                return (int)context.getResources().getDimension(R.dimen.parallax_distance);
+        }
+
+        return -1;
     }
 
     /*
@@ -51,7 +76,14 @@ public class SharedPrefUtility
                                     Context context)
     {
         SharedPreferences sharedPreferences = getSharedPref(context);
-        return sharedPreferences.getInt(key, -1);
+        int result = sharedPreferences.getInt(key, -1);
+
+        /*
+         * get default if not available
+         */
+        return (result>-1)?
+                result:
+                getDefaltValue(context, key);
     }
 
     public static void setDimension(String key,

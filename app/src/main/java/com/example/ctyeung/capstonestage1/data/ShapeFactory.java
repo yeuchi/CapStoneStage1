@@ -8,17 +8,22 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+/*
+ * create a list collection to hold SVGs.
+ * - holds all shapes in shape fragment
+ * - like to use this for text fragment to hold A-Z as well.
+ */
 public class ShapeFactory
 {
     public static List<ShapeSVG> CreateShapeList(JSONArray shapeList)
     {
-        List<ShapeSVG> movies = new ArrayList<ShapeSVG>();
+        List<ShapeSVG> list = new ArrayList<ShapeSVG>();
         for(int i=0; i<shapeList.length(); i++)
         {
             JSONObject json = JSONhelper.parseJsonFromArray(shapeList, i);
             ShapeSVG shapeSVG = new ShapeSVG(json);
-            movies.add(i, shapeSVG);
+            list.add(i, shapeSVG);
         }
-        return movies;
+        return list;
     }
 }

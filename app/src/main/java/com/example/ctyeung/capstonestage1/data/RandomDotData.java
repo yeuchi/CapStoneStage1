@@ -1,5 +1,6 @@
 package com.example.ctyeung.capstonestage1.data;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 
 import java.util.ArrayList;
@@ -18,6 +19,7 @@ public class RandomDotData
         RIGHT,
         INTERLACED
     }
+
     private ArrayList<Bitmap> list;
 
     /*
@@ -64,8 +66,37 @@ public class RandomDotData
      * - 1 if interlaced
      * - 2 if stereo
      */
-    public int Count()
+    public int count()
     {
         return list.size();
+    }
+
+    /*
+     * Distance in pixel between background image and left text/shape image
+     */
+    public static int getBorderOffset(Context context)
+    {
+        return SharedPrefUtility.getDimension(SharedPrefUtility.IMAGE_HEIGHT, context);
+    }
+
+    /*
+     * Background height is image height + 2 * borderOffset
+     */
+    public static int getBackgroundImageLength(Context context)
+    {
+        return getImageHeight(context) + 2*getBorderOffset(context);
+    }
+
+    public static int getImageHeight(Context context)
+    {
+        return SharedPrefUtility.getDimension(SharedPrefUtility.IMAGE_HEIGHT, context);
+    }
+
+    /*
+     * Parallax - x offset (pixels) between left + right image
+     */
+    public static int getParallaxDistance(Context context)
+    {
+        return SharedPrefUtility.getDimension(SharedPrefUtility.PARALLAX_DIS, context);
     }
 }
