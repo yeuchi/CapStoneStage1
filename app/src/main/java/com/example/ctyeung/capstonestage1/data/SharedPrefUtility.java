@@ -32,8 +32,7 @@ public class SharedPrefUtility
         switch (key)
         {
             case INTERLACE_WIDTH:
-                return (int)context.getResources().getDimension(R.dimen.interlace_width);
-
+                return (int)200;
 
             case IMAGE_HEIGHT:
                 return (int)context.getResources().getDimension(R.dimen.image_height);

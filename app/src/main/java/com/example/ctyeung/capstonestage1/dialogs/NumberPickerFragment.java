@@ -49,9 +49,13 @@ public class NumberPickerFragment extends DialogFragment {
 
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
-                valueChangeListener.onValueChange(numberPicker,
-                        numberPicker.getValue(), numberPicker.getValue());
+            public void onClick(DialogInterface dialog, int which)
+            {
+                int value = numberPicker.getValue();
+                listener.onNumberDialogOKClick(value);
+
+               // valueChangeListener.onValueChange(numberPicker,
+                //        numberPicker.getValue(), numberPicker.getValue());
             }
         });
 
