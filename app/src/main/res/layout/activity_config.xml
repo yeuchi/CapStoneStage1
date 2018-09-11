@@ -32,84 +32,37 @@
 
     </RadioGroup>
 
-    <LinearLayout
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_marginLeft="24dp"
-        android:layout_marginBottom="24dp">
+        android:layout_marginBottom="24dp"
+        android:id="@+id/btn_interlace_width"
+        android:text="Interlace width (pixels): 200"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Interlace width (pixels):"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/txt_interlace_section_width"
-            android:text="@dimen/interlace_width"/>
-
-    </LinearLayout>
-
-    <LinearLayout
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_marginLeft="24dp"
-        android:layout_marginBottom="24dp">
+        android:layout_marginBottom="24dp"
+        android:id="@+id/btn_image_height"
+        android:text="Image height (pixels): 400"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Image height (pixels):"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/txt_image_height"
-            android:text="@dimen/image_height"/>
-    </LinearLayout>
-
-    <LinearLayout
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_marginLeft="24dp"
-        android:layout_marginBottom="24dp">
+        android:layout_marginBottom="24dp"
+        android:id="@+id/btn_border_offset"
+        android:text="Border offset (pixels): 100"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Border offset (pixels):"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/txt_border_offset"
-            android:text="@dimen/border_offset"/>
-
-    </LinearLayout>
-
-    <LinearLayout
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_marginLeft="24dp"
-        android:layout_marginBottom="24dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Parallax distance (pixels):"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/txt_parallax"
-            android:text="@dimen/parallax_distance"/>
-
-    </LinearLayout>
+        android:layout_marginBottom="24dp"
+        android:id="@+id/btn_parallax"
+        android:text="Parallax distance (pixels): 10"/>
 
     <Button
         android:id="@+id/btnFontFamily"

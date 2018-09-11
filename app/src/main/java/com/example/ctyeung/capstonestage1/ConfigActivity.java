@@ -1,5 +1,6 @@
 package com.example.ctyeung.capstonestage1;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.os.Bundle;
@@ -16,12 +17,15 @@ public class ConfigActivity extends AppCompatActivity
             implements NumberPickerFragment.OnDialogOKListener
 {
     private NumberPickerFragment.OnDialogOKListener NumListener;
+    private int clickId;
+    private Context mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_config);
         ActionBar ab = getSupportActionBar();
+        mContext = this.getApplicationContext();
 
         // Enable the Up button
         ab.setDisplayHomeAsUpEnabled(true);
@@ -29,34 +33,57 @@ public class ConfigActivity extends AppCompatActivity
         initializeButtons();
     }
 
-    private void initializeButtons()
+    private void launchDialog(int id, int min, int max, int value)
     {
-        // add a dialog box for interlace width
-
-        // add a dialog box for image height
-
-        // add a dialog for font selection
-
-        // add a dialog box for border offset length
-
-        // add a dialog for for parallax distance
-        TextView txtParallax = findViewById(R.id.txt_parallax);
-        txtParallax.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int min = 0;
-                int max = 10;
-                int value = 5;
-                showNumberPickerDlg(min, max, value);
-            }
-        });
+        clickId = id;
+        NumberPickerFragment dlg = new NumberPickerFragment();
+        dlg.setParams(NumListener, min, max, value);
+        dlg.show(getSupportFragmentManager(), "NumberPicker");
     }
 
-    private void showNumberPickerDlg(int min, int max, int value)
+    private void initializeButtons()
     {
-        NumberPickerFragment dlg = new NumberPickerFragment();
-        dlg.setParams(NumListener);
-        dlg.show(getSupportFragmentManager(), "NumberPicker");
+        // click handler for font selection
+
+        // click handler for interlace width
+        Button btnWidth = findViewById(R.id.btn_interlace_width);
+        btnWidth.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                launchDialog(R.dimen.interlace_width, 50, 600, 200);
+            }
+        });
+
+        // click handler for image height
+        Button btnHeight = findViewById(R.id.btn_image_height);
+        btnHeight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+               launchDialog(R.dimen.image_height, 200, 800, 400);
+            }
+        });
+
+        // click handler for border offset length
+        Button btnBorder = findViewById(R.id.btn_border_offset);
+        btnBorder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                launchDialog(R.dimen.border_offset, 50, 200, 100);
+            }
+        });
+
+        // click handler for parallax distance
+        Button btnParallax = findViewById(R.id.btn_parallax);
+        btnParallax.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                launchDialog(R.dimen.parallax_distance, 0, 40, 10);
+            }
+        });
     }
 
     /*

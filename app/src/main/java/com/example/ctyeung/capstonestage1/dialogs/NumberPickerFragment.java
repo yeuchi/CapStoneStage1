@@ -15,6 +15,10 @@ public class NumberPickerFragment extends DialogFragment {
     private NumberPicker.OnValueChangeListener valueChangeListener;
 
     private OnDialogOKListener listener;
+    private NumberPicker numberPicker;
+    private int min = 20;
+    private int max = 60;
+    private int value = 40;
 
     /*
      * parent call back listener
@@ -24,13 +28,20 @@ public class NumberPickerFragment extends DialogFragment {
         void onNumberDialogOKClick(int value);
     }
 
+    private void setNumberValues()
+    {
+        if(null!=numberPicker) {
+            numberPicker.setMinValue(min);
+            numberPicker.setMaxValue(max);
+            numberPicker.setValue(value);
+        }
+    }
+
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
 
-        final NumberPicker numberPicker = new NumberPicker(getActivity());
-
-        numberPicker.setMinValue(20);
-        numberPicker.setMaxValue(60);
+        numberPicker = new NumberPicker(getActivity());
+        setNumberValues();
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle("Choose Value");
@@ -56,12 +67,23 @@ public class NumberPickerFragment extends DialogFragment {
         return builder.create();
     }
 
-    public void setParams(OnDialogOKListener listener)
+    public void setParams(OnDialogOKListener listener,
+                          int min,
+                          int max,
+                          int value)
     {
         this.listener = listener;
+
+        this.min = min;
+        this.max = max;
+        this.value = value;
+
+        setNumberValues();
     }
 
-    public NumberPicker.OnValueChangeListener getValueChangeListener() {
+    public NumberPicker.OnValueChangeListener getValueChangeListener()
+    {
+        listener.onNumberDialogOKClick(numberPicker.getValue());
         return valueChangeListener;
     }
 
