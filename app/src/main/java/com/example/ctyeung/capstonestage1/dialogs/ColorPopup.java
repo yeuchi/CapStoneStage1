@@ -8,6 +8,11 @@ import com.example.ctyeung.capstonestage1.data.SharedPrefUtility;
 
 import top.defaults.colorpicker.ColorPickerPopup;
 
+/*
+ * Color Popup by duanhong
+ *
+ * https://github.com/duanhong169/ColorPicker/releases?utm_source=android-arsenal.com&utm_medium=referral&utm_campaign=7068
+ */
 public class ColorPopup
 {
     /*

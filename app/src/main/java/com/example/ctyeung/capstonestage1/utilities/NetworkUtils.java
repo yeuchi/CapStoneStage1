@@ -60,8 +60,8 @@ public class NetworkUtils
     {
         String str = ShapeHelper.GetAssetPathPrefix() + "/" + name + ".svg";
         Uri builtUri = Uri.parse(str)
-                .buildUpon()
-                .build();
+                            .buildUpon()
+                            .build();
 
         URL url = null;
         try
