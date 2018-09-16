@@ -4,12 +4,18 @@ import android.content.Context;
 import android.graphics.Color;
 import android.widget.Button;
 
+import com.example.ctyeung.capstonestage1.data.SharedPrefUtility;
+
 import top.defaults.colorpicker.ColorPickerPopup;
 
 public class ColorPopup
 {
+    /*
+     * popup for dot color selection
+     */
     public static void launch(final Button button,
-                              Context context)
+                              final Context context,
+                              final String key)
     {
         new ColorPickerPopup.Builder(context)
                 .initialColor(Color.RED) // Set initial color
@@ -19,14 +25,18 @@ public class ColorPopup
                 .showIndicator(true)
                 .showValue(true)
                 .build()
-                .show(button, new ColorPickerPopup.ColorPickerObserver() {
+                .show(button, new ColorPickerPopup.ColorPickerObserver()
+                {
                     @Override
-                    public void onColorPicked(int color) {
+                    public void onColorPicked(int color)
+                    {
                         button.setBackgroundColor(color);
+                        SharedPrefUtility.setDimension(key, context, color);    // store in sharedPreference
                     }
 
                     @Override
-                    public void onColor(int color, boolean fromUser) {
+                    public void onColor(int color, boolean fromUser)
+                    {
 
                     }
                 });

@@ -19,6 +19,10 @@ public class SharedPrefUtility
     public static final String BORDER_OFFSET = "border";            // image offset from background border
     public static final String PARALLAX_DIS = "parallaxDistance";   // parallax distance
 
+    public static final String COLOR1 = "color1";
+    public static final String COLOR2 = "color2";
+    public static final String COLOR3 = "color3";
+
     public static final String DOT_MODE = "dotMode";
     public enum DotModeEnum
     {
@@ -43,7 +47,6 @@ public class SharedPrefUtility
             case PARALLAX_DIS:
                 return (int)context.getResources().getDimension(R.dimen.parallax_distance);
         }
-
         return -1;
     }
 

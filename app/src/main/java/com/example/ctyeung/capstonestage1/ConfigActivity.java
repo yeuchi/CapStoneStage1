@@ -59,6 +59,10 @@ public class ConfigActivity extends AppCompatActivity
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 // save the change !
+                SharedPrefUtility.DotModeEnum mode = (0==i)?
+                        SharedPrefUtility.DotModeEnum.STEREO_PAIR:
+                        SharedPrefUtility.DotModeEnum.INTERLACED;
+                SharedPrefUtility.setDotMode(mContext, mode);
             }
         });
 
@@ -110,7 +114,7 @@ public class ConfigActivity extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
-                ColorPopup.launch(btnColor1, mContext);
+                ColorPopup.launch(btnColor1, mContext, SharedPrefUtility.COLOR1);
             }
         });
 
@@ -120,7 +124,7 @@ public class ConfigActivity extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
-                ColorPopup.launch(btnColor1, mContext);
+                ColorPopup.launch(btnColor1, mContext, SharedPrefUtility.COLOR2);
             }
         });
 
@@ -130,7 +134,7 @@ public class ConfigActivity extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
-                ColorPopup.launch(btnColor3, mContext);
+                ColorPopup.launch(btnColor3, mContext, SharedPrefUtility.COLOR3);
             }
         });
     }
