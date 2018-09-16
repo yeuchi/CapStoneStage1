@@ -2,6 +2,7 @@ package com.example.ctyeung.capstonestage1;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.ActionBar;
 import android.os.Bundle;
 import android.app.Activity;
@@ -9,10 +10,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.example.ctyeung.capstonestage1.data.SharedPrefUtility;
+import com.example.ctyeung.capstonestage1.dialogs.ColorPopup;
 import com.example.ctyeung.capstonestage1.dialogs.NumberPickerFragment;
+
+import top.defaults.colorpicker.ColorPickerPopup;
 
 public class ConfigActivity extends AppCompatActivity
             implements NumberPickerFragment.OnDialogOKListener
@@ -48,6 +54,14 @@ public class ConfigActivity extends AppCompatActivity
 
     private void initializeButtons()
     {
+        RadioGroup radioGroup = findViewById(R.id.radio_group);
+        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                // save the change !
+            }
+        });
+
         // click handler for font selection
 
         // click handler for interlace width
@@ -87,6 +101,36 @@ public class ConfigActivity extends AppCompatActivity
             public void onClick(View view)
             {
                 launchDialog(SharedPrefUtility.PARALLAX_DIS, 0, 40);
+            }
+        });
+
+        // click handler for color1 selection
+        final Button btnColor1 = findViewById(R.id.btnColor1);
+        btnColor1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                ColorPopup.launch(btnColor1, mContext);
+            }
+        });
+
+        // click handler for color2 selection
+        final Button btnColor2 = findViewById(R.id.btnColor2);
+        btnColor2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                ColorPopup.launch(btnColor1, mContext);
+            }
+        });
+
+        // click handler for color3 selection
+        final Button btnColor3 = findViewById(R.id.btnColor3);
+        btnColor3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                ColorPopup.launch(btnColor3, mContext);
             }
         });
     }
