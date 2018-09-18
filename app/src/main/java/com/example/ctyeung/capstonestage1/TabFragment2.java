@@ -52,7 +52,7 @@ public class TabFragment2 extends Fragment
      */
     private void initKeyListener()
     {
-        editText = root.findViewById(R.id.txt_msg_view);
+        editText = root.findViewById(R.id.txt_msg_header);
         editText.setOnKeyListener(new View.OnKeyListener(){
 
             @Override
@@ -114,8 +114,8 @@ public class TabFragment2 extends Fragment
     {
         if(null!=mgr)
         {
-            TextView textView = root.findViewById(R.id.txt_msg_view);
-            mgr.hideSoftInputFromWindow(textView.getWindowToken(), 0);
+            EditText editText = root.findViewById(R.id.txt_msg_header);
+            mgr.hideSoftInputFromWindow(editText.getWindowToken(), 0);
         }
     }
 }
