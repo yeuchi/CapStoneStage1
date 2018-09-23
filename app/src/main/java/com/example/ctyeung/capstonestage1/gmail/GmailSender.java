@@ -4,11 +4,17 @@ import android.se.omapi.Session;
 
 import javax.activation.DataHandler;
 import javax.activation.DataSource;
+import javax.activation.FileDataSource;
+import javax.mail.BodyPart;
 import javax.mail.Message;
+import javax.mail.Multipart;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
+
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -30,7 +36,9 @@ public class GMailSender extends javax.mail.Authenticator
         Security.addProvider(new com.example.ctyeung.capstonestage1.gmail.JSSEProvider());
     }
 
-    public GMailSender(String user, String password) {
+    public GMailSender(String user,
+                       String password)
+    {
         this.user = user;
         this.password = password;
 
@@ -52,11 +60,17 @@ public class GMailSender extends javax.mail.Authenticator
         return new PasswordAuthentication(user, password);
     }
 
-    public synchronized void sendMail(String subject, String body, String sender, String recipients) throws Exception {
-        try{
+    public synchronized void sendMail(String subject,
+                                      String body,
+                                      String sender,
+                                      String recipients) throws Exception
+    {
+        try
+        {
             MimeMessage  message = new MimeMessage(session);
             DataHandler handler = new DataHandler(new ByteArrayDataSource(body.getBytes(), "text/plain"));
             message.setSender(new InternetAddress(sender));
+            message.setContent(_multipart);
             message.setSubject(subject);
             message.setDataHandler(handler);
             if (recipients.indexOf(',') > 0)
@@ -64,46 +78,72 @@ public class GMailSender extends javax.mail.Authenticator
             else
                 message.setRecipient(Message.RecipientType.TO, new InternetAddress(recipients));
             Transport.send(message);
-        }catch(Exception e){
+        }
+        catch(Exception e)
+        {
 
         }
     }
 
-    public class ByteArrayDataSource implements DataSource {
+    private Multipart _multipart = new MimeMultipart();
+
+    public void addAttachment(String filename,String subject) throws Exception
+    {
+        BodyPart messageBodyPart = new MimeBodyPart();
+        DataSource source = new FileDataSource(filename);
+        messageBodyPart.setDataHandler(new DataHandler(source));
+        messageBodyPart.setFileName(filename);
+        _multipart.addBodyPart(messageBodyPart);
+
+        BodyPart messageBodyPart2 = new MimeBodyPart();
+        messageBodyPart2.setText(subject);
+
+        _multipart.addBodyPart(messageBodyPart2);
+    }
+
+    public class ByteArrayDataSource implements DataSource
+    {
         private byte[] data;
         private String type;
 
-        public ByteArrayDataSource(byte[] data, String type) {
+        public ByteArrayDataSource(byte[] data, String type)
+        {
             super();
             this.data = data;
             this.type = type;
         }
 
-        public ByteArrayDataSource(byte[] data) {
+        public ByteArrayDataSource(byte[] data)
+        {
             super();
             this.data = data;
         }
 
-        public void setType(String type) {
+        public void setType(String type)
+        {
             this.type = type;
         }
 
-        public String getContentType() {
+        public String getContentType()
+        {
             if (type == null)
                 return "application/octet-stream";
             else
                 return type;
         }
 
-        public InputStream getInputStream() throws IOException {
+        public InputStream getInputStream() throws IOException
+        {
             return new ByteArrayInputStream(data);
         }
 
-        public String getName() {
+        public String getName()
+        {
             return "ByteArrayDataSource";
         }
 
-        public OutputStream getOutputStream() throws IOException {
+        public OutputStream getOutputStream() throws IOException
+        {
             throw new IOException("Not Supported");
         }
     }

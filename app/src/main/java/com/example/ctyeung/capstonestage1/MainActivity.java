@@ -9,16 +9,21 @@ import android.widget.Button;
 import android.view.View;
 import android.content.Intent;
 import com.example.ctyeung.capstonestage1.ViewerActivity;
+import com.example.ctyeung.capstonestage1.dialogs.NumberPickerFragment;
+import com.example.ctyeung.capstonestage1.dialogs.ShareFragment;
+
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toolbar;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity
+        implements ShareFragment.OnDialogOKListener{
 
     private FloatingActionButton btnShare;
     private Button btnViewer;
     private Context context;
+    private ShareFragment mDlgShare;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,20 +74,32 @@ public class MainActivity extends AppCompatActivity {
             case R.id.configuration:
                 // load configuration activity
                 intent = new Intent(context, ConfigActivity.class);
-                break;
+                startActivity(intent);
+                return true;
 
             case R.id.share:
-                // share activity
-                intent = new Intent(context, TabActivity.class);
-                break;
+                // Share Via dialog
+                mDlgShare = new ShareFragment();
+                mDlgShare.setParams(this);
+                mDlgShare.show(getSupportFragmentManager(), "Share Via");
+                return true;
         }
-
-        if(null!=intent)
-        {
-            startActivity(intent);
-            return true;
-        }
-
         return false;
+    }
+
+    /*
+     * handle call back from ShareVia dialog
+     */
+    public void onShareViaDialogOKClick(String selection)
+    {
+        mDlgShare.dismiss();
+        mDlgShare = null;
+
+        String cancel = getResources().getString(R.string.btn_cancel);
+        if(cancel != selection )
+        {
+            Intent intent = new Intent(context, TabActivity.class);
+            startActivity(intent);
+        }
     }
 }
