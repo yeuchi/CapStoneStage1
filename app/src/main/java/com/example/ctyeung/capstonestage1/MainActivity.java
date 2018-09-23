@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.view.View;
 import android.content.Intent;
 import com.example.ctyeung.capstonestage1.ViewerActivity;
+import com.example.ctyeung.capstonestage1.data.SharedPrefUtility;
 import com.example.ctyeung.capstonestage1.dialogs.NumberPickerFragment;
 import com.example.ctyeung.capstonestage1.dialogs.ShareFragment;
 
@@ -90,15 +91,17 @@ public class MainActivity extends AppCompatActivity
     /*
      * handle call back from ShareVia dialog
      */
-    public void onShareViaDialogOKClick(String selection)
+    public void onShareViaDialogOKClick(SharedPrefUtility.MediaTypeEnum mediaType)
     {
         mDlgShare.dismiss();
         mDlgShare = null;
 
         String cancel = getResources().getString(R.string.btn_cancel);
-        if(cancel != selection )
+        if(SharedPrefUtility.MediaTypeEnum.CANCEL != mediaType )
         {
+            SharedPrefUtility.setMediaType(context, mediaType);
             Intent intent = new Intent(context, TabActivity.class);
+            //intent.putExtra(Intent.EXTRA_TEXT, selection);
             startActivity(intent);
         }
     }

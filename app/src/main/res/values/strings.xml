@@ -8,8 +8,15 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="share_via">Share Via</string>
-    <string name="btn_facebook">facebook</string>
-    <string name="btn_gmail">gmail</string>
-    <string name="btn_google_drive">drive</string>
+    <string name="btn_facebook">Facebook</string>
+    <string name="btn_gmail">GMail</string>
+    <string name="btn_google_drive">Google Drive</string>
+    <string name="unknown_media">Unknown media</string>
     <string name="btn_cancel">cancel</string>
+
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="subject">Subject</string>
+    <string name="btn_send">Send</string>
+
 </resources>

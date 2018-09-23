@@ -24,10 +24,30 @@ public class SharedPrefUtility
     public static final String COLOR3 = "color3";
 
     public static final String DOT_MODE = "dotMode";
+    public static final String MEDIA_TYPE = "mediaType";
+
     public enum DotModeEnum
     {
         STEREO_PAIR,
         INTERLACED
+    }
+
+    public enum MediaTypeEnum
+    {
+        UNKNOWN(0),
+        CANCEL(1),
+        GMAIL(2),
+        FACEBOOK(3),
+        GOOGLE_DRIVE(4);
+
+        private final int value;
+        private MediaTypeEnum(int value) {
+            this.value = value;
+        }
+
+        public int getValue() {
+            return value;
+        }
     }
 
     protected static int getDefaltValue(Context context,
@@ -48,6 +68,26 @@ public class SharedPrefUtility
                 return (int)context.getResources().getDimension(R.dimen.parallax_distance);
         }
         return -1;
+    }
+
+    /*
+     * Share Via -- media type
+     */
+    public static MediaTypeEnum getMediaType(Context context)
+    {
+        SharedPreferences sharedPreferences = getSharedPref(context);
+        int type = sharedPreferences.getInt(MEDIA_TYPE, MediaTypeEnum.UNKNOWN.getValue());
+        return MediaTypeEnum.values()[type];
+    }
+
+    public static void setMediaType(Context context,
+                                    MediaTypeEnum mediaType)
+    {
+        SharedPreferences sharedPreferences = getSharedPref(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        int value = mediaType.getValue();
+        editor.putInt(MEDIA_TYPE, value);
+        editor.commit();
     }
 
     /*

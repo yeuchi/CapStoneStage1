@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.example.ctyeung.capstonestage1.R;
+import com.example.ctyeung.capstonestage1.data.SharedPrefUtility;
 
 /*
  * Share Via dialog
@@ -27,7 +28,7 @@ public class ShareFragment extends DialogFragment
      */
     public interface OnDialogOKListener
     {
-        void onShareViaDialogOKClick(String selection);
+        void onShareViaDialogOKClick(SharedPrefUtility.MediaTypeEnum selectedMedia);
     }
 
     public ShareFragment()
@@ -71,8 +72,7 @@ public class ShareFragment extends DialogFragment
             public void onClick(View v)
             {
                 // Back to MainActivity
-                String str = root.getResources().getString(R.string.btn_gmail);
-                listener.onShareViaDialogOKClick(str);
+                listener.onShareViaDialogOKClick(SharedPrefUtility.MediaTypeEnum.GMAIL);
             }
         });
 
@@ -83,8 +83,7 @@ public class ShareFragment extends DialogFragment
             public void onClick(View v)
             {
                 // Back to MainActivity
-                String str = root.getResources().getString(R.string.btn_facebook);
-                listener.onShareViaDialogOKClick(str);
+                listener.onShareViaDialogOKClick(SharedPrefUtility.MediaTypeEnum.FACEBOOK);
             }
         });
 
@@ -95,8 +94,7 @@ public class ShareFragment extends DialogFragment
             public void onClick(View v)
             {
                 // Back to MainActivity
-                String str = root.getResources().getString(R.string.btn_google_drive);
-                listener.onShareViaDialogOKClick(str);
+                listener.onShareViaDialogOKClick(SharedPrefUtility.MediaTypeEnum.GOOGLE_DRIVE);
             }
         });
 
@@ -107,9 +105,7 @@ public class ShareFragment extends DialogFragment
             public void onClick(View v)
             {
                 // Back to MainActivity
-                String str = root.getResources().getString(R.string.btn_cancel);
-                listener.onShareViaDialogOKClick(str);
-
+                listener.onShareViaDialogOKClick(SharedPrefUtility.MediaTypeEnum.CANCEL);
             }
         });
     }

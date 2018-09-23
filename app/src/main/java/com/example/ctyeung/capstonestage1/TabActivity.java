@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.design.widget.TabLayout;
@@ -51,7 +52,7 @@ public class TabActivity extends AppCompatActivity {
         Fragment fragment4 = new TabFragment4();
 
 
-        adapter.addFragment(fragment1, "Address");
+        adapter.addFragment(fragment1, "Destination");
         adapter.addFragment(fragment2, "Text");
         adapter.addFragment(fragment3, "Shape");
         adapter.addFragment(fragment4, "Preview");
@@ -59,7 +60,18 @@ public class TabActivity extends AppCompatActivity {
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
+
+       // initializeFragment((TabFragment1)fragment1);
     }
+
+    /*
+     * set Fragment type
+     */
+   /* protected void initializeFragment(TabFragment1 fragment1)
+    {
+        String mediaType = this.getIntent().getStringExtra(Intent.EXTRA_TEXT);
+        fragment1.setParams(mediaType);
+    }*/
 
     // Adapter for the viewpager using FragmentPagerAdapter
     class ViewPagerAdapter extends FragmentPagerAdapter {
