@@ -49,9 +49,7 @@ public class MainActivity extends AppCompatActivity
         btnShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //startActivity(Intent.createChooser(ShareCompat.IntentBuilder.from(getActivity())
-                Intent intent = new Intent(context, TabActivity.class);
-                startActivity(intent);
+                laundShareViaDialog();
             }
         });
     }
@@ -80,12 +78,17 @@ public class MainActivity extends AppCompatActivity
 
             case R.id.share:
                 // Share Via dialog
-                mDlgShare = new ShareFragment();
-                mDlgShare.setParams(this);
-                mDlgShare.show(getSupportFragmentManager(), "Share Via");
+                laundShareViaDialog();
                 return true;
         }
         return false;
+    }
+
+    protected void laundShareViaDialog()
+    {
+        mDlgShare = new ShareFragment();
+        mDlgShare.setParams(this);
+        mDlgShare.show(getSupportFragmentManager(), "Share Via");
     }
 
     /*

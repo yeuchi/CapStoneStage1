@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -154,11 +155,26 @@ public class TabFragment1 extends Fragment
          */
         try
         {
-            GMailSender sender = new GMailSender("username@gmail.com", "password");
-            sender.sendMail("This is Subject",
+            EditText txtUsername = mRoot.findViewById(R.id.txt_gmail_username);
+            String username = txtUsername.getText().toString();
+
+            EditText txtPassword = mRoot.findViewById(R.id.txt_gmail_password);
+            String password = txtPassword.getText().toString();
+
+            EditText txtSender = mRoot.findViewById(R.id.txt_gmail_sender);
+            String sender = txtSender.getText().toString();
+
+            EditText txtRecipient = mRoot.findViewById(R.id.txt_gmail_recipient);
+            String recipient = txtRecipient.getText().toString();
+
+            EditText txtSubject = mRoot.findViewById(R.id.txt_gmail_subject);
+            String subject = txtSubject.getText().toString();
+
+            GMailSender gmailSender = new GMailSender(username, password);
+            gmailSender.sendMail(subject,
                     "This is Body",
-                    "user@gmail.com",
-                    "user@yahoo.com");
+                    sender,
+                    recipient);
         } catch (Exception e) {
             Log.e("SendMail", e.getMessage(), e);
         }

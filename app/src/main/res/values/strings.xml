@@ -19,5 +19,7 @@
     <string name="subject">Subject</string>
     <string name="filename">Filename</string>
     <string name="btn_send">Send</string>
+    <string name="sender">Sender</string>
+    <string name="recipient">Recipient</string>
 
 </resources>
