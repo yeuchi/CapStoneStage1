@@ -101,7 +101,6 @@ public class MainActivity extends AppCompatActivity
         {
             SharedPrefUtility.setMediaType(context, mediaType);
             Intent intent = new Intent(context, TabActivity.class);
-            //intent.putExtra(Intent.EXTRA_TEXT, selection);
             startActivity(intent);
         }
     }

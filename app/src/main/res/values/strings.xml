@@ -17,6 +17,7 @@
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="subject">Subject</string>
+    <string name="filename">Filename</string>
     <string name="btn_send">Send</string>
 
 </resources>

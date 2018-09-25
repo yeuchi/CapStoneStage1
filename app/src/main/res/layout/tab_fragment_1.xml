@@ -63,7 +63,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/subject" />
+            android:text="@string/filename" />
 
     </LinearLayout>
 
@@ -95,7 +95,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/btnSend"
+        android:id="@+id/btn_send"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

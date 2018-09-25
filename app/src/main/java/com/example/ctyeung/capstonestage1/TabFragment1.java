@@ -24,14 +24,41 @@ public class TabFragment1 extends Fragment
 {
     private Context mContext;
     private View mRoot;
+    private SharedPrefUtility.MediaTypeEnum mMediaType;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mRoot = inflater.inflate(R.layout.tab_fragment_1, container, false);
         mContext = mRoot.getContext();
         setParams();
-
+        initButtonEvents();
         return mRoot;
+    }
+
+    protected void initButtonEvents()
+    {
+        Button btnSend = mRoot.findViewById(R.id.btn_send);
+        btnSend.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                switch(mMediaType)
+                {
+                    case FACEBOOK:
+                        postOnFacebook();
+                    break;
+
+                    case GMAIL:
+                        sendGmail();
+                        break;
+
+                    case GOOGLE_DRIVE:
+                        save2GoogleDrive();
+                        break;
+                }
+            }
+        });
     }
 
     public void setParams()
@@ -39,9 +66,9 @@ public class TabFragment1 extends Fragment
         String title = "";
         int selectedLayout = -1;
 
-        SharedPrefUtility.MediaTypeEnum mediaType = SharedPrefUtility.getMediaType(mContext);
+        mMediaType = SharedPrefUtility.getMediaType(mContext);
 
-        switch (mediaType)
+        switch (mMediaType)
         {
             case FACEBOOK:
             title = mRoot.getResources().getString(R.string.btn_facebook);
@@ -110,7 +137,17 @@ public class TabFragment1 extends Fragment
         }
     }
 
-    protected void onClickEmail()
+    protected void postOnFacebook()
+    {
+
+    }
+
+    protected void save2GoogleDrive()
+    {
+
+    }
+
+    protected void sendGmail()
     {
         /*
          * Need to attach image -- need to finish renderer

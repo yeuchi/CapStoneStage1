@@ -60,18 +60,7 @@ public class TabActivity extends AppCompatActivity {
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
-
-       // initializeFragment((TabFragment1)fragment1);
     }
-
-    /*
-     * set Fragment type
-     */
-   /* protected void initializeFragment(TabFragment1 fragment1)
-    {
-        String mediaType = this.getIntent().getStringExtra(Intent.EXTRA_TEXT);
-        fragment1.setParams(mediaType);
-    }*/
 
     // Adapter for the viewpager using FragmentPagerAdapter
     class ViewPagerAdapter extends FragmentPagerAdapter {
