@@ -21,8 +21,6 @@ import android.widget.Toolbar;
 public class MainActivity extends AppCompatActivity
         implements ShareFragment.OnDialogOKListener{
 
-    private FloatingActionButton btnShare;
-    private Button btnViewer;
     private Context context;
     private ShareFragment mDlgShare;
 
@@ -31,9 +29,13 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         context = this;
+        initButtons();
+    }
 
+    private void initButtons()
+    {
         // Launch Viewer -- consume
-        btnViewer = (Button)findViewById(R.id.btnViewer);
+        Button btnViewer = (Button)findViewById(R.id.btnViewer);
 
         btnViewer.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,7 +46,7 @@ public class MainActivity extends AppCompatActivity
         });
 
         // Launch Tab pages -- Author + share
-        btnShare = (FloatingActionButton)findViewById(R.id.share_fab);
+        FloatingActionButton btnShare = (FloatingActionButton)findViewById(R.id.share_fab);
 
         btnShare.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -26,6 +26,10 @@ public class SharedPrefUtility
     public static final String DOT_MODE = "dotMode";
     public static final String MEDIA_TYPE = "mediaType";
 
+    public static final String FRAG_TEXT_HEADER = "fragTextHeader";
+    public static final String FRAG_TEXT_FOOTER = "fragTextFooter";
+    public static final String FRAG_SHAPE = "fragShape";
+
     public enum DotModeEnum
     {
         STEREO_PAIR,
@@ -157,6 +161,28 @@ public class SharedPrefUtility
         SharedPreferences sharedPreferences = getSharedPref(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putBoolean(key, isDirty);
+        editor.commit();
+    }
+
+    /*
+     * Text or Shape Fragment : get/set string
+     */
+    public static String getString(String key,       // text or shape
+                                    Context context)
+    {
+        SharedPreferences sharedPreferences = getSharedPref(context);
+        return (sharedPreferences.contains(key))?
+                sharedPreferences.getString(key, null):
+                null;
+    }
+
+    public static void setString(String key,
+                                  Context context,
+                                  String str)
+    {
+        SharedPreferences sharedPreferences = getSharedPref(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(key, str);
         editor.commit();
     }
 

@@ -25,49 +25,40 @@ public class TabFragment2 extends Fragment
 
     public static String PNG_FILENAME = "textSVG.png";
 
-    private Context context;
-    private View root;
-    private ShapePreview shapePreview;
+    private Context mContext = null;
+    private View mRoot;
     private InputMethodManager mgr;
-    private SharedPrefUtility sharedPref;
-    private EditText editText;
+    private EditText mHeader;
+    private EditText mFooter;
 
     @Override
     public View onCreateView(LayoutInflater inflater,
                              ViewGroup container,
                              Bundle savedInstanceState)
     {
-        root = inflater.inflate(R.layout.tab_fragment_2, container, false);
+        mRoot = inflater.inflate(R.layout.tab_fragment_2, container, false);
+        mContext = mRoot.getContext();
 
-        initKeyListener();
-
-        shapePreview = new ShapePreview(root);
-        context = root.getContext();
-        SharedPrefUtility.setIsDirty(SharedPrefUtility.TEXT_IS_DIRTY, context, false);
-        return root;
+        // no text change .. yet
+        initText();
+        return mRoot;
     }
 
     /*
-     * initialize key listener
+     * load text from SharedPreference
      */
-    private void initKeyListener()
+    private void initText()
     {
-        editText = root.findViewById(R.id.txt_msg_header);
-        editText.setOnKeyListener(new View.OnKeyListener(){
+        mHeader = mRoot.findViewById(R.id.txt_msg_header);
+        mFooter = mRoot.findViewById(R.id.txt_msg_footer);
 
-            @Override
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-                if ((event.getAction() == KeyEvent.ACTION_DOWN) &&
-                        (keyCode == KeyEvent.KEYCODE_SPACE)) {
+        String stringHeader = SharedPrefUtility.getString(SharedPrefUtility.FRAG_TEXT_HEADER, mContext);
+        if(null!=stringHeader && !stringHeader.isEmpty())
+            mHeader.setText(stringHeader);
 
-                    //do code
-
-                    return true;
-
-                }
-                return false;
-            }
-        });
+        String stringFooter = SharedPrefUtility.getString(SharedPrefUtility.FRAG_TEXT_FOOTER, mContext);
+        if(null!=stringFooter && !stringFooter.isEmpty())
+            mFooter.setText(stringFooter);
     }
 
     /*
@@ -82,16 +73,31 @@ public class TabFragment2 extends Fragment
         {
             showKeyboard();
         }
-        else
+        else if(null!=mContext)
         {
             hideKeyboard();
+            persist();
+        }
+    }
 
-            if(null!= shapePreview && shapePreview.isDirty) // selected SVG layout
-            {
-                RelativeLayout view = root.findViewById(R.id.shapes_view_group);
-                String path = BitmapRenderer.Archive(context, view, PNG_FILENAME);
-                SharedPrefUtility.setIsDirty(SharedPrefUtility.TEXT_IS_DIRTY, context, true);
-            }
+    /*
+     * Save text (if changed -> isDirty)
+     */
+    private void persist()
+    {
+        // stored
+        String storedHeader = SharedPrefUtility.getString(SharedPrefUtility.FRAG_TEXT_HEADER, mContext);
+        String storedFooter = SharedPrefUtility.getString(SharedPrefUtility.FRAG_TEXT_FOOTER, mContext);
+
+        // current text
+        String stringHeader = mHeader.getText().toString();
+        String stringFooter = mFooter.getText().toString();
+
+        // persist
+        if(storedHeader != stringHeader || storedFooter != stringFooter) {
+            SharedPrefUtility.setString(SharedPrefUtility.FRAG_TEXT_HEADER, mContext, stringHeader);
+            SharedPrefUtility.setString(SharedPrefUtility.FRAG_TEXT_FOOTER, mContext, stringFooter);
+            SharedPrefUtility.setIsDirty(SharedPrefUtility.TEXT_IS_DIRTY, mContext, true);
         }
     }
 
@@ -101,10 +107,10 @@ public class TabFragment2 extends Fragment
     private void showKeyboard()
     {
         if(null==mgr)
-            mgr = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
+            mgr = (InputMethodManager) mContext.getSystemService(Context.INPUT_METHOD_SERVICE);
 
         mgr.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
-        mgr.showSoftInput(editText, InputMethodManager.SHOW_IMPLICIT);
+        mgr.showSoftInput(mHeader, InputMethodManager.SHOW_IMPLICIT);
     }
 
     /*
@@ -114,8 +120,7 @@ public class TabFragment2 extends Fragment
     {
         if(null!=mgr)
         {
-            EditText editText = root.findViewById(R.id.txt_msg_header);
-            mgr.hideSoftInputFromWindow(editText.getWindowToken(), 0);
+            mgr.hideSoftInputFromWindow(mHeader.getWindowToken(), 0);
         }
     }
 }
