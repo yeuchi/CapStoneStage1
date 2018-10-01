@@ -5,8 +5,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
+import com.caverock.androidsvg.SVG;
 import com.caverock.androidsvg.SVGImageView;
 import com.example.ctyeung.capstonestage1.R;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /*
  * Linear layout View at the bottom of Shape fragment
@@ -18,9 +22,11 @@ public class ShapePreview
     public RelativeLayout layout;
     private View view;
     public boolean isDirty = false;
+    public List<String> shapeMessage;
 
     public ShapePreview(View view)
     {
+        shapeMessage = new ArrayList<String>();
         this.view = view;
         layout = (RelativeLayout)view.findViewById(R.id.shapes_view_group);
     }
@@ -108,20 +114,28 @@ public class ShapePreview
         // create new addition
         Context context = view.getContext();
         SVGImageView svgImageView = new SVGImageView(context);
-        svgImageView.setSVG(selected.GetSVG());
-        this.layout.addView(svgImageView, rllp);
+        SVG svg = selected.GetSVG();
 
-        // add a click listener for removal
-        svgImageView.setOnClickListener(new View.OnClickListener()
+        // only if svg loaded ok
+        if(null!=svg)
         {
-            public void onClick(View view)
-            {
-                isDirty = true; // changes has been made
+            svgImageView.setSVG(svg);
+            this.layout.addView(svgImageView, rllp);
 
-                // delete item from RelativeLayout parent container.
-                ((ViewGroup)view.getParent()).removeView(view);
-                updateSVGsLayout(false);
-            }
-        });
+            // add a click listener for removal
+            svgImageView.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View view) {
+                    isDirty = true; // changes has been made
+
+                    // get view id and remove from shapeMessage
+                    int index = layout.indexOfChild(view);
+                    shapeMessage.remove(index);
+
+                    // delete item from RelativeLayout parent container.
+                    ((ViewGroup) view.getParent()).removeView(view);
+                    updateSVGsLayout(false);
+                }
+            });
+        }
     }
 }

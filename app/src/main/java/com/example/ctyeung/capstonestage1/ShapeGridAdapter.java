@@ -21,11 +21,11 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 
-public class ShapeGridAdapter extends RecyclerView.Adapter<ShapeGridAdapter.NumberViewHolder> {
-
-
+public class ShapeGridAdapter extends RecyclerView.Adapter<ShapeGridAdapter.NumberViewHolder>
+{
     private static final String TAG = ShapeGridAdapter.class.getSimpleName();
     final private ListItemClickListener mOnClickListener;
+    final private SVGLoadListener mLoadListener;
 
 
     private int viewHolderCount;
@@ -38,10 +38,17 @@ public class ShapeGridAdapter extends RecyclerView.Adapter<ShapeGridAdapter.Numb
         void onListItemClick(int clickItemIndex);
     }
 
+    public interface SVGLoadListener
+    {
+        void onLoadSVGComplete(boolean success);
+    }
+
     public ShapeGridAdapter( List<ShapeSVG> list,
-                             ListItemClickListener listener) {
+                             ListItemClickListener listener,
+                             SVGLoadListener loadListener) {
        // this.movies = movies;
         mOnClickListener = listener;
+        mLoadListener = loadListener;
         viewHolderCount = 0;
         this.shapes = list;
     }
@@ -58,7 +65,6 @@ public class ShapeGridAdapter extends RecyclerView.Adapter<ShapeGridAdapter.Numb
         NumberViewHolder viewHolder = new NumberViewHolder(view);
 
         viewHolderCount++;
-
         return viewHolder;
     }
 
@@ -151,6 +157,10 @@ public class ShapeGridAdapter extends RecyclerView.Adapter<ShapeGridAdapter.Numb
             }
         }
 
+        /*
+         * Async request done, handle the SVG loading
+         * - send back a message of completion
+         */
         protected void handleSVG(ShapeSVG shapeSVG,
                                  String str)
         {
@@ -158,10 +168,13 @@ public class ShapeGridAdapter extends RecyclerView.Adapter<ShapeGridAdapter.Numb
             {
                 SVG svg = shapeSVG.Create(str);
                 if(null!=svg)
+                {
                     viewHolderImage.setSVG(svg);
-
-                // toast if failed
+                    mLoadListener.onLoadSVGComplete(true);
+                    return;
+                }
             }
+            mLoadListener.onLoadSVGComplete(false);
         }
 
         @Override

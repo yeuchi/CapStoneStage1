@@ -40,14 +40,14 @@ public class TabFragment2 extends Fragment
         mContext = mRoot.getContext();
 
         // no text change .. yet
-        initText();
+        loadText();
         return mRoot;
     }
 
     /*
      * load text from SharedPreference
      */
-    private void initText()
+    private void loadText()
     {
         mHeader = mRoot.findViewById(R.id.txt_msg_header);
         mFooter = mRoot.findViewById(R.id.txt_msg_footer);

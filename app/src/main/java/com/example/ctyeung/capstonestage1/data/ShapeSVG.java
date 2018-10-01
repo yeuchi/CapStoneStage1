@@ -12,7 +12,7 @@ import com.example.ctyeung.capstonestage1.utilities.ShapeHelper;
 public class ShapeSVG
 {
     private JSONObject json;
-    private SVG svg;
+    private SVG svg = null;
 
     public ShapeSVG(JSONObject json)
     {
@@ -38,7 +38,7 @@ public class ShapeSVG
     {
         try
         {
-            svg = SVG.getFromString(str);
+            this.svg = SVG.getFromString(str);
             if(null==svg)
                 throw new Exception("Invalid SVG string");
 

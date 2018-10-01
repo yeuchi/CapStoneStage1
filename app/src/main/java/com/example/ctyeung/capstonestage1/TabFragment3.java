@@ -2,6 +2,7 @@ package com.example.ctyeung.capstonestage1;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.drawable.shapes.Shape;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -40,35 +41,63 @@ import java.util.List;
 /*
  * Shape fragment - compose shape(s) message in this fragment
  */
-public class TabFragment3 extends Fragment implements ShapeGridAdapter.ListItemClickListener{
-
+public class TabFragment3 extends Fragment
+        implements ShapeGridAdapter.ListItemClickListener,
+        ShapeGridAdapter.SVGLoadListener
+{
     public static String PNG_FILENAME = "shapeSVG.png";
 
     private ShapeGridAdapter mAdapter;
     private RecyclerView mNumbersList;
-    private Toast mToast;
     private ShapeGridAdapter.ListItemClickListener mListener;
+    private ShapeGridAdapter.SVGLoadListener mLoadListener;
 
-    private SVGImageView imageView;
-    private List<ShapeSVG> shapes;
-    private Context context;
-    private View root;
-    private ShapePreview shapePreview;
+    private List<ShapeSVG> mShapes;
+    private Context mContext;
+    private View mRoot;
+    private ShapePreview mShapePreview;
+
+    private boolean mLoaded = false;
+    private int mNumSVGLoaded = 0;
+    private int mNumSVGsuccess = 0;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        root = inflater.inflate(R.layout.tab_fragment_3, container, false);
-        shapePreview = new ShapePreview(root);
+        mRoot = inflater.inflate(R.layout.tab_fragment_3, container, false);
         mListener = this;
-        context = root.getContext();
-        mNumbersList = (RecyclerView) root.findViewById(R.id.rv_shapes);
+        mLoadListener = this;
+        mContext = mRoot.getContext();
 
-        GridLayoutManager layoutManager = new GridLayoutManager(context, 5);
+        initGrid();
+        return mRoot;
+    }
+
+    /*
+     * Load & initialize shape assets from network
+     */
+    private void initGrid()
+    {
+        mShapePreview = new ShapePreview(mRoot);
+        GridLayoutManager layoutManager = new GridLayoutManager(mContext, 5);
+        mNumbersList = (RecyclerView) mRoot.findViewById(R.id.rv_shapes);
         mNumbersList.setLayoutManager(layoutManager);
 
         requestShapes();
-        SharedPrefUtility.setIsDirty(SharedPrefUtility.SHAPE_IS_DIRTY, context, false);
-        return root;
+    }
+
+    /*
+     * store shapeMessage into SharedPreference
+     */
+    private void persist()
+    {
+        // array to string
+        String shapeMessage = "";
+        for(String msg : mShapePreview.shapeMessage)
+            shapeMessage += msg +",";
+
+        // write to sharedPreference
+        SharedPrefUtility.setString(SharedPrefUtility.FRAG_SHAPE, mContext, shapeMessage);
+        SharedPrefUtility.setIsDirty(SharedPrefUtility.SHAPE_IS_DIRTY, mContext, true);
     }
 
     /*
@@ -82,14 +111,13 @@ public class TabFragment3 extends Fragment implements ShapeGridAdapter.ListItemC
         if (isVisibleToUser)
         {
         }
-        else
+        else if(null!=mContext)
         {
             //do when hidden
-            if(null!=shapePreview && shapePreview.isDirty) // selected SVG layout
+            if(null!=mShapePreview && mShapePreview.isDirty) // selected SVG layout
             {
-                RelativeLayout view = root.findViewById(R.id.shapes_view_group);
-                String path = BitmapRenderer.Archive(context, view, PNG_FILENAME);
-                SharedPrefUtility.setIsDirty(SharedPrefUtility.SHAPE_IS_DIRTY, context, true);
+                RelativeLayout view = mRoot.findViewById(R.id.shapes_view_group);
+                persist();
             }
         }
     }
@@ -133,12 +161,15 @@ public class TabFragment3 extends Fragment implements ShapeGridAdapter.ListItemC
         protected void onPreExecute()
         {
             super.onPreExecute();
-
         }
 
+        /*
+         * Async network retrieval ok
+         */
         protected void onPostExecute(String str)
         {
-            handleShapeJson(str);
+            if(null!=str && !str.isEmpty())
+                handleShapeJson(str);
         }
     }
 
@@ -148,19 +179,45 @@ public class TabFragment3 extends Fragment implements ShapeGridAdapter.ListItemC
      */
     private void handleShapeJson(String str)
     {
-        shapes = null;
+        mShapes = null;
         JSONObject json = JSONhelper.parseJson(str);
         if(null != json)
         {
             JSONArray jsonArray = JSONhelper.getJsonArray(json, "shapes");
             if(null!=jsonArray)
-                shapes = ShapeFactory.CreateShapeList(jsonArray);
+                mShapes = ShapeFactory.CreateShapeList(jsonArray);
 
-            if(null!=shapes &&
-                    shapes.size()>0)
+            if(null!=mShapes &&
+                    mShapes.size()>0)
             {
                 populateShapeGrid();
                 return;
+            }
+        }
+    }
+
+    /*
+     * load & render user's last message
+     */
+    private void renderUserMessage()
+    {
+        // load shape message (last user input) from SharedPreference
+        String str = SharedPrefUtility.getString(SharedPrefUtility.FRAG_SHAPE, mContext);
+        if(null!=str && !str.isEmpty())
+        {
+            String[] shapeMessage = str.split(",");
+            for(String msg : shapeMessage)
+            {
+                try {
+                    int i = Integer.parseInt(msg);
+                    onListItemClick(i);
+                }
+                catch (Exception ex)
+                {
+                    Toast.makeText(getActivity(),
+                            (String)ex.toString(),
+                            Toast.LENGTH_LONG).show();
+                }
             }
         }
     }
@@ -170,7 +227,7 @@ public class TabFragment3 extends Fragment implements ShapeGridAdapter.ListItemC
      */
     private void populateShapeGrid()
     {
-        mAdapter = new ShapeGridAdapter(shapes, mListener);
+        mAdapter = new ShapeGridAdapter(mShapes, mListener, mLoadListener);
         mNumbersList.setAdapter(mAdapter);
         mNumbersList.setHasFixedSize(true);
     }
@@ -183,19 +240,41 @@ public class TabFragment3 extends Fragment implements ShapeGridAdapter.ListItemC
     @Override
     public void onListItemClick(int clickItemIndex)
     {
-        if(mToast!=null)
-            mToast.cancel();
-
         // retrieve selected shape svg
-        ShapeSVG selected = shapes.get(clickItemIndex);
+        ShapeSVG selected = mShapes.get(clickItemIndex);
 
         // resize existing children
-        if(shapePreview.childCount(false)>0)
-            shapePreview.updateSVGsLayout(true);
+        if(mShapePreview.childCount(false)>0)
+            mShapePreview.updateSVGsLayout(true);
 
-        shapePreview.insertSVG(selected);
+        mShapePreview.insertSVG(selected);
+        mShapePreview.shapeMessage.add(Integer.toString(clickItemIndex));
     }
 
+    /*
+     * count how many SVG has been loaded
+     */
+    @Override
+    public void onLoadSVGComplete(boolean success)
+    {
+        mNumSVGLoaded ++;
 
+        if(success)
+            mNumSVGsuccess ++;
 
+        if(false == mLoaded) {
+            /*
+             * Must wait until all svgs are rendered in ShapeGridAdapter
+             */
+            if (mShapes.size() >= mNumSVGLoaded) {
+                if (mNumSVGsuccess == mNumSVGLoaded)
+                    renderUserMessage();
+
+                else
+                    Toast.makeText(getActivity(),
+                            mNumSVGsuccess + "out of " + mNumSVGLoaded + "SVGs loaded OK",
+                            Toast.LENGTH_LONG).show();
+            }
+        }
+    }
 }
