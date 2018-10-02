@@ -64,6 +64,7 @@ public class TabFragment3 extends Fragment
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mRoot = inflater.inflate(R.layout.tab_fragment_3, container, false);
+        mLoaded = false;
         mListener = this;
         mLoadListener = this;
         mContext = mRoot.getContext();
@@ -266,7 +267,7 @@ public class TabFragment3 extends Fragment
             /*
              * Must wait until all svgs are rendered in ShapeGridAdapter
              */
-            if (mShapes.size() >= mNumSVGLoaded) {
+            if (10 <= mNumSVGLoaded) {
                 if (mNumSVGsuccess == mNumSVGLoaded)
                     renderUserMessage();
 
