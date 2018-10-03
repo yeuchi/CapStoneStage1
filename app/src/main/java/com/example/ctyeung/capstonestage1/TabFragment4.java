@@ -33,31 +33,7 @@ public class TabFragment4 extends Fragment
         View root = inflater.inflate(R.layout.tab_fragment_4, container, false);
         mContext = root.getContext();
 
-        Button btnSend = (Button)root.findViewById(R.id.btnSend);
-        btnSend.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                // Send message
-            }
-        });
-
-        Button btnCancel = (Button)root.findViewById(R.id.btnCancel);
-        btnCancel.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                // Back to MainActivity
-                Intent homeIntent = new Intent(mContext, MainActivity.class);
-                homeIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(homeIntent);
-            }
-        });
-
         renderIfDirty();
-
         return root;
     }
 
@@ -129,15 +105,15 @@ public class TabFragment4 extends Fragment
 
     /*
      * Do rendering here ... Heavy lifting !
+     * -
      */
     protected void render()
     {
         RandomDotData randomDotData = null;
-        Bitmap bmpText = BitmapRenderer.Load(TabFragment2.PNG_FILENAME);
         Bitmap bmpShape = BitmapRenderer.Load(TabFragment3.PNG_FILENAME);
 
         // if something to render
-        if(null!=bmpText || null!=bmpShape)
+        if(null!=bmpShape)
         {
             // render random dot type by configuration setting
             mDotModeEnum = SharedPrefUtility.getDotMode(mContext);
@@ -147,12 +123,12 @@ public class TabFragment4 extends Fragment
 
             switch (mDotModeEnum) {
                 case INTERLACED:
-                    randomDotData = dotRenderer.createInterlaced(bmpText, bmpShape);
+                    randomDotData = dotRenderer.createInterlaced(bmpShape);
                     break;
 
                 default:
                 case STEREO_PAIR:
-                    randomDotData = dotRenderer.createStereoPair(bmpText, bmpShape);
+                    randomDotData = dotRenderer.createStereoPair(bmpShape);
                     break;
             }
         }

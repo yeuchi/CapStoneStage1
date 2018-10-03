@@ -39,8 +39,7 @@ public class RandomDotRenderer
     /*
      * go render left + right random images
      */
-    public RandomDotData createStereoPair(Bitmap bmpText,   // text image, maybe null, w=2*h, w=h
-                                         Bitmap bmpShape)   // shape image, maybe null, w=2*h, w=h
+    public RandomDotData createStereoPair(Bitmap bmpShape)   // shape image, maybe null, w=2*h, w=h
     {
         /*
          * check image sizes ?
@@ -52,9 +51,8 @@ public class RandomDotRenderer
 
         for (int num=0; num<2; num++)
         {
-            bmpText = dither(bmpText);
             bmpShape = dither(bmpShape);
-            Bitmap bmp = integrate(bmpText, bmpShape, xOffset);
+            Bitmap bmp = integrate(bmpShape, xOffset);
             data.endQbmp(bmp);
 
             // horizontal offset for parallax
@@ -99,12 +97,10 @@ public class RandomDotRenderer
      * Integrate - overlay both text and shape image(s) onto background
      * - User has option to select following:
      *
-     * 1. text only
-     * 2. shape only
-     * 3. text + shape
+     * 1. shape only
+     * 2. text + shape
      */
-    protected Bitmap integrate( Bitmap bmpText,
-                                Bitmap bmpShape,
+    protected Bitmap integrate( Bitmap bmpShape,
                                 int xOffset)
     {
         /*
@@ -120,11 +116,6 @@ public class RandomDotRenderer
          * - how do I scale image to fit for text + shape ?
          */
         int yStart = RandomDotData.getBorderOffset(mContext);
-        if(null!=bmpText)
-        {
-            bmpDes = overlay(bmpDes, bmpText, xOffset, yStart);
-            yStart += bmpText.getHeight();
-        }
 
         if(null!=bmpShape &&
                 yStart < bmpDes.getHeight())
@@ -152,11 +143,10 @@ public class RandomDotRenderer
      * 1. go render left + right random images
      * 2. go interlace above images
      */
-    public RandomDotData createInterlaced(Bitmap bmpText,
-                                         Bitmap bmpShape)
+    public RandomDotData createInterlaced(Bitmap bmpShape)
     {
         // create the random dot stereo pair
-        RandomDotData randomDotData = createStereoPair(bmpText, bmpShape);
+        RandomDotData randomDotData = createStereoPair(bmpShape);
 
         // slice-n-dice, interlace them into one image
 
