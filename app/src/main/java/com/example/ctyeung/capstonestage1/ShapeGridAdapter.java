@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.caverock.androidsvg.SVG;
 import com.caverock.androidsvg.SVGImageView;
 import com.example.ctyeung.capstonestage1.data.ShapeSVG;
+import com.example.ctyeung.capstonestage1.utilities.NetworkLoader;
 import com.example.ctyeung.capstonestage1.utilities.NetworkUtils;
 
 import java.io.IOException;
@@ -93,7 +94,9 @@ public class ShapeGridAdapter extends RecyclerView.Adapter<ShapeGridAdapter.Numb
     /**
      * Cache of the children views for a list item.
      */
-    class NumberViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    class NumberViewHolder extends RecyclerView.ViewHolder
+            implements View.OnClickListener,
+                        NetworkLoader.OnResponseListener {
 
         TextView viewHolderName;
         SVGImageView viewHolderImage;
@@ -116,45 +119,14 @@ public class ShapeGridAdapter extends RecyclerView.Adapter<ShapeGridAdapter.Numb
             ShapeSVG shapeSVG = shapes.get(position);
             viewHolderName.setText(shapeSVG.getName());
             URL url = NetworkUtils.buildSVGUrl(shapeSVG.getName());
-            GithubQueryTask task = new GithubQueryTask(shapeSVG);
-            task.execute(url);
-
+            NetworkLoader loader = new NetworkLoader(this, shapeSVG, url);
             Log.d(TAG, "onCreateViewHolder: number of ViewHolders created: " + viewHolderCount);
         }
 
-        public class GithubQueryTask extends AsyncTask<URL, Void, String>
+        public void onResponse(ShapeSVG shapeSVG,
+                               String str)
         {
-            private ShapeSVG shapeSVG;
-            public GithubQueryTask(ShapeSVG shapeSVG)
-            {
-                this.shapeSVG = shapeSVG;
-            }
-
-            @Override
-            protected String doInBackground(URL... urls) {
-                URL searchUrl = urls[0];
-                String githubSearchResults = null;
-                try
-                {
-                    githubSearchResults = NetworkUtils.getResponseFromHttpUrl(searchUrl);
-                }
-                catch (IOException ex)
-                {
-                    ex.printStackTrace();
-                }
-                return githubSearchResults;
-            }
-
-            protected void onPreExecute()
-            {
-                super.onPreExecute();
-
-            }
-
-            protected void onPostExecute(String str)
-            {
-                handleSVG(shapeSVG, str);
-            }
+            handleSVG(shapeSVG, str);
         }
 
         /*

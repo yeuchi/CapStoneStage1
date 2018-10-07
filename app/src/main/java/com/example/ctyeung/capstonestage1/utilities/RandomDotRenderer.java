@@ -59,7 +59,6 @@ public class RandomDotRenderer
             xOffset += RandomDotData.getParallaxDistance(mContext);
         }
 
-
         return null;
     }
 
