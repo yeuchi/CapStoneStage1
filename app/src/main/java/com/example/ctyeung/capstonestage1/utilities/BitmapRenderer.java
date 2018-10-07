@@ -50,7 +50,6 @@ public class BitmapRenderer
         Bitmap bitmap = Bitmap.createBitmap(width,
                                             height,
                                             Bitmap.Config.ARGB_8888);
-
         return bitmap;
     }
 

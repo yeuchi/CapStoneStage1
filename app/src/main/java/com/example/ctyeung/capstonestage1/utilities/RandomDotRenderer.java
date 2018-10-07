@@ -17,9 +17,12 @@ public class RandomDotRenderer
 {
     private Bitmap bmpBackground;               // common background dithered image
     private Context mContext;                   // preview fragment ui context
+    private int mLongLength;
 
-    public RandomDotRenderer(Context context)
+    public RandomDotRenderer(Context context,
+                             int longLength)
     {
+        mLongLength = longLength;
         mContext = context;
         createCommon();
     }
@@ -30,10 +33,12 @@ public class RandomDotRenderer
     protected void createCommon()
     {
         /*
-         * text + shape image(s) are in the center of background dither image
+         * Retrieve configurations and calculate image size
          */
-        int height = RandomDotData.getImageHeight(mContext);
-        bmpBackground = BitmapRenderer.randomDot(height);
+        mLongLength +=  RandomDotData.getBorderOffset(mContext)*2 +
+                        RandomDotData.getParallaxDistance(mContext);
+
+        bmpBackground = BitmapRenderer.randomDot(mLongLength);
     }
 
     /*
@@ -49,9 +54,11 @@ public class RandomDotRenderer
         RandomDotData data = new RandomDotData();
         int xOffset = RandomDotData.getBorderOffset(mContext);
 
+        // dither once
+        bmpShape = dither(bmpShape);
+
         for (int num=0; num<2; num++)
         {
-            bmpShape = dither(bmpShape);
             Bitmap bmp = integrate(bmpShape, xOffset);
             data.endQbmp(bmp);
 
@@ -59,7 +66,7 @@ public class RandomDotRenderer
             xOffset += RandomDotData.getParallaxDistance(mContext);
         }
 
-        return null;
+        return data;
     }
 
     /*
@@ -153,7 +160,7 @@ public class RandomDotRenderer
          * CTY ... to do here !
          */
 
-        return null;
+        return randomDotData;
     }
 }
 

@@ -60,16 +60,19 @@ public class SharedPrefUtility
         switch (key)
         {
             case INTERLACE_WIDTH:
-                return (int)200;
+                return 200;
 
             case IMAGE_HEIGHT:
-                return (int)context.getResources().getDimension(R.dimen.image_height);
+                return 400;
+                //return context.getResources().getDimension(R.dimen.image_height);
 
             case BORDER_OFFSET:
-                return (int)context.getResources().getDimension(R.dimen.border_offset);
+                return 100;
+                //return (int)context.getResources().getDimension(R.dimen.border_offset);
 
             case PARALLAX_DIS:
-                return (int)context.getResources().getDimension(R.dimen.parallax_distance);
+                return 10;
+                //return (int)context.getResources().getDimension(R.dimen.parallax_distance);
         }
         return -1;
     }

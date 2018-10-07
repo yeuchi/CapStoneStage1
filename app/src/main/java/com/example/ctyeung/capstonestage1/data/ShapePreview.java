@@ -31,6 +31,14 @@ public class ShapePreview
         layout = (RelativeLayout)view.findViewById(R.id.shapes_view_group);
     }
 
+    /*
+     * view that contains all the svg
+     */
+    public View getView()
+    {
+        return layout;
+    }
+
     public int height()
     {
         return layout.getHeight();

@@ -3,6 +3,7 @@ package com.example.ctyeung.capstonestage1;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -11,10 +12,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.caverock.androidsvg.SVG;
+import com.caverock.androidsvg.SVGImageView;
 import com.example.ctyeung.capstonestage1.data.RandomDotData;
+import com.example.ctyeung.capstonestage1.data.ShapePreview;
 import com.example.ctyeung.capstonestage1.data.ShapeSVG;
 import com.example.ctyeung.capstonestage1.data.SharedPrefUtility;
 import com.example.ctyeung.capstonestage1.utilities.BitmapRenderer;
@@ -33,9 +37,10 @@ public class TabFragment4 extends ShapeFragment
     private Context mContext;
     private SharedPrefUtility.DotModeEnum mDotModeEnum;
     private RandomDotRenderer dotRenderer;
-    private View root;
+    private View mRoot;
     private int mNumShapes;
     private int mSVGAvailable;
+    private String[] mShapeMessage;
 
     @Override
     protected boolean handleShapeJson(String str)
@@ -53,14 +58,17 @@ public class TabFragment4 extends ShapeFragment
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+    public View onCreateView(LayoutInflater inflater,
+                             ViewGroup container,
+                             Bundle savedInstanceState)
     {
         mNumShapes = 0;
         mSVGAvailable = 0;
-        View root = inflater.inflate(R.layout.tab_fragment_4, container, false);
-        mContext = root.getContext();
+        mRoot = inflater.inflate(R.layout.tab_fragment_4, container, false);
+        mContext = mRoot.getContext();
+        mShapePreview = new ShapePreview(mRoot);
         requestShapes();
-        return root;
+        return mRoot;
     }
 
     /*
@@ -71,7 +79,7 @@ public class TabFragment4 extends ShapeFragment
     public void setUserVisibleHint(boolean isVisibleToUser)
     {
         super.setUserVisibleHint(isVisibleToUser);
-        if (isVisibleToUser)
+        if (isVisibleToUser && null!=mContext)
         {
             renderIfDirty();
         }
@@ -88,19 +96,20 @@ public class TabFragment4 extends ShapeFragment
     protected void renderIfDirty()
     {
         // has text or shapes changed ?
-        boolean isShapeDirty = SharedPrefUtility.getIsDirty(SharedPrefUtility.SHAPE_IS_DIRTY, mContext);
+       // boolean isShapeDirty = SharedPrefUtility.getIsDirty(SharedPrefUtility.SHAPE_IS_DIRTY, mContext);
 
-        if(isShapeDirty)
-        {
+       // if(isShapeDirty)
+        //{
             // load shape data
             String shapeString = SharedPrefUtility.getString(SharedPrefUtility.FRAG_SHAPE, mContext);
+
             if(null==shapeString || shapeString.isEmpty())
             {
                 Toast.makeText(mContext, "Nothing to render", Toast.LENGTH_LONG).show();
                 return;
             }
             loadSVGs(shapeString);
-        }
+      //  }
     }
 
     /*
@@ -108,12 +117,12 @@ public class TabFragment4 extends ShapeFragment
      */
     protected void loadSVGs(String shapeString)
     {
-        String[] shapeMessage = shapeString.split(",");
+        mShapeMessage = shapeString.split(",");
 
-        if(null!=shapeMessage)
-            mNumShapes = shapeMessage.length;
+        if(null!=mShapeMessage)
+            mNumShapes = mShapeMessage.length;
 
-        for(String msg : shapeMessage)
+        for(String msg : mShapeMessage)
         {
             try
             {
@@ -156,40 +165,101 @@ public class TabFragment4 extends ShapeFragment
      */
     protected void render()
     {
-        /*
-         * 03Oct18 WIP -> load SVGs and draw to bitmap
-         */
-        RandomDotData randomDotData = null;
-        Bitmap bmpShape = null;
+        // create the view
+        if(!createSVGView())
+        {
+            Toast.makeText(mContext, "createSVGView failed", Toast.LENGTH_LONG).show();
+            return;
+        }
 
-        //BitmapRenderer.Load(TabFragment3.PNG_FILENAME);
+        // create the raster bitmap image to work with
+        Bitmap bmpShape = createBitmap();
+        if(null==bmpShape)
+        {
+            Toast.makeText(mContext, "createBitmap failed", Toast.LENGTH_LONG).show();
+            return;
+        }
 
         // if something to render
-        if(null!=bmpShape)
+        RandomDotData randomDotData = createRandomDot(bmpShape);
+        if(null==bmpShape)
         {
-            // render random dot type by configuration setting
-            mDotModeEnum = SharedPrefUtility.getDotMode(mContext);
-
-            if (null == dotRenderer)
-                dotRenderer = new RandomDotRenderer(mContext);
-
-            switch (mDotModeEnum) {
-                case INTERLACED:
-                    randomDotData = dotRenderer.createInterlaced(bmpShape);
-                    break;
-
-                default:
-                case STEREO_PAIR:
-                    randomDotData = dotRenderer.createStereoPair(bmpShape);
-                    break;
-            }
+            Toast.makeText(mContext, "createBitmap failed", Toast.LENGTH_LONG).show();
+            return;
         }
 
         // display render content
         display(randomDotData);
 
-        SharedPrefUtility.setIsDirty(SharedPrefUtility.TEXT_IS_DIRTY, mContext, false);
-        SharedPrefUtility.setIsDirty(SharedPrefUtility.SHAPE_IS_DIRTY, mContext, false);
+        //SharedPrefUtility.setIsDirty(SharedPrefUtility.TEXT_IS_DIRTY, mContext, false);
+        //SharedPrefUtility.setIsDirty(SharedPrefUtility.SHAPE_IS_DIRTY, mContext, false);
+    }
+
+    /*
+     * create the view with SVGs inside
+     */
+    protected boolean createSVGView()
+    {
+        try {
+            for (String msg : mShapeMessage) {
+                int i = Integer.parseInt(msg);
+                ShapeSVG shapeSVG = mShapes.get(i);
+                mShapePreview.insertSVG(shapeSVG);
+                //mShapePreview.shapeMessage.add(Integer.toString(clickItemIndex));
+            }
+            return true;
+        }
+        catch (Exception ex)
+        {
+            return false;
+        }
+    }
+
+    /*
+     * draw view onto bitmap
+     *
+     * Reference: code from this article
+     * https://stackoverflow.com/questions/2801116/converting-a-view-to-bitmap-without-displaying-it-in-android
+     */
+    protected Bitmap createBitmap()
+    {
+        View view = mShapePreview.getView();
+        view.measure(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+        int width = view.getMeasuredWidth();
+        int height = view.getMeasuredHeight();
+        Bitmap bitmap = Bitmap.createBitmap( width, height, Bitmap.Config.ARGB_8888);
+        Canvas c = new Canvas(bitmap);
+        view.layout(view.getLeft(), view.getTop(), view.getRight(), view.getBottom());
+        view.draw(c);
+        return bitmap;
+    }
+
+    /*
+     * calculate + create left / right view pairs
+     * - interlace them as necessary
+     */
+    protected RandomDotData createRandomDot(Bitmap bitmap)
+    {
+        if(null!=bitmap)
+        {
+            // render random dot type by configuration setting
+            mDotModeEnum = SharedPrefUtility.getDotMode(mContext);
+
+            int longLength = (bitmap.getHeight() > bitmap.getWidth())?bitmap.getHeight() : bitmap.getWidth();
+
+            if (null == dotRenderer)
+                dotRenderer = new RandomDotRenderer(mContext, longLength);
+
+            switch (mDotModeEnum) {
+                case INTERLACED:
+                    return dotRenderer.createInterlaced(bitmap);
+
+                default:
+                case STEREO_PAIR:
+                    return dotRenderer.createStereoPair(bitmap);
+            }
+        }
+        return null;
     }
 
     /*
@@ -199,16 +269,17 @@ public class TabFragment4 extends ShapeFragment
     protected void display(RandomDotData randomDotData)
     {
         // fragment not constructed yet
-        if(null==root)
+        if(null==mRoot)
             return;
-
-        // empty the image container
-        LinearLayout imageContainer = root.findViewById(R.id.image_container);
-        imageContainer.removeAllViews();
 
         // nothing to display
         if(null==randomDotData)
             return;
+
+
+        // clean up image container
+        LinearLayout imageContainer = mRoot.findViewById(R.id.image_container);
+        imageContainer.removeAllViews();
 
         /*
          * insert preview images into container
@@ -218,6 +289,13 @@ public class TabFragment4 extends ShapeFragment
             ImageView imageView = new ImageView(mContext);
             Bitmap bmp = randomDotData.seek(i);
             imageView.setImageBitmap(bmp);
+
+            //LinearLayout imageContainer = mRoot.findViewById(R.id.image_container);
+            imageContainer.addView(imageView);
+
+            /*
+             * might need to add positioning
+             */
         }
     }
 }

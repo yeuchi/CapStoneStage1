@@ -76,7 +76,7 @@ public class RandomDotData
      */
     public static int getBorderOffset(Context context)
     {
-        return SharedPrefUtility.getDimension(SharedPrefUtility.IMAGE_HEIGHT, context);
+        return SharedPrefUtility.getDimension(SharedPrefUtility.BORDER_OFFSET, context);
     }
 
     /*
@@ -84,7 +84,7 @@ public class RandomDotData
      */
     public static int getBackgroundImageLength(Context context)
     {
-        return getImageHeight(context) + 2*getBorderOffset(context);
+        return getImageHeight(context) + 2 * getBorderOffset(context);
     }
 
     public static int getImageHeight(Context context)
