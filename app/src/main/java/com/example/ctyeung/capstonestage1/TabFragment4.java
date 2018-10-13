@@ -202,10 +202,14 @@ public class TabFragment4 extends ShapeFragment
     {
         try {
             for (String msg : mShapeMessage) {
+                // resize existing children
+                if(mShapePreview.childCount(false)>0)
+                    mShapePreview.updateSVGsLayout(true);
+
                 int i = Integer.parseInt(msg);
                 ShapeSVG shapeSVG = mShapes.get(i);
                 mShapePreview.insertSVG(shapeSVG);
-                //mShapePreview.shapeMessage.add(Integer.toString(clickItemIndex));
+                mShapePreview.shapeMessage.add(Integer.toString(i));
             }
             return true;
         }
@@ -282,20 +286,34 @@ public class TabFragment4 extends ShapeFragment
         imageContainer.removeAllViews();
 
         /*
+         * calculate dimensions
+         */
+        int w = imageContainer.getWidth();
+        int h = imageContainer.getHeight();
+        int min = (w<h)? w:h;
+
+        int numViews = randomDotData.count();
+        int eachLen = min / numViews;
+        int padding = (imageContainer.getWidth() - (eachLen*numViews)) / (numViews-1);
+
+        /*
          * insert preview images into container
          */
-        for(int i=0; i<randomDotData.count(); i++)
+        for(int i=0; i<numViews; i++)
         {
             ImageView imageView = new ImageView(mContext);
+            imageContainer.addView(imageView);
+            imageView.requestLayout();
+
+            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            int left = (i==0)?0:padding;
+            lp.leftMargin = left;
+            lp.width = eachLen;
+            lp.height = eachLen;
+            imageView.setLayoutParams(lp);
+
             Bitmap bmp = randomDotData.seek(i);
             imageView.setImageBitmap(bmp);
-
-            //LinearLayout imageContainer = mRoot.findViewById(R.id.image_container);
-            imageContainer.addView(imageView);
-
-            /*
-             * might need to add positioning
-             */
         }
     }
 }
