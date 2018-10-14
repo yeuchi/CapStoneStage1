@@ -1,6 +1,7 @@
 package com.example.ctyeung.capstonestage1.data;
 
 import android.content.Context;
+import android.text.Layout;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
@@ -19,16 +20,17 @@ import java.util.List;
  */
 public class ShapePreview
 {
-    public RelativeLayout layout;
-    private View view;
+    public ViewGroup layout;
+    protected View view;
     public boolean isDirty = false;
     public List<String> shapeMessage;
 
-    public ShapePreview(View view)
+    public ShapePreview(View view, int layoutId)
     {
         shapeMessage = new ArrayList<String>();
         this.view = view;
-        layout = (RelativeLayout)view.findViewById(R.id.shapes_view_group);
+        layout = view.findViewById(layoutId);
+        layout.setVisibility(View.VISIBLE);
     }
 
     /*
@@ -49,12 +51,12 @@ public class ShapePreview
         return layout.getWidth();
     }
 
-    public int maxSVGHeight()
+    public int maxShapeHeight()
     {
         return layout.getHeight();
     }
 
-    public int maxSVGWidth(boolean plusOne)
+    public int maxShapeWidth(boolean plusOne)
     {
         return layout.getWidth() / childCount(plusOne);
     }
@@ -67,8 +69,8 @@ public class ShapePreview
 
     public int minLength(boolean plusOne)
     {
-        int h = maxSVGHeight();
-        int w = maxSVGWidth(plusOne);
+        int h = maxShapeHeight();
+        int w = maxShapeWidth(plusOne);
         return (h>w)?w:h;
     }
 
@@ -88,19 +90,19 @@ public class ShapePreview
      * - input signature 'plusOne' => true when insert.
      * - input signature 'plusOne' => false when remove.
      */
-    public void updateSVGsLayout(boolean plusOne)
+    public void updateLayout(boolean plusOne)
     {
         int len = this.minLength(plusOne);
         int padX = this.paddingX(plusOne);
         int padY = this.paddingY(plusOne);
         for(int i=0; i<this.childCount(false); i++)
         {
-            RelativeLayout.LayoutParams rllp = new RelativeLayout.LayoutParams(len, len);
-            SVGImageView svg = (SVGImageView)this.layout.getChildAt(i);
-            rllp.leftMargin = padX + (i * len);
-            rllp.topMargin = padY;
+            RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(len, len);
+            View view = this.layout.getChildAt(i);
+            params.leftMargin = padX + (i * len);
+            params.topMargin = padY;
 
-            svg.setLayoutParams(rllp);
+            view.setLayoutParams(params);
         }
     }
 
@@ -141,7 +143,7 @@ public class ShapePreview
 
                     // delete item from RelativeLayout parent container.
                     ((ViewGroup) view.getParent()).removeView(view);
-                    updateSVGsLayout(false);
+                    updateLayout(false);
                 }
             });
         }

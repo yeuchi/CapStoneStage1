@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.caverock.androidsvg.SVG;
 import com.caverock.androidsvg.SVGImageView;
+import com.example.ctyeung.capstonestage1.data.PreviewContainer;
 import com.example.ctyeung.capstonestage1.data.RandomDotData;
 import com.example.ctyeung.capstonestage1.data.ShapePreview;
 import com.example.ctyeung.capstonestage1.data.ShapeSVG;
@@ -41,17 +42,18 @@ public class TabFragment4 extends ShapeFragment
     private int mNumShapes;
     private int mSVGAvailable;
     private String[] mShapeMessage;
+    private PreviewContainer mPreviewContainer;
 
     @Override
     protected boolean handleShapeJson(String str)
     {
-        if(true == super.handleShapeJson(str))
-        {
-            if(null!=mShapes &&
-                    mShapes.size()>0)
-            {
-                renderIfDirty();
-                return true;
+        if (null!=mContext) {
+            if (true == super.handleShapeJson(str)) {
+                //if (null != mShapes &&
+                //        mShapes.size() > 0) {
+                //    renderIfDirty();
+                    return true;
+               // }
             }
         }
         return false;
@@ -62,12 +64,13 @@ public class TabFragment4 extends ShapeFragment
                              ViewGroup container,
                              Bundle savedInstanceState)
     {
-        mNumShapes = 0;
-        mSVGAvailable = 0;
+
         mRoot = inflater.inflate(R.layout.tab_fragment_4, container, false);
         mContext = mRoot.getContext();
-        mShapePreview = new ShapePreview(mRoot);
+        mPreviewContainer = new PreviewContainer(mRoot, R.id.image_container);
+        mShapePreview = new ShapePreview(mRoot, R.id.shapes_view_group);
         requestShapes();
+
         return mRoot;
     }
 
@@ -81,6 +84,10 @@ public class TabFragment4 extends ShapeFragment
         super.setUserVisibleHint(isVisibleToUser);
         if (isVisibleToUser && null!=mContext)
         {
+            mNumShapes = 0;
+            mSVGAvailable = 0;
+            mPreviewContainer.empty();
+
             renderIfDirty();
         }
         else
@@ -204,7 +211,7 @@ public class TabFragment4 extends ShapeFragment
             for (String msg : mShapeMessage) {
                 // resize existing children
                 if(mShapePreview.childCount(false)>0)
-                    mShapePreview.updateSVGsLayout(true);
+                    mShapePreview.updateLayout(true);
 
                 int i = Integer.parseInt(msg);
                 ShapeSVG shapeSVG = mShapes.get(i);
@@ -282,38 +289,17 @@ public class TabFragment4 extends ShapeFragment
 
 
         // clean up image container
-        LinearLayout imageContainer = mRoot.findViewById(R.id.image_container);
-        imageContainer.removeAllViews();
-
-        /*
-         * calculate dimensions
-         */
-        int w = imageContainer.getWidth();
-        int h = imageContainer.getHeight();
-        int min = (w<h)? w:h;
-
+        mPreviewContainer.empty();
         int numViews = randomDotData.count();
-        int eachLen = min / numViews;
-        int padding = (imageContainer.getWidth() - (eachLen*numViews)) / (numViews-1);
 
-        /*
-         * insert preview images into container
-         */
         for(int i=0; i<numViews; i++)
         {
-            ImageView imageView = new ImageView(mContext);
-            imageContainer.addView(imageView);
-            imageView.requestLayout();
-
-            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-            int left = (i==0)?0:padding;
-            lp.leftMargin = left;
-            lp.width = eachLen;
-            lp.height = eachLen;
-            imageView.setLayoutParams(lp);
+            if(i>0)
+                mPreviewContainer.updateLayout(true);
 
             Bitmap bmp = randomDotData.seek(i);
-            imageView.setImageBitmap(bmp);
+            boolean hasPadX = (i>0)?true:false;
+            mPreviewContainer.insertBitmap(bmp, hasPadX);
         }
     }
 }

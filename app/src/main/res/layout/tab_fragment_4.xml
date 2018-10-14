@@ -13,19 +13,19 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="300dp"
         android:orientation="horizontal"
         android:id="@+id/image_container">
 
-        <!-- insert random dot image(s) here -->
-
-        <RelativeLayout
-            android:layout_width="300dp"
-            android:layout_height="300dp"
-            android:id="@+id/shapes_view_group">
-        </RelativeLayout>
-
     </LinearLayout>
+
+    <!-- insert random dot image(s) here -->
+
+    <RelativeLayout
+        android:layout_width="300px"
+        android:layout_height="300px"
+        android:id="@+id/shapes_view_group">
+    </RelativeLayout>
 
     <TextView
         android:layout_width="wrap_content"

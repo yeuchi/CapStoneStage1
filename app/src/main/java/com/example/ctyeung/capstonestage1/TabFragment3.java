@@ -75,7 +75,7 @@ public class TabFragment3 extends ShapeFragment
      */
     private void initGrid()
     {
-        mShapePreview = new ShapePreview(mRoot);
+        mShapePreview = new ShapePreview(mRoot, R.id.shapes_view_group);
         GridLayoutManager layoutManager = new GridLayoutManager(mContext, 5);
         mNumbersList = (RecyclerView) mRoot.findViewById(R.id.rv_shapes);
         mNumbersList.setLayoutManager(layoutManager);
@@ -162,7 +162,7 @@ public class TabFragment3 extends ShapeFragment
 
         // resize existing children
         if(mShapePreview.childCount(false)>0)
-            mShapePreview.updateSVGsLayout(true);
+            mShapePreview.updateLayout(true);
 
         mShapePreview.insertSVG(selected);
         mShapePreview.shapeMessage.add(Integer.toString(clickItemIndex));
