@@ -31,6 +31,11 @@ import java.net.URL;
 
 /*
  * Preview fragment - load bitmaps and dither them for preview.
+ * 1. load shape data from network
+ * 2. load svgs from network
+ * 3. render svgs into UI
+ * 4. render bitmaps from svgs
+ * 5. dither and display
  */
 public class TabFragment4 extends ShapeFragment
     implements NetworkLoader.OnResponseListener
@@ -43,21 +48,7 @@ public class TabFragment4 extends ShapeFragment
     private int mSVGAvailable;
     private String[] mShapeMessage;
     private PreviewContainer mPreviewContainer;
-
-    @Override
-    protected boolean handleShapeJson(String str)
-    {
-        if (null!=mContext) {
-            if (true == super.handleShapeJson(str)) {
-                //if (null != mShapes &&
-                //        mShapes.size() > 0) {
-                //    renderIfDirty();
-                    return true;
-               // }
-            }
-        }
-        return false;
-    }
+    private boolean mIsVisible = false;
 
     @Override
     public View onCreateView(LayoutInflater inflater,
@@ -75,20 +66,51 @@ public class TabFragment4 extends ShapeFragment
     }
 
     /*
+     * Network response with shape json data
+     * -> load json of different shapes
+     */
+    @Override
+    protected boolean handleShapeJson(String str)
+    {
+        if (null!=mContext) {
+            if (true == super.handleShapeJson(str))
+            {
+                InvokeRendering();
+                return true;
+            }
+        }
+        return false;
+    }
+
+    protected void reset()
+    {
+        mNumShapes = 0;
+        mSVGAvailable = 0;
+        mPreviewContainer.empty();
+        mShapePreview.empty();
+    }
+
+    protected void InvokeRendering()
+    {
+        if(mIsVisible && null!=mShapes)
+        {
+            reset();
+            renderSVGs();
+        }
+    }
+
+    /*
      * setUserVisibleHint - switching view or activity
      * - check for bitmap updates -> re-render !
      */
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser)
     {
+        mIsVisible = isVisibleToUser;
         super.setUserVisibleHint(isVisibleToUser);
-        if (isVisibleToUser && null!=mContext)
+        if (isVisibleToUser)
         {
-            mNumShapes = 0;
-            mSVGAvailable = 0;
-            mPreviewContainer.empty();
-
-            renderIfDirty();
+            InvokeRendering();
         }
         else
         {
@@ -100,23 +122,17 @@ public class TabFragment4 extends ShapeFragment
      * load last image persisted after change (text + shape)
      * - maybe only load image-dirty ?
      */
-    protected void renderIfDirty()
+    protected void renderSVGs()
     {
-        // has text or shapes changed ?
-       // boolean isShapeDirty = SharedPrefUtility.getIsDirty(SharedPrefUtility.SHAPE_IS_DIRTY, mContext);
+        // load shape data
+        String shapeString = SharedPrefUtility.getString(SharedPrefUtility.FRAG_SHAPE, mContext);
 
-       // if(isShapeDirty)
-        //{
-            // load shape data
-            String shapeString = SharedPrefUtility.getString(SharedPrefUtility.FRAG_SHAPE, mContext);
-
-            if(null==shapeString || shapeString.isEmpty())
-            {
-                Toast.makeText(mContext, "Nothing to render", Toast.LENGTH_LONG).show();
-                return;
-            }
-            loadSVGs(shapeString);
-      //  }
+        if(null==shapeString || shapeString.isEmpty())
+        {
+            Toast.makeText(mContext, "Nothing to render", Toast.LENGTH_LONG).show();
+            return;
+        }
+        loadSVGs(shapeString);
     }
 
     /*
@@ -168,6 +184,30 @@ public class TabFragment4 extends ShapeFragment
     }
 
     /*
+     * create the view with SVGs inside
+     */
+    protected boolean createSVGView()
+    {
+        try {
+            for (String msg : mShapeMessage) {
+                // resize existing children
+                if(mShapePreview.childCount(false)>0)
+                    mShapePreview.updateLayout(true);
+
+                int i = Integer.parseInt(msg);
+                ShapeSVG shapeSVG = mShapes.get(i);
+                mShapePreview.insertSVG(shapeSVG);
+                mShapePreview.shapeMessage.add(Integer.toString(i));
+            }
+            return true;
+        }
+        catch (Exception ex)
+        {
+            return false;
+        }
+    }
+
+    /*
      * Do rendering here ... Heavy lifting !
      */
     protected void render()
@@ -197,33 +237,6 @@ public class TabFragment4 extends ShapeFragment
 
         // display render content
         display(randomDotData);
-
-        //SharedPrefUtility.setIsDirty(SharedPrefUtility.TEXT_IS_DIRTY, mContext, false);
-        //SharedPrefUtility.setIsDirty(SharedPrefUtility.SHAPE_IS_DIRTY, mContext, false);
-    }
-
-    /*
-     * create the view with SVGs inside
-     */
-    protected boolean createSVGView()
-    {
-        try {
-            for (String msg : mShapeMessage) {
-                // resize existing children
-                if(mShapePreview.childCount(false)>0)
-                    mShapePreview.updateLayout(true);
-
-                int i = Integer.parseInt(msg);
-                ShapeSVG shapeSVG = mShapes.get(i);
-                mShapePreview.insertSVG(shapeSVG);
-                mShapePreview.shapeMessage.add(Integer.toString(i));
-            }
-            return true;
-        }
-        catch (Exception ex)
-        {
-            return false;
-        }
     }
 
     /*
