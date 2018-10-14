@@ -54,18 +54,16 @@ public class RandomDotRenderer
         RandomDotData data = new RandomDotData();
         int xOffset = RandomDotData.getBorderOffset(mContext);
 
-        // dither once
-        bmpShape = dither(bmpShape);
+        Bitmap bmpDither = ditherShape(bmpShape);
 
         for (int num=0; num<2; num++)
         {
-            Bitmap bmp = integrate(bmpShape, xOffset);
+            Bitmap bmp = integrate(bmpShape, bmpDither, xOffset);
             data.endQbmp(bmp);
 
             // horizontal offset for parallax
             xOffset += RandomDotData.getParallaxDistance(mContext);
         }
-
         return data;
     }
 
@@ -77,8 +75,8 @@ public class RandomDotRenderer
     {
         if(null!=bmpSrc)
         {
-            int pixelBlack = 0;
-            int pixelWhite = 1;
+            int pixelWhite = Color.argb(255, 255, 255, 255);
+            int pixelBlack = Color.argb(255, 0, 0, 0);
 
             for(int y=0; y<bmpSrc.getHeight(); y++)
             {
@@ -99,6 +97,40 @@ public class RandomDotRenderer
         return bmpSrc;
     }
 
+    protected Bitmap ditherShape(Bitmap bmpSrc)
+    {
+        Bitmap bmpDither = null;
+
+        if(null!=bmpSrc)
+        {
+            int pixelEmpty = 0;
+            int pixelWhite = Color.argb(255, 255, 255, 255);
+            int pixelBlack = Color.argb(255, 0, 0, 0);
+
+            bmpDither = Bitmap.createBitmap(bmpSrc.getWidth(),
+                                            bmpSrc.getHeight(),
+                                            Bitmap.Config.ARGB_8888);
+
+            for(int y=0; y<bmpSrc.getHeight(); y++)
+            {
+                for(int x=0; x<bmpSrc.getWidth(); x++)
+                {
+                    int src = bmpSrc.getPixel(x, y);
+
+                    if(src != pixelEmpty) {
+
+                        int des = (Math.random() >= 0.5)?
+                                pixelWhite:
+                                pixelBlack;
+
+                        bmpDither.setPixel(x, y, des);
+                    }
+                }
+            }
+        }
+        return bmpDither;
+    }
+
     /*
      * Integrate - overlay both text and shape image(s) onto background
      * - User has option to select following:
@@ -107,6 +139,7 @@ public class RandomDotRenderer
      * 2. text + shape
      */
     protected Bitmap integrate( Bitmap bmpShape,
+                                Bitmap bmpDither,
                                 int xOffset)
     {
         /*
@@ -126,7 +159,7 @@ public class RandomDotRenderer
         if(null!=bmpShape &&
                 yStart < bmpDes.getHeight())
         {
-            bmpDes = overlay(bmpDes, bmpShape, xOffset, yStart);
+            bmpDes = overlay(bmpDes, bmpShape, bmpDither, xOffset, yStart);
         }
         return bmpDes;
     }
@@ -136,12 +169,34 @@ public class RandomDotRenderer
      */
     protected Bitmap overlay(Bitmap bmpDes,     // destination image
                              Bitmap bmpSrc,     // source image: text or shape
+                             Bitmap bmpDither,  // dithered image
                              int xOffset,       // image offset from border
                              int yOffset)       // starting point on destination image
     {
-        Canvas canvas = new Canvas(bmpDes);
-        Paint paint = new Paint(Paint.FILTER_BITMAP_FLAG);
-        canvas.drawBitmap(bmpSrc, xOffset, yOffset, paint);
+        if(null!=bmpSrc)
+        {
+            int pixelBlack = 0;
+            int pixelWhite = 1;
+
+            int yEnd = yOffset + bmpSrc.getHeight();
+            int xEnd = xOffset + bmpSrc.getWidth();
+
+            for(int y=yOffset; y<yEnd; y++)
+            {
+                for(int x=xOffset; x<xEnd; x++)
+                {
+                    int xx = x-xOffset;
+                    int yy = y-yOffset;
+                    int src = bmpSrc.getPixel(xx, yy);
+
+                    if(src != pixelBlack) {
+
+                        int des = bmpDither.getPixel(xx, yy);
+                        bmpDes.setPixel(x, y, des);
+                    }
+                }
+            }
+        }
         return bmpDes;
     }
 

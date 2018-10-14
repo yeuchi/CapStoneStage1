@@ -7,6 +7,6 @@
     <dimen name="interlace_width">200</dimen>
     <dimen name="image_height">400</dimen>
     <dimen name="border_offset">100</dimen>
-    <dimen name="parallax_distance">10</dimen>
+    <dimen name="parallax_distance">30</dimen>
 
 </resources>

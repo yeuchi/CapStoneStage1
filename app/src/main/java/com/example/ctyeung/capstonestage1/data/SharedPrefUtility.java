@@ -71,7 +71,7 @@ public class SharedPrefUtility
                 //return (int)context.getResources().getDimension(R.dimen.border_offset);
 
             case PARALLAX_DIS:
-                return 10;
+                return 30;
                 //return (int)context.getResources().getDimension(R.dimen.parallax_distance);
         }
         return -1;
