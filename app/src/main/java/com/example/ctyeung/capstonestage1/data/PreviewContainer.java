@@ -13,49 +13,72 @@ import com.caverock.androidsvg.SVGImageView;
 import com.example.ctyeung.capstonestage1.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class PreviewContainer extends ShapePreview
+public class PreviewContainer
 {
-    public PreviewContainer(View view, int layoutId)
+    public ViewGroup layout;
+    protected View view;
+    public boolean isDirty = false;
+
+    public PreviewContainer(View view,      // fragment view
+                            int layoutId)
     {
-        super(view, layoutId);
+        this.view = view;
+        layout = view.findViewById(layoutId);
+        layout.setVisibility(View.VISIBLE);
     }
 
-    @Deprecated
-    public void insertSVG(ShapeSVG selected) { }
-
-    @Override
-    public void updateLayout(boolean plusOne)
+    /*
+     * view that contains all the svg
+     */
+    public View getView()
     {
-        int len = this.minLength(plusOne);
-        int padX = this.paddingX(plusOne);
-        int padY = this.paddingY(plusOne);
-        for(int i=0; i<this.childCount(false); i++)
-        {
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(len, len);
-            View view = this.layout.getChildAt(i);
-            params.leftMargin = (0==i)?0:padX + (i * len);
-            params.topMargin = padY;
+        return layout;
+    }
 
-            view.setLayoutParams(params);
+    public int height()
+    {
+        return view.getHeight();
+    }
+
+    public int width()
+    {
+        return view.getWidth();
+    }
+
+    protected int padX = 1;
+
+    protected int calStereoImageWidth()
+    {
+        return width()/2-padX;
+    }
+
+    protected int calStereoImageHeight()
+    {
+        if(width() < height())  // portrait
+        {
+            return (width()+2*padX)/2;
+        }
+        else // landscape
+        {
+            return height()+2*padX;
         }
     }
 
-    public void insertBitmap(Bitmap bmp, boolean hasPadX)
+    public void insertStereoImage(Bitmap bmp)
     {
         isDirty = true; // view has been updated
 
-        int len = this.minLength(true);
-        int padX = this.paddingX(true);
-        int padY = this.paddingY(true);
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(len, len);
-        params.topMargin = padY;
+        int padY = 1;
 
-        /*
-         * need to determine space between 2 images
-         */
-        if(hasPadX)
-            params.leftMargin = 5;
+        int w = calStereoImageWidth();
+        int h = calStereoImageHeight();
+
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(w, h);
+        params.topMargin = padY;
+        params.leftMargin = padX;
+        params.rightMargin = padX;
 
         // create new addition
         Context context = view.getContext();

@@ -290,16 +290,18 @@ public class TabFragment4 extends ShapeFragment
 
         // clean up image container
         mPreviewContainer.empty();
-        int numViews = randomDotData.count();
 
-        for(int i=0; i<numViews; i++)
-        {
-            if(i>0)
-                mPreviewContainer.updateLayout(true);
+        mDotModeEnum = SharedPrefUtility.getDotMode(mContext);
 
-            Bitmap bmp = randomDotData.seek(i);
-            boolean hasPadX = (i>0)?true:false;
-            mPreviewContainer.insertBitmap(bmp, hasPadX);
+        switch (mDotModeEnum) {
+            case INTERLACED:
+
+            default:
+            case STEREO_PAIR:
+                for (int i = 0; i < randomDotData.count(); i++) {
+                    Bitmap bmp = randomDotData.seek(i);
+                    mPreviewContainer.insertStereoImage(bmp);
+                }
         }
     }
 }
