@@ -25,27 +25,20 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/username"
-            android:id="@+id/txt_gmail_username"/>
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:text="@string/password"
-            android:id="@+id/txt_gmail_password"/>
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/sender"
-            android:id="@+id/txt_gmail_sender"/>
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:text="@string/recipient"
             android:id="@+id/txt_gmail_recipient"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/carbon_copy"
+            android:id="@+id/txt_gmail_cc"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/blind_carbon_copy"
+            android:id="@+id/txt_gmail_bcc"/>
 
         <EditText
             android:layout_width="match_parent"

@@ -14,7 +14,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.ctyeung.capstonestage1.data.SharedPrefUtility;
-import com.example.ctyeung.capstonestage1.gmail.GMailSender;
 
 /*
  * 1st fragment: handle submission - Gmail, Google Drive, Facebook, etc
@@ -150,32 +149,48 @@ public class TabFragment1 extends Fragment
 
     protected void sendGmail()
     {
-        /*
-         * Need to attach image -- need to finish renderer
-         */
         try
         {
-            EditText txtUsername = mRoot.findViewById(R.id.txt_gmail_username);
-            String username = txtUsername.getText().toString();
+            /*
+             * Stack overflow
+             * https://stackoverflow.com/questions/32344927/send-image-in-message-body-of-email-android
+             */
 
-            EditText txtPassword = mRoot.findViewById(R.id.txt_gmail_password);
-            String password = txtPassword.getText().toString();
+            // Uri u = null;
+            // u = Uri.fromFile(mFile);
 
-            EditText txtSender = mRoot.findViewById(R.id.txt_gmail_sender);
-            String sender = txtSender.getText().toString();
+            Intent emailIntent = new Intent(Intent.ACTION_SEND);
+            emailIntent.setType("plain/text");
+            //emailIntent.setType("image/*");
 
+            // TO: recipient
             EditText txtRecipient = mRoot.findViewById(R.id.txt_gmail_recipient);
             String recipient = txtRecipient.getText().toString();
+            emailIntent.putExtra(Intent.EXTRA_EMAIL, recipient);
 
+            // CC: carbon copy
+            EditText txtCC = mRoot.findViewById(R.id.txt_gmail_cc);
+            String cc = txtCC.getText().toString();
+            emailIntent.putExtra(Intent.EXTRA_CC, cc);
+
+            // BCC: blind carbon copy
+            EditText txtBCC = mRoot.findViewById(R.id.txt_gmail_bcc);
+            String bcc = txtBCC.getText().toString();
+            emailIntent.putExtra(Intent.EXTRA_BCC, bcc);
+
+            // Subject
             EditText txtSubject = mRoot.findViewById(R.id.txt_gmail_subject);
             String subject = txtSubject.getText().toString();
+            emailIntent.putExtra(Intent.EXTRA_SUBJECT, subject);
 
-            GMailSender gmailSender = new GMailSender(username, password);
-            gmailSender.sendMail(subject,
-                    "This is Body",
-                    sender,
-                    recipient);
-        } catch (Exception e) {
+            // feed.get(Selectedposition).DETAIL_OBJECT.IMG_URL
+            emailIntent.putExtra(Intent.EXTRA_TEXT, "Your tsxt here");
+
+            // emailIntent.putExtra(Intent.EXTRA_STREAM, u);
+            startActivity(Intent.createChooser(emailIntent, "Send email..."));
+        }
+        catch (Exception e)
+        {
             Log.e("SendMail", e.getMessage(), e);
         }
     }

@@ -20,6 +20,8 @@
     <string name="filename">Filename</string>
     <string name="btn_send">Send</string>
     <string name="sender">Sender</string>
-    <string name="recipient">Recipient</string>
+    <string name="recipient">TO: Recipient</string>
+    <string name="carbon_copy">CC: Carbon Copy</string>
+    <string name="blind_carbon_copy">BCC: Blind Carbon Copy</string>
 
 </resources>
