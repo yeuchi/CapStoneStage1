@@ -25,6 +25,7 @@ public class TabFragment1 extends Fragment
     private Context mContext;
     private View mRoot;
     private SharedPrefUtility.MediaTypeEnum mMediaType;
+    private Button mBtnSend;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -32,13 +33,14 @@ public class TabFragment1 extends Fragment
         mContext = mRoot.getContext();
         setParams();
         initButtonEvents();
+        sendEnable();
         return mRoot;
     }
 
     protected void initButtonEvents()
     {
-        Button btnSend = mRoot.findViewById(R.id.btn_send);
-        btnSend.setOnClickListener(new View.OnClickListener()
+        mBtnSend = mRoot.findViewById(R.id.btn_send);
+        mBtnSend.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
@@ -59,6 +61,17 @@ public class TabFragment1 extends Fragment
                 }
             }
         });
+    }
+
+    private void sendEnable()
+    {
+        if(null==mContext || null==mBtnSend)
+            return;
+
+        Boolean isShapeDirty = SharedPrefUtility.getIsDirty(SharedPrefUtility.SHAPE_IS_DIRTY, mContext);
+        Boolean isTextDirty = SharedPrefUtility.getIsDirty(SharedPrefUtility.TEXT_IS_DIRTY, mContext);
+        Boolean isEnabled = (isShapeDirty && isTextDirty)? true:false;
+        mBtnSend.setEnabled(isEnabled);
     }
 
     public void setParams()
@@ -130,6 +143,7 @@ public class TabFragment1 extends Fragment
         super.setUserVisibleHint(isVisibleToUser);
         if (isVisibleToUser)
         {
+            sendEnable();
         }
         else
         {
@@ -164,30 +178,43 @@ public class TabFragment1 extends Fragment
             //emailIntent.setType("image/*");
 
             // TO: recipient
+            String Recipient = (String)mContext.getResources().getText(R.string.recipient);
             EditText txtRecipient = mRoot.findViewById(R.id.txt_gmail_recipient);
             String recipient = txtRecipient.getText().toString();
-            emailIntent.putExtra(Intent.EXTRA_EMAIL, recipient);
+            if(null!=recipient && recipient.length()>0 && recipient != Recipient)
+                emailIntent.putExtra(Intent.EXTRA_EMAIL, recipient);
 
             // CC: carbon copy
+            String CC = (String)mContext.getResources().getText(R.string.carbon_copy);
             EditText txtCC = mRoot.findViewById(R.id.txt_gmail_cc);
             String cc = txtCC.getText().toString();
-            emailIntent.putExtra(Intent.EXTRA_CC, cc);
+            if(null!=cc && cc.length()>0 && !cc.equals(CC))
+                emailIntent.putExtra(Intent.EXTRA_CC, cc);
 
             // BCC: blind carbon copy
+            String BCC = (String)mContext.getResources().getText(R.string.blind_carbon_copy);
             EditText txtBCC = mRoot.findViewById(R.id.txt_gmail_bcc);
             String bcc = txtBCC.getText().toString();
-            emailIntent.putExtra(Intent.EXTRA_BCC, bcc);
+            if(null!=bcc && bcc.length()>0 && !bcc.equals(BCC))
+                emailIntent.putExtra(Intent.EXTRA_BCC, bcc);
 
             // Subject
             EditText txtSubject = mRoot.findViewById(R.id.txt_gmail_subject);
             String subject = txtSubject.getText().toString();
-            emailIntent.putExtra(Intent.EXTRA_SUBJECT, subject);
+            if(null!=subject && subject.length()>0)
+                emailIntent.putExtra(Intent.EXTRA_SUBJECT, subject);
 
-            // feed.get(Selectedposition).DETAIL_OBJECT.IMG_URL
-            emailIntent.putExtra(Intent.EXTRA_TEXT, "Your tsxt here");
+            // need to insert image in the middle ...
+            String header = "Header:"+SharedPrefUtility.getString(SharedPrefUtility.FRAG_TEXT_HEADER, mContext);
+            String footer = "Footer:"+SharedPrefUtility.getString(SharedPrefUtility.FRAG_TEXT_FOOTER, mContext);
+            emailIntent.putExtra(Intent.EXTRA_TEXT, header + "\n\n" + footer);
 
             // emailIntent.putExtra(Intent.EXTRA_STREAM, u);
             startActivity(Intent.createChooser(emailIntent, "Send email..."));
+
+            // will have to assume email was send.  Reset clean
+            SharedPrefUtility.setIsDirty(SharedPrefUtility.TEXT_IS_DIRTY, mContext, false);
+            SharedPrefUtility.setIsDirty(SharedPrefUtility.SHAPE_IS_DIRTY, mContext, false);
         }
         catch (Exception e)
         {

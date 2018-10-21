@@ -101,7 +101,6 @@ public class MainActivity extends AppCompatActivity
         mDlgShare.dismiss();
         mDlgShare = null;
 
-        String cancel = getResources().getString(R.string.btn_cancel);
         if(SharedPrefUtility.MediaTypeEnum.CANCEL != mediaType )
         {
             SharedPrefUtility.setMediaType(context, mediaType);
