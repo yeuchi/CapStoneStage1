@@ -1,6 +1,12 @@
 # CapStoneStage1
 Udacity Android nano-degree CapStone project stage 1
 
+### Current Implementations: work-in-progress
+<img src="https://user-images.githubusercontent.com/1282659/47399012-5de21380-d6fc-11e8-9517-34ae7fc30484.png" width="200"><img src="https://user-images.githubusercontent.com/1282659/47399019-63d7f480-d6fc-11e8-8a25-b430bbcad817.png" width="200">
+<img src="https://user-images.githubusercontent.com/1282659/47399033-69cdd580-d6fc-11e8-871f-97f4f385fdfd.png" width="200"><img src="https://user-images.githubusercontent.com/1282659/47399017-61759a80-d6fc-11e8-84d8-dc56a5316e4e.png" width="200">
+<img src="https://user-images.githubusercontent.com/1282659/47399023-663a4e80-d6fc-11e8-88b2-94b994d13d2f.png" width="400">
+<img src="https://user-images.githubusercontent.com/1282659/47399037-6d615c80-d6fc-11e8-84c1-c20cc88dc6df.png" width="400">
+
 ### Project Overview
 In the Capstone project, you will build an app of your own design in two stages. In Stage 1, you will design and plan the app, using a template that we provide in the "Instructions" node.
 
@@ -53,8 +59,4 @@ Rename the copy: "Capstone_Stage1"
 Download the completed document as a PDF, and save it as: "Capstone_Stage1.pdf"
 Submit the PDF document in a zip file or from a GitHub repo through the project submission portal.
 
-<img src="https://user-images.githubusercontent.com/1282659/47399012-5de21380-d6fc-11e8-9517-34ae7fc30484.png" width="200"><img src="https://user-images.githubusercontent.com/1282659/47399019-63d7f480-d6fc-11e8-8a25-b430bbcad817.png" width="200">
-<img src="https://user-images.githubusercontent.com/1282659/47399033-69cdd580-d6fc-11e8-871f-97f4f385fdfd.png" width="200"><img src="https://user-images.githubusercontent.com/1282659/47399017-61759a80-d6fc-11e8-84d8-dc56a5316e4e.png" width="200">
-<img src="https://user-images.githubusercontent.com/1282659/47399023-663a4e80-d6fc-11e8-88b2-94b994d13d2f.png" width="400">
-<img src="https://user-images.githubusercontent.com/1282659/47399037-6d615c80-d6fc-11e8-84c1-c20cc88dc6df.png" width="400">
 
