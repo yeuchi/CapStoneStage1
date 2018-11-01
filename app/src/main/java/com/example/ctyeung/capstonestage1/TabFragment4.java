@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,10 +24,14 @@ import com.example.ctyeung.capstonestage1.data.ShapePreview;
 import com.example.ctyeung.capstonestage1.data.ShapeSVG;
 import com.example.ctyeung.capstonestage1.data.SharedPrefUtility;
 import com.example.ctyeung.capstonestage1.utilities.BitmapRenderer;
+import com.example.ctyeung.capstonestage1.utilities.FileUtils;
 import com.example.ctyeung.capstonestage1.utilities.NetworkLoader;
 import com.example.ctyeung.capstonestage1.utilities.NetworkUtils;
 import com.example.ctyeung.capstonestage1.utilities.RandomDotRenderer;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
 import java.net.URL;
 
 /*
@@ -303,7 +308,6 @@ public class TabFragment4 extends ShapeFragment
 
         // clean up image container
         mPreviewContainer.empty();
-
         mDotModeEnum = SharedPrefUtility.getDotMode(mContext);
 
         switch (mDotModeEnum) {
@@ -314,7 +318,61 @@ public class TabFragment4 extends ShapeFragment
                 for (int i = 0; i < randomDotData.count(); i++) {
                     Bitmap bmp = randomDotData.seek(i);
                     mPreviewContainer.insertStereoImage(bmp);
+                    if(isExternalStorageWritable())
+                    {
+                        File file = saveBitmap(bmp, "shape"+i);
+                        if(null!=file)
+                        {
+                            String key = (0==i)?
+                                    SharedPrefUtility.FILE_LEFT:
+                                    SharedPrefUtility.FILE_RIGHT;
+
+                            SharedPrefUtility.setString(key, mContext, file.getPath());
+                        }
+                    }
                 }
         }
+    }
+
+    private File saveBitmap(Bitmap bmp,
+                            String path)
+    {
+        //String extStorageDirectory = Environment.getDataDirectory().getPath();
+       // String extStorageDirectory = Environment.getExternalStorageDirectory().getPath();
+        //OutputStream outStream = null;
+        // File file = new File(extStorageDirectory, imageName);
+
+        FileUtils fileUtils = new FileUtils();
+        File file = fileUtils.getTempFile(this.mContext, path);
+
+        try {
+
+            if(!file.exists())
+            {
+                file.mkdirs();
+                if(!file.createNewFile())
+                {
+                    file.delete();
+                    file.createNewFile();
+                }
+            }
+
+            OutputStream outStream = new FileOutputStream(file);
+            bmp.compress(Bitmap.CompressFormat.PNG, 100, outStream);
+            outStream.flush();
+            outStream.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        return file;
+    }
+
+    public boolean isExternalStorageWritable() {
+        String state = Environment.getExternalStorageState();
+        if (Environment.MEDIA_MOUNTED.equals(state)) {
+            return true;
+        }
+        return false;
     }
 }

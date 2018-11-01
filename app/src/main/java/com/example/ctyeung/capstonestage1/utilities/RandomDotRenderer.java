@@ -62,7 +62,7 @@ public class RandomDotRenderer
             data.endQbmp(bmp);
 
             // horizontal offset for parallax
-            xOffset += RandomDotData.getParallaxDistance(mContext);
+             xOffset += RandomDotData.getParallaxDistance(mContext);
         }
         return data;
     }

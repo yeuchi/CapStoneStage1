@@ -2,7 +2,9 @@ package com.example.ctyeung.capstonestage1;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,6 +16,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.ctyeung.capstonestage1.data.SharedPrefUtility;
+
+import java.io.File;
+import java.io.OutputStream;
 
 /*
  * 1st fragment: handle submission - Gmail, Google Drive, Facebook, etc
@@ -170,12 +175,13 @@ public class TabFragment1 extends Fragment
              * https://stackoverflow.com/questions/32344927/send-image-in-message-body-of-email-android
              */
 
-            // Uri u = null;
-            // u = Uri.fromFile(mFile);
+            String path = SharedPrefUtility.getString(SharedPrefUtility.FILE_LEFT, mContext);
+            File file = new File(path);
+            Uri uri = Uri.fromFile(file);
 
             Intent emailIntent = new Intent(Intent.ACTION_SEND);
-            emailIntent.setType("plain/text");
-            //emailIntent.setType("image/*");
+            //emailIntent.setType("plain/text");
+            emailIntent.setType("image/*");
 
             // TO: recipient
             String Recipient = (String)mContext.getResources().getText(R.string.recipient);
@@ -209,7 +215,8 @@ public class TabFragment1 extends Fragment
             String footer = "Footer:"+SharedPrefUtility.getString(SharedPrefUtility.FRAG_TEXT_FOOTER, mContext);
             emailIntent.putExtra(Intent.EXTRA_TEXT, header + "\n\n" + footer);
 
-            // emailIntent.putExtra(Intent.EXTRA_STREAM, u);
+            // load image
+            emailIntent.putExtra(Intent.EXTRA_STREAM, uri);
             startActivity(Intent.createChooser(emailIntent, "Send email..."));
 
             // will have to assume email was send.  Reset clean
