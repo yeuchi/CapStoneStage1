@@ -47,7 +47,7 @@
         <!--
         Fileprovider
 
-        https://developer.android.com/training/secure-file-sharing/setup-sharing
+        https://infinum.co/the-capsized-eight/share-files-using-fileprovider
         -->
         <provider
             android:name="android.support.v4.content.FileProvider"

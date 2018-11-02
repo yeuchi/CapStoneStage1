@@ -320,7 +320,8 @@ public class TabFragment4 extends ShapeFragment
                     mPreviewContainer.insertStereoImage(bmp);
                     if(isExternalStorageWritable())
                     {
-                        File file = saveBitmap(bmp, "shape"+i+".png");
+                        String suffix = (0==i)?"Left":"Right";
+                        File file = saveBitmap(bmp, "shape"+suffix+".png");
                         if(null!=file)
                         {
                             String key = (0==i)?

@@ -21,6 +21,7 @@ import com.example.ctyeung.capstonestage1.data.SharedPrefUtility;
 
 import java.io.File;
 import java.io.OutputStream;
+import java.util.ArrayList;
 
 /*
  * 1st fragment: handle submission - Gmail, Google Drive, Facebook, etc
@@ -168,6 +169,13 @@ public class TabFragment1 extends Fragment
 
     }
 
+    protected Uri getImageUri(String key)
+    {
+        String path = SharedPrefUtility.getString(key, mContext);
+        File file = new File(path);
+        Uri uri = FileProvider.getUriForFile(mContext, "com.example.ctyeung.capstonestage1.fileprovider", file);
+        return uri;
+    }
     protected void sendGmail()
     {
         try
@@ -178,21 +186,21 @@ public class TabFragment1 extends Fragment
              */
 
             /*
-             * Stack overflow on File provider + relaxing policy
-             * https://stackoverflow.com/questions/48117511/exposed-beyond-app-through-clipdata-item-geturi
+             * Stack overflow on File provider
+             * https://stackoverflow.com/questions/42516126/fileprovider-illegalargumentexception-failed-to-find-configured-root
              */
 
             StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
             StrictMode.setVmPolicy(builder.build());
 
-            String path = SharedPrefUtility.getString(SharedPrefUtility.FILE_LEFT, mContext);
-            File file = new File(path);
+            Uri uriLeft = getImageUri(SharedPrefUtility.FILE_LEFT);
+            Uri uriRight = getImageUri(SharedPrefUtility.FILE_RIGHT);
 
-            Uri uri = FileProvider.getUriForFile(mContext, "com.example.ctyeung.capstonestage1.fileprovider", file);
+            ArrayList<Uri> uris = new ArrayList<Uri>();
+            uris.add(uriLeft);
+            uris.add(uriRight);
 
-           // Uri uri = Uri.fromFile(file);
-
-            Intent emailIntent = new Intent(Intent.ACTION_SEND);
+            Intent emailIntent = new Intent(Intent.ACTION_SEND_MULTIPLE);
             emailIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
 
             //emailIntent.setType("plain/text");
@@ -231,7 +239,9 @@ public class TabFragment1 extends Fragment
             emailIntent.putExtra(Intent.EXTRA_TEXT, header + "\n\n" + footer);
 
             // load image
-            emailIntent.putExtra(Intent.EXTRA_STREAM, uri);
+            //emailIntent.putExtra(Intent.EXTRA_STREAM, uriLeft);
+            //emailIntent.putExtra(Intent.EXTRA_STREAM, uriRight);
+            emailIntent.putParcelableArrayListExtra(Intent.EXTRA_STREAM, uris);
 
             if (emailIntent.resolveActivity(mContext.getPackageManager()) != null) {
                 mContext.startActivity(Intent.createChooser(emailIntent, "Send email..."));
