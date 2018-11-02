@@ -8,10 +8,10 @@ Udacity Android nano-degree CapStone project stage 1
 <img src="https://user-images.githubusercontent.com/1282659/47399037-6d615c80-d6fc-11e8-84c1-c20cc88dc6df.png" width="400">
 
 
-<img src="https://user-images.githubusercontent.com/1282659/47918808-995aab80-de7b-11e8-80b8-31e16d942fb7.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/47918807-995aab80-de7b-11e8-935f-7c880573828f.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/47888044-5a434080-de10-11e8-8040-f5a2d0ce4507.png" width="200"><img src="https://user-images.githubusercontent.com/1282659/47888046-5adbd700-de10-11e8-87ae-319139225d32.png" width="200">
+<img src="https://user-images.githubusercontent.com/1282659/47918808-995aab80-de7b-11e8-80b8-31e16d942fb7.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/47888044-5a434080-de10-11e8-8040-f5a2d0ce4507.png" width="200"><img src="https://user-images.githubusercontent.com/1282659/47888046-5adbd700-de10-11e8-87ae-319139225d32.png" width="200">
 
 <img src="https://user-images.githubusercontent.com/1282659/47888043-5a434080-de10-11e8-8a5e-2235c06fd643.png" width="200"><img src="https://user-images.githubusercontent.com/1282659/47918935-053d1400-de7c-11e8-938d-e131e3410d82.png" width="400">
-<img src="https://user-images.githubusercontent.com/1282659/47918939-079f6e00-de7c-11e8-9347-5098afb044aa.png" width="400">
+<img src="https://user-images.githubusercontent.com/1282659/47918807-995aab80-de7b-11e8-935f-7c880573828f.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/47918939-079f6e00-de7c-11e8-9347-5098afb044aa.png" width="400">
 
 
 ### Project Overview
