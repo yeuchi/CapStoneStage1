@@ -7,7 +7,7 @@ Udacity Android nano-degree CapStone project stage 1
 <img src="https://user-images.githubusercontent.com/1282659/47399023-663a4e80-d6fc-11e8-88b2-94b994d13d2f.png" width="400">
 <img src="https://user-images.githubusercontent.com/1282659/47399037-6d615c80-d6fc-11e8-84c1-c20cc88dc6df.png" width="400">
 
-<img src="https://user-images.githubusercontent.com/1282659/47888043-5a434080-de10-11e8-8a5e-2235c06fd643.png" width="200"><img src="https://user-images.githubusercontent.com/1282659/47888044-5a434080-de10-11e8-8040-f5a2d0ce4507.png" width="200"><img src="https://user-images.githubusercontent.com/1282659/47888045-5adbd700-de10-11e8-9104-7eb41e1152a8.png" width="200"><img src="https://user-images.githubusercontent.com/1282659/47888046-5adbd700-de10-11e8-87ae-319139225d32.png" width="200">
+<img src="https://user-images.githubusercontent.com/1282659/47888045-5adbd700-de10-11e8-9104-7eb41e1152a8.png" width="200"><img src="https://user-images.githubusercontent.com/1282659/47888043-5a434080-de10-11e8-8a5e-2235c06fd643.png" width="200"><img src="https://user-images.githubusercontent.com/1282659/47888044-5a434080-de10-11e8-8040-f5a2d0ce4507.png" width="200"><img src="https://user-images.githubusercontent.com/1282659/47888046-5adbd700-de10-11e8-87ae-319139225d32.png" width="200">
 
 ### Project Overview
 In the Capstone project, you will build an app of your own design in two stages. In Stage 1, you will design and plan the app, using a template that we provide in the "Instructions" node.
