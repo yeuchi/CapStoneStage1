@@ -1,13 +1,23 @@
 # CapStoneStage1
 Udacity Android nano-degree CapStone project stage 1
 
-### Current Implementations: work-in-progress
+### Main and Configuration Activities
 <img src="https://user-images.githubusercontent.com/1282659/47399012-5de21380-d6fc-11e8-9517-34ae7fc30484.png" width="200"><img src="https://user-images.githubusercontent.com/1282659/47399019-63d7f480-d6fc-11e8-8a25-b430bbcad817.png" width="200">
-<img src="https://user-images.githubusercontent.com/1282659/47399033-69cdd580-d6fc-11e8-871f-97f4f385fdfd.png" width="200"><img src="https://user-images.githubusercontent.com/1282659/47399017-61759a80-d6fc-11e8-84d8-dc56a5316e4e.png" width="200">
-<img src="https://user-images.githubusercontent.com/1282659/47399023-663a4e80-d6fc-11e8-88b2-94b994d13d2f.png" width="400">
-<img src="https://user-images.githubusercontent.com/1282659/47399037-6d615c80-d6fc-11e8-84c1-c20cc88dc6df.png" width="400">
 
-<img src="https://user-images.githubusercontent.com/1282659/47888045-5adbd700-de10-11e8-9104-7eb41e1152a8.png" width="200"><img src="https://user-images.githubusercontent.com/1282659/47888043-5a434080-de10-11e8-8a5e-2235c06fd643.png" width="200"><img src="https://user-images.githubusercontent.com/1282659/47888044-5a434080-de10-11e8-8040-f5a2d0ce4507.png" width="200"><img src="https://user-images.githubusercontent.com/1282659/47888046-5adbd700-de10-11e8-87ae-319139225d32.png" width="200">
+### Share Fragments
+<img src="https://user-images.githubusercontent.com/1282659/47919853-81385b80-de7e-11e8-80c1-c3bc4f0ffb6b.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/47919854-81385b80-de7e-11e8-9e4e-e0bebfc10985.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/47919855-81d0f200-de7e-11e8-87a4-d8e89a13f1e3.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/47919856-81d0f200-de7e-11e8-98e7-d17efdc1a86f.jpg" width="200">
+
+### Share options
+<img src="https://user-images.githubusercontent.com/1282659/47918808-995aab80-de7b-11e8-80b8-31e16d942fb7.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/47888046-5adbd700-de10-11e8-87ae-319139225d32.png" width="200">
+
+### Save on Google Drive
+<img src="https://user-images.githubusercontent.com/1282659/47888044-5a434080-de10-11e8-8040-f5a2d0ce4507.png" width="200">.    <img src="https://user-images.githubusercontent.com/1282659/47919396-4124a900-de7d-11e8-8d7c-771e37a8f9cb.png" width="400">
+
+### Share via Email
+<img src="https://user-images.githubusercontent.com/1282659/47888043-5a434080-de10-11e8-8a5e-2235c06fd643.png" width="200">      <img src="https://user-images.githubusercontent.com/1282659/47918935-053d1400-de7c-11e8-938d-e131e3410d82.png" width="400">
+
+### Share on Facebook
+<img src="https://user-images.githubusercontent.com/1282659/47918807-995aab80-de7b-11e8-935f-7c880573828f.jpg" width="200">.   <img src="https://user-images.githubusercontent.com/1282659/47918939-079f6e00-de7c-11e8-9347-5098afb044aa.png" width="400">
 
 ### Project Overview
 In the Capstone project, you will build an app of your own design in two stages. In Stage 1, you will design and plan the app, using a template that we provide in the "Instructions" node.
