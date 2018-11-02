@@ -32,14 +32,12 @@ public class TabFragment1 extends Fragment
 {
     private Context mContext;
     private View mRoot;
-    private SharedPrefUtility.MediaTypeEnum mMediaType;
     private Button mBtnSend;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mRoot = inflater.inflate(R.layout.tab_fragment_1, container, false);
         mContext = mRoot.getContext();
-        setParams();
         initButtonEvents();
         sendEnable();
         return mRoot;
@@ -53,20 +51,7 @@ public class TabFragment1 extends Fragment
             @Override
             public void onClick(View v)
             {
-                switch(mMediaType)
-                {
-                    case FACEBOOK:
-                        postOnFacebook();
-                    break;
-
-                    case GMAIL:
-                        sendGmail();
-                        break;
-
-                    case GOOGLE_DRIVE:
-                        save2GoogleDrive();
-                        break;
-                }
+                share();
             }
         });
     }
@@ -80,61 +65,6 @@ public class TabFragment1 extends Fragment
         Boolean isTextDirty = SharedPrefUtility.getIsDirty(SharedPrefUtility.TEXT_IS_DIRTY, mContext);
         Boolean isEnabled = (isShapeDirty && isTextDirty)? true:false;
         mBtnSend.setEnabled(isEnabled);
-    }
-
-    public void setParams()
-    {
-        String title = "";
-        int selectedLayout = -1;
-
-        mMediaType = SharedPrefUtility.getMediaType(mContext);
-
-        switch (mMediaType)
-        {
-            case FACEBOOK:
-            title = mRoot.getResources().getString(R.string.btn_facebook);
-            selectedLayout = R.id.layout_facebook;
-            break;
-
-            case GMAIL:
-            title = mRoot.getResources().getString(R.string.btn_gmail);
-            selectedLayout = R.id.layout_gmail;
-            break;
-
-            case GOOGLE_DRIVE:
-            title = mRoot.getResources().getString(R.string.btn_google_drive);
-            selectedLayout = R.id.layout_drive;
-            break;
-
-            default:
-            title = mRoot.getResources().getString(R.string.unknown_media);
-            break;
-        }
-
-        // set fragment title
-        TextView textView = mRoot.findViewById(R.id.txt_media_title);
-        textView.setText(title);
-        setLayoutVisibility(selectedLayout);
-    }
-
-    /*
-     * Set all layouts invisible except selected
-     */
-    private void setLayoutVisibility(int id)
-    {
-        LinearLayout layout = mRoot.findViewById(R.id.layout_gmail);
-        layout.setVisibility(View.INVISIBLE);
-
-        layout = mRoot.findViewById(R.id.layout_facebook);
-        layout.setVisibility(View.INVISIBLE);
-
-        layout = mRoot.findViewById(R.id.layout_drive);
-        layout.setVisibility(View.INVISIBLE);
-
-        if(id > -1) {
-            layout = mRoot.findViewById(id);
-            layout.setVisibility(View.VISIBLE);
-        }
     }
 
     @Override
@@ -159,16 +89,6 @@ public class TabFragment1 extends Fragment
         }
     }
 
-    protected void postOnFacebook()
-    {
-
-    }
-
-    protected void save2GoogleDrive()
-    {
-
-    }
-
     protected Uri getImageUri(String key)
     {
         String path = SharedPrefUtility.getString(key, mContext);
@@ -176,7 +96,7 @@ public class TabFragment1 extends Fragment
         Uri uri = FileProvider.getUriForFile(mContext, "com.example.ctyeung.capstonestage1.fileprovider", file);
         return uri;
     }
-    protected void sendGmail()
+    protected void share()
     {
         try
         {
@@ -203,29 +123,7 @@ public class TabFragment1 extends Fragment
             Intent emailIntent = new Intent(Intent.ACTION_SEND_MULTIPLE);
             emailIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
 
-            //emailIntent.setType("plain/text");
             emailIntent.setType("image/*");
-
-            // TO: recipient
-            String Recipient = (String)mContext.getResources().getText(R.string.recipient);
-            EditText txtRecipient = mRoot.findViewById(R.id.txt_gmail_recipient);
-            String recipient = txtRecipient.getText().toString();
-            if(null!=recipient && recipient.length()>0 && recipient != Recipient)
-                emailIntent.putExtra(Intent.EXTRA_EMAIL, recipient);
-
-            // CC: carbon copy
-            String CC = (String)mContext.getResources().getText(R.string.carbon_copy);
-            EditText txtCC = mRoot.findViewById(R.id.txt_gmail_cc);
-            String cc = txtCC.getText().toString();
-            if(null!=cc && cc.length()>0 && !cc.equals(CC))
-                emailIntent.putExtra(Intent.EXTRA_CC, cc);
-
-            // BCC: blind carbon copy
-            String BCC = (String)mContext.getResources().getText(R.string.blind_carbon_copy);
-            EditText txtBCC = mRoot.findViewById(R.id.txt_gmail_bcc);
-            String bcc = txtBCC.getText().toString();
-            if(null!=bcc && bcc.length()>0 && !bcc.equals(BCC))
-                emailIntent.putExtra(Intent.EXTRA_BCC, bcc);
 
             // Subject
             EditText txtSubject = mRoot.findViewById(R.id.txt_gmail_subject);
@@ -239,8 +137,6 @@ public class TabFragment1 extends Fragment
             emailIntent.putExtra(Intent.EXTRA_TEXT, header + "\n\n" + footer);
 
             // load image
-            //emailIntent.putExtra(Intent.EXTRA_STREAM, uriLeft);
-            //emailIntent.putExtra(Intent.EXTRA_STREAM, uriRight);
             emailIntent.putParcelableArrayListExtra(Intent.EXTRA_STREAM, uris);
 
             if (emailIntent.resolveActivity(mContext.getPackageManager()) != null) {
@@ -253,7 +149,7 @@ public class TabFragment1 extends Fragment
         }
         catch (Exception e)
         {
-            Log.e("SendMail", e.getMessage(), e);
+            Log.e("Share error", e.getMessage(), e);
         }
     }
 }

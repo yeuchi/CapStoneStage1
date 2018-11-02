@@ -13,10 +13,9 @@
         android:id="@+id/txt_media_title"/>
 
     <LinearLayout
-        android:id="@+id/layout_gmail"
+        android:id="@+id/layout_share"
         android:layout_width="match_parent"
         android:layout_height="401dp"
-        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginTop="43dp"
         android:orientation="vertical"
@@ -25,80 +24,8 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/recipient"
-            android:id="@+id/txt_gmail_recipient"/>
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/carbon_copy"
-            android:id="@+id/txt_gmail_cc"/>
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/blind_carbon_copy"
-            android:id="@+id/txt_gmail_bcc"/>
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:text="@string/subject"
             android:id="@+id/txt_gmail_subject"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/layout_drive"
-        android:layout_width="match_parent"
-        android:layout_height="421dp"
-        android:layout_alignParentStart="true"
-        android:layout_centerVertical="true"
-        android:orientation="vertical"
-        android:visibility="invisible">
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/username" />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:text="@string/password" />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/filename" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/layout_facebook"
-        android:layout_width="match_parent"
-        android:layout_height="390dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignTop="@+id/layout_gmail"
-        android:orientation="vertical"
-        android:visibility="invisible">
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/username" />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:text="@string/password" />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/subject" />
 
     </LinearLayout>
 

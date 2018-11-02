@@ -1,42 +1,31 @@
 package com.example.ctyeung.capstonestage1;
 
-import android.Manifest;
-import android.annotation.TargetApi;
-import android.app.Activity;
 import android.content.Context;
-import android.content.pm.PackageManager;
-import android.os.Build;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.ShareCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
 import android.view.View;
 import android.content.Intent;
-import com.example.ctyeung.capstonestage1.ViewerActivity;
+
 import com.example.ctyeung.capstonestage1.data.SharedPrefUtility;
-import com.example.ctyeung.capstonestage1.dialogs.NumberPickerFragment;
-import com.example.ctyeung.capstonestage1.dialogs.ShareFragment;
 
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.Toolbar;
 
 /*
  * https://stackoverflow.com/questions/8854359/exception-open-failed-eacces-permission-denied-on-android
  */
-public class MainActivity extends AppCompatActivity
-        implements ShareFragment.OnDialogOKListener{
+public class MainActivity extends AppCompatActivity{
 
     private Context context;
-    private ShareFragment mDlgShare;
 
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         context = this;
@@ -62,7 +51,7 @@ public class MainActivity extends AppCompatActivity
         btnShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                laundShareViaDialog();
+                onButtonClickShare();
             }
         });
     }
@@ -91,32 +80,15 @@ public class MainActivity extends AppCompatActivity
 
             case R.id.share:
                 // Share Via dialog
-                laundShareViaDialog();
+                onButtonClickShare();
                 return true;
         }
         return false;
     }
 
-    protected void laundShareViaDialog()
+    protected void onButtonClickShare()
     {
-        mDlgShare = new ShareFragment();
-        mDlgShare.setParams(this);
-        mDlgShare.show(getSupportFragmentManager(), "Share Via");
-    }
-
-    /*
-     * handle call back from ShareVia dialog
-     */
-    public void onShareViaDialogOKClick(SharedPrefUtility.MediaTypeEnum mediaType)
-    {
-        mDlgShare.dismiss();
-        mDlgShare = null;
-
-        if(SharedPrefUtility.MediaTypeEnum.CANCEL != mediaType )
-        {
-            SharedPrefUtility.setMediaType(context, mediaType);
-            Intent intent = new Intent(context, TabActivity.class);
-            startActivity(intent);
-        }
+        Intent intent = new Intent(context, TabActivity.class);
+        startActivity(intent);
     }
 }
