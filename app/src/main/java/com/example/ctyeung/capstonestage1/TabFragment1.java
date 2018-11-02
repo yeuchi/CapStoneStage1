@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.StrictMode;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.FileProvider;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -175,11 +177,24 @@ public class TabFragment1 extends Fragment
              * https://stackoverflow.com/questions/32344927/send-image-in-message-body-of-email-android
              */
 
+            /*
+             * Stack overflow on File provider + relaxing policy
+             * https://stackoverflow.com/questions/48117511/exposed-beyond-app-through-clipdata-item-geturi
+             */
+
+            StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+            StrictMode.setVmPolicy(builder.build());
+
             String path = SharedPrefUtility.getString(SharedPrefUtility.FILE_LEFT, mContext);
             File file = new File(path);
-            Uri uri = Uri.fromFile(file);
+
+            Uri uri = FileProvider.getUriForFile(mContext, "com.example.ctyeung.capstonestage1.fileprovider", file);
+
+           // Uri uri = Uri.fromFile(file);
 
             Intent emailIntent = new Intent(Intent.ACTION_SEND);
+            emailIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+
             //emailIntent.setType("plain/text");
             emailIntent.setType("image/*");
 
@@ -217,7 +232,10 @@ public class TabFragment1 extends Fragment
 
             // load image
             emailIntent.putExtra(Intent.EXTRA_STREAM, uri);
-            startActivity(Intent.createChooser(emailIntent, "Send email..."));
+
+            if (emailIntent.resolveActivity(mContext.getPackageManager()) != null) {
+                mContext.startActivity(Intent.createChooser(emailIntent, "Send email..."));
+            }
 
             // will have to assume email was send.  Reset clean
             SharedPrefUtility.setIsDirty(SharedPrefUtility.TEXT_IS_DIRTY, mContext, false);

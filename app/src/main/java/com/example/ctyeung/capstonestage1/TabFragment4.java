@@ -186,7 +186,7 @@ public class TabFragment4 extends ShapeFragment
             if(mNumShapes == mSVGAvailable)
                 render();
         }
-    }
+        }
 
     /*
      * create the view with SVGs inside
@@ -320,7 +320,7 @@ public class TabFragment4 extends ShapeFragment
                     mPreviewContainer.insertStereoImage(bmp);
                     if(isExternalStorageWritable())
                     {
-                        File file = saveBitmap(bmp, "shape"+i);
+                        File file = saveBitmap(bmp, "shape"+i+".png");
                         if(null!=file)
                         {
                             String key = (0==i)?
@@ -343,18 +343,19 @@ public class TabFragment4 extends ShapeFragment
         // File file = new File(extStorageDirectory, imageName);
 
         FileUtils fileUtils = new FileUtils();
-        File file = fileUtils.getTempFile(this.mContext, path);
+        File file = fileUtils.getAlbumStorageDir(this.mContext, path);
 
         try {
 
             if(!file.exists())
             {
                 file.mkdirs();
-                if(!file.createNewFile())
-                {
-                    file.delete();
-                    file.createNewFile();
-                }
+            }
+
+            if(!file.createNewFile())
+            {
+                file.delete();
+                file.createNewFile();
             }
 
             OutputStream outStream = new FileOutputStream(file);

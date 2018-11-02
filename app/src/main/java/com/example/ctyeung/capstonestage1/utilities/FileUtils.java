@@ -44,7 +44,7 @@ public class FileUtils
     /*
      * https://developer.android.com/training/data-storage/files#java
      */
-    public File getPrivateAlbumStorageDir(Context context, String albumName) {
+    public File getAlbumStorageDir(Context context, String albumName) {
         // Get the directory for the app's private pictures directory.
         File file = new File(context.getExternalFilesDir(
                 Environment.DIRECTORY_PICTURES), albumName);
