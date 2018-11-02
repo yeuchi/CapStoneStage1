@@ -20,15 +20,11 @@ import com.example.ctyeung.capstonestage1.utilities.BitmapRenderer;
 /*
  * Text fragment - compose text message in this fragment
  */
-public class TabFragment2 extends Fragment
+public class TabFragment2 extends BaseFragment
 {
 
     public static String PNG_FILENAME = "textSVG.png";
 
-    private Context mContext = null;
-    private View mRoot;
-    private InputMethodManager mgr;
-    private EditText mHeader;
     private EditText mFooter;
 
     @Override
@@ -49,12 +45,12 @@ public class TabFragment2 extends Fragment
      */
     private void loadText()
     {
-        mHeader = mRoot.findViewById(R.id.txt_msg_header);
+        mEditText = mRoot.findViewById(R.id.txt_msg_header);
         mFooter = mRoot.findViewById(R.id.txt_msg_footer);
 
         String stringHeader = SharedPrefUtility.getString(SharedPrefUtility.FRAG_TEXT_HEADER, mContext);
         if(null!=stringHeader && !stringHeader.isEmpty())
-            mHeader.setText(stringHeader);
+            mEditText.setText(stringHeader);
 
         String stringFooter = SharedPrefUtility.getString(SharedPrefUtility.FRAG_TEXT_FOOTER, mContext);
         if(null!=stringFooter && !stringFooter.isEmpty())
@@ -62,35 +58,17 @@ public class TabFragment2 extends Fragment
     }
 
     /*
-     * setUserVisibleHint - switching fragment or activity
-     * - if isDirty: take a snap shot of the svg and archive to file for preview fragment
-     */
-    @Override
-    public void setUserVisibleHint(boolean isVisibleToUser)
-    {
-        super.setUserVisibleHint(isVisibleToUser);
-        if (isVisibleToUser)
-        {
-            showKeyboard();
-        }
-        else if(null!=mContext)
-        {
-            hideKeyboard();
-            persist();
-        }
-    }
-
-    /*
      * Save text (if changed -> isDirty)
      */
-    private void persist()
+    @Override
+    protected void persist()
     {
         // stored
         String storedHeader = SharedPrefUtility.getString(SharedPrefUtility.FRAG_TEXT_HEADER, mContext);
         String storedFooter = SharedPrefUtility.getString(SharedPrefUtility.FRAG_TEXT_FOOTER, mContext);
 
         // current text
-        String stringHeader = mHeader.getText().toString();
+        String stringHeader = mEditText.getText().toString();
         String stringFooter = mFooter.getText().toString();
 
         // persist
@@ -101,26 +79,5 @@ public class TabFragment2 extends Fragment
         }
     }
 
-    /*
-     * show android keyboard
-     */
-    private void showKeyboard()
-    {
-        if(null==mgr)
-            mgr = (InputMethodManager) mContext.getSystemService(Context.INPUT_METHOD_SERVICE);
 
-        mgr.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
-        mgr.showSoftInput(mHeader, InputMethodManager.SHOW_IMPLICIT);
-    }
-
-    /*
-     * hide android keyboard
-     */
-    private void hideKeyboard()
-    {
-        if(null!=mgr)
-        {
-            mgr.hideSoftInputFromWindow(mHeader.getWindowToken(), 0);
-        }
-    }
 }

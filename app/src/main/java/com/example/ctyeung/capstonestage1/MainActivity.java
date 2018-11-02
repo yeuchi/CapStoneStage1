@@ -19,7 +19,7 @@ import android.view.MenuItem;
  */
 public class MainActivity extends AppCompatActivity{
 
-    private Context context;
+    private Context mContext;
 
 
 
@@ -28,8 +28,16 @@ public class MainActivity extends AppCompatActivity{
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        context = this;
+        mContext = this;
         initButtons();
+        initLocals();
+    }
+
+    private void initLocals()
+    {
+        SharedPrefUtility.setIsDirty(SharedPrefUtility.SHAPE_IS_DIRTY, mContext, false);
+        SharedPrefUtility.setIsDirty(SharedPrefUtility.TEXT_IS_DIRTY, mContext, false);
+
     }
 
     private void initButtons()
@@ -40,7 +48,7 @@ public class MainActivity extends AppCompatActivity{
         btnViewer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, ViewerActivity.class);
+                Intent intent = new Intent(mContext, ViewerActivity.class);
                 startActivity(intent);
             }
         });
@@ -74,7 +82,7 @@ public class MainActivity extends AppCompatActivity{
 
             case R.id.configuration:
                 // load configuration activity
-                intent = new Intent(context, ConfigActivity.class);
+                intent = new Intent(mContext, ConfigActivity.class);
                 startActivity(intent);
                 return true;
 
@@ -88,7 +96,7 @@ public class MainActivity extends AppCompatActivity{
 
     protected void onButtonClickShare()
     {
-        Intent intent = new Intent(context, TabActivity.class);
+        Intent intent = new Intent(mContext, TabActivity.class);
         startActivity(intent);
     }
 }

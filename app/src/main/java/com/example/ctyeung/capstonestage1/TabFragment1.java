@@ -28,16 +28,16 @@ import java.util.ArrayList;
  *
  * Set method of persistence (gmail, facebook, google-drive, etc)
  */
-public class TabFragment1 extends Fragment
+public class TabFragment1 extends BaseFragment
 {
-    private Context mContext;
-    private View mRoot;
     private Button mBtnSend;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mRoot = inflater.inflate(R.layout.tab_fragment_1, container, false);
         mContext = mRoot.getContext();
+        mEditText = mRoot.findViewById(R.id.txt_subject);
+
         initButtonEvents();
         sendEnable();
         return mRoot;
@@ -82,10 +82,11 @@ public class TabFragment1 extends Fragment
         if (isVisibleToUser)
         {
             sendEnable();
+            showKeyboard();
         }
         else
         {
-
+            hideKeyboard();
         }
     }
 
@@ -126,8 +127,7 @@ public class TabFragment1 extends Fragment
             emailIntent.setType("image/*");
 
             // Subject
-            EditText txtSubject = mRoot.findViewById(R.id.txt_gmail_subject);
-            String subject = txtSubject.getText().toString();
+            String subject = mEditText.getText().toString();
             if(null!=subject && subject.length()>0)
                 emailIntent.putExtra(Intent.EXTRA_SUBJECT, subject);
 

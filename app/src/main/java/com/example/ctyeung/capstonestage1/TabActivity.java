@@ -67,7 +67,7 @@ public class TabActivity extends AppCompatActivity {
         Fragment fragment4 = new TabFragment4();
 
 
-        adapter.addFragment(fragment1, "Destination");
+        adapter.addFragment(fragment1, "Share");
         adapter.addFragment(fragment2, "Text");
         adapter.addFragment(fragment3, "Shape");
         adapter.addFragment(fragment4, "Preview");
