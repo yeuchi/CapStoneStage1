@@ -18,9 +18,14 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 
-public class BitmapRenderer
+public class BitmapRenderer extends BaseRenderer
 {
     public static String IMAGE_DIR = "imageDir";
+
+    public BitmapRenderer(Context context)
+    {
+        super(context);
+    }
 
     /*
      * dither random dot background
@@ -28,15 +33,14 @@ public class BitmapRenderer
      *   more visually appealing random images.
      *   But for now .. random function to start.
      */
-    public static Bitmap randomDot(Context context,
-                                   int imageHeight)
+    public Bitmap randomDot(int imageHeight)
     {
         Bitmap bitmap = blank(imageHeight, imageHeight);
 
         int pixelWhite = Color.argb(255, 255, 255, 255);
         int pixelBlack = Color.argb(255, 0, 0, 0);
 
-        int[] colors = getColors(context);
+        int[] colors = getColors();
 
         for(int y=0; y<bitmap.getHeight(); y++)
         {
@@ -44,8 +48,8 @@ public class BitmapRenderer
             {
                 int index = (int)(Math.random() * 4.0);
                 int des = (Math.random() < 0.5)?
-                        //colors[index]:
-                        pixelBlack:
+                        colors[index]:
+                        //pixelBlack:
                         pixelWhite;
 
                 bitmap.setPixel(x,y, des);
@@ -54,18 +58,10 @@ public class BitmapRenderer
         return bitmap;
     }
 
-    protected static int[] getColors(Context context)
-    {
-        return new int[] {  Color.argb(255, 0, 0, 0),
-                SharedPrefUtility.getDimension(SharedPrefUtility.COLOR1, context),
-                SharedPrefUtility.getDimension(SharedPrefUtility.COLOR2, context),
-                SharedPrefUtility.getDimension(SharedPrefUtility.COLOR3, context)};
-    }
-
     /*
      * Create a bitmap from View; in fragments: text + shape
      */
-    public static Bitmap blank(int width, int height)
+    public Bitmap blank(int width, int height)
     {
         Bitmap bitmap = Bitmap.createBitmap(width,
                                             height,
@@ -74,26 +70,10 @@ public class BitmapRenderer
     }
 
     /*
-     * Save View to file in fragments: text or shape
-     */
-    public static String Archive(Context context,
-                                  View view,
-                                  String filename)  // shapes.png
-    {
-        Bitmap bitmap = View2Bitmap(context, view);
-
-        if(null==bitmap)
-            return null;
-
-        return Persist2File(context, bitmap, filename);
-    }
-
-    /*
      * view to bitmap
      * https://stackoverflow.com/questions/34272310/android-convert-view-to-bitmap
      */
-    protected static Bitmap View2Bitmap(Context context,
-                                        View view)
+    protected Bitmap View2Bitmap(View view)
     {
         DisplayMetrics displayMetrics = new DisplayMetrics();
         //((Activity) context).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
@@ -118,11 +98,10 @@ public class BitmapRenderer
      * bitmap to file
      * https://stackoverflow.com/questions/17674634/saving-and-reading-bitmaps-images-from-internal-memory-in-android
      */
-    protected static String Persist2File(Context context,
-                                         Bitmap bitmap,
+    protected String Persist2File(Bitmap bitmap,
                                          String filename)
     {
-        ContextWrapper wrapper = new ContextWrapper(context);
+        ContextWrapper wrapper = new ContextWrapper(mContext);
         // path to /data/data/yourapp/app_data/imageDir
         File directory = wrapper.getDir(IMAGE_DIR, Context.MODE_PRIVATE);
         File file = new File(directory,filename);
@@ -155,7 +134,7 @@ public class BitmapRenderer
      * Load bitmap from file
      * - for preview fragment and viewer
      */
-    public static Bitmap Load(String filename)
+    public Bitmap Load(String filename)
     {
         try
         {

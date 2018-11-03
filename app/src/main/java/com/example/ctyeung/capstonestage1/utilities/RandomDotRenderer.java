@@ -13,17 +13,18 @@ import com.example.ctyeung.capstonestage1.data.SharedPrefUtility;
  * render dot bitmaps as preview.
  * - this should be converted into NDK C++ for performance.
  */
-public class RandomDotRenderer
+public class RandomDotRenderer extends BaseRenderer
 {
     private Bitmap bmpBackground;               // common background dithered image
-    private Context mContext;                   // preview fragment ui context
     private int mLongLength;
+    private BitmapRenderer mBmpRenderer;
 
     public RandomDotRenderer(Context context,
                              int longLength)
     {
+        super(context);
+        mBmpRenderer = new BitmapRenderer(context);
         mLongLength = longLength;
-        mContext = context;
         createCommon();
     }
 
@@ -38,7 +39,7 @@ public class RandomDotRenderer
         mLongLength +=  RandomDotData.getBorderOffset(mContext)*2 +
                         RandomDotData.getParallaxDistance(mContext);
 
-        bmpBackground = BitmapRenderer.randomDot(mContext, mLongLength);
+        bmpBackground = mBmpRenderer.randomDot(mLongLength);
     }
 
     /*
@@ -62,7 +63,7 @@ public class RandomDotRenderer
             data.endQbmp(bmp);
 
             // horizontal offset for parallax
-             xOffset += RandomDotData.getParallaxDistance(mContext);
+            xOffset += RandomDotData.getParallaxDistance(mContext);
         }
         return data;
     }
@@ -140,14 +141,6 @@ public class RandomDotRenderer
             }
         }
         return bmpDither;
-    }
-
-    protected int[] getColors()
-    {
-        return new int[] {  Color.argb(255, 0, 0, 0),
-                            SharedPrefUtility.getDimension(SharedPrefUtility.COLOR1, mContext),
-                            SharedPrefUtility.getDimension(SharedPrefUtility.COLOR2, mContext),
-                            SharedPrefUtility.getDimension(SharedPrefUtility.COLOR3, mContext)};
     }
 
     /*
