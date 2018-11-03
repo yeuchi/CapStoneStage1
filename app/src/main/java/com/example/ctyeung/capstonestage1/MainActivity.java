@@ -21,8 +21,6 @@ public class MainActivity extends AppCompatActivity{
 
     private Context mContext;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {

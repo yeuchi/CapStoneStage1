@@ -41,6 +41,22 @@ public class ConfigActivity extends AppCompatActivity
         ab.setDisplayHomeAsUpEnabled(true);
 
         initializeButtons();
+        initLocals();
+    }
+
+    private void initLocals()
+    {
+        setButtonColor(R.id.btnColor1, SharedPrefUtility.COLOR1);
+        setButtonColor(R.id.btnColor2, SharedPrefUtility.COLOR2);
+        setButtonColor(R.id.btnColor3, SharedPrefUtility.COLOR3);
+    }
+
+    private void setButtonColor(int id,
+                                 String key)
+    {
+        int color = SharedPrefUtility.getDimension(key, mContext);
+        Button btnColor = findViewById(id);
+        btnColor.setBackgroundColor(color);
     }
 
     private void launchDialog(String id, int min, int max)

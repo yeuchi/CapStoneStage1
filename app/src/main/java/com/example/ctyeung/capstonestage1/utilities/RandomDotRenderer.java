@@ -38,7 +38,7 @@ public class RandomDotRenderer
         mLongLength +=  RandomDotData.getBorderOffset(mContext)*2 +
                         RandomDotData.getParallaxDistance(mContext);
 
-        bmpBackground = BitmapRenderer.randomDot(mLongLength);
+        bmpBackground = BitmapRenderer.randomDot(mContext, mLongLength);
     }
 
     /*
@@ -78,6 +78,9 @@ public class RandomDotRenderer
             int pixelWhite = Color.argb(255, 255, 255, 255);
             int pixelBlack = Color.argb(255, 0, 0, 0);
 
+            int index = 0;
+            int[] colors = getColors();
+
             for(int y=0; y<bmpSrc.getHeight(); y++)
             {
                 for(int x=0; x<bmpSrc.getWidth(); x++)
@@ -85,12 +88,15 @@ public class RandomDotRenderer
                     int src = bmpSrc.getPixel(x, y);
 
                     // if pixel is 'on' -> dither
-                    int des = (Math.random() >= 0.5)?
-                            pixelWhite:
-                            pixelBlack;
+                    int des = (Math.random() < 0.5)?
+                            colors[index]:
+                            pixelWhite;
+
 
                     if(src != des) // if white
                         bmpSrc.setPixel(x, y, des);
+
+                    index = (index >= 3)? 0:index+1;
                 }
             }
         }
@@ -107,6 +113,9 @@ public class RandomDotRenderer
             int pixelWhite = Color.argb(255, 255, 255, 255);
             int pixelBlack = Color.argb(255, 0, 0, 0);
 
+            int index = 0;
+            int[] colors = getColors();
+
             bmpDither = Bitmap.createBitmap(bmpSrc.getWidth(),
                                             bmpSrc.getHeight(),
                                             Bitmap.Config.ARGB_8888);
@@ -119,9 +128,11 @@ public class RandomDotRenderer
 
                     if(src != pixelEmpty) {
 
-                        int des = (Math.random() >= 0.5)?
-                                pixelWhite:
-                                pixelBlack;
+                        int des = (Math.random() < 0.5)?
+                            colors[index]:
+                            pixelWhite;
+
+                        index = (index >= 3)? 0:index+1;
 
                         bmpDither.setPixel(x, y, des);
                     }
@@ -129,6 +140,14 @@ public class RandomDotRenderer
             }
         }
         return bmpDither;
+    }
+
+    protected int[] getColors()
+    {
+        return new int[] {  Color.argb(255, 0, 0, 0),
+                            SharedPrefUtility.getDimension(SharedPrefUtility.COLOR1, mContext),
+                            SharedPrefUtility.getDimension(SharedPrefUtility.COLOR2, mContext),
+                            SharedPrefUtility.getDimension(SharedPrefUtility.COLOR3, mContext)};
     }
 
     /*

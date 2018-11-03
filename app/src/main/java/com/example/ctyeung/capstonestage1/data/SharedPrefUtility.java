@@ -2,6 +2,7 @@ package com.example.ctyeung.capstonestage1.data;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 
 import com.example.ctyeung.capstonestage1.R;
 
@@ -38,29 +39,6 @@ public class SharedPrefUtility
         INTERLACED
     }
 
-    protected static int getDefaltValue(Context context,
-                                        String key)
-    {
-        switch (key)
-        {
-            case INTERLACE_WIDTH:
-                return 200;
-
-            case IMAGE_HEIGHT:
-                return 400;
-                //return context.getResources().getDimension(R.dimen.image_height);
-
-            case BORDER_OFFSET:
-                return 100;
-                //return (int)context.getResources().getDimension(R.dimen.border_offset);
-
-            case PARALLAX_DIS:
-                return 30;
-                //return (int)context.getResources().getDimension(R.dimen.parallax_distance);
-        }
-        return -1;
-    }
-
     /*
      * Config: dot mode - stereo / interlaced
      */
@@ -82,21 +60,49 @@ public class SharedPrefUtility
         editor.commit();
     }
 
+    protected static int getDefaultDimensionValue(String key)
+    {
+        switch (key)
+        {
+            case COLOR1:
+                return Color.argb(255, 255, 0, 0);
+
+            case COLOR2:
+                return Color.argb(255, 0, 255, 0);
+
+            case COLOR3:
+                return Color.argb(255, 0, 0, 255);
+
+            case INTERLACE_WIDTH:
+                return 200;
+
+            case IMAGE_HEIGHT:
+                return 400;
+            //return context.getResources().getDimension(R.dimen.image_height);
+
+            case BORDER_OFFSET:
+                return 100;
+            //return (int)context.getResources().getDimension(R.dimen.border_offset);
+
+            case PARALLAX_DIS:
+                return 30;
+            //return (int)context.getResources().getDimension(R.dimen.parallax_distance);
+
+            default:
+                return -1;
+        }
+    }
+
     /*
      * Config: image height or interlace pixel width
      */
     public static int getDimension( String key,
                                     Context context)
     {
-        SharedPreferences sharedPreferences = getSharedPref(context);
-        int result = sharedPreferences.getInt(key, -1);
+        int defaultValue = getDefaultDimensionValue(key);
 
-        /*
-         * get default if not available
-         */
-        return (result>-1)?
-                result:
-                getDefaltValue(context, key);
+        SharedPreferences sharedPreferences = getSharedPref(context);
+        return sharedPreferences.getInt(key, defaultValue);
     }
 
     public static void setDimension(String key,

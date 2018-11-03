@@ -9,6 +9,8 @@ import android.graphics.Color;
 import android.util.DisplayMetrics;
 import android.view.View;
 
+import com.example.ctyeung.capstonestage1.data.SharedPrefUtility;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -26,20 +28,38 @@ public class BitmapRenderer
      *   more visually appealing random images.
      *   But for now .. random function to start.
      */
-    public static Bitmap randomDot(int imageHeight)
+    public static Bitmap randomDot(Context context,
+                                   int imageHeight)
     {
         Bitmap bitmap = blank(imageHeight, imageHeight);
+
+        int pixelWhite = Color.argb(255, 255, 255, 255);
+        int pixelBlack = Color.argb(255, 0, 0, 0);
+
+        int[] colors = getColors(context);
 
         for(int y=0; y<bitmap.getHeight(); y++)
         {
             for(int x=0; x<bitmap.getWidth(); x++)
             {
-                int random = (int)(Math.random() * 255);
-                int pixel = Color.argb(255, random, random, random);
-                bitmap.setPixel(x,y, pixel);
+                int index = (int)(Math.random() * 4.0);
+                int des = (Math.random() < 0.5)?
+                        //colors[index]:
+                        pixelBlack:
+                        pixelWhite;
+
+                bitmap.setPixel(x,y, des);
             }
         }
         return bitmap;
+    }
+
+    protected static int[] getColors(Context context)
+    {
+        return new int[] {  Color.argb(255, 0, 0, 0),
+                SharedPrefUtility.getDimension(SharedPrefUtility.COLOR1, context),
+                SharedPrefUtility.getDimension(SharedPrefUtility.COLOR2, context),
+                SharedPrefUtility.getDimension(SharedPrefUtility.COLOR3, context)};
     }
 
     /*
