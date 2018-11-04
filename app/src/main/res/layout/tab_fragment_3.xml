@@ -11,6 +11,7 @@
         android:id="@+id/shapes_view_group">
 
     </RelativeLayout>
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"

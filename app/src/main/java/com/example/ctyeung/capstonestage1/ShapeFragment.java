@@ -1,10 +1,14 @@
 package com.example.ctyeung.capstonestage1;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.support.v4.app.Fragment;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.ctyeung.capstonestage1.data.PreviewContainer;
 import com.example.ctyeung.capstonestage1.data.ShapeFactory;
 import com.example.ctyeung.capstonestage1.data.ShapePreview;
 import com.example.ctyeung.capstonestage1.data.ShapeSVG;
@@ -17,20 +21,44 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
+import java.util.List;  
 
 public class ShapeFragment extends Fragment
 {
     protected List<ShapeSVG> mShapes;
     protected ShapePreview mShapePreview;
     protected Context mContext;
+    protected ProgressBar mLoadingIndicator;
 
+    protected ProgressDialog pDialog;
+
+
+    protected void showSpinner(String msg)
+    {
+        if(null==mContext)
+            return;
+
+        if(null==pDialog)
+            pDialog = new ProgressDialog(mContext);
+
+        // Showing progress dialog before making http request
+        pDialog.setMessage(msg);
+        pDialog.show();
+    }
+
+    protected void hideSpinner()
+    {
+        if(null!=pDialog)
+            pDialog.hide();
+    }
     /*
      * SVGs in grid-view is available on network.
      * - go fetch the path and load it in background
      */
     protected void requestShapes()
     {
+        showSpinner("Loading...");
+
         URL url = NetworkUtils.buildShapesJsonUrl();
         GithubQueryTask task = new GithubQueryTask();
         task.execute(url);
@@ -71,6 +99,8 @@ public class ShapeFragment extends Fragment
          */
         protected void onPostExecute(String str)
         {
+            hideSpinner();
+
             if(null!=str && !str.isEmpty())
                 handleShapeJson(str);
         }

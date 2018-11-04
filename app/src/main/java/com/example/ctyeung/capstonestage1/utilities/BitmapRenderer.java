@@ -36,7 +36,7 @@ public class BitmapRenderer extends BaseRenderer
     public Bitmap randomDot(int imageHeight)
     {
         Bitmap bitmap = blank(imageHeight, imageHeight);
-
+        boolean isDebug = false;
         int pixelWhite = Color.argb(255, 255, 255, 255);
         int pixelBlack = Color.argb(255, 0, 0, 0);
 
@@ -47,9 +47,10 @@ public class BitmapRenderer extends BaseRenderer
             for(int x=0; x<bitmap.getWidth(); x++)
             {
                 int index = (int)(Math.random() * 4.0);
+                int darkPixel = (isDebug)? pixelBlack : colors[index];
+
                 int des = (Math.random() < 0.5)?
-                        colors[index]:
-                        //pixelBlack:
+                        darkPixel:
                         pixelWhite;
 
                 bitmap.setPixel(x,y, des);

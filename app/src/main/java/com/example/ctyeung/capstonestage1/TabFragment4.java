@@ -1,5 +1,6 @@
 package com.example.ctyeung.capstonestage1;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -13,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -55,6 +57,7 @@ public class TabFragment4 extends ShapeFragment
     private PreviewContainer mPreviewContainer;
     private boolean mIsVisible = false;
 
+
     @Override
     public View onCreateView(LayoutInflater inflater,
                              ViewGroup container,
@@ -65,8 +68,8 @@ public class TabFragment4 extends ShapeFragment
         mContext = mRoot.getContext();
         mPreviewContainer = new PreviewContainer(mRoot, R.id.image_container);
         mShapePreview = new ShapePreview(mRoot, R.id.shapes_view_group);
-        requestShapes();
 
+        requestShapes();
         return mRoot;
     }
 
@@ -115,7 +118,11 @@ public class TabFragment4 extends ShapeFragment
         super.setUserVisibleHint(isVisibleToUser);
         if (isVisibleToUser)
         {
+            showSpinner("Rendering...");
+
             InvokeRendering();
+
+            hideSpinner();
         }
         else
         {
