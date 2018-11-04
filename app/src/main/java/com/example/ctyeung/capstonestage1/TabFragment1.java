@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.ctyeung.capstonestage1.data.SharedPrefUtility;
 
@@ -97,20 +98,11 @@ public class TabFragment1 extends BaseFragment
         Uri uri = FileProvider.getUriForFile(mContext, "com.example.ctyeung.capstonestage1.fileprovider", file);
         return uri;
     }
+
     protected void share()
     {
         try
         {
-            /*
-             * Stack overflow
-             * https://stackoverflow.com/questions/32344927/send-image-in-message-body-of-email-android
-             */
-
-            /*
-             * Stack overflow on File provider
-             * https://stackoverflow.com/questions/42516126/fileprovider-illegalargumentexception-failed-to-find-configured-root
-             */
-
             StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
             StrictMode.setVmPolicy(builder.build());
 
@@ -149,6 +141,10 @@ public class TabFragment1 extends BaseFragment
         }
         catch (Exception e)
         {
+            Toast.makeText(getActivity(),
+                    "Share failed",
+                    Toast.LENGTH_SHORT).show();
+
             Log.e("Share error", e.getMessage(), e);
         }
     }

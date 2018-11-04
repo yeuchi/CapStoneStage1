@@ -215,6 +215,7 @@ public class TabFragment4 extends ShapeFragment
         }
         catch (Exception ex)
         {
+            Toast.makeText(mContext, "createSVGView failed", Toast.LENGTH_SHORT).show();
             return false;
         }
     }
@@ -227,7 +228,7 @@ public class TabFragment4 extends ShapeFragment
         // create the view
         if(!createSVGView())
         {
-            Toast.makeText(mContext, "createSVGView failed", Toast.LENGTH_LONG).show();
+            Toast.makeText(mContext, "createSVGView failed", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -235,7 +236,7 @@ public class TabFragment4 extends ShapeFragment
         Bitmap bmpShape = createBitmap();
         if(null==bmpShape)
         {
-            Toast.makeText(mContext, "createBitmap failed", Toast.LENGTH_LONG).show();
+            Toast.makeText(mContext, "createBitmap failed", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -243,7 +244,7 @@ public class TabFragment4 extends ShapeFragment
         RandomDotData randomDotData = createRandomDot(bmpShape);
         if(null==bmpShape)
         {
-            Toast.makeText(mContext, "createBitmap failed", Toast.LENGTH_LONG).show();
+            Toast.makeText(mContext, "createBitmap failed", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -371,6 +372,8 @@ public class TabFragment4 extends ShapeFragment
             outStream.flush();
             outStream.close();
         } catch (Exception e) {
+            Toast.makeText(mContext, "saveBitmap failed", Toast.LENGTH_SHORT).show();
+
             e.printStackTrace();
             return null;
         }
