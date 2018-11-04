@@ -19,6 +19,9 @@ Udacity Android nano-degree CapStone project stage 1
 ### Share on Facebook
 <img src="https://user-images.githubusercontent.com/1282659/47918807-995aab80-de7b-11e8-935f-7c880573828f.jpg" width="200">.   <img src="https://user-images.githubusercontent.com/1282659/47918939-079f6e00-de7c-11e8-9347-5098afb044aa.png" width="400">
 
+### Debug mode stereo pair
+<img src="https://user-images.githubusercontent.com/1282659/47959106-f05e9e80-dfa9-11e8-8a5c-942c87854854.png" width="400">
+
 ### Project Overview
 In the Capstone project, you will build an app of your own design in two stages. In Stage 1, you will design and plan the app, using a template that we provide in the "Instructions" node.
 
@@ -71,4 +74,15 @@ Rename the copy: "Capstone_Stage1"
 Download the completed document as a PDF, and save it as: "Capstone_Stage1.pdf"
 Submit the PDF document in a zip file or from a GitHub repo through the project submission portal.
 
+##References
 
+Stack overflow, "Send Image in message body of email android"
+https://stackoverflow.com/questions/32344927/send-image-in-message-body-of-email-android
+
+Stack overflow, "FileProvider - IllegalArgumentException: Failed to find configured root"
+https://stackoverflow.com/questions/42516126/fileprovider-illegalargumentexception-failed-to-find-configured-root
+
+Stack overflow, "Converting a view to Bitmap without displaying it in Android?"
+https://stackoverflow.com/questions/2801116/converting-a-view-to-bitmap-without-displaying-it-in-android
+
+             
