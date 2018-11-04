@@ -36,7 +36,8 @@ public class BitmapRenderer extends BaseRenderer
     public Bitmap randomDot(int imageHeight)
     {
         Bitmap bitmap = blank(imageHeight, imageHeight);
-        boolean isDebug = false;
+        boolean isDebug = SharedPrefUtility.getBoolean(SharedPrefUtility.IS_DEBUG, mContext);
+        
         int pixelWhite = Color.argb(255, 255, 255, 255);
         int pixelBlack = Color.argb(255, 0, 0, 0);
 

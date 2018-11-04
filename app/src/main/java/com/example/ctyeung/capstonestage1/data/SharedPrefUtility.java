@@ -32,6 +32,7 @@ public class SharedPrefUtility
     public static final String FILE_LEFT = "fileLeft";
     public static final String FILE_RIGHT = "fileRight";
     public static final String FILE_INTERLACE = "fileInterlace";
+    public static final String IS_DEBUG = "isDebug";
 
     public enum DotModeEnum
     {
@@ -121,19 +122,32 @@ public class SharedPrefUtility
     public static boolean getIsDirty(String key,       // text or shape
                                      Context context)
     {
-        SharedPreferences sharedPreferences = getSharedPref(context);
-        return (sharedPreferences.contains(key))?
-                sharedPreferences.getBoolean(key, false):
-                false;
+        return getBoolean(key, context);
     }
 
     public static void setIsDirty(String key,
                                   Context context,
                                   boolean isDirty)
     {
+        setBoolean(key, context, isDirty);
+    }
+
+    public static boolean getBoolean(String key,       // text or shape
+                                     Context context)
+    {
+        SharedPreferences sharedPreferences = getSharedPref(context);
+        return (sharedPreferences.contains(key))?
+                sharedPreferences.getBoolean(key, false):
+                false;
+    }
+
+    public static void setBoolean(String key,
+                                  Context context,
+                                  boolean value)
+    {
         SharedPreferences sharedPreferences = getSharedPref(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putBoolean(key, isDirty);
+        editor.putBoolean(key, value);
         editor.commit();
     }
 

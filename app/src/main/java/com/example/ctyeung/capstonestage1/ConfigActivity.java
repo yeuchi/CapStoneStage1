@@ -10,6 +10,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -21,14 +23,25 @@ import com.example.ctyeung.capstonestage1.dialogs.NumberPickerFragment;
 import top.defaults.colorpicker.ColorPickerPopup;
 
 public class ConfigActivity extends AppCompatActivity
-            implements NumberPickerFragment.OnDialogOKListener
-{
+            implements NumberPickerFragment.OnDialogOKListener,
+            CompoundButton.OnCheckedChangeListener
+        {
     private NumberPickerFragment.OnDialogOKListener numListener;
     private String clickId;
     private Context mContext;
     private Activity activity;
 
-    @Override
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView,
+                                         boolean isChecked) {
+
+                CheckBox chkIsDebug = findViewById(R.id.chk_debug);
+                boolean isDebug = chkIsDebug.isChecked()? true:false;
+                SharedPrefUtility.setBoolean(SharedPrefUtility.IS_DEBUG, mContext, isDebug);
+            }
+
+
+            @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_config);
@@ -49,6 +62,12 @@ public class ConfigActivity extends AppCompatActivity
         setButtonColor(R.id.btnColor1, SharedPrefUtility.COLOR1);
         setButtonColor(R.id.btnColor2, SharedPrefUtility.COLOR2);
         setButtonColor(R.id.btnColor3, SharedPrefUtility.COLOR3);
+
+        // is debug
+        boolean isDebug = SharedPrefUtility.getBoolean(SharedPrefUtility.IS_DEBUG, mContext);
+        CheckBox chkIsDebug = findViewById(R.id.chk_debug);
+        chkIsDebug.setChecked(isDebug);
+        chkIsDebug.setOnCheckedChangeListener(this);
     }
 
     private void setButtonColor(int id,
