@@ -77,7 +77,6 @@ Submit the PDF document in a zip file or from a GitHub repo through the project 
 ##References
 
 Stack overflow, "Send Image in message body of email android"
-
 https://stackoverflow.com/questions/32344927/send-image-in-message-body-of-email-android
 
 Stack overflow, "FileProvider - IllegalArgumentException: Failed to find configured root"
@@ -86,4 +85,5 @@ https://stackoverflow.com/questions/42516126/fileprovider-illegalargumentexcepti
 Stack overflow, "Converting a view to Bitmap without displaying it in Android?"
 https://stackoverflow.com/questions/2801116/converting-a-view-to-bitmap-without-displaying-it-in-android
 
-             
+Stack overflow, "What is the list of supported languages/locales on Android?"
+https://stackoverflow.com/questions/7973023/what-is-the-list-of-supported-languages-locales-on-android
