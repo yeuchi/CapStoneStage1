@@ -17,7 +17,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:text="Tab 3 -- shape"
+        android:text="@string/shape_selection"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <GridLayout xmlns:android="http://schemas.android.com/apk/res/android"

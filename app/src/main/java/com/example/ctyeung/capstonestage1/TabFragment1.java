@@ -124,15 +124,19 @@ public class TabFragment1 extends BaseFragment
                 emailIntent.putExtra(Intent.EXTRA_SUBJECT, subject);
 
             // need to insert image in the middle ...
-            String header = "Header:"+SharedPrefUtility.getString(SharedPrefUtility.FRAG_TEXT_HEADER, mContext);
-            String footer = "Footer:"+SharedPrefUtility.getString(SharedPrefUtility.FRAG_TEXT_FOOTER, mContext);
+            String header_title = mContext.getResources().getString(R.string.header)+": ";
+            String footer_title = mContext.getResources().getString(R.string.header)+": ";
+
+            String header = header_title+SharedPrefUtility.getString(SharedPrefUtility.FRAG_TEXT_HEADER, mContext);
+            String footer = footer_title+SharedPrefUtility.getString(SharedPrefUtility.FRAG_TEXT_FOOTER, mContext);
             emailIntent.putExtra(Intent.EXTRA_TEXT, header + "\n\n" + footer);
 
             // load image
             emailIntent.putParcelableArrayListExtra(Intent.EXTRA_STREAM, uris);
 
             if (emailIntent.resolveActivity(mContext.getPackageManager()) != null) {
-                mContext.startActivity(Intent.createChooser(emailIntent, "Send email..."));
+                String send_title = mContext.getResources().getString(R.string.btn_send)+"...";
+                mContext.startActivity(Intent.createChooser(emailIntent, send_title));
             }
 
             // will have to assume email was send.  Reset clean
@@ -141,11 +145,13 @@ public class TabFragment1 extends BaseFragment
         }
         catch (Exception e)
         {
+            String msg = mContext.getResources().getString(R.string.share_failed);
+
             Toast.makeText(getActivity(),
-                    "Share failed",
+                    msg,
                     Toast.LENGTH_SHORT).show();
 
-            Log.e("Share error", e.getMessage(), e);
+            Log.e(msg, e.getMessage(), e);
         }
     }
 }

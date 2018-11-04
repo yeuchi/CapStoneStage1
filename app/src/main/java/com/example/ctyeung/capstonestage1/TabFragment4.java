@@ -56,6 +56,11 @@ public class TabFragment4 extends ShapeFragment
     private String[] mShapeMessage;
     private PreviewContainer mPreviewContainer;
     private boolean mIsVisible = false;
+    protected String rendering = "...";
+    protected String nothing2Render = "...";
+    protected String createSvgViewFailed = "";
+    protected String createBmpFailed = "";
+    protected String saveBmpFailed = "";
 
 
     @Override
@@ -66,11 +71,23 @@ public class TabFragment4 extends ShapeFragment
 
         mRoot = inflater.inflate(R.layout.tab_fragment_4, container, false);
         mContext = mRoot.getContext();
+        initStrings();
+
         mPreviewContainer = new PreviewContainer(mRoot, R.id.image_container);
         mShapePreview = new ShapePreview(mRoot, R.id.shapes_view_group);
 
         requestShapes();
         return mRoot;
+    }
+
+    protected void initStrings()
+    {
+        rendering = mContext.getResources().getString(R.string.rendering);
+        nothing2Render = mContext.getResources().getString(R.string.nothing_to_render);
+        createSvgViewFailed = mContext.getResources().getString(R.string.create_svg_view_failed);
+        createBmpFailed = mContext.getResources().getString(R.string.create_bmp_failed);
+        saveBmpFailed = mContext.getResources().getString(R.string.save_bmp_failed);
+
     }
 
     /*
@@ -118,7 +135,7 @@ public class TabFragment4 extends ShapeFragment
         super.setUserVisibleHint(isVisibleToUser);
         if (isVisibleToUser)
         {
-            showSpinner("Rendering...");
+            showSpinner(rendering);
 
             InvokeRendering();
 
@@ -141,7 +158,8 @@ public class TabFragment4 extends ShapeFragment
 
         if(null==shapeString || shapeString.isEmpty())
         {
-            Toast.makeText(mContext, "Nothing to render", Toast.LENGTH_LONG).show();
+
+            Toast.makeText(mContext, nothing2Render, Toast.LENGTH_LONG).show();
             return;
         }
         loadSVGs(shapeString);
@@ -215,7 +233,7 @@ public class TabFragment4 extends ShapeFragment
         }
         catch (Exception ex)
         {
-            Toast.makeText(mContext, "createSVGView failed", Toast.LENGTH_SHORT).show();
+            Toast.makeText(mContext, createSvgViewFailed, Toast.LENGTH_SHORT).show();
             return false;
         }
     }
@@ -228,7 +246,7 @@ public class TabFragment4 extends ShapeFragment
         // create the view
         if(!createSVGView())
         {
-            Toast.makeText(mContext, "createSVGView failed", Toast.LENGTH_SHORT).show();
+            Toast.makeText(mContext, createSvgViewFailed, Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -236,7 +254,7 @@ public class TabFragment4 extends ShapeFragment
         Bitmap bmpShape = createBitmap();
         if(null==bmpShape)
         {
-            Toast.makeText(mContext, "createBitmap failed", Toast.LENGTH_SHORT).show();
+            Toast.makeText(mContext, createBmpFailed, Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -244,7 +262,7 @@ public class TabFragment4 extends ShapeFragment
         RandomDotData randomDotData = createRandomDot(bmpShape);
         if(null==bmpShape)
         {
-            Toast.makeText(mContext, "createBitmap failed", Toast.LENGTH_SHORT).show();
+            Toast.makeText(mContext, createBmpFailed, Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -372,7 +390,7 @@ public class TabFragment4 extends ShapeFragment
             outStream.flush();
             outStream.close();
         } catch (Exception e) {
-            Toast.makeText(mContext, "saveBitmap failed", Toast.LENGTH_SHORT).show();
+            Toast.makeText(mContext, saveBmpFailed, Toast.LENGTH_SHORT).show();
 
             e.printStackTrace();
             return null;

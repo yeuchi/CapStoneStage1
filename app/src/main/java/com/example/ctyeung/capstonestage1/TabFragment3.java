@@ -189,10 +189,13 @@ public class TabFragment3 extends ShapeFragment
                 if (mNumSVGsuccess == mNumSVGLoaded)
                     renderUserMessage();
 
-                else
+                else {
+                    String outof = mContext.getResources().getString(R.string.out_of);
+                    String loadok = mContext.getResources().getString(R.string.svg_loaded_ok);
                     Toast.makeText(getActivity(),
-                            mNumSVGsuccess + "out of " + mNumSVGLoaded + "SVGs loaded OK",
+                            mNumSVGsuccess + outof + mNumSVGLoaded + loadok,
                             Toast.LENGTH_LONG).show();
+                }
             }
         }
     }

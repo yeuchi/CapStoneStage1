@@ -23,20 +23,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="true"
-            android:text="Single Interlace View"/>
+            android:text="@string/single_interlace_view"/>
 
         <RadioButton
             android:id="@+id/radio_vr_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Virtual Reality View" />
+            android:text="@string/virtual_reality_view" />
 
     </RadioGroup>
 
     <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Debug"
+        android:text="@string/debug"
         android:layout_marginLeft="24dp"
         android:id="@+id/chk_debug"
         android:layout_marginBottom="24dp"/>
@@ -47,7 +47,7 @@
         android:layout_marginLeft="24dp"
         android:layout_marginBottom="24dp"
         android:id="@+id/btn_interlace_width"
-        android:text="Interlace width (pixels): 200"/>
+        android:text="@string/interlace_width_pixels"/>
 
     <Button
         android:layout_width="wrap_content"
@@ -55,7 +55,7 @@
         android:layout_marginLeft="24dp"
         android:layout_marginBottom="24dp"
         android:id="@+id/btn_image_height"
-        android:text="Image height (pixels): 400"/>
+        android:text="@string/image_height_pixels"/>
 
     <Button
         android:layout_width="wrap_content"
@@ -63,7 +63,7 @@
         android:layout_marginLeft="24dp"
         android:layout_marginBottom="24dp"
         android:id="@+id/btn_border_offset"
-        android:text="Border offset (pixels): 100"/>
+        android:text="@string/border_offset_pixels"/>
 
     <Button
         android:layout_width="wrap_content"
@@ -71,7 +71,7 @@
         android:layout_marginLeft="24dp"
         android:layout_marginBottom="24dp"
         android:id="@+id/btn_parallax"
-        android:text="Parallax distance (pixels): 10"/>
+        android:text="@string/parallax_dis_pixels"/>
 
     <Button
         android:id="@+id/btnFontFamily"
@@ -79,7 +79,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="24dp"
         android:layout_marginBottom="24dp"
-        android:text="Font Family"
+        android:text="@string/language"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
     <Button
@@ -87,7 +87,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@android:color/holo_blue_bright"
-        android:text="Color 1"
+        android:text="@string/color1"
         android:background="#FF000000"
         app:layout_constraintTop_toBottomOf="@+id/button" />
 
@@ -96,7 +96,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@android:color/holo_blue_bright"
-        android:text="Color 2"
+        android:text="@string/color2"
         android:background="#FF0000FF"
         app:layout_constraintTop_toBottomOf="@+id/button" />
 
@@ -105,7 +105,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@android:color/holo_blue_bright"
-        android:text="Color 3"
+        android:text="@string/color3"
         android:background="#FF00FF00"
         app:layout_constraintTop_toBottomOf="@+id/button" />
 

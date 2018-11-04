@@ -1,0 +1,80 @@
+<resources>
+    <string name="app_name">مرحلة كابستون 1</string>
+    <string name="title_activity_viewer">نشاط المشاهد</string>
+    <string name="title_activity_config">نشاط التكوين</string>
+    <string name="title_activity_tab">نشاط التبويب</string>
+    <string name="action_settings">الإعدادات</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="share_via">شارك عبر</string>
+    <string name="btn_facebook">فيس بوك</string>
+    <string name="btn_gmail">جوجل</string>
+    <string name="btn_google_drive">جوجل درايف</string>
+    <string name="unknown_media">وسائط غير معروفة</string>
+
+    <string name="username">اسم المستخدم</string>
+    <string name="password">كلمه السر</string>
+    <string name="filename">اسم الملف</string>
+    <string name="sender">مرسل</string>
+    <string name="recipient">مستلم</string>
+    <string name="carbon_copy">نسخة كربونية</string>
+    <string name="blind_carbon_copy">نسخة كربونية صماء</string>
+
+    <!-- configuration -->
+    <string name="single_interlace_view">عرض مشابه فردي</string>
+    <string name="virtual_reality_view">عرض الواقع الافتراضي</string>
+    <string name="debug">التصحيح</string>
+    <string name="interlace_width_pixels">عرض متداخل (بكسل):</string>
+    <string name="image_height_pixels">ارتفاع الصورة (بكسل):</string>
+    <string name="border_offset_pixels">تخطي الحدود (بكسل):</string>
+    <string name="parallax_dis_pixels">المسافة المنظر (بكسل):</string>
+    <string name="language">لغة</string>
+    <string name="color1">اللون 1</string>
+    <string name="color2">اللون 2</string>
+    <string name="color3">اللون 3</string>
+
+    <!-- main -->
+    <string name="random">عشوائية</string>
+    <string name="viewer">مشاهد</string>
+
+    <!-- fragment 1 -->
+    <string name="subject">موضوع</string>
+    <string name="btn_send">إرسال</string>
+
+    <string name="share_failed">فشلت المشاركة</string>
+
+    <!-- fragment 2 -->
+    <string name="header_msg">رسالة الرأس:</string>
+    <string name="footer_msg">رسالة التذييل:</string>
+
+    <!-- fragment 3 -->
+    <string name="shape_selection">اختيارات الشكل:</string>
+
+    <string name="out_of">بعيدا عن المكان </string>
+    <string name="svg_loaded_ok">تحميل SVGs موافق</string>
+
+    <!-- fragment 4 -->
+    <string name="header">رأس</string>
+    <string name="footer">تذييل</string>
+
+    <string name="rendering">استدعاء</string>
+    <string name="nothing_to_render">لا شيء لتقديم</string>
+    <string name="create_svg_view_failed">فشل إنشاء SVG</string>
+    <string name="create_bmp_failed">إنشاء صورة نقطية فشلت</string>
+    <string name="save_bmp_failed">حفظ الصورة النقطية الفاشلة</string>
+
+    <!-- tabActivity -->
+    <string name="share">شارك</string>
+    <string name="text">نص</string>
+    <string name="shape">شكل</string>
+    <string name="preview">معاينة</string>
+
+    <!-- shape fragments -->
+    <string name="loading">جار التحميل</string>
+
+    <!-- Color popup -->
+    <string name="choose">أختر</string>
+    <string name="btn_cancel">إلغاء</string>
+
+</resources>

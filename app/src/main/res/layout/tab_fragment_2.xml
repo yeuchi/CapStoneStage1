@@ -8,7 +8,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Header Message:"/>
+        android:text="@string/header_msg"/>
 
     <EditText
         android:layout_width="match_parent"
@@ -20,7 +20,7 @@
         android:layout_marginTop="30dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Footer Message:"/>
+        android:text="@string/footer_msg"/>
 
     <EditText
         android:layout_width="match_parent"

@@ -31,7 +31,7 @@ public class ShapeFragment extends Fragment
     protected ProgressBar mLoadingIndicator;
 
     protected ProgressDialog pDialog;
-
+    protected String loading = "...";
 
     protected void showSpinner(String msg)
     {
@@ -57,7 +57,9 @@ public class ShapeFragment extends Fragment
      */
     protected void requestShapes()
     {
-        showSpinner("Loading...");
+        if(null!=mContext)
+            loading = mContext.getResources().getString(R.string.loading)+"...";
+        showSpinner(loading);
 
         URL url = NetworkUtils.buildShapesJsonUrl();
         GithubQueryTask task = new GithubQueryTask();

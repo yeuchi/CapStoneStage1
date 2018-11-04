@@ -12,16 +12,76 @@
     <string name="btn_gmail">GMail</string>
     <string name="btn_google_drive">Google Drive</string>
     <string name="unknown_media">Unknown media</string>
-    <string name="btn_cancel">cancel</string>
 
     <string name="username">Username</string>
     <string name="password">Password</string>
-    <string name="subject">Subject</string>
     <string name="filename">Filename</string>
-    <string name="btn_send">Send</string>
     <string name="sender">Sender</string>
     <string name="recipient">TO: Recipient</string>
     <string name="carbon_copy">CC: Carbon Copy</string>
     <string name="blind_carbon_copy">BCC: Blind Carbon Copy</string>
+
+    <!-- configuration -->
+    <string name="single_interlace_view">Single Interlace View</string>
+    <string name="virtual_reality_view">Virtual Reality View</string>
+    <string name="debug">Debug</string>
+    <string name="interlace_width_pixels">Interlace width (pixels):</string>
+    <string name="image_height_pixels">Image height (pixels):</string>
+    <string name="border_offset_pixels">Border offset (pixels):</string>
+    <string name="parallax_dis_pixels">Parallax distance (pixels):</string>
+    <string name="language">Language</string>
+    <string name="color1">Color 1</string>
+    <string name="color2">Color 2</string>
+    <string name="color3">Color 3</string>
+
+    <string name="numberpicker">NumberPicker</string>
+
+    <!-- main -->
+    <string name="random">RAND  M</string>
+    <string name="viewer">Viewer</string>
+
+    <!-- fragment 1 -->
+    <string name="subject">Subject</string>
+    <string name="btn_send">Send</string>
+
+    <string name="share_failed">Share failed</string>
+
+    <!-- fragment 2 -->
+    <string name="header_msg">Header Message:</string>
+    <string name="footer_msg">Header Message:</string>
+
+    <!-- fragment 3 -->
+    <string name="shape_selection">Shape selections:</string>
+
+    <string name="out_of">out of </string>
+    <string name="svg_loaded_ok">SVGs loaded OK</string>
+
+    <!-- fragment 4 -->
+    <string name="header">header</string>
+    <string name="footer">footer</string>
+
+    <string name="rendering">Rendering</string>
+    <string name="nothing_to_render">Nothing to render</string>
+    <string name="create_svg_view_failed">CreateSVGView failed</string>
+    <string name="create_bmp_failed">CreateBitmap failed</string>
+    <string name="save_bmp_failed">SaveBitmap failed</string>
+
+    <!-- tabActivity -->
+    <string name="share">Share</string>
+    <string name="text">Text</string>
+    <string name="shape">Shape</string>
+    <string name="preview">Preview</string>
+
+    <!-- shape fragments -->
+    <string name="loading">Loading</string>
+
+    <!-- Color popup dialog -->
+    <string name="choose">Choose</string>
+    <string name="btn_cancel">cancel</string>
+
+    <!-- number picker dialog -->
+    <string name="choose_value">Choose Value</string>
+    <string name="choose_number">Choose Number</string>
+    <string name="ok">Ok</string>
 
 </resources>

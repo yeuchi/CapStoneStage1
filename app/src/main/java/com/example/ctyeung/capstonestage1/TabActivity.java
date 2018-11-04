@@ -66,11 +66,15 @@ public class TabActivity extends AppCompatActivity {
         Fragment fragment3 = new TabFragment3();
         Fragment fragment4 = new TabFragment4();
 
+        String share = this.getResources().getString(R.string.share);
+        String text = this.getResources().getString(R.string.text);
+        String shape = this.getResources().getString(R.string.shape);
+        String preview = this.getResources().getString(R.string.preview);
 
-        adapter.addFragment(fragment1, "Share");
-        adapter.addFragment(fragment2, "Text");
-        adapter.addFragment(fragment3, "Shape");
-        adapter.addFragment(fragment4, "Preview");
+        adapter.addFragment(fragment1, share);
+        adapter.addFragment(fragment2, text);
+        adapter.addFragment(fragment3, shape);
+        adapter.addFragment(fragment4, preview);
         viewPager.setAdapter(adapter);
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);

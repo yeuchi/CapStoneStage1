@@ -1,11 +1,15 @@
 package com.example.ctyeung.capstonestage1.dialogs;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.widget.NumberPicker;
+
+import com.example.ctyeung.capstonestage1.R;
 
 /*
  * Number picker dialog
@@ -38,16 +42,24 @@ public class NumberPickerFragment extends DialogFragment {
     }
 
     @Override
-    public Dialog onCreateDialog(Bundle savedInstanceState) {
+    public Dialog onCreateDialog(Bundle savedInstanceState)
+    {
+        Activity activity = getActivity();
+        Context context = activity.getBaseContext();
 
-        numberPicker = new NumberPicker(getActivity());
+        String ok = context.getResources().getString(R.string.ok);
+        String cancel = context.getResources().getString(R.string.btn_cancel);
+        String chooseValue = context.getResources().getString(R.string.choose_value);
+        String chooseNumber = context.getResources().getString(R.string.choose_number);
+
+        numberPicker = new NumberPicker(activity);
         setNumberValues();
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle("Choose Value");
-        builder.setMessage("Choose a number :");
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+        builder.setTitle(chooseValue);
+        builder.setMessage(chooseNumber);
 
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(ok, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which)
             {
@@ -59,7 +71,8 @@ public class NumberPickerFragment extends DialogFragment {
             }
         });
 
-        builder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+
+        builder.setNegativeButton(cancel, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 valueChangeListener.onValueChange(numberPicker,

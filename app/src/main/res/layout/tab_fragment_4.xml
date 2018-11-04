@@ -8,7 +8,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="header"
+        android:text="@string/header"
         android:id="@+id/txt_header"/>
 
     <LinearLayout
@@ -30,7 +30,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="footer"
+        android:text="@string/footer"
         android:id="@+id/txt_footer"/>
 
 </LinearLayout>

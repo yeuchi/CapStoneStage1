@@ -31,17 +31,25 @@ public class ConfigActivity extends AppCompatActivity
     private Context mContext;
     private Activity activity;
 
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView,
-                                         boolean isChecked) {
+    protected RadioGroup radioGroup;
+    protected Button btnWidth;
+    protected Button btnHeight;
+    protected Button btnBorder;
+    protected Button btnParallax;
+    protected Button btnColor1;
+    protected Button btnColor2;
+    protected Button btnColor3;
 
-                CheckBox chkIsDebug = findViewById(R.id.chk_debug);
-                boolean isDebug = chkIsDebug.isChecked()? true:false;
-                SharedPrefUtility.setBoolean(SharedPrefUtility.IS_DEBUG, mContext, isDebug);
-            }
+    @Override
+    public void onCheckedChanged(CompoundButton buttonView,
+                                 boolean isChecked) {
 
+        CheckBox chkIsDebug = findViewById(R.id.chk_debug);
+        boolean isDebug = chkIsDebug.isChecked()? true:false;
+        SharedPrefUtility.setBoolean(SharedPrefUtility.IS_DEBUG, mContext, isDebug);
+    }
 
-            @Override
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_config);
@@ -80,16 +88,17 @@ public class ConfigActivity extends AppCompatActivity
 
     private void launchDialog(String id, int min, int max)
     {
+        String numPicker = getResources().getString(R.string.numberpicker);
         clickId = id;
         int value = SharedPrefUtility.getDimension(id, mContext);
         NumberPickerFragment dlg = new NumberPickerFragment();
         dlg.setParams(numListener, min, max, value);
-        dlg.show(getSupportFragmentManager(), "NumberPicker");
+        dlg.show(getSupportFragmentManager(), numPicker);
     }
 
     private void initializeButtons()
     {
-        RadioGroup radioGroup = findViewById(R.id.radio_group);
+        radioGroup = findViewById(R.id.radio_group);
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
@@ -104,7 +113,11 @@ public class ConfigActivity extends AppCompatActivity
         // click handler for font selection
 
         // click handler for interlace width
-        Button btnWidth = findViewById(R.id.btn_interlace_width);
+        clickId = SharedPrefUtility.INTERLACE_WIDTH;
+        int w = SharedPrefUtility.getDimension(clickId, mContext);
+        onNumberDialogOKClick(w);
+
+        btnWidth = findViewById(R.id.btn_interlace_width);
         btnWidth.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view)
@@ -114,7 +127,11 @@ public class ConfigActivity extends AppCompatActivity
         });
 
         // click handler for image height
-        Button btnHeight = findViewById(R.id.btn_image_height);
+        clickId = SharedPrefUtility.IMAGE_HEIGHT;
+        int h = SharedPrefUtility.getDimension(clickId, mContext);
+        onNumberDialogOKClick(h);
+
+        btnHeight = findViewById(R.id.btn_image_height);
         btnHeight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view)
@@ -124,7 +141,11 @@ public class ConfigActivity extends AppCompatActivity
         });
 
         // click handler for border offset length
-        Button btnBorder = findViewById(R.id.btn_border_offset);
+        clickId = SharedPrefUtility.BORDER_OFFSET;
+        int offset = SharedPrefUtility.getDimension(clickId, mContext);
+        onNumberDialogOKClick(offset);
+
+        btnBorder = findViewById(R.id.btn_border_offset);
         btnBorder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view)
@@ -134,7 +155,11 @@ public class ConfigActivity extends AppCompatActivity
         });
 
         // click handler for parallax distance
-        Button btnParallax = findViewById(R.id.btn_parallax);
+        clickId = SharedPrefUtility.PARALLAX_DIS;
+        int dis = SharedPrefUtility.getDimension(clickId, mContext);
+        onNumberDialogOKClick(dis);
+
+        btnParallax = findViewById(R.id.btn_parallax);
         btnParallax.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view)
@@ -144,7 +169,7 @@ public class ConfigActivity extends AppCompatActivity
         });
 
         // click handler for color1 selection
-        final Button btnColor1 = findViewById(R.id.btnColor1);
+        btnColor1 = findViewById(R.id.btnColor1);
         btnColor1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view)
@@ -154,7 +179,7 @@ public class ConfigActivity extends AppCompatActivity
         });
 
         // click handler for color2 selection
-        final Button btnColor2 = findViewById(R.id.btnColor2);
+        btnColor2 = findViewById(R.id.btnColor2);
         btnColor2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view)
@@ -164,7 +189,7 @@ public class ConfigActivity extends AppCompatActivity
         });
 
         // click handler for color3 selection
-        final Button btnColor3 = findViewById(R.id.btnColor3);
+        btnColor3 = findViewById(R.id.btnColor3);
         btnColor3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view)
@@ -185,22 +210,22 @@ public class ConfigActivity extends AppCompatActivity
         switch(clickId)
         {
             case SharedPrefUtility.BORDER_OFFSET:
-                prefix = "Border Offset: ";
+                prefix = getResources().getString(R.string.border_offset_pixels);
                 id = R.id.btn_border_offset;
                 break;
 
             case SharedPrefUtility.IMAGE_HEIGHT:
-                prefix = "Image Height: ";
+                prefix = getResources().getString(R.string.image_height_pixels);
                 id = R.id.btn_image_height;
                 break;
 
             case SharedPrefUtility.INTERLACE_WIDTH:
-                prefix = "Interlace width: ";
+                prefix = getResources().getString(R.string.interlace_width_pixels);
                 id = R.id.btn_interlace_width;
                 break;
 
             case SharedPrefUtility.PARALLAX_DIS:
-                prefix = "Parallax dis: ";
+                prefix = getResources().getString(R.string.parallax_dis_pixels);
                 id = R.id.btn_parallax;
                 break;
         }

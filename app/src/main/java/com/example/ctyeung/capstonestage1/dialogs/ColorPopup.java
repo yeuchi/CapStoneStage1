@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.widget.Button;
 
+import com.example.ctyeung.capstonestage1.R;
 import com.example.ctyeung.capstonestage1.data.SharedPrefUtility;
 
 import top.defaults.colorpicker.ColorPickerPopup;
@@ -22,11 +23,14 @@ public class ColorPopup
                               final Context context,
                               final String key)
     {
+        String choose = context.getResources().getString(R.string.choose);
+        String cancel = context.getResources().getString(R.string.btn_cancel);
+
         new ColorPickerPopup.Builder(context)
                 .initialColor(Color.RED) // Set initial color
                 .enableAlpha(true) // Enable alpha slider or not
-                .okTitle("Choose")
-                .cancelTitle("Cancel")
+                .okTitle(choose)
+                .cancelTitle(cancel)
                 .showIndicator(true)
                 .showValue(true)
                 .build()
