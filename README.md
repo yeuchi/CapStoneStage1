@@ -77,6 +77,7 @@ Submit the PDF document in a zip file or from a GitHub repo through the project 
 ##References
 
 Stack overflow, "Send Image in message body of email android"
+
 https://stackoverflow.com/questions/32344927/send-image-in-message-body-of-email-android
 
 Stack overflow, "FileProvider - IllegalArgumentException: Failed to find configured root"
