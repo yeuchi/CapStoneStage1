@@ -34,12 +34,6 @@ public class ShapePreview
         layout.setVisibility(View.VISIBLE);
     }
 
-    public String getLanguage()
-    {
-        String language = Locale.getDefault().getDisplayLanguage();
-        return language;// "English"
-    }
-
     /*
      * view that contains all the svg
      */
@@ -117,8 +111,6 @@ public class ShapePreview
         }
     }
 
-    protected final String ENGLISH = "English";
-
     /*
      * Insert a SVG into RelativeLayout view container.
      * - input signature 'selected' is a ShapeSVG object.
@@ -132,7 +124,8 @@ public class ShapePreview
         int padY = this.paddingY(true);
         RelativeLayout.LayoutParams rllp = new RelativeLayout.LayoutParams(len, len);
         rllp.topMargin = padY;
-        rllp.leftMargin = padX + ((ENGLISH != getLanguage())? this.childCount(false)*len: 0);
+        rllp.leftMargin = padX + ((ShapeHelper.isEnglish())?
+                                    this.childCount(false)*len: 0);
 
         // create new addition
         Context context = view.getContext();
@@ -144,7 +137,7 @@ public class ShapePreview
         {
             svgImageView.setSVG(svg);
 
-            if(ENGLISH != getLanguage())
+            if(ShapeHelper.isEnglish())
                 this.layout.addView(svgImageView, 0, rllp);
             else
                 this.layout.addView(svgImageView, rllp);
