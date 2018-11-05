@@ -96,3 +96,6 @@ http://www.fontspace.com/gluk/broshk
 
 CreativeMarket, Origami - Colored Arabic font by Mostafa El Abasiry
 https://creativemarket.com/mabasiry/2517032-Origami-Colored-Arabic-Font
+
+Convertio: TTF to SVG converter 
+https://convertio.co/ttf-svg/
