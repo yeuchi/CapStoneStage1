@@ -10,7 +10,7 @@ Udacity Android nano-degree CapStone project stage 1
 ### Share options
 <img src="https://user-images.githubusercontent.com/1282659/47918808-995aab80-de7b-11e8-80b8-31e16d942fb7.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/47888046-5adbd700-de10-11e8-87ae-319139225d32.png" width="200">
 
-### Language - English, Arabic (work-in-progress)
+### Text - English, Arabic (work-in-progress)
 <img src="https://user-images.githubusercontent.com/1282659/48010505-5438b280-e0e3-11e8-9fa7-2bfd49be4bf3.png" width="200">
 
 ### Save on Google Drive
