@@ -10,6 +10,9 @@ Udacity Android nano-degree CapStone project stage 1
 ### Share options
 <img src="https://user-images.githubusercontent.com/1282659/47918808-995aab80-de7b-11e8-80b8-31e16d942fb7.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/47888046-5adbd700-de10-11e8-87ae-319139225d32.png" width="200">
 
+### Text - English, Arabic (work-in-progress)
+<img src="https://user-images.githubusercontent.com/1282659/48010505-5438b280-e0e3-11e8-9fa7-2bfd49be4bf3.png" width="200">
+
 ### Save on Google Drive
 <img src="https://user-images.githubusercontent.com/1282659/47888044-5a434080-de10-11e8-8040-f5a2d0ce4507.png" width="200">.    <img src="https://user-images.githubusercontent.com/1282659/47919396-4124a900-de7d-11e8-8d7c-771e37a8f9cb.png" width="400">
 
@@ -77,7 +80,6 @@ Submit the PDF document in a zip file or from a GitHub repo through the project 
 ##References
 
 Stack overflow, "Send Image in message body of email android"
-
 https://stackoverflow.com/questions/32344927/send-image-in-message-body-of-email-android
 
 Stack overflow, "FileProvider - IllegalArgumentException: Failed to find configured root"
@@ -86,4 +88,8 @@ https://stackoverflow.com/questions/42516126/fileprovider-illegalargumentexcepti
 Stack overflow, "Converting a view to Bitmap without displaying it in Android?"
 https://stackoverflow.com/questions/2801116/converting-a-view-to-bitmap-without-displaying-it-in-android
 
-             
+Stack overflow, "What is the list of supported languages/locales on Android?"
+https://stackoverflow.com/questions/7973023/what-is-the-list-of-supported-languages-locales-on-android
+
+Fontspace SVG fonts for letter a -> k
+http://www.fontspace.com/gluk/broshk
