@@ -12,6 +12,7 @@ import com.example.ctyeung.capstonestage1.R;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 /*
  * Linear layout View at the bottom of Shape fragment
@@ -31,6 +32,12 @@ public class ShapePreview
         this.view = view;
         layout = view.findViewById(layoutId);
         layout.setVisibility(View.VISIBLE);
+    }
+
+    public String getLanguage()
+    {
+        String language = Locale.getDefault().getDisplayLanguage();
+        return language;// "English"
     }
 
     /*
@@ -106,10 +113,11 @@ public class ShapePreview
             View view = this.layout.getChildAt(i);
             params.leftMargin = padX + (i * len);
             params.topMargin = padY;
-
             view.setLayoutParams(params);
         }
     }
+
+    protected final String ENGLISH = "English";
 
     /*
      * Insert a SVG into RelativeLayout view container.
@@ -124,7 +132,7 @@ public class ShapePreview
         int padY = this.paddingY(true);
         RelativeLayout.LayoutParams rllp = new RelativeLayout.LayoutParams(len, len);
         rllp.topMargin = padY;
-        rllp.leftMargin = padX + this.childCount(false)*len;
+        rllp.leftMargin = padX + ((ENGLISH != getLanguage())? this.childCount(false)*len: 0);
 
         // create new addition
         Context context = view.getContext();
@@ -135,7 +143,11 @@ public class ShapePreview
         if(null!=svg)
         {
             svgImageView.setSVG(svg);
-            this.layout.addView(svgImageView, rllp);
+
+            if(ENGLISH != getLanguage())
+                this.layout.addView(svgImageView, 0, rllp);
+            else
+                this.layout.addView(svgImageView, rllp);
 
             // add a click listener for removal
             svgImageView.setOnClickListener(new View.OnClickListener() {

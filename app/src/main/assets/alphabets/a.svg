@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
+
 <!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+
 <svg class="letter--a" viewBox="0 0 80 100">
-  <path d="M5,90
+  
+<path d="M5,90
            l30,-80 30,80
            M20,50
            l30,0" fill="none" stroke="green" stroke-linecap="round" 
-            stroke-linejoin="round" stroke-width="15"/>
+            stroke-linejoin="round" stroke-width="20"/>
 </svg>
