@@ -220,14 +220,14 @@ public class TabFragment4 extends ShapeFragment
     {
         try {
             for (String msg : mShapeMessage) {
-                // resize existing children
-                if(mShapePreview.childCount(false)>0)
-                    mShapePreview.updateLayout(true);
-
                 int i = Integer.parseInt(msg);
                 ShapeSVG shapeSVG = mShapes.get(i);
                 mShapePreview.insertSVG(shapeSVG);
                 mShapePreview.shapeMessage.add(Integer.toString(i));
+
+                // resize existing children
+                if(mShapePreview.childCount(false)>0)
+                    mShapePreview.updateLayout(false);
             }
             return true;
         }

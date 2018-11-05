@@ -59,6 +59,12 @@ public class ShapePreview
 
     public int maxShapeWidth(boolean plusOne)
     {
+        int count = childCount(plusOne);
+        int width = layout.getWidth();
+
+        if(0==count)
+            return width;
+
         return layout.getWidth() / childCount(plusOne);
     }
 
@@ -88,6 +94,7 @@ public class ShapePreview
     public void empty()
     {
         this.layout.removeAllViews();
+        shapeMessage.clear();
     }
 
     /*
@@ -101,11 +108,15 @@ public class ShapePreview
         int len = this.minLength(plusOne);
         int padX = this.paddingX(plusOne);
         int padY = this.paddingY(plusOne);
-        for(int i=0; i<this.childCount(false); i++)
+        int count = this.childCount(false);
+
+        for(int i=0; i<count; i++)
         {
             RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(len, len);
             View view = this.layout.getChildAt(i);
-            params.leftMargin = padX + (i * len);
+            params.leftMargin = padX + ((ShapeHelper.isEnglish())?
+                                        i * len:            // english: left -> right
+                                        (count-1-i)*len);   // arabic: right -> left
             params.topMargin = padY;
             view.setLayoutParams(params);
         }

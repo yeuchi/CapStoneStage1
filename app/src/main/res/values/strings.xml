@@ -51,6 +51,7 @@
     <string name="footer_msg">Header Message:</string>
 
     <!-- fragment 3 -->
+    <string name="clear">Clear</string>
     <string name="shape_selection">Shape selections:</string>
 
     <string name="out_of">out of </string>

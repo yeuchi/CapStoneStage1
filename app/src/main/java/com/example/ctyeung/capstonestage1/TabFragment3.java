@@ -1,6 +1,7 @@
 package com.example.ctyeung.capstonestage1;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.shapes.Shape;
 import android.net.Uri;
@@ -12,6 +13,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.graphics.drawable.PictureDrawable;
@@ -67,7 +69,24 @@ public class TabFragment3 extends ShapeFragment
         mContext = mRoot.getContext();
 
         initGrid();
+        initButton();
         return mRoot;
+    }
+
+    private void initButton()
+    {
+        /*
+         * clear message and persist
+         */
+        Button btnClear = mRoot.findViewById(R.id.btn_clear);
+        btnClear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mShapePreview.empty();
+                mShapePreview.updateLayout(false);
+                persist();
+            }
+        });
     }
 
     /*
@@ -160,12 +179,12 @@ public class TabFragment3 extends ShapeFragment
         // retrieve selected shape svg
         ShapeSVG selected = mShapes.get(clickItemIndex);
 
-        // resize existing children
-        if(mShapePreview.childCount(false)>0)
-            mShapePreview.updateLayout(true);
-
         mShapePreview.insertSVG(selected);
         mShapePreview.shapeMessage.add(Integer.toString(clickItemIndex));
+
+        // resize existing children
+        if(mShapePreview.childCount(false)>0)
+            mShapePreview.updateLayout(false);
     }
 
     /*

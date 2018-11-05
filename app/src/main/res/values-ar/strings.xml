@@ -49,6 +49,7 @@
     <string name="footer_msg">رسالة التذييل:</string>
 
     <!-- fragment 3 -->
+    <string name="clear">واضح</string>
     <string name="shape_selection">اختيارات الشكل:</string>
 
     <string name="out_of">بعيدا عن المكان </string>
