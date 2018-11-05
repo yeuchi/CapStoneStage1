@@ -94,5 +94,5 @@ https://stackoverflow.com/questions/7973023/what-is-the-list-of-supported-langua
 Fontspace SVG fonts for letter a -> k
 http://www.fontspace.com/gluk/broshk
 
-Origami - Colored Arabic font by Mostafa El Abasiry
+CreativeMarket, Origami - Colored Arabic font by Mostafa El Abasiry
 https://creativemarket.com/mabasiry/2517032-Origami-Colored-Arabic-Font
