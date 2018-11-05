@@ -87,3 +87,6 @@ https://stackoverflow.com/questions/2801116/converting-a-view-to-bitmap-without-
 
 Stack overflow, "What is the list of supported languages/locales on Android?"
 https://stackoverflow.com/questions/7973023/what-is-the-list-of-supported-languages-locales-on-android
+
+Fontspace SVG fonts for letter a -> k
+http://www.fontspace.com/gluk/broshk
