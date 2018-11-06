@@ -118,7 +118,7 @@ public class ShapeGridAdapter extends RecyclerView.Adapter<ShapeGridAdapter.Numb
         {
             ShapeSVG shapeSVG = shapes.get(position);
             viewHolderName.setText(shapeSVG.getName());
-            URL url = NetworkUtils.buildSVGUrl(shapeSVG.getName());
+            URL url = NetworkUtils.buildSVGUrl(shapeSVG.getPath());
             NetworkLoader loader = new NetworkLoader(this, shapeSVG, url);
             Log.d(TAG, "onCreateViewHolder: number of ViewHolders created: " + viewHolderCount);
         }

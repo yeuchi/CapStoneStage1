@@ -56,9 +56,9 @@ public class NetworkUtils
         return url;
     }
 
-    public static URL buildSVGUrl(String name)
+    public static URL buildSVGUrl(String path)
     {
-        String str = ShapeHelper.GetAssetPathPrefix() + "/" + name + ".svg";
+        String str = ShapeHelper.GetAssetPathPrefix() + path ;
         Uri builtUri = Uri.parse(str)
                             .buildUpon()
                             .build();

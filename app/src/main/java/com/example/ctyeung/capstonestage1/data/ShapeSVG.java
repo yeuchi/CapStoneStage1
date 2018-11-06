@@ -23,6 +23,11 @@ public class ShapeSVG
         return JSONhelper.parseValueByKey(json, ShapeHelper.KEY_NAME);
     }
 
+    public String getPath()
+    {
+        return JSONhelper.parseValueByKey(json, ShapeHelper.KEY_PATH);
+    }
+
     public String getJSONString()
     {
         return json.toString();
