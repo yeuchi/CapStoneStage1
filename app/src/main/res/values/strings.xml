@@ -72,7 +72,7 @@
 
     <!-- tabActivity -->
     <string name="share">Share</string>
-    <string name="text">Text</string>
+    <string name="msg">Message</string>
     <string name="shape">Shape</string>
     <string name="preview">Preview</string>
 

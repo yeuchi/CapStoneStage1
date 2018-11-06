@@ -70,7 +70,7 @@
 
     <!-- tabActivity -->
     <string name="share">شارك</string>
-    <string name="text">نص</string>
+    <string name="msg">نص</string>
     <string name="shape">شكل</string>
     <string name="preview">معاينة</string>
 
