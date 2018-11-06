@@ -17,7 +17,7 @@ User may encode a random dot message with SVG shapes and/or text.  There is also
 <img src="https://user-images.githubusercontent.com/1282659/48087463-fd0b0e80-e1c4-11e8-897a-2bff6addf505.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/48087464-fd0b0e80-e1c4-11e8-95bd-044291054451.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/48087465-fd0b0e80-e1c4-11e8-93c4-6c5ef67d995a.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/48087466-fd0b0e80-e1c4-11e8-835e-1281efd0b9b0.jpg" width="200">
 
 ### Localization (Arabic) 
-The languages supported are English and Arabic.  Implementating Arabic present the feature of right->left alignment and additional SVG font glyphs.
+The languages supported are English and Arabic.  Implementating Arabic<sup>[6]</sup> present the feature of right->left alignment and additional SVG font glyphs.
 
 <img src="https://user-images.githubusercontent.com/1282659/48075820-a3491b00-e1a9-11e8-9acc-ae1618bbc43c.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/48075837-a80dcf00-e1a9-11e8-95a6-8dffbfb11db7.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/48075845-ab08bf80-e1a9-11e8-8334-05268a773e45.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/48075851-ad6b1980-e1a9-11e8-9dae-0a925e22694d.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/48075859-afcd7380-e1a9-11e8-9a84-5edec4f22582.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/48075863-b1973700-e1a9-11e8-90ce-1a97e14f0846.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/48083702-7b62b300-e1bb-11e8-80d3-d352f340c077.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/48083703-7bfb4980-e1bb-11e8-8c6e-8c467b6ef986.jpg" width="200">
 
@@ -93,23 +93,23 @@ Submit the PDF document in a zip file or from a GitHub repo through the project 
 
 ## References
 
-Stack overflow, "Send Image in message body of email android"
+1. Stack overflow, "Send Image in message body of email android"
 https://stackoverflow.com/questions/32344927/send-image-in-message-body-of-email-android
 
-Stack overflow, "FileProvider - IllegalArgumentException: Failed to find configured root"
+2. Stack overflow, "FileProvider - IllegalArgumentException: Failed to find configured root"
 https://stackoverflow.com/questions/42516126/fileprovider-illegalargumentexception-failed-to-find-configured-root
 
-Stack overflow, "Converting a view to Bitmap without displaying it in Android?"
+3. Stack overflow, "Converting a view to Bitmap without displaying it in Android?"
 https://stackoverflow.com/questions/2801116/converting-a-view-to-bitmap-without-displaying-it-in-android
 
-Stack overflow, "What is the list of supported languages/locales on Android?"
+4. Stack overflow, "What is the list of supported languages/locales on Android?"
 https://stackoverflow.com/questions/7973023/what-is-the-list-of-supported-languages-locales-on-android
 
-Fontspace SVG fonts for letter a -> k
+5. Fontspace SVG fonts for letter a -> k
 http://www.fontspace.com/gluk/broshk
 
-CreativeMarket, Origami - Colored Arabic font by Mostafa El Abasiry
+6. CreativeMarket, Origami - Colored Arabic font by Mostafa El Abasiry
 https://creativemarket.com/mabasiry/2517032-Origami-Colored-Arabic-Font
 
-Convertio: TTF to SVG converter 
+7. Convertio: TTF to SVG converter 
 https://convertio.co/ttf-svg/
