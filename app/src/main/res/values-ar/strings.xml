@@ -34,6 +34,9 @@
     <string name="color2">اللون 2</string>
     <string name="color3">اللون 3</string>
 
+    <!-- menu -->
+    <string name="configuration">ترتيب</string>
+
     <!-- main -->
     <string name="random">عشوائية</string>
     <string name="viewer">مشاهد</string>
@@ -78,4 +81,8 @@
     <string name="choose">أختر</string>
     <string name="btn_cancel">إلغاء</string>
 
+    <!-- number picker dialog -->
+    <string name="choose_value">اختر القيمة</string>
+    <string name="choose_number">اختر الرقم</string>
+    <string name="ok">حسنا</string>
 </resources>

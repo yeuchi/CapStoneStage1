@@ -4,11 +4,11 @@
     <item
         android:id="@+id/configuration"
         android:orderInCategory="1"
-        android:title="Configuration" />
+        android:title="@string/configuration" />
 
     <item
         android:id="@+id/share"
         android:orderInCategory="1"
-        android:title="Share"/>
+        android:title="@string/share"/>
 
 </menu>

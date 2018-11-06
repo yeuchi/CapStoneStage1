@@ -36,6 +36,9 @@
 
     <string name="numberpicker">NumberPicker</string>
 
+    <!-- menu -->
+    <string name="configuration">Configuration</string>
+
     <!-- main -->
     <string name="random">RAND  M</string>
     <string name="viewer">Viewer</string>
