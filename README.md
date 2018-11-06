@@ -14,13 +14,13 @@ Udacity Android nano-degree CapStone project stage 1
 <img src="https://user-images.githubusercontent.com/1282659/47918808-995aab80-de7b-11e8-80b8-31e16d942fb7.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/47888046-5adbd700-de10-11e8-87ae-319139225d32.png" width="200">
 
 ### Save on Google Drive
-<img src="https://user-images.githubusercontent.com/1282659/47888044-5a434080-de10-11e8-8040-f5a2d0ce4507.png" width="200">.    <img src="https://user-images.githubusercontent.com/1282659/47919396-4124a900-de7d-11e8-8d7c-771e37a8f9cb.png" width="400">
+<img src="https://user-images.githubusercontent.com/1282659/47888044-5a434080-de10-11e8-8040-f5a2d0ce4507.png" width="200">.    <img src="https://user-images.githubusercontent.com/1282659/47919396-4124a900-de7d-11e8-8d7c-771e37a8f9cb.png" width="500">
 
 ### Share via Email
-<img src="https://user-images.githubusercontent.com/1282659/47888043-5a434080-de10-11e8-8a5e-2235c06fd643.png" width="200">      <img src="https://user-images.githubusercontent.com/1282659/47918935-053d1400-de7c-11e8-938d-e131e3410d82.png" width="400">
+<img src="https://user-images.githubusercontent.com/1282659/47888043-5a434080-de10-11e8-8a5e-2235c06fd643.png" width="200">      <img src="https://user-images.githubusercontent.com/1282659/47918935-053d1400-de7c-11e8-938d-e131e3410d82.png" width="500">
 
 ### Share on Facebook
-<img src="https://user-images.githubusercontent.com/1282659/47918807-995aab80-de7b-11e8-935f-7c880573828f.jpg" width="200">.   <img src="https://user-images.githubusercontent.com/1282659/47918939-079f6e00-de7c-11e8-9347-5098afb044aa.png" width="400">
+<img src="https://user-images.githubusercontent.com/1282659/47918807-995aab80-de7b-11e8-935f-7c880573828f.jpg" width="200">.   <img src="https://user-images.githubusercontent.com/1282659/47918939-079f6e00-de7c-11e8-9347-5098afb044aa.png" width="500">
 
 ### Debug mode stereo pair
 <img src="https://user-images.githubusercontent.com/1282659/47959106-f05e9e80-dfa9-11e8-8a5c-942c87854854.png" width="400">
