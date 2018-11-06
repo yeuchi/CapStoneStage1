@@ -7,11 +7,11 @@ Udacity Android nano-degree CapStone project stage 1
 ### Fragments: create/share message
 <img src="https://user-images.githubusercontent.com/1282659/47919853-81385b80-de7e-11e8-80c1-c3bc4f0ffb6b.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/47919854-81385b80-de7e-11e8-9e4e-e0bebfc10985.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/47919855-81d0f200-de7e-11e8-87a4-d8e89a13f1e3.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/47919856-81d0f200-de7e-11e8-98e7-d17efdc1a86f.jpg" width="200">
 
+### Localization (Arabic) 
+<img src="https://user-images.githubusercontent.com/1282659/48075820-a3491b00-e1a9-11e8-9acc-ae1618bbc43c.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/48075837-a80dcf00-e1a9-11e8-95a6-8dffbfb11db7.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/48075845-ab08bf80-e1a9-11e8-8334-05268a773e45.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/48075851-ad6b1980-e1a9-11e8-9dae-0a925e22694d.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/48075859-afcd7380-e1a9-11e8-9a84-5edec4f22582.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/48075863-b1973700-e1a9-11e8-90ce-1a97e14f0846.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/48034682-03967900-e126-11e8-9a90-67d189c840ee.png" width="200">
+
 ### Share options
 <img src="https://user-images.githubusercontent.com/1282659/47918808-995aab80-de7b-11e8-80b8-31e16d942fb7.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/47888046-5adbd700-de10-11e8-87ae-319139225d32.png" width="200">
-
-### Language (Arabic) 
-<img src="https://user-images.githubusercontent.com/1282659/48075820-a3491b00-e1a9-11e8-9acc-ae1618bbc43c.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/48075837-a80dcf00-e1a9-11e8-95a6-8dffbfb11db7.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/48075845-ab08bf80-e1a9-11e8-8334-05268a773e45.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/48075851-ad6b1980-e1a9-11e8-9dae-0a925e22694d.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/48075859-afcd7380-e1a9-11e8-9a84-5edec4f22582.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/48075863-b1973700-e1a9-11e8-90ce-1a97e14f0846.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/48034682-03967900-e126-11e8-9a90-67d189c840ee.png" width="200">
 
 ### Save on Google Drive
 <img src="https://user-images.githubusercontent.com/1282659/47888044-5a434080-de10-11e8-8040-f5a2d0ce4507.png" width="200">.    <img src="https://user-images.githubusercontent.com/1282659/47919396-4124a900-de7d-11e8-8d7c-771e37a8f9cb.png" width="400">
