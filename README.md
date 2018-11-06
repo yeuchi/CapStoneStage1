@@ -14,7 +14,7 @@ Application level activities include activities: main, configuration, about.
 Random dot generation and sharing of the message is accomplished in the fragments (Send, Text, Shape, Preview)
 User may encode a random dot message with SVG shapes and/or text.  There is also header and footer text message append to the body content.
 
-<img src="https://user-images.githubusercontent.com/1282659/47919853-81385b80-de7e-11e8-80c1-c3bc4f0ffb6b.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/48086918-9b967000-e1c3-11e8-871a-111d7bdff943.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/48084349-11e3a400-e1bd-11e8-8667-5232fc8bf4f0.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/47919856-81d0f200-de7e-11e8-98e7-d17efdc1a86f.jpg" width="200">
+<img src="https://user-images.githubusercontent.com/1282659/48087463-fd0b0e80-e1c4-11e8-897a-2bff6addf505.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/48087464-fd0b0e80-e1c4-11e8-95bd-044291054451.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/48087465-fd0b0e80-e1c4-11e8-93c4-6c5ef67d995a.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/48087466-fd0b0e80-e1c4-11e8-835e-1281efd0b9b0.jpg" width="200">
 
 ### Localization (Arabic) 
 The languages supported are English and Arabic.  Implementating Arabic present the feature of right->left alignment and additional SVG font glyphs.
