@@ -85,4 +85,18 @@
     <string name="choose_value">اختر القيمة</string>
     <string name="choose_number">اختر الرقم</string>
     <string name="ok">حسنا</string>
+
+    <!-- Shape icons -->
+    <string name="telephone">هاتف</string>
+    <string name="camera">الة تصوير</string>
+    <string name="coffee">قهوة</string>
+    <string name="house">منزل</string>
+    <string name="music">موسيقى</string>
+    <string name="present">هدية مجانية</string>
+    <string name="rocket">صاروخ</string>
+    <string name="sharing">مشاركة</string>
+    <string name="shopping">التسوق</string>
+    <string name="star">نجمة</string>
+    <string name="truck">شاحنة نقل</string>
+    <string name="umbrella">مظلة</string>
 </resources>

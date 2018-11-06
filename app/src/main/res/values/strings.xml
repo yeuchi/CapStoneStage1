@@ -88,4 +88,18 @@
     <string name="choose_number">Choose Number</string>
     <string name="ok">Ok</string>
 
+    <!-- Shape icons -->
+    <string name="telephone">phone</string>
+    <string name="camera">camera</string>
+    <string name="coffee">coffee</string>
+    <string name="house">house</string>
+    <string name="music">music</string>
+    <string name="present">gift</string>
+    <string name="rocket">rocket</string>
+    <string name="sharing">share</string>
+    <string name="shopping">shopping</string>
+    <string name="star">star</string>
+    <string name="truck">truck</string>
+    <string name="umbrella">umbrella</string>
+
 </resources>
