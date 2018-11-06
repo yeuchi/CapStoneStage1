@@ -2,7 +2,8 @@
 Udacity Android nano-degree CapStone project stage 1: proposal
 https://github.com/yeuchi/CapStoneStage1/blob/master/Proposal/Capstone_Stage1.pdf
 
-# CapStoneStage2: development
+# CapStoneStage2
+Udacity Android nano-degree CapStone project stage 2: code implementation
 
 ### Application Main and Configuration 
 <img src="https://user-images.githubusercontent.com/1282659/47399012-5de21380-d6fc-11e8-9517-34ae7fc30484.png" width="200"><img src="https://user-images.githubusercontent.com/1282659/48076154-3c783180-e1aa-11e8-9582-12a56f39e4a3.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/47399019-63d7f480-d6fc-11e8-8a25-b430bbcad817.png" width="200">
