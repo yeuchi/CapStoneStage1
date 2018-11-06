@@ -32,4 +32,10 @@ dependencies {
     implementation 'com.caverock:androidsvg-aar:1.3'
     implementation 'com.github.duanhong169:colorpicker:1.1.2'
     implementation files('libs/activation.jar')
+
+
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestCompile 'com.android.support.test:rules:1.0.1';
+    androidTestCompile 'com.android.support.test.espresso:espresso-contrib:3.0.1';
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 }
