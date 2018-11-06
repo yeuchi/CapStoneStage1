@@ -1,10 +1,10 @@
 # CapStoneStage1
 Udacity Android nano-degree CapStone project stage 1
 
-### Main and Configuration Activities
+### Application Main and Configuration 
 <img src="https://user-images.githubusercontent.com/1282659/47399012-5de21380-d6fc-11e8-9517-34ae7fc30484.png" width="200"><img src="https://user-images.githubusercontent.com/1282659/48076154-3c783180-e1aa-11e8-9582-12a56f39e4a3.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/47399019-63d7f480-d6fc-11e8-8a25-b430bbcad817.png" width="200">
 
-### Share Fragments
+### Fragments: create/share message
 <img src="https://user-images.githubusercontent.com/1282659/47919853-81385b80-de7e-11e8-80c1-c3bc4f0ffb6b.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/47919854-81385b80-de7e-11e8-9e4e-e0bebfc10985.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/47919855-81d0f200-de7e-11e8-87a4-d8e89a13f1e3.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/47919856-81d0f200-de7e-11e8-98e7-d17efdc1a86f.jpg" width="200">
 
 ### Share options
