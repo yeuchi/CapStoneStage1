@@ -35,13 +35,15 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/grid_shapes"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="300dp"
         android:layout_gravity="bottom"
         android:layout_margin="5dp"
-        android:alignmentMode="alignMargins"
-        android:columnCount="5"
-        android:fadingEdge="horizontal|vertical"
         android:padding="5dp"
+        android:fadeScrollbars="false"
+        android:scrollbars="vertical"
+        android:scrollbarFadeDuration="0"
+        android:scrollbarDefaultDelayBeforeFade="500000"
+        android:scrollbarAlwaysDrawVerticalTrack="true"
         android:isScrollContainer="true">
 
         <android.support.v7.widget.RecyclerView

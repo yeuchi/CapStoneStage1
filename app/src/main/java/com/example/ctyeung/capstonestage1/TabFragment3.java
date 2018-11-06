@@ -96,6 +96,7 @@ public class TabFragment3 extends ShapeFragment
     {
         mShapePreview = new ShapePreview(mRoot, R.id.shapes_view_group);
         GridLayoutManager layoutManager = new GridLayoutManager(mContext, 5);
+        layoutManager.setSmoothScrollbarEnabled(true);
         mNumbersList = (RecyclerView) mRoot.findViewById(R.id.rv_shapes);
         mNumbersList.setLayoutManager(layoutManager);
 

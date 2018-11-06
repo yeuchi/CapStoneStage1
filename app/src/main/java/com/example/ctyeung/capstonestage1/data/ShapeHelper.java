@@ -37,7 +37,6 @@ public class ShapeHelper
 
     public static boolean isEnglish()
     {
-        //return (getLanguage().contains(ENGLISH))?true:false;
-        return false;
+        return (getLanguage().contains(ENGLISH))?true:false;
     }
 }

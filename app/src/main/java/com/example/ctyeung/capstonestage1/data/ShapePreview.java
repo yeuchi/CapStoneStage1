@@ -114,9 +114,12 @@ public class ShapePreview
         {
             RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(len, len);
             View view = this.layout.getChildAt(i);
-            params.leftMargin = padX + ((ShapeHelper.isEnglish())?
-                                        i * len:            // english: left -> right
-                                        (count-1-i)*len);   // arabic: right -> left
+
+            if(ShapeHelper.isEnglish())
+                params.leftMargin = padX + (i * len);
+            else
+                params.rightMargin = padX + (i * len);
+
             params.topMargin = padY;
             view.setLayoutParams(params);
         }
@@ -135,8 +138,12 @@ public class ShapePreview
         int padY = this.paddingY(true);
         RelativeLayout.LayoutParams rllp = new RelativeLayout.LayoutParams(len, len);
         rllp.topMargin = padY;
-        rllp.leftMargin = padX + ((ShapeHelper.isEnglish())?
-                                    this.childCount(false)*len: 0);
+
+        if(ShapeHelper.isEnglish())
+            rllp.leftMargin = padX + this.childCount(false)*len;
+
+        else
+            rllp.rightMargin = padX + this.childCount(false)*len;
 
         // create new addition
         Context context = view.getContext();
@@ -147,11 +154,7 @@ public class ShapePreview
         if(null!=svg)
         {
             svgImageView.setSVG(svg);
-
-            if(ShapeHelper.isEnglish())
-                this.layout.addView(svgImageView, 0, rllp);
-            else
-                this.layout.addView(svgImageView, rllp);
+            this.layout.addView(svgImageView, rllp);
 
             // add a click listener for removal
             svgImageView.setOnClickListener(new View.OnClickListener() {
