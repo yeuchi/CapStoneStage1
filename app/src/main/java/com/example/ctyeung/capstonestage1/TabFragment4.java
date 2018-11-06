@@ -181,7 +181,7 @@ public class TabFragment4 extends ShapeFragment
             {
                 int i = Integer.parseInt(msg);
                 ShapeSVG shapeSVG = mShapes.get(i);
-                URL url = NetworkUtils.buildSVGUrl(shapeSVG.getName());
+                URL url = NetworkUtils.buildSVGUrl(shapeSVG.getPath());
                 NetworkLoader loader = new NetworkLoader(this, shapeSVG, url);
             }
             catch (Exception ex)
