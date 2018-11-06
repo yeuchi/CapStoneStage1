@@ -12,9 +12,10 @@
 
     <EditText
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="80dp"
+        android:inputType="text|textMultiLine"
+        android:gravity="top"
         android:id="@+id/txt_msg_header"/>
-
 
     <TextView
         android:layout_marginTop="30dp"
@@ -24,7 +25,9 @@
 
     <EditText
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="80dp"
+        android:inputType="text|textMultiLine"
+        android:gravity="top"
         android:id="@+id/txt_msg_footer"/>
 
 </LinearLayout>
