@@ -15,6 +15,8 @@ Udacity Android nano-degree CapStone project stage 2: code implementation
 <img src="https://user-images.githubusercontent.com/1282659/48075820-a3491b00-e1a9-11e8-9acc-ae1618bbc43c.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/48075837-a80dcf00-e1a9-11e8-95a6-8dffbfb11db7.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/48075845-ab08bf80-e1a9-11e8-8334-05268a773e45.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/48075851-ad6b1980-e1a9-11e8-9dae-0a925e22694d.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/48075859-afcd7380-e1a9-11e8-9a84-5edec4f22582.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/48075863-b1973700-e1a9-11e8-90ce-1a97e14f0846.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/48083702-7b62b300-e1bb-11e8-80d3-d352f340c077.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/48083703-7bfb4980-e1bb-11e8-8c6e-8c467b6ef986.jpg" width="200">
 
 ### Share options
+Example sharing demonstrated below are email, Google Drive, Facebook and SMS.
+
 <img src="https://user-images.githubusercontent.com/1282659/47918808-995aab80-de7b-11e8-80b8-31e16d942fb7.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/47888046-5adbd700-de10-11e8-87ae-319139225d32.png" width="200">
 
 ### Save on Google Drive
@@ -27,6 +29,7 @@ Udacity Android nano-degree CapStone project stage 2: code implementation
 <img src="https://user-images.githubusercontent.com/1282659/47918807-995aab80-de7b-11e8-935f-7c880573828f.jpg" width="200">.   <img src="https://user-images.githubusercontent.com/1282659/47918939-079f6e00-de7c-11e8-9347-5098afb044aa.png" width="500">
 
 ### Debug mode stereo pair
+Stereo pair can be difficult to detect sometimes, a debug mode has been added to colorize only the stereo elements (not background).
 <img src="https://user-images.githubusercontent.com/1282659/47959106-f05e9e80-dfa9-11e8-8a5c-942c87854854.png" width="400">
 
 ### Project Overview
@@ -81,7 +84,7 @@ Rename the copy: "Capstone_Stage1"
 Download the completed document as a PDF, and save it as: "Capstone_Stage1.pdf"
 Submit the PDF document in a zip file or from a GitHub repo through the project submission portal.
 
-##References
+## References
 
 Stack overflow, "Send Image in message body of email android"
 https://stackoverflow.com/questions/32344927/send-image-in-message-body-of-email-android
