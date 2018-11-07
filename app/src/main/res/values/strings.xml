@@ -52,6 +52,8 @@
     <!-- fragment 2 -->
     <string name="header_msg">Header Message:</string>
     <string name="footer_msg">Footer Message:</string>
+    <string name="header_default_msg">header stuff</string>
+    <string name="footer_default_msg">footer stuff</string>
 
     <!-- fragment 3 -->
     <string name="clear">Clear</string>
