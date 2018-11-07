@@ -34,9 +34,9 @@ Below demonstrates sharing via email, Google Drive, Facebook and SMS.
 ### Share on Facebook
 <img src="https://user-images.githubusercontent.com/1282659/47918807-995aab80-de7b-11e8-935f-7c880573828f.jpg" width="200">.   <img src="https://user-images.githubusercontent.com/1282659/47918939-079f6e00-de7c-11e8-9347-5098afb044aa.png" width="500">
 
-### Debug mode stereo pair
-Stereo pair can be difficult to detect sometimes, a debug mode has been added to colorize only the stereo elements (not background).
-<img src="https://user-images.githubusercontent.com/1282659/47959106-f05e9e80-dfa9-11e8-8a5c-942c87854854.png" width="400">
+### Viewer
+Stereo pair can be difficult to detect sometimes, a debug mode has been added to colorize only the stereo elements; background is black and white only.  Note: viewer supports only landscape mode on phones.  I recommend the use of a Virtual Reality viewer for optimal viewing of stereo-pair.  Else, the traditional cross-eye viewing technique works. 
+<img src="https://user-images.githubusercontent.com/1282659/48165971-dfb16f80-e2ac-11e8-8443-744fbf3e2f08.png" width="400">
 
 ### Espresso tests
 User interface tests are available at link belows.
@@ -95,6 +95,9 @@ Download the completed document as a PDF, and save it as: "Capstone_Stage1.pdf"
 Submit the PDF document in a zip file or from a GitHub repo through the project submission portal.
 
 ## References
+
+0. GPU Gems - Chapter 41. Real-Time Stereogram
+http://developer.download.nvidia.com/books/HTML/gpugems/gpugems_ch41.html
 
 1. Stack overflow, "Send Image in message body of email android"
 https://stackoverflow.com/questions/32344927/send-image-in-message-body-of-email-android
