@@ -44,12 +44,14 @@
     <!-- fragment 1 -->
     <string name="subject">موضوع</string>
     <string name="btn_send">إرسال</string>
-
+    <string name="btn_exit">ىخرج</string>
     <string name="share_failed">فشلت المشاركة</string>
 
     <!-- fragment 2 -->
     <string name="header_msg">رسالة الرأس:</string>
     <string name="footer_msg">رسالة التذييل:</string>
+    <string name="header_default_msg">الاشياء رأس</string>
+    <string name="footer_default_msg">الاشياء تذييل</string>
 
     <!-- fragment 3 -->
     <string name="clear">واضح</string>

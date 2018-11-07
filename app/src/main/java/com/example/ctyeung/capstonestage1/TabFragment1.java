@@ -32,6 +32,7 @@ import java.util.ArrayList;
 public class TabFragment1 extends BaseFragment
 {
     private Button mBtnSend;
+    private Button mBtnExit;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -53,6 +54,17 @@ public class TabFragment1 extends BaseFragment
             public void onClick(View v)
             {
                 share();
+            }
+        });
+
+        mBtnExit = mRoot.findViewById(R.id.btn_exit);
+        mBtnExit.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(mContext, MainActivity.class);
+                startActivity(intent);
             }
         });
     }

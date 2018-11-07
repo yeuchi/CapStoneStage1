@@ -38,4 +38,13 @@
         android:enabled="false"
         android:text="@string/btn_send" />
 
+    <Button
+        android:id="@+id/btn_exit"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="178dp"
+        android:text="@string/btn_exit" />
+
 </RelativeLayout>

@@ -46,7 +46,7 @@
     <!-- fragment 1 -->
     <string name="subject">Subject</string>
     <string name="btn_send">Send</string>
-
+    <string name="btn_exit">Exit</string>
     <string name="share_failed">Share failed</string>
 
     <!-- fragment 2 -->
