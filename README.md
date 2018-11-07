@@ -116,3 +116,6 @@ https://creativemarket.com/mabasiry/2517032-Origami-Colored-Arabic-Font
 
 7. Convertio: TTF to SVG converter 
 https://convertio.co/ttf-svg/
+
+8. Saving and Reading Bitmaps/Images from Internal memory in Android
+https://stackoverflow.com/questions/17674634/saving-and-reading-bitmaps-images-from-internal-memory-in-android
