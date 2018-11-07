@@ -36,7 +36,7 @@ Below demonstrates sharing via email, Google Drive, Facebook and SMS.
 
 ### Viewer
 Stereo pair can be difficult to detect sometimes, a debug mode has been added to colorize only the stereo elements; background is black and white only.  Note: viewer supports only landscape mode on phones.  I recommend the use of a Virtual Reality viewer for optimal viewing of stereo-pair.  Else, the traditional cross-eye viewing technique works. 
-<img src="https://user-images.githubusercontent.com/1282659/48165971-dfb16f80-e2ac-11e8-8443-744fbf3e2f08.png" width="400">
+<img src="https://user-images.githubusercontent.com/1282659/48165971-dfb16f80-e2ac-11e8-8443-744fbf3e2f08.png" width="400"><img src="https://user-images.githubusercontent.com/1282659/48166591-a37f0e80-e2ae-11e8-86cb-1ee5a50875a7.png" width="400">
 
 ### Espresso tests
 User interface tests are available at link belows.
