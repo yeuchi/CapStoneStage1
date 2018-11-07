@@ -3,8 +3,12 @@ package com.example.ctyeung.capstonestage1.data;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.net.Uri;
+import android.support.v4.content.FileProvider;
 
 import com.example.ctyeung.capstonestage1.R;
+
+import java.io.File;
 
 /*
  * Persistence of application data
@@ -38,6 +42,18 @@ public class SharedPrefUtility
     {
         STEREO_PAIR,
         INTERLACED
+    }
+
+    /*
+     * uri to last random dot images
+     */
+    public static Uri getImageUri(String key,
+                                  Context context)
+    {
+        String path = SharedPrefUtility.getString(key, context);
+        File file = new File(path);
+        Uri uri = FileProvider.getUriForFile(context, "com.example.ctyeung.capstonestage1.fileprovider", file);
+        return uri;
     }
 
     /*

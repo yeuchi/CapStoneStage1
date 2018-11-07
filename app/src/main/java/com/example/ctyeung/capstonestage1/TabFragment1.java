@@ -103,14 +103,6 @@ public class TabFragment1 extends BaseFragment
         }
     }
 
-    protected Uri getImageUri(String key)
-    {
-        String path = SharedPrefUtility.getString(key, mContext);
-        File file = new File(path);
-        Uri uri = FileProvider.getUriForFile(mContext, "com.example.ctyeung.capstonestage1.fileprovider", file);
-        return uri;
-    }
-
     protected void share()
     {
         try
@@ -118,8 +110,8 @@ public class TabFragment1 extends BaseFragment
             StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
             StrictMode.setVmPolicy(builder.build());
 
-            Uri uriLeft = getImageUri(SharedPrefUtility.FILE_LEFT);
-            Uri uriRight = getImageUri(SharedPrefUtility.FILE_RIGHT);
+            Uri uriLeft = SharedPrefUtility.getImageUri(SharedPrefUtility.FILE_LEFT, mContext);
+            Uri uriRight = SharedPrefUtility.getImageUri(SharedPrefUtility.FILE_RIGHT, mContext);
 
             ArrayList<Uri> uris = new ArrayList<Uri>();
             uris.add(uriLeft);

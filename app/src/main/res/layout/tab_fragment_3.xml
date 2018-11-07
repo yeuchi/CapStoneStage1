@@ -5,6 +5,7 @@
     android:orientation="vertical"
     android:id="@+id/shape_container">
 
+    <!-- render SVGs in shapePreview -->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="300dp"

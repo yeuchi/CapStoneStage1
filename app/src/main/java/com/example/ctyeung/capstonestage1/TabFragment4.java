@@ -26,6 +26,7 @@ import com.example.ctyeung.capstonestage1.data.ShapePreview;
 import com.example.ctyeung.capstonestage1.data.ShapeSVG;
 import com.example.ctyeung.capstonestage1.data.SharedPrefUtility;
 import com.example.ctyeung.capstonestage1.utilities.BitmapRenderer;
+import com.example.ctyeung.capstonestage1.utilities.BitmapUtil;
 import com.example.ctyeung.capstonestage1.utilities.FileUtils;
 import com.example.ctyeung.capstonestage1.utilities.NetworkLoader;
 import com.example.ctyeung.capstonestage1.utilities.NetworkUtils;
@@ -347,7 +348,7 @@ public class TabFragment4 extends ShapeFragment
                     if(isExternalStorageWritable())
                     {
                         String suffix = (0==i)?"Left":"Right";
-                        File file = saveBitmap(bmp, "shape"+suffix+".png");
+                        File file = BitmapUtil.saveBitmap(bmp, "shape"+suffix+".png", mContext);
                         if(null!=file)
                         {
                             String key = (0==i)?
@@ -356,47 +357,16 @@ public class TabFragment4 extends ShapeFragment
 
                             SharedPrefUtility.setString(key, mContext, file.getPath());
                         }
+                        else
+                        {
+                            Toast.makeText(mContext, saveBmpFailed, Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }
         }
     }
 
-    private File saveBitmap(Bitmap bmp,
-                            String path)
-    {
-        //String extStorageDirectory = Environment.getDataDirectory().getPath();
-       // String extStorageDirectory = Environment.getExternalStorageDirectory().getPath();
-        //OutputStream outStream = null;
-        // File file = new File(extStorageDirectory, imageName);
 
-        FileUtils fileUtils = new FileUtils();
-        File file = fileUtils.getAlbumStorageDir(this.mContext, path);
-
-        try {
-
-            if(!file.exists())
-            {
-                file.mkdirs();
-            }
-
-            if(!file.createNewFile())
-            {
-                file.delete();
-                file.createNewFile();
-            }
-
-            OutputStream outStream = new FileOutputStream(file);
-            bmp.compress(Bitmap.CompressFormat.PNG, 100, outStream);
-            outStream.flush();
-            outStream.close();
-        } catch (Exception e) {
-            Toast.makeText(mContext, saveBmpFailed, Toast.LENGTH_SHORT).show();
-
-            e.printStackTrace();
-            return null;
-        }
-        return file;
-    }
 
     public boolean isExternalStorageWritable() {
         String state = Environment.getExternalStorageState();

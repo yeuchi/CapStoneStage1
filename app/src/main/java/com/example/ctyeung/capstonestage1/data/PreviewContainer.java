@@ -74,11 +74,19 @@ public class PreviewContainer
 
         int w = calStereoImageWidth();
         int h = calStereoImageHeight();
+        LinearLayout.LayoutParams params;
 
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(w, h);
-        params.topMargin = padY;
-        params.leftMargin = padX;
-        params.rightMargin = padX;
+        if(w>0 && h>0) {
+            params = new LinearLayout.LayoutParams(w, h);
+            params.topMargin = padY;
+            params.leftMargin = padX;
+            params.rightMargin = padX;
+        }
+        else
+        {
+            // worst case scenario -- stick it in the view
+            params = new LinearLayout.LayoutParams(100, 100);
+        }
 
         // create new addition
         Context context = view.getContext();
@@ -93,11 +101,17 @@ public class PreviewContainer
 
     public void empty()
     {
+        /*
+         * empty SVG rendering -- if available
+         */
         int shapesViewGroupId = R.id.shapes_view_group;
         RelativeLayout childLayout = view.findViewById(shapesViewGroupId);
-        //childLayout.setVisibility(View.INVISIBLE);
-        childLayout.removeAllViews();
+        if(null!=childLayout)
+            childLayout.removeAllViews();
 
+        /*
+         * empty random dot images
+         */
         int count = layout.getChildCount();
         for(int i=count-1; i>=0; i--)
         {
