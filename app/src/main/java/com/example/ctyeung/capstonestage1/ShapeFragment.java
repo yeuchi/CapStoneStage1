@@ -41,7 +41,6 @@ public class ShapeFragment extends Fragment
         if(null==pDialog)
             pDialog = new ProgressDialog(mContext);
 
-        // Showing progress dialog before making http request
         pDialog.setMessage(msg);
         pDialog.show();
     }
