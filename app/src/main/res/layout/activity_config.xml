@@ -39,7 +39,7 @@
         android:text="@string/debug"
         android:layout_marginLeft="24dp"
         android:id="@+id/chk_debug"
-        android:layout_marginBottom="24dp"/>
+        android:layout_marginBottom="5dp"/>
 
     <Button
         android:layout_width="wrap_content"
@@ -72,15 +72,6 @@
         android:layout_marginBottom="24dp"
         android:id="@+id/btn_parallax"
         android:text="@string/parallax_dis_pixels"/>
-
-    <Button
-        android:id="@+id/btnFontFamily"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="24dp"
-        android:layout_marginBottom="24dp"
-        android:text="@string/language"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
 
     <Button
         android:id="@+id/btnColor1"

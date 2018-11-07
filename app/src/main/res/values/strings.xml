@@ -29,7 +29,6 @@
     <string name="image_height_pixels">Image height (pixels):</string>
     <string name="border_offset_pixels">Border offset (pixels):</string>
     <string name="parallax_dis_pixels">Parallax distance (pixels):</string>
-    <string name="language">Language</string>
     <string name="color1">Color 1</string>
     <string name="color2">Color 2</string>
     <string name="color3">Color 3</string>

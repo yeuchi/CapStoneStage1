@@ -29,7 +29,6 @@
     <string name="image_height_pixels">ارتفاع الصورة (بكسل):</string>
     <string name="border_offset_pixels">تخطي الحدود (بكسل):</string>
     <string name="parallax_dis_pixels">المسافة المنظر (بكسل):</string>
-    <string name="language">لغة</string>
     <string name="color1">اللون 1</string>
     <string name="color2">اللون 2</string>
     <string name="color3">اللون 3</string>
