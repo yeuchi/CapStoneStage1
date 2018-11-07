@@ -11,18 +11,17 @@ Application level activities include activities: main, configuration, about.
 <img src="https://user-images.githubusercontent.com/1282659/47399012-5de21380-d6fc-11e8-9517-34ae7fc30484.png" width="200"><img src="https://user-images.githubusercontent.com/1282659/48076154-3c783180-e1aa-11e8-9582-12a56f39e4a3.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/47399019-63d7f480-d6fc-11e8-8a25-b430bbcad817.png" width="200">
 
 ### Fragments: create/share message
-Random dot generation and sharing of the message is accomplished in the fragments (Send, Text, Shape, Preview)
-User may encode a random dot message with SVG shapes and/or text.  There is also header and footer text message append to the body content.
+Random dot generation and sharing of the message is accomplished in the tab activity with fragments (Send, Text, Shape, Preview). User may encode a random dot message via shapes and/or text SVGs.  There is also header and footer text message that accompany the Random-dot-images.
 
 <img src="https://user-images.githubusercontent.com/1282659/48087463-fd0b0e80-e1c4-11e8-897a-2bff6addf505.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/48087464-fd0b0e80-e1c4-11e8-95bd-044291054451.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/48087465-fd0b0e80-e1c4-11e8-93c4-6c5ef67d995a.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/48087466-fd0b0e80-e1c4-11e8-835e-1281efd0b9b0.jpg" width="200">
 
 ### Localization (Arabic) 
-The languages supported are English and Arabic.  Implementating Arabic<sup>[6]</sup> present the feature of right->left alignment and additional SVG font glyphs.
+This application currently supports languages, English and Arabic.  Implementating Arabic<sup>[6]</sup> present the feature of right->left alignment and additional SVG font glyphs.
 
 <img src="https://user-images.githubusercontent.com/1282659/48075820-a3491b00-e1a9-11e8-9acc-ae1618bbc43c.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/48075837-a80dcf00-e1a9-11e8-95a6-8dffbfb11db7.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/48075845-ab08bf80-e1a9-11e8-8334-05268a773e45.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/48075851-ad6b1980-e1a9-11e8-9dae-0a925e22694d.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/48075859-afcd7380-e1a9-11e8-9a84-5edec4f22582.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/48075863-b1973700-e1a9-11e8-90ce-1a97e14f0846.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/48098646-00ad8e00-e1e3-11e8-8c9d-ab2d49721ff5.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/48083703-7bfb4980-e1bb-11e8-8c6e-8c467b6ef986.jpg" width="200">
 
 ### Share options
-Example sharing demonstrated below are email, Google Drive, Facebook and SMS.
+Below demonstrates sharing via email, Google Drive, Facebook and SMS.
 
 <img src="https://user-images.githubusercontent.com/1282659/47918808-995aab80-de7b-11e8-80b8-31e16d942fb7.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/47888046-5adbd700-de10-11e8-87ae-319139225d32.png" width="200">
 
