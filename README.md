@@ -38,6 +38,10 @@ Below demonstrates sharing via email, Google Drive, Facebook and SMS.
 Stereo pair can be difficult to detect sometimes, a debug mode has been added to colorize only the stereo elements (not background).
 <img src="https://user-images.githubusercontent.com/1282659/47959106-f05e9e80-dfa9-11e8-8a5c-942c87854854.png" width="400">
 
+### Espresso tests
+User interface tests are available at link belows.
+https://github.com/yeuchi/CapStoneStage1/tree/master/app/src/androidTest/java/com/example/ctyeung/capstonestage1
+
 ### Project Overview
 In the Capstone project, you will build an app of your own design in two stages. In Stage 1, you will design and plan the app, using a template that we provide in the "Instructions" node.
 
