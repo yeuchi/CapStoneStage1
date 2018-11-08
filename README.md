@@ -49,6 +49,17 @@ This application currently supports languages, English and Arabic.  Implementati
 
 <img src="https://user-images.githubusercontent.com/1282659/48075820-a3491b00-e1a9-11e8-9acc-ae1618bbc43c.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/48075837-a80dcf00-e1a9-11e8-95a6-8dffbfb11db7.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/48075845-ab08bf80-e1a9-11e8-8334-05268a773e45.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/48075851-ad6b1980-e1a9-11e8-9dae-0a925e22694d.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/48075859-afcd7380-e1a9-11e8-9a84-5edec4f22582.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/48075863-b1973700-e1a9-11e8-90ce-1a97e14f0846.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/48098646-00ad8e00-e1e3-11e8-8c9d-ab2d49721ff5.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/48083703-7bfb4980-e1bb-11e8-8c6e-8c467b6ef986.jpg" width="200">
 
+### Phone landscape layout
+<img width="400" alt="main" src="https://user-images.githubusercontent.com/1282659/48218239-07591400-e34f-11e8-9f88-aeaae9d00428.png"> <img width="400" alt="cfg" src="https://user-images.githubusercontent.com/1282659/48218231-06c07d80-e34f-11e8-93d1-e5a737b27405.png">
+
+<img width="400" alt="cfg_color" src="https://user-images.githubusercontent.com/1282659/48218232-06c07d80-e34f-11e8-8908-dd11cdc3ee1c.png"><img width="400" alt="cfg_num" src="https://user-images.githubusercontent.com/1282659/48218233-06c07d80-e34f-11e8-98f7-df5990508b00.png">
+
+<img width="400" alt="frag1" src="https://user-images.githubusercontent.com/1282659/48218234-07591400-e34f-11e8-9d7c-7ba96ee16570.png"><img width="400" alt="frag2" src="https://user-images.githubusercontent.com/1282659/48218236-07591400-e34f-11e8-8c77-de068da0e520.png">
+
+<img width="400" alt="frag2_footer" src="https://user-images.githubusercontent.com/1282659/48218237-07591400-e34f-11e8-95ba-1a1b398e94a2.png"> <img width="400" alt="frag3" src="https://user-images.githubusercontent.com/1282659/48218238-07591400-e34f-11e8-9964-c09b365bde0f.png">
+
+<img width="400" alt="preview" src="https://user-images.githubusercontent.com/1282659/48218221-02946000-e34f-11e8-948a-41d704e3df57.png">
+
 
 # Original project instruction
 
