@@ -15,7 +15,7 @@ Udacity Android nano-degree CapStone project stage 2: code implementation
 ### Application Main and Configuration 
 Initial activities are main and configuration.
 
-<img src="https://user-images.githubusercontent.com/1282659/47399012-5de21380-d6fc-11e8-9517-34ae7fc30484.png" width="200"><img src="https://user-images.githubusercontent.com/1282659/48202395-580a4600-e32a-11e8-9a23-91fc5efe3085.png" width="200"><img src="https://user-images.githubusercontent.com/1282659/48202400-5c366380-e32a-11e8-8201-ccd31b91d53a.png" width="200"><img src="https://user-images.githubusercontent.com/1282659/48202404-5e98bd80-e32a-11e8-8616-b56c471d3ef6.png" width="200">
+<img src="https://user-images.githubusercontent.com/1282659/48218830-666b5880-e350-11e8-8e22-498e89913697.png" width="200"><img src="https://user-images.githubusercontent.com/1282659/48202395-580a4600-e32a-11e8-9a23-91fc5efe3085.png" width="200"><img src="https://user-images.githubusercontent.com/1282659/48202400-5c366380-e32a-11e8-8201-ccd31b91d53a.png" width="200"><img src="https://user-images.githubusercontent.com/1282659/48202404-5e98bd80-e32a-11e8-8616-b56c471d3ef6.png" width="200">
 
 ### Fragments: create/share message
 Random dot generation and sharing of the message is accomplished in the tab activity with fragments (Send, Text, Shape, Preview). User may encode a random dot message via shapes and/or text SVGs.  There is also header and footer text message that accompany the Random-dot-images.
@@ -50,15 +50,15 @@ This application currently supports languages, English and Arabic.  Implementati
 <img src="https://user-images.githubusercontent.com/1282659/48075820-a3491b00-e1a9-11e8-9acc-ae1618bbc43c.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/48075837-a80dcf00-e1a9-11e8-95a6-8dffbfb11db7.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/48075845-ab08bf80-e1a9-11e8-8334-05268a773e45.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/48075851-ad6b1980-e1a9-11e8-9dae-0a925e22694d.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/48075859-afcd7380-e1a9-11e8-9a84-5edec4f22582.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/48075863-b1973700-e1a9-11e8-90ce-1a97e14f0846.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/48098646-00ad8e00-e1e3-11e8-8c9d-ab2d49721ff5.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/48083703-7bfb4980-e1bb-11e8-8c6e-8c467b6ef986.jpg" width="200">
 
 ### Phone landscape layout
-<img width="400" alt="main" src="https://user-images.githubusercontent.com/1282659/48218239-07591400-e34f-11e8-9f88-aeaae9d00428.png"> <img width="400" alt="cfg" src="https://user-images.githubusercontent.com/1282659/48218231-06c07d80-e34f-11e8-93d1-e5a737b27405.png">
+<img width="400" src="https://user-images.githubusercontent.com/1282659/48218239-07591400-e34f-11e8-9f88-aeaae9d00428.png"> <img width="400" src="https://user-images.githubusercontent.com/1282659/48218231-06c07d80-e34f-11e8-93d1-e5a737b27405.png">
 
-<img width="400" alt="cfg_color" src="https://user-images.githubusercontent.com/1282659/48218232-06c07d80-e34f-11e8-8908-dd11cdc3ee1c.png"><img width="400" alt="cfg_num" src="https://user-images.githubusercontent.com/1282659/48218233-06c07d80-e34f-11e8-98f7-df5990508b00.png">
+<img width="400" src="https://user-images.githubusercontent.com/1282659/48218232-06c07d80-e34f-11e8-8908-dd11cdc3ee1c.png"><img width="400" src="https://user-images.githubusercontent.com/1282659/48218233-06c07d80-e34f-11e8-98f7-df5990508b00.png">
 
-<img width="400" alt="frag1" src="https://user-images.githubusercontent.com/1282659/48218234-07591400-e34f-11e8-9d7c-7ba96ee16570.png"><img width="400" alt="frag2" src="https://user-images.githubusercontent.com/1282659/48218236-07591400-e34f-11e8-8c77-de068da0e520.png">
+<img width="400" src="https://user-images.githubusercontent.com/1282659/48218234-07591400-e34f-11e8-9d7c-7ba96ee16570.png"><img width="400" src="https://user-images.githubusercontent.com/1282659/48218236-07591400-e34f-11e8-8c77-de068da0e520.png">
 
-<img width="400" alt="frag2_footer" src="https://user-images.githubusercontent.com/1282659/48218237-07591400-e34f-11e8-95ba-1a1b398e94a2.png"> <img width="400" alt="frag3" src="https://user-images.githubusercontent.com/1282659/48218238-07591400-e34f-11e8-9964-c09b365bde0f.png">
+<img width="400" src="https://user-images.githubusercontent.com/1282659/48218237-07591400-e34f-11e8-95ba-1a1b398e94a2.png"> <img width="400" src="https://user-images.githubusercontent.com/1282659/48218238-07591400-e34f-11e8-9964-c09b365bde0f.png">
 
-<img width="400" alt="preview" src="https://user-images.githubusercontent.com/1282659/48218221-02946000-e34f-11e8-948a-41d704e3df57.png">
+<img width="400" src="https://user-images.githubusercontent.com/1282659/48218221-02946000-e34f-11e8-948a-41d704e3df57.png">
 
 
 # Original project instruction
