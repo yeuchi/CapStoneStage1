@@ -61,14 +61,14 @@ This application currently supports languages, English and Arabic.  Implementati
 <img width="400" src="https://user-images.githubusercontent.com/1282659/48218221-02946000-e34f-11e8-948a-41d704e3df57.png">
 
 ### Tablet layout
-<img width="400" src="https://user-images.githubusercontent.com/1282659/48220629-73d71180-e355-11e8-8832-01dafb97da18.png">
-<img width="400" src="https://user-images.githubusercontent.com/1282659/48220625-733e7b00-e355-11e8-8814-36069b9a69ca.png">
-<img width="400" src="https://user-images.githubusercontent.com/1282659/48220623-733e7b00-e355-11e8-8bbb-0e2aed4b56e6.png">
-<img width="400" src="https://user-images.githubusercontent.com/1282659/48220624-733e7b00-e355-11e8-8b18-830ce031d8f1.png">
-<img width="400" src="https://user-images.githubusercontent.com/1282659/48220626-73d71180-e355-11e8-8c5b-5559c8f608fe.png">
-<img width="400" src="https://user-images.githubusercontent.com/1282659/48220627-73d71180-e355-11e8-84c4-5034aaff6e26.png">
-<img width="400" src="https://user-images.githubusercontent.com/1282659/48220628-73d71180-e355-11e8-9a07-86d70b9ad400.png">
-<img width="400" src="https://user-images.githubusercontent.com/1282659/48220630-73d71180-e355-11e8-9ac6-803a000551d3.png">
+<img width="350" src="https://user-images.githubusercontent.com/1282659/48220629-73d71180-e355-11e8-8832-01dafb97da18.png">
+<img width="350" src="https://user-images.githubusercontent.com/1282659/48220625-733e7b00-e355-11e8-8814-36069b9a69ca.png">
+<img width="350" src="https://user-images.githubusercontent.com/1282659/48220623-733e7b00-e355-11e8-8bbb-0e2aed4b56e6.png">
+<img width="350" src="https://user-images.githubusercontent.com/1282659/48220624-733e7b00-e355-11e8-8b18-830ce031d8f1.png">
+<img width="350" src="https://user-images.githubusercontent.com/1282659/48220626-73d71180-e355-11e8-8c5b-5559c8f608fe.png">
+<img width="350" src="https://user-images.githubusercontent.com/1282659/48220627-73d71180-e355-11e8-84c4-5034aaff6e26.png">
+<img width="350" src="https://user-images.githubusercontent.com/1282659/48220628-73d71180-e355-11e8-9a07-86d70b9ad400.png">
+<img width="350" src="https://user-images.githubusercontent.com/1282659/48220630-73d71180-e355-11e8-9ac6-803a000551d3.png">
 
 
 # Original project instruction
