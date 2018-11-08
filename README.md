@@ -13,7 +13,7 @@ https://github.com/yeuchi/CapStoneStage1/blob/master/Proposal/Capstone_Stage1.pd
 Udacity Android nano-degree CapStone project stage 2: code implementation
 
 ### Application Main and Configuration 
-Application level activities include activities: main, configuration, about.
+Initial activities are main and configuration.
 
 <img src="https://user-images.githubusercontent.com/1282659/47399012-5de21380-d6fc-11e8-9517-34ae7fc30484.png" width="200"><img src="https://user-images.githubusercontent.com/1282659/48202395-580a4600-e32a-11e8-9a23-91fc5efe3085.png" width="200"><img src="https://user-images.githubusercontent.com/1282659/48202400-5c366380-e32a-11e8-8201-ccd31b91d53a.png" width="200"><img src="https://user-images.githubusercontent.com/1282659/48202404-5e98bd80-e32a-11e8-8616-b56c471d3ef6.png" width="200">
 
