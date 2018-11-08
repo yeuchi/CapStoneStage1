@@ -1,6 +1,6 @@
 
 # Background
-Random-dot-stereogram technique was first published by Dr. Julesz[1] in 1970s.  Since then, Random dot stereogram has experienced surges of popularity.  The algorithm is available from GPU Gems - Chapter 41 Real-Time Stereogram <sup>[0]</sup> and I have already tested it in javascript (available in appendix)<sup>[9]</sup>.
+Random-dot-stereogram technique was first published by Dr. Julesz<sup>[10]</sup> in 1970s.  Since then, Random dot stereogram has experienced surges of popularity.  The algorithm is available from GPU Gems - Chapter 41 Real-Time Stereogram <sup>[0]</sup> and I have already tested it in javascript (available in appendix)<sup>[9]</sup>.
 
 # Introduction
 This repository contains proposal and source code to satisfy (hopefully) Udacity Android nano-degree capstone project for calendar year 2018.
@@ -132,4 +132,6 @@ https://stackoverflow.com/questions/17674634/saving-and-reading-bitmaps-images-f
 
 9. My Random-dot-stereogram implementation
 http://www.ctyeung.com/wordpress/?p=630
+
+10. Julesz, Béla (1971). Foundations of Cyclopean Perception. Chicago: The University of Chicago Press. ISBN 0-226-41527-9.
 
