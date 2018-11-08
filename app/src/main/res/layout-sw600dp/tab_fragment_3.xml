@@ -36,7 +36,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/grid_shapes"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="600dp"
         android:layout_gravity="bottom"
         android:layout_margin="5dp"
         android:padding="5dp"
