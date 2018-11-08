@@ -77,7 +77,8 @@ public class SharedPrefUtility
         editor.commit();
     }
 
-    protected static int getDefaultDimensionValue(String key)
+    protected static int getDefaultDimensionValue(String key,
+                                                  Context context)
     {
         switch (key)
         {
@@ -91,19 +92,16 @@ public class SharedPrefUtility
                 return Color.argb(255, 0, 0, 255);
 
             case INTERLACE_WIDTH:
-                return 200;
+                return context.getResources().getInteger(R.integer.interlace_width);
 
             case IMAGE_HEIGHT:
-                return 400;
-            //return context.getResources().getDimension(R.dimen.image_height);
+                return context.getResources().getInteger(R.integer.image_height);
 
             case BORDER_OFFSET:
-                return 100;
-            //return (int)context.getResources().getDimension(R.dimen.border_offset);
+                return context.getResources().getInteger(R.integer.border_offset);
 
             case PARALLAX_DIS:
-                return 30;
-            //return (int)context.getResources().getDimension(R.dimen.parallax_distance);
+                return context.getResources().getInteger(R.integer.parallax_distance);
 
             default:
                 return -1;
@@ -116,7 +114,7 @@ public class SharedPrefUtility
     public static int getDimension( String key,
                                     Context context)
     {
-        int defaultValue = getDefaultDimensionValue(key);
+        int defaultValue = getDefaultDimensionValue(key, context);
 
         SharedPreferences sharedPreferences = getSharedPref(context);
         return sharedPreferences.getInt(key, defaultValue);

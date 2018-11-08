@@ -9,5 +9,5 @@
 <path d="M65,10
   l-60,0 0,80 60,0
  M5,50
- l50,0" fill="none" stroke="green" stroke-linecap="round" stroke-linejoin="round" stroke-width="80"/>
+ l50,0" fill="none" stroke="green" stroke-linecap="round" stroke-linejoin="round" stroke-width="20"/>
 </svg>
