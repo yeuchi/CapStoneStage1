@@ -1,3 +1,10 @@
+
+# Background
+Random-dot-stereogram technique was first published by Dr. Julesz[1] in 1970s.  Since then, Random dot stereogram has experienced surges of popularity.  The algorithm is available from GPU Gems - Chapter 41 Real-Time Stereogram <sup>[0]</sup> and I have already tested it in javascript (available in appendix)<sup>[9]</sup>.
+
+# Introduction
+This repository contains proposal and source code to satisfy (hopefully) Udacity Android nano-degree capstone project for calendar year 2018.
+
 # CapStoneStage1
 Udacity Android nano-degree CapStone project stage 1: proposal
 https://github.com/yeuchi/CapStoneStage1/blob/master/Proposal/Capstone_Stage1.pdf
@@ -122,3 +129,7 @@ https://convertio.co/ttf-svg/
 
 8. Saving and Reading Bitmaps/Images from Internal memory in Android
 https://stackoverflow.com/questions/17674634/saving-and-reading-bitmaps-images-from-internal-memory-in-android
+
+9. My Random-dot-stereogram implementation
+http://www.ctyeung.com/wordpress/?p=630
+
