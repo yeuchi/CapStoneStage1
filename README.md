@@ -49,7 +49,7 @@ This application currently supports languages, English and Arabic.  Implementati
 
 <img src="https://user-images.githubusercontent.com/1282659/48075820-a3491b00-e1a9-11e8-9acc-ae1618bbc43c.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/48075837-a80dcf00-e1a9-11e8-95a6-8dffbfb11db7.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/48075845-ab08bf80-e1a9-11e8-8334-05268a773e45.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/48075851-ad6b1980-e1a9-11e8-9dae-0a925e22694d.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/48075859-afcd7380-e1a9-11e8-9a84-5edec4f22582.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/48075863-b1973700-e1a9-11e8-90ce-1a97e14f0846.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/48098646-00ad8e00-e1e3-11e8-8c9d-ab2d49721ff5.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/48083703-7bfb4980-e1bb-11e8-8c6e-8c467b6ef986.jpg" width="200">
 
-### Phone landscape layout
+### Layout: Phone landscape 
 <img width="400" src="https://user-images.githubusercontent.com/1282659/48218239-07591400-e34f-11e8-9f88-aeaae9d00428.png"> <img width="400" src="https://user-images.githubusercontent.com/1282659/48218231-06c07d80-e34f-11e8-93d1-e5a737b27405.png">
 
 <img width="400" src="https://user-images.githubusercontent.com/1282659/48218232-06c07d80-e34f-11e8-8908-dd11cdc3ee1c.png"><img width="400" src="https://user-images.githubusercontent.com/1282659/48218233-06c07d80-e34f-11e8-98f7-df5990508b00.png">
@@ -60,7 +60,7 @@ This application currently supports languages, English and Arabic.  Implementati
 
 <img width="400" src="https://user-images.githubusercontent.com/1282659/48218221-02946000-e34f-11e8-948a-41d704e3df57.png">
 
-### Tablet layout
+### Layout: Tablet 
 <img width="350" src="https://user-images.githubusercontent.com/1282659/48220629-73d71180-e355-11e8-8832-01dafb97da18.png"><img width="350" src="https://user-images.githubusercontent.com/1282659/48220625-733e7b00-e355-11e8-8814-36069b9a69ca.png">
 <img width="350" src="https://user-images.githubusercontent.com/1282659/48220623-733e7b00-e355-11e8-8bbb-0e2aed4b56e6.png"><img width="350" src="https://user-images.githubusercontent.com/1282659/48220624-733e7b00-e355-11e8-8b18-830ce031d8f1.png">
 <img width="350" src="https://user-images.githubusercontent.com/1282659/48220626-73d71180-e355-11e8-8c5b-5559c8f608fe.png"><img width="350" src="https://user-images.githubusercontent.com/1282659/48220627-73d71180-e355-11e8-84c4-5034aaff6e26.png">
