@@ -49,7 +49,8 @@ Stereo pair can be difficult to detect sometimes, a debug mode has been added to
 User interface tests are available at link belows.
 https://github.com/yeuchi/CapStoneStage1/tree/master/app/src/androidTest/java/com/example/ctyeung/capstonestage1
 
-==============================================================================================================================# Original project instruction
+================================================
+# Original project instruction
 
 ### Project Overview
 In the Capstone project, you will build an app of your own design in two stages. In Stage 1, you will design and plan the app, using a template that we provide in the "Instructions" node.
