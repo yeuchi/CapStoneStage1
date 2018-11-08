@@ -15,7 +15,7 @@ Udacity Android nano-degree CapStone project stage 2: code implementation
 ### Application Main and Configuration 
 Application level activities include activities: main, configuration, about.
 
-<img src="https://user-images.githubusercontent.com/1282659/47399012-5de21380-d6fc-11e8-9517-34ae7fc30484.png" width="200"><img src="https://user-images.githubusercontent.com/1282659/48202206-d6b2b380-e329-11e8-9177-dee8d2fa5060.png" width="200"><img src="https://user-images.githubusercontent.com/1282659/47399019-63d7f480-d6fc-11e8-8a25-b430bbcad817.png" width="200">
+<img src="https://user-images.githubusercontent.com/1282659/47399012-5de21380-d6fc-11e8-9517-34ae7fc30484.png" width="200"><img src="https://user-images.githubusercontent.com/1282659/48202395-580a4600-e32a-11e8-9a23-91fc5efe3085.png" width="200"><img src="https://user-images.githubusercontent.com/1282659/48202400-5c366380-e32a-11e8-8201-ccd31b91d53a.png" width="200"><img src="https://user-images.githubusercontent.com/1282659/48202404-5e98bd80-e32a-11e8-8616-b56c471d3ef6.png" width="200">
 
 ### Fragments: create/share message
 Random dot generation and sharing of the message is accomplished in the tab activity with fragments (Send, Text, Shape, Preview). User may encode a random dot message via shapes and/or text SVGs.  There is also header and footer text message that accompany the Random-dot-images.
