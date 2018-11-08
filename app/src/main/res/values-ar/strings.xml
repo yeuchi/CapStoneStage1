@@ -38,6 +38,8 @@
 
     <!-- main -->
     <string name="random">عشوائية</string>
+    <string name="random_land1">عشوائية</string>
+    <string name="random_land2"></string>
     <string name="viewer">مشاهد</string>
 
     <!-- fragment 1 -->

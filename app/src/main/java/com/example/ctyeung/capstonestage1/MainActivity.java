@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity{
     private void initButtons()
     {
         // Launch Viewer -- consume
-        Button btnViewer = (Button)findViewById(R.id.btnViewer);
+        FloatingActionButton btnViewer = (FloatingActionButton)findViewById(R.id.btnViewer);
 
         btnViewer.setOnClickListener(new View.OnClickListener() {
             @Override

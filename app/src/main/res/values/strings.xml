@@ -40,6 +40,8 @@
 
     <!-- main -->
     <string name="random">RAND  M</string>
+    <string name="random_land1">RAND</string>
+    <string name="random_land2">M</string>
     <string name="viewer">Viewer</string>
 
     <!-- fragment 1 -->
