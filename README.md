@@ -49,7 +49,7 @@ Stereo pair can be difficult to detect sometimes, a debug mode has been added to
 User interface tests are available at link belows.
 https://github.com/yeuchi/CapStoneStage1/tree/master/app/src/androidTest/java/com/example/ctyeung/capstonestage1
 
-================================================
+
 # Original project instruction
 
 ### Project Overview
