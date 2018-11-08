@@ -95,7 +95,8 @@ public class TabFragment3 extends ShapeFragment
     private void initGrid()
     {
         mShapePreview = new ShapePreview(mRoot, R.id.shapes_view_group);
-        GridLayoutManager layoutManager = new GridLayoutManager(mContext, 5);
+        int columnCount = this.getResources().getInteger(R.integer.svg_column_count);
+        GridLayoutManager layoutManager = new GridLayoutManager(mContext, columnCount);
         layoutManager.setSmoothScrollbarEnabled(true);
         mNumbersList = (RecyclerView) mRoot.findViewById(R.id.rv_shapes);
         mNumbersList.setLayoutManager(layoutManager);

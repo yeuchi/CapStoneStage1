@@ -8,5 +8,6 @@
     <integer name="image_height">400</integer>
     <integer name="border_offset">100</integer>
     <integer name="parallax_distance">30</integer>
-    <integer name="svg_column_count">5</integer>
+    <integer name="svg_column_count">2</integer>
+
 </resources>
