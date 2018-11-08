@@ -22,11 +22,6 @@ Random dot generation and sharing of the message is accomplished in the tab acti
 
 <img src="https://user-images.githubusercontent.com/1282659/48087463-fd0b0e80-e1c4-11e8-897a-2bff6addf505.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/48087464-fd0b0e80-e1c4-11e8-95bd-044291054451.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/48087465-fd0b0e80-e1c4-11e8-93c4-6c5ef67d995a.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/48087466-fd0b0e80-e1c4-11e8-835e-1281efd0b9b0.jpg" width="200">
 
-### Localization (Arabic) 
-This application currently supports languages, English and Arabic.  Implementating Arabic<sup>[6]</sup> present the feature of right->left alignment and additional SVG font glyphs.
-
-<img src="https://user-images.githubusercontent.com/1282659/48075820-a3491b00-e1a9-11e8-9acc-ae1618bbc43c.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/48075837-a80dcf00-e1a9-11e8-95a6-8dffbfb11db7.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/48075845-ab08bf80-e1a9-11e8-8334-05268a773e45.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/48075851-ad6b1980-e1a9-11e8-9dae-0a925e22694d.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/48075859-afcd7380-e1a9-11e8-9a84-5edec4f22582.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/48075863-b1973700-e1a9-11e8-90ce-1a97e14f0846.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/48098646-00ad8e00-e1e3-11e8-8c9d-ab2d49721ff5.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/48083703-7bfb4980-e1bb-11e8-8c6e-8c467b6ef986.jpg" width="200">
-
 ### Share options
 Below demonstrates sharing via email, Google Drive, Facebook and SMS.
 
@@ -48,6 +43,11 @@ Stereo pair can be difficult to detect sometimes, a debug mode has been added to
 ### Espresso tests
 User interface tests are available at link belows.
 https://github.com/yeuchi/CapStoneStage1/tree/master/app/src/androidTest/java/com/example/ctyeung/capstonestage1
+
+### Localization (Arabic) 
+This application currently supports languages, English and Arabic.  Implementating Arabic<sup>[6]</sup> present the feature of right->left alignment and additional SVG font glyphs.
+
+<img src="https://user-images.githubusercontent.com/1282659/48075820-a3491b00-e1a9-11e8-9acc-ae1618bbc43c.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/48075837-a80dcf00-e1a9-11e8-95a6-8dffbfb11db7.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/48075845-ab08bf80-e1a9-11e8-8334-05268a773e45.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/48075851-ad6b1980-e1a9-11e8-9dae-0a925e22694d.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/48075859-afcd7380-e1a9-11e8-9a84-5edec4f22582.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/48075863-b1973700-e1a9-11e8-90ce-1a97e14f0846.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/48098646-00ad8e00-e1e3-11e8-8c9d-ab2d49721ff5.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/48083703-7bfb4980-e1bb-11e8-8c6e-8c467b6ef986.jpg" width="200">
 
 
 # Original project instruction
