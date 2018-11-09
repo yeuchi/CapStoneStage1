@@ -70,7 +70,7 @@ This application currently supports languages, English and Arabic.  Implementati
 ### Accessibility: Oral configuration
 
 Numeric configuration editing is available through the use of Google speechRecognizer<sup>[12]</sup> feature.
-Start by a click on floating-action-button, accessibility, and voice one of below options follow by a numeric value.
+Start by a click on floating-action-button, accessibility, and voice one of below options follow by a numeric value.  Please ignore the Google message on screen, "Select an application".
 
 <img src="https://user-images.githubusercontent.com/1282659/48280981-dd6d2380-e41a-11e8-8a19-6340e7f77ba7.jpg" width="200"><img width="200" src="https://user-images.githubusercontent.com/1282659/48280306-d9d89d00-e418-11e8-8fe8-3174c168ee7d.jpg">
 
