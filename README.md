@@ -69,7 +69,7 @@ This application currently supports languages, English and Arabic.  Implementati
 
 ### Accessibility: Configuration via voice command
 
-Numeric configuration edit is available through the use of Google speech recognition feature.
+Numeric configuration edit is available through the use of Google speechRecognizer<sup>[12]</sup> feature.
 Start by click on floating-action-button, accessibility, and voice below options follow by numeric value.
 
 <img src="https://user-images.githubusercontent.com/1282659/48280981-dd6d2380-e41a-11e8-8a19-6340e7f77ba7.jpg" width="200"><img width="200" src="https://user-images.githubusercontent.com/1282659/48280306-d9d89d00-e418-11e8-8fe8-3174c168ee7d.jpg">
@@ -84,7 +84,6 @@ Limited voice configurations are available for the following.
 
 Failure condtion occurs when dictation characters cannot be matched or numeric value is not understood.
 <img width="200" src="https://user-images.githubusercontent.com/1282659/48280307-d9d89d00-e418-11e8-962c-693c223273ee.jpg"><img width="200" src="https://user-images.githubusercontent.com/1282659/48280308-da713380-e418-11e8-8597-06cd2744c10e.jpg">
-
 
 
 # Original project instruction
@@ -177,4 +176,10 @@ http://www.ctyeung.com/wordpress/?p=630
 
 11. Material Design Icons
 https://materialdesignicons.com
+
+12. Google speech recognizer
+https://developer.android.com/reference/android/speech/SpeechRecognizer.html?hl=es
+
+13. My speech recognizer exercise, dictation
+https://github.com/yeuchi/Dictation
 
