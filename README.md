@@ -71,6 +71,7 @@ This application currently supports languages, English and Arabic.  Implementati
 
 Numeric configuration can be edited with Google speech recognition feature.
 Simply click on floating-action-button for accessibility and voice below options follow by numeric value.
+
 <img width="200" src="https://user-images.githubusercontent.com/1282659/48280306-d9d89d00-e418-11e8-8fe8-3174c168ee7d.jpg">
 
 Limited voice configurations are available for the following.
