@@ -84,7 +84,7 @@ Below dialog, 1st line contains the explict dictation result.  2nd line contains
 
 <img width="200" src="https://user-images.githubusercontent.com/1282659/48280305-d9d89d00-e418-11e8-9b94-29ed91fcb090.jpg"><img width="200" src="https://user-images.githubusercontent.com/1282659/48280309-da713380-e418-11e8-9886-24b92ced8d9e.jpg"><img width="200" src="https://user-images.githubusercontent.com/1282659/48280310-da713380-e418-11e8-99fa-fd076831f16b.jpg"><img width="200" src="https://user-images.githubusercontent.com/1282659/48280311-da713380-e418-11e8-8426-6550f134025d.jpg">
 
-Failure(s) may occur when dictation characters cannot be matched or numeric value is not parsed correctly.
+Failure(s) may occur when dictation characters cannot be matched or numeric value fail to parse.
 <img width="200" src="https://user-images.githubusercontent.com/1282659/48280307-d9d89d00-e418-11e8-962c-693c223273ee.jpg"><img width="200" src="https://user-images.githubusercontent.com/1282659/48280308-da713380-e418-11e8-8597-06cd2744c10e.jpg">
 
 
