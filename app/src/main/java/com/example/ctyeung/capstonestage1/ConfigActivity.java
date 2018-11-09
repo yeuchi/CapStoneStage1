@@ -3,6 +3,7 @@ package com.example.ctyeung.capstonestage1;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.speech.RecognizerIntent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBar;
@@ -17,21 +18,30 @@ import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.ctyeung.capstonestage1.data.SharedPrefUtility;
 import com.example.ctyeung.capstonestage1.dialogs.ColorPopup;
 import com.example.ctyeung.capstonestage1.dialogs.NumberPickerFragment;
+import com.example.ctyeung.capstonestage1.dialogs.VoiceAccessFragment;
+import com.example.ctyeung.capstonestage1.utilities.SpeechRecognitionHelper;
+
+import java.util.ArrayList;
 
 import top.defaults.colorpicker.ColorPickerPopup;
 
 public class ConfigActivity extends AppCompatActivity
-            implements NumberPickerFragment.OnDialogOKListener,
-            CompoundButton.OnCheckedChangeListener
+            implements  NumberPickerFragment.OnDialogOKListener,
+                        CompoundButton.OnCheckedChangeListener,
+                        VoiceAccessFragment.OnDialogListener
         {
-    private NumberPickerFragment.OnDialogOKListener numListener;
     private String clickId;
     private Context mContext;
     private Activity activity;
+    private NumberPickerFragment.OnDialogOKListener numListener;
+    protected SpeechRecognitionHelper mSpeechHelper;
+    private VoiceAccessFragment mVoiceDlg;
+    private VoiceAccessFragment.OnDialogListener mDlgListener;
 
     protected RadioGroup radioGroup;
     protected Button btnWidth;
@@ -58,6 +68,7 @@ public class ConfigActivity extends AppCompatActivity
         ActionBar ab = getSupportActionBar();
         mContext = this.getApplicationContext();
         numListener = this;
+        mDlgListener = this;
         activity = this;
 
         // Enable the Up button
@@ -88,16 +99,9 @@ public class ConfigActivity extends AppCompatActivity
         btnColor.setBackgroundColor(color);
     }
 
-    private void launchDialog(String id, int min, int max)
-    {
-        String numPicker = getResources().getString(R.string.numberpicker);
-        clickId = id;
-        int value = SharedPrefUtility.getDimension(id, mContext);
-        NumberPickerFragment dlg = new NumberPickerFragment();
-        dlg.setParams(numListener, min, max, value);
-        dlg.show(getSupportFragmentManager(), numPicker);
-    }
-
+    /*
+     * Button click handlers
+     */
     private void initializeButtons()
     {
         radioGroup = findViewById(R.id.radio_group);
@@ -117,7 +121,11 @@ public class ConfigActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // record and perform recognition
+                // record and perform dictation
+                if(null==mSpeechHelper)
+                    mSpeechHelper = new SpeechRecognitionHelper();
+
+                mSpeechHelper.run(activity);
             }
         });
 
@@ -131,7 +139,7 @@ public class ConfigActivity extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
-                launchDialog(SharedPrefUtility.INTERLACE_WIDTH, 50, 600);
+                launchNumPickerDialog(SharedPrefUtility.INTERLACE_WIDTH, 50, 600);
             }
         });
 
@@ -145,7 +153,7 @@ public class ConfigActivity extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
-               launchDialog(SharedPrefUtility.IMAGE_HEIGHT, 200, 800);
+                launchNumPickerDialog(SharedPrefUtility.IMAGE_HEIGHT, 200, 800);
             }
         });
 
@@ -159,7 +167,7 @@ public class ConfigActivity extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
-                launchDialog(SharedPrefUtility.BORDER_OFFSET, 50, 200);
+                launchNumPickerDialog(SharedPrefUtility.BORDER_OFFSET, 50, 200);
             }
         });
 
@@ -173,7 +181,7 @@ public class ConfigActivity extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
-                launchDialog(SharedPrefUtility.PARALLAX_DIS, 0, 40);
+                launchNumPickerDialog(SharedPrefUtility.PARALLAX_DIS, 0, 40);
             }
         });
 
@@ -209,6 +217,78 @@ public class ConfigActivity extends AppCompatActivity
     }
 
     /*
+     * Accessibility voice command dialog callback
+     * -> close dialog
+     */
+    public void onDialogClick(String id,
+                              int value)
+    {
+        if(null!=mVoiceDlg)
+        {
+            mVoiceDlg.dismiss();
+            mVoiceDlg = null;
+        }
+
+        /*
+         * handle command
+         */
+        if(value > 0) {
+            clickId = id;
+            onNumberDialogOKClick(value);
+        }
+    }
+
+    /*
+     * Handle SpeechRecognition
+     * -> dictation result -> launch dialog for confirmation
+     */
+    @Override
+    public void onActivityResult(int requestCode,
+                                 int resultCode,
+                                 Intent data) {
+
+        // if it�s speech recognition results
+        // and process finished ok
+        if (requestCode == 1234 && resultCode == RESULT_OK) {
+
+            // receiving a result in string array
+            // there can be some strings because sometimes speech recognizing inaccurate
+            // more relevant results in the beginning of the list
+            ArrayList matches = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+            CharSequence chars ="";
+
+            // in �matches� array we holding a results... let�s show the most relevant
+            if (matches.size() > 0) {
+                String msg = matches.get(0).toString();
+
+                /*
+                 * dialog for user to confirm command + value
+                 */
+                mVoiceDlg = new VoiceAccessFragment();
+                mVoiceDlg.setParams(mDlgListener, msg);
+                mVoiceDlg.show(getSupportFragmentManager(), "About");
+            }
+        }
+
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    /*
+     * Number picker dialog
+     */
+    private void launchNumPickerDialog(String id,
+                                       int min,
+                                       int max)
+    {
+        String numPicker = getResources().getString(R.string.numberpicker);
+        clickId = id;
+        int value = SharedPrefUtility.getDimension(id, mContext);
+        NumberPickerFragment dlg = new NumberPickerFragment();
+        dlg.setParams(numListener, min, max, value);
+        dlg.show(getSupportFragmentManager(), numPicker);
+    }
+
+    /*
      * call back from NumberPickerFragment dialog box
      */
     public void onNumberDialogOKClick(int value)
@@ -237,6 +317,9 @@ public class ConfigActivity extends AppCompatActivity
                 prefix = getResources().getString(R.string.parallax_dis_pixels);
                 id = R.id.btn_parallax;
                 break;
+
+            default:
+                return;
         }
 
         Button button = this.findViewById(id);

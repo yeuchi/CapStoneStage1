@@ -32,8 +32,14 @@
     <string name="color1">Color 1</string>
     <string name="color2">Color 2</string>
     <string name="color3">Color 3</string>
-
     <string name="numberpicker">NumberPicker</string>
+
+    <!-- Accessibility - dictation -->
+    <string name="dictation">Dictation:</string>
+    <string name="command">Command:</string>
+    <string name="unknown">Unknown</string>
+    <string name="value">Value:</string>
+
 
     <!-- menu -->
     <string name="configuration">Configuration</string>
@@ -104,5 +110,8 @@
     <string name="star">star</string>
     <string name="truck">truck</string>
     <string name="umbrella">umbrella</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

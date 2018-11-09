@@ -19,10 +19,10 @@ public class SharedPrefUtility
     public static final String TEXT_IS_DIRTY = "textIsDirty";
     public static final String SHAPE_IS_DIRTY = "shapeIsDirty";
 
-    public static final String INTERLACE_WIDTH = "interlaceWidth";  // number of pixels per slice
-    public static final String IMAGE_HEIGHT = "imageHeight";        // image height in pixels (width is same as height)
-    public static final String BORDER_OFFSET = "border";            // image offset from background border
-    public static final String PARALLAX_DIS = "parallaxDistance";   // parallax distance
+    public static final String INTERLACE_WIDTH = "interlace_width";  // number of pixels per slice
+    public static final String IMAGE_HEIGHT = "image_height";        // image height in pixels (width is same as height)
+    public static final String BORDER_OFFSET = "border_offset";      // image offset from background border
+    public static final String PARALLAX_DIS = "parallax_distance";   // parallax distance
 
     public static final String COLOR1 = "color1";
     public static final String COLOR2 = "color2";

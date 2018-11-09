@@ -32,6 +32,13 @@
     <string name="color1">اللون 1</string>
     <string name="color2">اللون 2</string>
     <string name="color3">اللون 3</string>
+    <string name="numberpicker">رقم المنتقى</string>
+
+    <!-- Accessibility - dictation -->
+    <string name="dictation">إملاء:</string>
+    <string name="command">أمر:</string>
+    <string name="unknown">غير معروف</string>
+    <string name="value">القيمة:</string>
 
     <!-- menu -->
     <string name="configuration">ترتيب</string>
