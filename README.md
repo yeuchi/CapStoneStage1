@@ -15,7 +15,7 @@ Udacity Android nano-degree CapStone project stage 2: code implementation
 ### Application Main and Configuration 
 Initial activities are main and configuration.
 
-<img src="https://user-images.githubusercontent.com/1282659/48218830-666b5880-e350-11e8-8e22-498e89913697.png" width="200"><img src="https://user-images.githubusercontent.com/1282659/48202395-580a4600-e32a-11e8-9a23-91fc5efe3085.png" width="200"><img src="https://user-images.githubusercontent.com/1282659/48202400-5c366380-e32a-11e8-8201-ccd31b91d53a.png" width="200"><img src="https://user-images.githubusercontent.com/1282659/48202404-5e98bd80-e32a-11e8-8616-b56c471d3ef6.png" width="200">
+<img src="https://user-images.githubusercontent.com/1282659/48218830-666b5880-e350-11e8-8e22-498e89913697.png" width="200"><img src="https://user-images.githubusercontent.com/1282659/48280981-dd6d2380-e41a-11e8-8a19-6340e7f77ba7.jpg" width="200"><img src="https://user-images.githubusercontent.com/1282659/48202400-5c366380-e32a-11e8-8201-ccd31b91d53a.png" width="200"><img src="https://user-images.githubusercontent.com/1282659/48202404-5e98bd80-e32a-11e8-8616-b56c471d3ef6.png" width="200">
 
 ### Fragments: create/share message
 Random dot generation and sharing of the message is accomplished in the tab activity with fragments (Send, Text, Shape, Preview). User may encode a random dot message via shapes and/or text SVGs.  There is also header and footer text message that accompany the Random-dot-images.
@@ -69,10 +69,10 @@ This application currently supports languages, English and Arabic.  Implementati
 
 ### Accessibility: Configuration via voice command
 
-Numeric configuration can be edited with Google speech recognition feature.
-Simply click on floating-action-button for accessibility and voice below options follow by numeric value.
+Numeric configuration edit is available through the use of Google speech recognition feature.
+Start by click on floating-action-button, accessibility, and voice below options follow by numeric value.
 
-<img width="200" src="https://user-images.githubusercontent.com/1282659/48280306-d9d89d00-e418-11e8-8fe8-3174c168ee7d.jpg">
+<img src="https://user-images.githubusercontent.com/1282659/48280981-dd6d2380-e41a-11e8-8a19-6340e7f77ba7.jpg" width="200"><img width="200" src="https://user-images.githubusercontent.com/1282659/48280306-d9d89d00-e418-11e8-8fe8-3174c168ee7d.jpg">
 
 Limited voice configurations are available for the following.
 1. Parallax distance
