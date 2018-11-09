@@ -69,16 +69,16 @@ This application currently supports languages, English and Arabic.  Implementati
 
 ### Accessibility: Oral configuration
 
-Numeric configuration edit is available through the use of Google speechRecognizer<sup>[12]</sup> feature.
-Start by click on floating-action-button, accessibility, and voice below options follow by numeric value.
+Numeric configuration editing is available through the use of Google speechRecognizer<sup>[12]</sup> feature.
+Start by a click on floating-action-button, accessibility, and voice one of below options follow by a numeric value.
 
 <img src="https://user-images.githubusercontent.com/1282659/48280981-dd6d2380-e41a-11e8-8a19-6340e7f77ba7.jpg" width="200"><img width="200" src="https://user-images.githubusercontent.com/1282659/48280306-d9d89d00-e418-11e8-8fe8-3174c168ee7d.jpg">
 
 Limited voice configurations are available for the following.
-1. Parallax distance
-2. Image height
-3. Interlace width
-4. Border offset
+1. Parallax distance (1 - 40)
+2. Image height (200 - 800)
+3. Interlace width (50 - 600)
+4. Border offset (50 - 200)
 
 <img width="200" src="https://user-images.githubusercontent.com/1282659/48280305-d9d89d00-e418-11e8-9b94-29ed91fcb090.jpg"><img width="200" src="https://user-images.githubusercontent.com/1282659/48280309-da713380-e418-11e8-9886-24b92ced8d9e.jpg"><img width="200" src="https://user-images.githubusercontent.com/1282659/48280310-da713380-e418-11e8-99fa-fd076831f16b.jpg"><img width="200" src="https://user-images.githubusercontent.com/1282659/48280311-da713380-e418-11e8-8426-6550f134025d.jpg">
 
