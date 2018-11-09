@@ -67,6 +67,23 @@ This application currently supports languages, English and Arabic.  Implementati
 <img width="350" src="https://user-images.githubusercontent.com/1282659/48220628-73d71180-e355-11e8-9a07-86d70b9ad400.png"><img width="350" src="https://user-images.githubusercontent.com/1282659/48220630-73d71180-e355-11e8-9ac6-803a000551d3.png">
 <img width="500" src="https://user-images.githubusercontent.com/1282659/48234522-8e25e500-e37f-11e8-8584-8704695cde19.png">
 
+### Accessibility: Configuration via voice command
+
+Limited configuration via speech recognition is available for selected values.
+1. Parallax distance
+2. Image height
+3. Interlace width
+4. Border offset
+<img width="200" src="https://user-images.githubusercontent.com/1282659/48280306-d9d89d00-e418-11e8-8fe8-3174c168ee7d.jpg">
+<img width="200" src="https://user-images.githubusercontent.com/1282659/48280305-d9d89d00-e418-11e8-9b94-29ed91fcb090.jpg">
+<img width="200" src="https://user-images.githubusercontent.com/1282659/48280309-da713380-e418-11e8-9886-24b92ced8d9e.jpg">
+<img width="200" src="https://user-images.githubusercontent.com/1282659/48280310-da713380-e418-11e8-99fa-fd076831f16b.jpg">
+<img width="200" src="https://user-images.githubusercontent.com/1282659/48280311-da713380-e418-11e8-8426-6550f134025d.jpg">
+
+Failure condtion occurs when dictation characters cannot be matched or numeric value is not understood.
+<img width="200" src="https://user-images.githubusercontent.com/1282659/48280307-d9d89d00-e418-11e8-962c-693c223273ee.jpg">
+<img width="200" src="https://user-images.githubusercontent.com/1282659/48280308-da713380-e418-11e8-8597-06cd2744c10e.jpg">
+
 
 
 # Original project instruction
