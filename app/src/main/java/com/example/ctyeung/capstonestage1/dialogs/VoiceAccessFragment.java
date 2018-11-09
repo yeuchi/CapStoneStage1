@@ -109,19 +109,22 @@ public class VoiceAccessFragment extends DialogFragment {
 
     protected void parseMessage()
     {
+        boolean isCmdOK = false;
+        boolean isValueOK = false;
+
         if(null!=mMessage) {
             String[] list = mMessage.split(" ");
             if (null != list &&
                 list.length >= 2 &&         // 2 or more words
             list.length < 4)                // at most 3 words
             {
-                boolean isCmdOK = setCommand(list[0]);
-                boolean isValueOK = setValue(list[list.length-1]);
-
-                if(!isCmdOK || !isValueOK)
-                    btnOK.setEnabled(false);
+                isCmdOK = setCommand(list[0]);
+                isValueOK = setValue(list[list.length-1]);
             }
         }
+
+        if(!isCmdOK || !isValueOK)
+            btnOK.setEnabled(false);
     }
 
     protected boolean setCommand(String key)
