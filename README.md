@@ -67,7 +67,7 @@ This application currently supports languages, English and Arabic.  Implementati
 <img width="350" src="https://user-images.githubusercontent.com/1282659/48220628-73d71180-e355-11e8-9a07-86d70b9ad400.png"><img width="350" src="https://user-images.githubusercontent.com/1282659/48220630-73d71180-e355-11e8-9ac6-803a000551d3.png">
 <img width="500" src="https://user-images.githubusercontent.com/1282659/48234522-8e25e500-e37f-11e8-8584-8704695cde19.png">
 
-### Accessibility: Configuration via voice command
+### Accessibility: Oral configuration
 
 Numeric configuration edit is available through the use of Google speechRecognizer<sup>[12]</sup> feature.
 Start by click on floating-action-button, accessibility, and voice below options follow by numeric value.
