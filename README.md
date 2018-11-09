@@ -69,20 +69,20 @@ This application currently supports languages, English and Arabic.  Implementati
 
 ### Accessibility: Configuration via voice command
 
-Limited configuration via speech recognition is available for selected values.
+Numeric configuration can be edited with Google speech recognition feature.
+Simply click on floating-action-button for accessibility and voice below options follow by numeric value.
+<img width="200" src="https://user-images.githubusercontent.com/1282659/48280306-d9d89d00-e418-11e8-8fe8-3174c168ee7d.jpg">
+
+Limited voice configurations are available for the following.
 1. Parallax distance
 2. Image height
 3. Interlace width
 4. Border offset
-<img width="200" src="https://user-images.githubusercontent.com/1282659/48280306-d9d89d00-e418-11e8-8fe8-3174c168ee7d.jpg">
-<img width="200" src="https://user-images.githubusercontent.com/1282659/48280305-d9d89d00-e418-11e8-9b94-29ed91fcb090.jpg">
-<img width="200" src="https://user-images.githubusercontent.com/1282659/48280309-da713380-e418-11e8-9886-24b92ced8d9e.jpg">
-<img width="200" src="https://user-images.githubusercontent.com/1282659/48280310-da713380-e418-11e8-99fa-fd076831f16b.jpg">
-<img width="200" src="https://user-images.githubusercontent.com/1282659/48280311-da713380-e418-11e8-8426-6550f134025d.jpg">
+
+<img width="200" src="https://user-images.githubusercontent.com/1282659/48280305-d9d89d00-e418-11e8-9b94-29ed91fcb090.jpg"><img width="200" src="https://user-images.githubusercontent.com/1282659/48280309-da713380-e418-11e8-9886-24b92ced8d9e.jpg"><img width="200" src="https://user-images.githubusercontent.com/1282659/48280310-da713380-e418-11e8-99fa-fd076831f16b.jpg"><img width="200" src="https://user-images.githubusercontent.com/1282659/48280311-da713380-e418-11e8-8426-6550f134025d.jpg">
 
 Failure condtion occurs when dictation characters cannot be matched or numeric value is not understood.
-<img width="200" src="https://user-images.githubusercontent.com/1282659/48280307-d9d89d00-e418-11e8-962c-693c223273ee.jpg">
-<img width="200" src="https://user-images.githubusercontent.com/1282659/48280308-da713380-e418-11e8-8597-06cd2744c10e.jpg">
+<img width="200" src="https://user-images.githubusercontent.com/1282659/48280307-d9d89d00-e418-11e8-962c-693c223273ee.jpg"><img width="200" src="https://user-images.githubusercontent.com/1282659/48280308-da713380-e418-11e8-8597-06cd2744c10e.jpg">
 
 
 
