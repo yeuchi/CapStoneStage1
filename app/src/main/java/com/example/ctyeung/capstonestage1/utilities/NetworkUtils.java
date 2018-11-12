@@ -75,6 +75,24 @@ public class NetworkUtils
         return url;
     }
 
+    public static URL buildDriveQueryUrl()
+    {
+        Uri builtUri = Uri.parse("https://www.googleapis.com/drive/v3/files?key=AIzaSyB-5dhGobzi65Eu4f-_JbZZ8ZDExZZqtiw")
+                .buildUpon()
+                .build();
+
+        URL url = null;
+        try
+        {
+            url = new URL(builtUri.toString());
+        } catch (MalformedURLException e)
+        {
+            e.printStackTrace();
+        }
+
+        return url;
+    }
+
     /**
      * This method returns the entire result from the HTTP response.
      *
