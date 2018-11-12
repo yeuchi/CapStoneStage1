@@ -15,7 +15,7 @@ Udacity Android nano-degree CapStone project stage 2: code implementation
 ### Application Main and Configuration 
 Initial activities are main and configuration.
 
-<img src="https://user-images.githubusercontent.com/1282659/48218830-666b5880-e350-11e8-8e22-498e89913697.png" width="200"><img src="https://user-images.githubusercontent.com/1282659/48202395-580a4600-e32a-11e8-9a23-91fc5efe3085.png" width="200"><img src="https://user-images.githubusercontent.com/1282659/48202400-5c366380-e32a-11e8-8201-ccd31b91d53a.png" width="200"><img src="https://user-images.githubusercontent.com/1282659/48202404-5e98bd80-e32a-11e8-8616-b56c471d3ef6.png" width="200">
+<img src="https://user-images.githubusercontent.com/1282659/48218830-666b5880-e350-11e8-8e22-498e89913697.png" width="200"><img src="https://user-images.githubusercontent.com/1282659/48297077-c4d62b00-e465-11e8-8cd1-89e09d7513a6.png" width="200"><img src="https://user-images.githubusercontent.com/1282659/48202400-5c366380-e32a-11e8-8201-ccd31b91d53a.png" width="200"><img src="https://user-images.githubusercontent.com/1282659/48202404-5e98bd80-e32a-11e8-8616-b56c471d3ef6.png" width="200">
 
 ### Fragments: create/share message
 Random dot generation and sharing of the message is accomplished in the tab activity with fragments (Send, Text, Shape, Preview). User may encode a random dot message via shapes and/or text SVGs.  There is also header and footer text message that accompany the Random-dot-images.
@@ -67,6 +67,25 @@ This application currently supports languages, English and Arabic.  Implementati
 <img width="350" src="https://user-images.githubusercontent.com/1282659/48220628-73d71180-e355-11e8-9a07-86d70b9ad400.png"><img width="350" src="https://user-images.githubusercontent.com/1282659/48220630-73d71180-e355-11e8-9ac6-803a000551d3.png">
 <img width="500" src="https://user-images.githubusercontent.com/1282659/48234522-8e25e500-e37f-11e8-8584-8704695cde19.png">
 
+### Accessibility: Oral configuration
+
+Numeric configuration editing is available through the use of Google speechRecognizer<sup>[12]</sup> feature.
+Start by a click on floating-action-button, accessibility, and voice one of below options follow by a numeric value.  Please ignore the Google message on screen, "Select an application".
+
+<img src="https://user-images.githubusercontent.com/1282659/48280981-dd6d2380-e41a-11e8-8a19-6340e7f77ba7.jpg" width="200"><img width="200" src="https://user-images.githubusercontent.com/1282659/48280306-d9d89d00-e418-11e8-8fe8-3174c168ee7d.jpg">
+
+Limited voice configurations are available for the following.
+1. Parallax distance (1 - 40)
+2. Image height (200 - 800)
+3. Interlace width (50 - 600)
+4. Border offset (50 - 200)
+
+Below dialog, 1st line contains the explict dictation result.  2nd line contains the parsed command and 3rd line is the interpreted numeric value.
+
+<img width="200" src="https://user-images.githubusercontent.com/1282659/48280305-d9d89d00-e418-11e8-9b94-29ed91fcb090.jpg"><img width="200" src="https://user-images.githubusercontent.com/1282659/48280309-da713380-e418-11e8-9886-24b92ced8d9e.jpg"><img width="200" src="https://user-images.githubusercontent.com/1282659/48280310-da713380-e418-11e8-99fa-fd076831f16b.jpg"><img width="200" src="https://user-images.githubusercontent.com/1282659/48280311-da713380-e418-11e8-8426-6550f134025d.jpg">
+
+Failure(s) may occur when dictation characters cannot be matched or numeric value fail to parse.  Cancel and try again.
+<img width="200" src="https://user-images.githubusercontent.com/1282659/48280307-d9d89d00-e418-11e8-962c-693c223273ee.jpg"><img width="200" src="https://user-images.githubusercontent.com/1282659/48280308-da713380-e418-11e8-8597-06cd2744c10e.jpg">
 
 
 # Original project instruction
@@ -159,4 +178,10 @@ http://www.ctyeung.com/wordpress/?p=630
 
 11. Material Design Icons
 https://materialdesignicons.com
+
+12. Google speech recognizer
+https://developer.android.com/reference/android/speech/SpeechRecognizer.html?hl=es
+
+13. My speech recognizer exercise, dictation
+https://github.com/yeuchi/Dictation
 
