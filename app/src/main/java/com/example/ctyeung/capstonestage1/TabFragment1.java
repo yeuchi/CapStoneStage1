@@ -1,5 +1,9 @@
 package com.example.ctyeung.capstonestage1;
 
+import android.app.Activity;
+import android.app.Application;
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -54,6 +58,7 @@ public class TabFragment1 extends BaseFragment
             public void onClick(View v)
             {
                 share();
+                updateWidget();
             }
         });
 
@@ -101,6 +106,22 @@ public class TabFragment1 extends BaseFragment
         {
             hideKeyboard();
         }
+    }
+
+    private void updateWidget()
+    {
+        Application app = ((Activity)mContext).getApplication();
+        /*
+         * Ravi Rupareliya's solution to update widget
+         * https://stackoverflow.com/questions/28941472/update-listview-widget-with-application
+         */
+        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(mContext);
+        int[] appWidgetIds= appWidgetManager.getAppWidgetIds(new ComponentName(app, HomeScreenWidget.class));
+
+        //Toast.makeText(this,"ids:size:"+appWidgetIds.length,Toast.LENGTH_SHORT).show();
+        HomeScreenWidget myWidget = new HomeScreenWidget();
+        myWidget.onUpdate(mContext, AppWidgetManager.getInstance(mContext),appWidgetIds);
+        appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds, R.id.widgetList);
     }
 
     protected void share()
