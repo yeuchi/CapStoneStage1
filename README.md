@@ -87,6 +87,12 @@ Below dialog, 1st line contains the explict dictation result.  2nd line contains
 Failure(s) may occur when dictation characters cannot be matched or numeric value fail to parse.  Cancel and try again.
 <img width="200" src="https://user-images.githubusercontent.com/1282659/48280307-d9d89d00-e418-11e8-962c-693c223273ee.jpg"><img width="200" src="https://user-images.githubusercontent.com/1282659/48280308-da713380-e418-11e8-8597-06cd2744c10e.jpg">
 
+### Widget - image listing
+
+Currently a 'dummy' list has been implemented.
+
+<img width="200" src="https://user-images.githubusercontent.com/1282659/48434213-be360500-e73e-11e8-8a42-5d1f3c4aa477.jpg">
+
 
 # Original project instruction
 
