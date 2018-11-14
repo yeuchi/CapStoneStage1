@@ -1,5 +1,6 @@
 package com.example.ctyeung.capstonestage1;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -15,7 +16,10 @@ import android.widget.TextView;
 
 import com.example.ctyeung.capstonestage1.data.ShapePreview;
 import com.example.ctyeung.capstonestage1.data.SharedPrefUtility;
+import com.example.ctyeung.capstonestage1.database.MsgContract;
+import com.example.ctyeung.capstonestage1.database.MsgData;
 import com.example.ctyeung.capstonestage1.utilities.BitmapRenderer;
+import com.example.ctyeung.capstonestage1.utilities.DateTimeUtil;
 
 /*
  * Text fragment - compose text message in this fragment
@@ -24,7 +28,6 @@ public class TabFragment2 extends BaseFragment
 {
 
     public static String PNG_FILENAME = "textSVG.png";
-
     private EditText mFooter;
 
     @Override
@@ -78,6 +81,4 @@ public class TabFragment2 extends BaseFragment
             SharedPrefUtility.setIsDirty(SharedPrefUtility.TEXT_IS_DIRTY, mContext, true);
         }
     }
-
-
 }

@@ -1,5 +1,6 @@
 package com.example.ctyeung.capstonestage1;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -25,6 +26,8 @@ import com.example.ctyeung.capstonestage1.data.RandomDotData;
 import com.example.ctyeung.capstonestage1.data.ShapePreview;
 import com.example.ctyeung.capstonestage1.data.ShapeSVG;
 import com.example.ctyeung.capstonestage1.data.SharedPrefUtility;
+import com.example.ctyeung.capstonestage1.database.MsgContract;
+import com.example.ctyeung.capstonestage1.database.MsgData;
 import com.example.ctyeung.capstonestage1.utilities.BitmapRenderer;
 import com.example.ctyeung.capstonestage1.utilities.BitmapUtil;
 import com.example.ctyeung.capstonestage1.utilities.FileUtils;
@@ -337,6 +340,8 @@ public class TabFragment4 extends ShapeFragment
         mPreviewContainer.empty();
         mDotModeEnum = SharedPrefUtility.getDotMode(mContext);
 
+        // determine unique image name index from db
+
         switch (mDotModeEnum) {
             case INTERLACED:
 
@@ -347,15 +352,17 @@ public class TabFragment4 extends ShapeFragment
                     mPreviewContainer.insertStereoImage(bmp);
                     if(isExternalStorageWritable())
                     {
-                        String suffix = (0==i)?"Left":"Right";
-                        File file = BitmapUtil.saveBitmap(bmp, "shape"+suffix+".png", mContext);
+                        String key = (0==i)?
+                                SharedPrefUtility.FILE_LEFT:
+                                SharedPrefUtility.FILE_RIGHT;
+
+                        String filename = BitmapUtil.getShapeName(key);
+                        File file = BitmapUtil.saveBitmap(bmp, filename, mContext);
                         if(null!=file)
                         {
-                            String key = (0==i)?
-                                    SharedPrefUtility.FILE_LEFT:
-                                    SharedPrefUtility.FILE_RIGHT;
-
                             SharedPrefUtility.setString(key, mContext, file.getPath());
+                            // !! need to parse path and persiste !!
+                            updateDBTuple(filename);
                         }
                         else
                         {
@@ -366,6 +373,21 @@ public class TabFragment4 extends ShapeFragment
         }
     }
 
+    private boolean updateDBTuple(String path)
+    {
+        try {
+            int id = SharedPrefUtility.getInteger(SharedPrefUtility.TUPLE_ID, mContext);
+            //Activity activity = ((Activity) mContext).getParent();
+            MsgData msgData = new MsgData((Activity) mContext);
+
+            String name = MsgContract.Columns.COL_IMAGE_PATH;
+            return msgData.update(id, name, path);
+        }
+        catch (Exception ex)
+        {
+            return false;
+        }
+    }
 
 
     public boolean isExternalStorageWritable() {

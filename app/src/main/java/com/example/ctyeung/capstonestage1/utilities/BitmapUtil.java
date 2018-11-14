@@ -79,6 +79,11 @@ public class BitmapUtil
         return null;
     }
 
+    public static String getShapeName(String shapeType)
+    {
+        return "shape"+shapeType+".png";
+    }
+
     /*
      * view to bitmap ** NOT UTILIZED **
      * https://stackoverflow.com/questions/34272310/android-convert-view-to-bitmap

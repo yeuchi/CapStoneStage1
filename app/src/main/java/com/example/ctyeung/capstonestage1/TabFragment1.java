@@ -23,6 +23,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ctyeung.capstonestage1.data.SharedPrefUtility;
+import com.example.ctyeung.capstonestage1.database.MsgContract;
+import com.example.ctyeung.capstonestage1.database.MsgData;
+import com.example.ctyeung.capstonestage1.database.MsgTuple;
+import com.example.ctyeung.capstonestage1.utilities.DateTimeUtil;
 
 import java.io.File;
 import java.io.OutputStream;
@@ -37,6 +41,8 @@ public class TabFragment1 extends BaseFragment
 {
     private Button mBtnSend;
     private Button mBtnExit;
+    private String mSubject;
+    private MsgData mMsgData;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -44,9 +50,71 @@ public class TabFragment1 extends BaseFragment
         mContext = mRoot.getContext();
         mEditText = mRoot.findViewById(R.id.txt_subject);
 
+        //Activity activity = ((Activity)mContext).getParent();
+        mMsgData = new MsgData((Activity)mContext);
+
         initButtonEvents();
         sendEnable();
+        createDBTuple();
         return mRoot;
+    }
+
+    /*
+     * create a tuple in db
+     */
+    protected void createDBTuple()
+    {
+        // retrieve tuple not send (no timeStamp)
+        String columnName = MsgContract.Columns.COL_TIME_STAMP;
+        MsgTuple tuple = mMsgData.query(columnName, "");
+
+        SharedPrefUtility.DotModeEnum dotMode = SharedPrefUtility.getDotMode(mContext);
+
+        if(null!=tuple)
+        {
+            String name = MsgContract.Columns.COL_IMAGE_TYPE;
+            mMsgData.update(tuple.id, name, dotMode.toString());
+        }
+        else
+        {
+            tuple = new MsgTuple();
+            tuple.type = dotMode.toString();
+            tuple.subject = "subject";
+            mMsgData.insert(tuple);
+        }
+
+        // store id for use in other fragments
+        SharedPrefUtility.setInteger(SharedPrefUtility.TUPLE_ID, mContext, tuple.id);
+    }
+
+    /*
+     * When user selects send, update tuple
+     */
+    protected boolean updateDBTuple()
+    {
+        try
+        {
+            // add a timeStamp as verification of persistence
+            int id = SharedPrefUtility.getInteger(SharedPrefUtility.TUPLE_ID, mContext);
+
+            String name = MsgContract.Columns.COL_TIME_STAMP;
+            String timeStamp = DateTimeUtil.getNow();
+            mMsgData.update(id, name, timeStamp);
+
+            name = MsgContract.Columns.COL_MSG_HEADER;
+            String header = SharedPrefUtility.getString(SharedPrefUtility.FRAG_TEXT_HEADER, mContext);
+            mMsgData.update(id, name, header);
+
+            name = MsgContract.Columns.COL_MSG_FOOTER;
+            String footer = SharedPrefUtility.getString(SharedPrefUtility.FRAG_TEXT_FOOTER, mContext);
+            mMsgData.update(id, name, footer);
+
+            return true;
+        }
+        catch (Exception ex)
+        {
+            return false;
+        }
     }
 
     protected void initButtonEvents()
@@ -58,7 +126,12 @@ public class TabFragment1 extends BaseFragment
             public void onClick(View v)
             {
                 share();
-                updateWidget();
+                if(updateDBTuple()) {
+                    updateWidget();
+
+                    // create new tuple for additional user composition
+                    createDBTuple();
+                }
             }
         });
 
@@ -144,9 +217,9 @@ public class TabFragment1 extends BaseFragment
             emailIntent.setType("image/*");
 
             // Subject
-            String subject = mEditText.getText().toString();
-            if(null!=subject && subject.length()>0)
-                emailIntent.putExtra(Intent.EXTRA_SUBJECT, subject);
+            mSubject = mEditText.getText().toString();
+            if(null!=mSubject && mSubject.length()>0)
+                emailIntent.putExtra(Intent.EXTRA_SUBJECT, mSubject);
 
             // need to insert image in the middle ...
             String header_title = mContext.getResources().getString(R.string.header)+": ";

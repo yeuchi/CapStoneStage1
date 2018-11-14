@@ -29,6 +29,7 @@ public class SharedPrefUtility
     public static final String COLOR3 = "color3";
 
     public static final String DOT_MODE = "dotMode";
+    public static final String TUPLE_ID = "tupleId";
 
     public static final String FRAG_TEXT_HEADER = "fragTextHeader";
     public static final String FRAG_TEXT_FOOTER = "fragTextFooter";
@@ -162,6 +163,23 @@ public class SharedPrefUtility
         SharedPreferences sharedPreferences = getSharedPref(context);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putBoolean(key, value);
+        editor.commit();
+    }
+
+    public static int getInteger(String key,       // text or shape
+                                 Context context)
+    {
+        SharedPreferences sharedPreferences = getSharedPref(context);
+        return sharedPreferences.getInt(key, -1);
+    }
+
+    public static void setInteger(String key,
+                                  Context context,
+                                  int value)
+    {
+        SharedPreferences sharedPreferences = getSharedPref(context);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt(key, value);
         editor.commit();
     }
 
