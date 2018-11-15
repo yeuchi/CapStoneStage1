@@ -1,5 +1,7 @@
 package com.example.ctyeung.capstonestage1;
 
+import android.app.Activity;
+import android.app.Application;
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Context;
@@ -31,6 +33,7 @@ public class MainActivity extends AppCompatActivity{
         mContext = this;
         initButtons();
         initLocals();
+
     }
 
     private void initLocals()
@@ -62,6 +65,22 @@ public class MainActivity extends AppCompatActivity{
                 onButtonClickShare();
             }
         });
+    }
+
+    private void updateWidget()
+    {
+        Application app = ((Activity)mContext).getApplication();
+        /*
+         * Ravi Rupareliya's solution to update widget
+         * https://stackoverflow.com/questions/28941472/update-listview-widget-with-application
+         */
+        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(mContext);
+        int[] appWidgetIds= appWidgetManager.getAppWidgetIds(new ComponentName(app, HomeScreenWidget.class));
+
+        //Toast.makeText(this,"ids:size:"+appWidgetIds.length,Toast.LENGTH_SHORT).show();
+        HomeScreenWidget myWidget = new HomeScreenWidget();
+        myWidget.onUpdate(mContext, AppWidgetManager.getInstance(mContext),appWidgetIds);
+        appWidgetManager.notifyAppWidgetViewDataChanged(appWidgetIds, R.id.widgetList);
     }
 
     @Override
@@ -96,6 +115,8 @@ public class MainActivity extends AppCompatActivity{
 
     protected void onButtonClickShare()
     {
+        updateWidget();
+
         Intent intent = new Intent(mContext, TabActivity.class);
         startActivity(intent);
     }

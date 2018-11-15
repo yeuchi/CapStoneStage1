@@ -376,8 +376,7 @@ public class TabFragment4 extends ShapeFragment
     {
         try {
             int id = SharedPrefUtility.getInteger(SharedPrefUtility.TUPLE_ID, mContext);
-            //Activity activity = ((Activity) mContext).getParent();
-            MsgData msgData = new MsgData((Activity) mContext);
+            MsgData msgData = new MsgData(mContext);
 
             String name = MsgContract.Columns.COL_IMAGE_PATH;
             return msgData.update(id, name, path);

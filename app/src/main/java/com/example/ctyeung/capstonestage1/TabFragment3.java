@@ -187,6 +187,8 @@ public class TabFragment3 extends ShapeFragment
         // resize existing children
         if(mShapePreview.childCount(false)>0)
             mShapePreview.updateLayout(false);
+
+        persist();
     }
 
     /*
