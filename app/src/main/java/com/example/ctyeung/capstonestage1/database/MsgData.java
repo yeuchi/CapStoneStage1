@@ -29,10 +29,10 @@ public class MsgData
             ContentValues contentValues = new ContentValues();
             contentValues.put(columnName, value);
 
-            String[] args = {value, String.valueOf(id)};
+            String[] args = {String.valueOf(id)};
             int success = mActivity.getContentResolver().update(this.uri,
                         contentValues,
-                        columnName + "=? AND " + MsgContract.Columns.COL_ID +"=?",
+                        MsgContract.Columns.COL_ID +"=?",
                         args);
 
             return (success>0)?true:false;

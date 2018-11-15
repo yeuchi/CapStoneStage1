@@ -361,8 +361,7 @@ public class TabFragment4 extends ShapeFragment
                         if(null!=file)
                         {
                             SharedPrefUtility.setString(key, mContext, file.getPath());
-                            // !! need to parse path and persiste !!
-                            updateDBTuple(filename);
+                            updateDBTuple(file.getParent());
                         }
                         else
                         {

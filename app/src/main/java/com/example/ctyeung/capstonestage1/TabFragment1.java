@@ -81,6 +81,7 @@ public class TabFragment1 extends BaseFragment
             tuple.type = dotMode.toString();
             tuple.subject = "subject";
             mMsgData.insert(tuple);
+            tuples = mMsgData.query(columnName, "blank");
         }
 
         if(null==tuples || tuples.size()==0) {
@@ -90,9 +91,6 @@ public class TabFragment1 extends BaseFragment
                     Toast.LENGTH_LONG).show();
             return;
         }
-
-            // assume this is going to succeed now
-        tuples = mMsgData.query(columnName, "blank");
 
         tuple = tuples.get(0);
         String name = MsgContract.Columns.COL_IMAGE_TYPE;
