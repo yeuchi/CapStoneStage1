@@ -56,6 +56,7 @@
     <string name="btn_exit">Exit</string>
     <string name="share_failed">Share failed</string>
     <string name="db_create_failed">DB create failed</string>
+    <string name="db_query_failed">DB query failed</string>
 
     <!-- fragment 2 -->
     <string name="header_msg">Header Message:</string>

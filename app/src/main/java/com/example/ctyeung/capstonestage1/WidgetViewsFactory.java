@@ -1,11 +1,15 @@
 package com.example.ctyeung.capstonestage1;
 
+import android.app.Activity;
 import android.appwidget.AppWidgetManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.RemoteViews;
 import android.widget.RemoteViewsService;
+
+import com.example.ctyeung.capstonestage1.database.MsgData;
+import com.example.ctyeung.capstonestage1.database.MsgTuple;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -34,15 +38,23 @@ public class WidgetViewsFactory implements RemoteViewsService.RemoteViewsFactory
 
     public void setItems()
     {
-        /*
-        SharedPrefUtil sharedPrefUtil = new SharedPrefUtil(mContext);
-        String str = sharedPrefUtil.getIngredientString();
+        try {
+            MsgData msgData = new MsgData(mContext);
+            List<MsgTuple> tuples = msgData.query();
 
-        String filtered = str.replaceAll("[^a-zA-Z0-9,: ]","");
-        mItems = Arrays.asList(filtered.split(","));
-        */
-
-        mItems = new ArrayList<String>(Arrays.asList("hello1","hello2","hello3","hello4"));
+            if (null == tuples || 0 == tuples.size()) {
+                mItems = new ArrayList<String>(Arrays.asList("Empty -- no entry available"));
+            } else {
+                mItems = new ArrayList<String>();
+                for (MsgTuple tuple : tuples) {
+                    mItems.add(tuple.id + " : " + tuple.subject + " : " + tuple.timeStamp);
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            mItems = new ArrayList<String>(Arrays.asList("setItems() failed: "+ex.toString()));
+        }
     }
 
     @Override

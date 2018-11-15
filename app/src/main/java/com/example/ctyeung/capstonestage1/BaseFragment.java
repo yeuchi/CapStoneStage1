@@ -38,13 +38,7 @@ public class BaseFragment extends Fragment
         else if(null!=mContext)
         {
             hideKeyboard();
-            persist();
         }
-    }
-
-    protected void persist()
-    {
-
     }
 
     /*

@@ -31,8 +31,6 @@ public class SharedPrefUtility
     public static final String DOT_MODE = "dotMode";
     public static final String TUPLE_ID = "tupleId";
 
-    public static final String FRAG_TEXT_HEADER = "fragTextHeader";
-    public static final String FRAG_TEXT_FOOTER = "fragTextFooter";
     public static final String FRAG_SHAPE = "fragShape";
     public static final String FILE_LEFT = "fileLeft";
     public static final String FILE_RIGHT = "fileRight";

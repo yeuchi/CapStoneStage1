@@ -12,6 +12,8 @@ import android.os.Environment;
 import android.os.StrictMode;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.FileProvider;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -49,15 +51,39 @@ public class TabFragment1 extends BaseFragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mRoot = inflater.inflate(R.layout.tab_fragment_1, container, false);
         mContext = mRoot.getContext();
-        mEditText = mRoot.findViewById(R.id.txt_subject);
+        mMsgData = new MsgData(mContext);
 
-        //Activity activity = ((Activity)mContext).getParent();
-        mMsgData = new MsgData((Activity)mContext);
-
+        initTextview();
         initButtonEvents();
-        sendEnable();
         createDBTuple();
+        showKeyboard();
         return mRoot;
+    }
+
+    /*
+     * initialize textview
+     */
+    protected void initTextview()
+    {
+        mEditText = mRoot.findViewById(R.id.txt_subject);
+        mEditText.setText("Subject");
+
+        // add change handler
+        mEditText.addTextChangedListener(new TextWatcher() {
+
+            public void afterTextChanged(Editable s) {
+
+                int id = SharedPrefUtility.getInteger(SharedPrefUtility.TUPLE_ID, mContext);
+                mMsgData.update(id, MsgContract.Columns.COL_MSG_SUBJECT, s.toString());
+
+            }
+
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+        });
+
+        sendEnable();
     }
 
     /*
@@ -109,19 +135,8 @@ public class TabFragment1 extends BaseFragment
         {
             // add a timeStamp as verification of persistence
             int id = SharedPrefUtility.getInteger(SharedPrefUtility.TUPLE_ID, mContext);
-
-            String name = MsgContract.Columns.COL_TIME_STAMP;
             String timeStamp = DateTimeUtil.getNow();
-            mMsgData.update(id, name, timeStamp);
-
-            name = MsgContract.Columns.COL_MSG_HEADER;
-            String header = SharedPrefUtility.getString(SharedPrefUtility.FRAG_TEXT_HEADER, mContext);
-            mMsgData.update(id, name, header);
-
-            name = MsgContract.Columns.COL_MSG_FOOTER;
-            String footer = SharedPrefUtility.getString(SharedPrefUtility.FRAG_TEXT_FOOTER, mContext);
-            mMsgData.update(id, name, footer);
-
+            mMsgData.update(id, MsgContract.Columns.COL_TIME_STAMP, timeStamp);
             return true;
         }
         catch (Exception ex)
@@ -138,11 +153,19 @@ public class TabFragment1 extends BaseFragment
             @Override
             public void onClick(View v)
             {
+                /*
+                 * send content [email, facebook, etc]
+                 */
+                hideKeyboard();
+
                 share();
+                sendEnable();
+
                 if(updateDBTuple()) {
                     updateWidget();
 
                     // create new tuple for additional user composition
+                    mEditText.setText("Subject");
                     createDBTuple();
                 }
             }
@@ -167,7 +190,7 @@ public class TabFragment1 extends BaseFragment
 
         Boolean isShapeDirty = SharedPrefUtility.getIsDirty(SharedPrefUtility.SHAPE_IS_DIRTY, mContext);
         Boolean isTextDirty = SharedPrefUtility.getIsDirty(SharedPrefUtility.TEXT_IS_DIRTY, mContext);
-        Boolean isEnabled = (isShapeDirty && isTextDirty)? true:false;
+        Boolean isEnabled = (isShapeDirty || isTextDirty)? true:false;
         mBtnSend.setEnabled(isEnabled);
     }
 
@@ -229,17 +252,27 @@ public class TabFragment1 extends BaseFragment
 
             emailIntent.setType("image/*");
 
+            int id = SharedPrefUtility.getInteger(SharedPrefUtility.TUPLE_ID, mContext);
+            List<MsgTuple> tuples = mMsgData.query(id);
+
+            if(null==tuples || 0==tuples.size())
+            {
+                String msg = mContext.getResources().getString(R.string.db_query_failed);
+                Toast.makeText(getActivity(),
+                        msg,
+                        Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            MsgTuple tuple = tuples.get(0);
+
             // Subject
-            mSubject = mEditText.getText().toString();
-            if(null!=mSubject && mSubject.length()>0)
-                emailIntent.putExtra(Intent.EXTRA_SUBJECT, mSubject);
+            emailIntent.putExtra(Intent.EXTRA_SUBJECT, tuple.subject);
 
             // need to insert image in the middle ...
-            String header_title = mContext.getResources().getString(R.string.header)+": ";
-            String footer_title = mContext.getResources().getString(R.string.header)+": ";
+            String header = mContext.getResources().getString(R.string.header)+": "+tuple.header;
+            String footer = mContext.getResources().getString(R.string.header)+": "+tuple.footer;
 
-            String header = header_title+SharedPrefUtility.getString(SharedPrefUtility.FRAG_TEXT_HEADER, mContext);
-            String footer = footer_title+SharedPrefUtility.getString(SharedPrefUtility.FRAG_TEXT_FOOTER, mContext);
             emailIntent.putExtra(Intent.EXTRA_TEXT, header + "\n\n" + footer);
 
             // load image
