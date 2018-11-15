@@ -29,10 +29,10 @@ public class MsgData
             ContentValues contentValues = new ContentValues();
             contentValues.put(columnName, value);
 
-            String[] args = {String.valueOf(value)};
+            String[] args = {value, String.valueOf(id)};
             int success = mActivity.getContentResolver().update(this.uri,
                         contentValues,
-                        columnName + "=?",
+                        columnName + "=? AND " + MsgContract.Columns.COL_ID +"=?",
                         args);
 
             return (success>0)?true:false;
@@ -43,7 +43,7 @@ public class MsgData
         }
     }
 
-    public MsgTuple query(String columnName,
+    public List<MsgTuple> query(String columnName,
                           String value)
     {
         Cursor cursor = null;
@@ -60,15 +60,22 @@ public class MsgData
             if(null==cursor || 0==cursor.getCount())
                 throw new Exception("not found");
 
+            List<MsgTuple> list = new ArrayList<MsgTuple>();
             cursor.moveToFirst();
-            MsgTuple tuple = new MsgTuple(cursor.getInt(0),
-                    cursor.getString(1),
-                    cursor.getString(2),
-                    cursor.getString(3),
-                    cursor.getString(4),
-                    cursor.getString(5),
-                    cursor.getString(6));
-            return tuple;
+
+            for(int i=0; i<cursor.getCount(); i++) {
+                MsgTuple tuple = new MsgTuple(cursor.getInt(0),
+                        cursor.getString(1),
+                        cursor.getString(2),
+                        cursor.getString(3),
+                        cursor.getString(4),
+                        cursor.getString(5),
+                        cursor.getString(6));
+
+                list.add(tuple);
+                cursor.moveToNext();
+            }
+            return list;
         }
         catch (Exception ex)
         {

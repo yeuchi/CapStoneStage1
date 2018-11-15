@@ -54,6 +54,7 @@
     <string name="btn_send">إرسال</string>
     <string name="btn_exit">ىخرج</string>
     <string name="share_failed">فشلت المشاركة</string>
+    <string name="db_create_failed">فشل إنشاء قاعدة البيانات</string>
 
     <!-- fragment 2 -->
     <string name="header_msg">رسالة الرأس:</string>

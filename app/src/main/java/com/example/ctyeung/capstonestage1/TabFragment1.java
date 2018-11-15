@@ -31,6 +31,7 @@ import com.example.ctyeung.capstonestage1.utilities.DateTimeUtil;
 import java.io.File;
 import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.List;
 
 /*
  * 1st fragment: handle submission - Gmail, Google Drive, Facebook, etc
@@ -64,24 +65,38 @@ public class TabFragment1 extends BaseFragment
      */
     protected void createDBTuple()
     {
+        MsgTuple tuple;
+
         // retrieve tuple not send (no timeStamp)
         String columnName = MsgContract.Columns.COL_TIME_STAMP;
-        MsgTuple tuple = mMsgData.query(columnName, "");
+        List<MsgTuple> tuples = mMsgData.query(columnName, "blank");
 
         SharedPrefUtility.DotModeEnum dotMode = SharedPrefUtility.getDotMode(mContext);
 
-        if(null!=tuple)
-        {
-            String name = MsgContract.Columns.COL_IMAGE_TYPE;
-            mMsgData.update(tuple.id, name, dotMode.toString());
-        }
-        else
-        {
+        /*
+         * create a tuple if none available
+         */
+        if(null==tuples || tuples.size()==0) {
             tuple = new MsgTuple();
             tuple.type = dotMode.toString();
             tuple.subject = "subject";
             mMsgData.insert(tuple);
         }
+
+        if(null==tuples || tuples.size()==0) {
+            String errMsg = mContext.getResources().getString(R.string.db_create_failed);
+            Toast.makeText(getActivity(),
+                    errMsg,
+                    Toast.LENGTH_LONG).show();
+            return;
+        }
+
+            // assume this is going to succeed now
+        tuples = mMsgData.query(columnName, "blank");
+
+        tuple = tuples.get(0);
+        String name = MsgContract.Columns.COL_IMAGE_TYPE;
+        mMsgData.update(tuple.id, name, dotMode.toString());
 
         // store id for use in other fragments
         SharedPrefUtility.setInteger(SharedPrefUtility.TUPLE_ID, mContext, tuple.id);

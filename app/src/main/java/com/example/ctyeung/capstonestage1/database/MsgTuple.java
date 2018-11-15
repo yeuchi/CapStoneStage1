@@ -7,12 +7,12 @@ import java.util.List;
 public class MsgTuple implements ITuple
 {
     public int id;
-    public String timeStamp="";
-    public String subject="";
-    public String type="";
-    public String header="";
-    public String footer="";
-    public String path="";
+    public String timeStamp="blank";
+    public String subject="blank";
+    public String type="blank";
+    public String header="blank";
+    public String footer="blank";
+    public String path="blank";
 
     public MsgTuple()
     {
