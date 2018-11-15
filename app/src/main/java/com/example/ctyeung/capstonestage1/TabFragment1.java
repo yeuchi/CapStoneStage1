@@ -165,8 +165,8 @@ public class TabFragment1 extends BaseFragment
                     updateWidget();
 
                     // create new tuple for additional user composition
-                    mEditText.setText("Subject");
                     createDBTuple();
+                    mEditText.setText("Subject");
                 }
             }
         });
