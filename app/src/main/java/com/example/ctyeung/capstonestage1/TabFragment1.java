@@ -52,9 +52,9 @@ public class TabFragment1 extends BaseFragment
         mContext = mRoot.getContext();
         mMsgData = new MsgData(mContext);
 
+        createDBTuple();
         initTextview();
         initButtonEvents();
-        createDBTuple();
         showKeyboard();
         return mRoot;
     }
@@ -82,7 +82,6 @@ public class TabFragment1 extends BaseFragment
             public void onTextChanged(CharSequence s, int start, int before, int count) {}
         });
 
-        sendEnable();
     }
 
     /*
@@ -203,10 +202,9 @@ public class TabFragment1 extends BaseFragment
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser)
     {
-        super.setUserVisibleHint(isVisibleToUser);
+        sendEnable();
         if (isVisibleToUser)
         {
-            sendEnable();
             showKeyboard();
         }
         else

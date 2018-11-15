@@ -63,33 +63,34 @@ public class TabFragment2 extends BaseFragment
     private void initTextviews()
     {
         mEditText = mRoot.findViewById(R.id.txt_msg_header);
-        mEditText.addTextChangedListener(new TextWatcher() {
 
-            public void afterTextChanged(Editable s) {
+        mEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+           @Override
+           public void onFocusChange(View view, boolean hasFocus) {
+               if (hasFocus) {
 
-                int id = SharedPrefUtility.getInteger(SharedPrefUtility.TUPLE_ID, mContext);
-                mMsgData.update(id, MsgContract.Columns.COL_MSG_HEADER, s.toString());
-                SharedPrefUtility.setIsDirty(SharedPrefUtility.TEXT_IS_DIRTY, mContext, true);
-            }
+               } else {
+                   int id = SharedPrefUtility.getInteger(SharedPrefUtility.TUPLE_ID, mContext);
+                   mMsgData.update(id, MsgContract.Columns.COL_MSG_HEADER, mEditText.getText().toString());
+                   SharedPrefUtility.setIsDirty(SharedPrefUtility.TEXT_IS_DIRTY, mContext, true);
 
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+               }
+           }
+       });
 
-            public void onTextChanged(CharSequence s, int start, int before, int count) {}
-        });
 
         mFooter = mRoot.findViewById(R.id.txt_msg_footer);
-        mFooter.addTextChangedListener(new TextWatcher() {
+        mFooter.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean hasFocus) {
+                if (hasFocus) {
 
-            public void afterTextChanged(Editable s) {
-
-                int id = SharedPrefUtility.getInteger(SharedPrefUtility.TUPLE_ID, mContext);
-                mMsgData.update(id, MsgContract.Columns.COL_MSG_FOOTER, s.toString());
-                SharedPrefUtility.setIsDirty(SharedPrefUtility.TEXT_IS_DIRTY, mContext, true);
+                } else {
+                    int id = SharedPrefUtility.getInteger(SharedPrefUtility.TUPLE_ID, mContext);
+                    mMsgData.update(id, MsgContract.Columns.COL_MSG_FOOTER, mFooter.getText().toString());
+                    SharedPrefUtility.setIsDirty(SharedPrefUtility.TEXT_IS_DIRTY, mContext, true);
+                }
             }
-
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-
-            public void onTextChanged(CharSequence s, int start, int before, int count) {}
         });
     }
 

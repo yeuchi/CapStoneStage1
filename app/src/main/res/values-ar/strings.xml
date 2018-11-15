@@ -66,6 +66,7 @@
     <!-- fragment 3 -->
     <string name="clear">واضح</string>
     <string name="shape_selection">اختيارات الشكل:</string>
+    <string name="msg_max_len_exceeded">يتجاوز طول الرسالة الحد الأقصى</string>
 
     <string name="out_of">بعيدا عن المكان </string>
     <string name="svg_loaded_ok">تحميل SVGs موافق</string>

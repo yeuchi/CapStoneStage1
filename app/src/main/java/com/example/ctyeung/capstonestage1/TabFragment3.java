@@ -47,6 +47,7 @@ public class TabFragment3 extends ShapeFragment
         implements ShapeGridAdapter.ListItemClickListener,
         ShapeGridAdapter.SVGLoadListener
 {
+    public final int MAX_SHAPE_COUNT = 20;
     public static String PNG_FILENAME = "shapeSVG.png";
 
     private ShapeGridAdapter mAdapter;
@@ -56,14 +57,12 @@ public class TabFragment3 extends ShapeFragment
 
     private View mRoot;
 
-    private boolean mLoaded = false;
     private int mNumSVGLoaded = 0;
     private int mNumSVGsuccess = 0;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mRoot = inflater.inflate(R.layout.tab_fragment_3, container, false);
-        mLoaded = false;
         mListener = this;
         mLoadListener = this;
         mContext = mRoot.getContext();
@@ -178,6 +177,16 @@ public class TabFragment3 extends ShapeFragment
     @Override
     public void onListItemClick(int clickItemIndex)
     {
+        if(mShapePreview.shapeMessage.size()>20)
+        {
+            String msg = mContext.getResources().getString(R.string.msg_max_len_exceeded);
+            Toast.makeText(getActivity(),
+                    msg,
+                    Toast.LENGTH_SHORT).show();
+
+            return;
+        }
+
         // retrieve selected shape svg
         ShapeSVG selected = mShapes.get(clickItemIndex);
 
@@ -202,23 +211,20 @@ public class TabFragment3 extends ShapeFragment
         if(success)
             mNumSVGsuccess ++;
 
-        if(false == mLoaded)
+        /*
+         * Must wait until all svgs are rendered in ShapeGridAdapter
+         */
+        if (15 <= mNumSVGLoaded)
         {
-            /*
-             * Must wait until all svgs are rendered in ShapeGridAdapter
-             */
-            if (10 <= mNumSVGLoaded)
-            {
-                if (mNumSVGsuccess == mNumSVGLoaded)
-                    renderUserMessage();
+            if (mNumSVGsuccess == mNumSVGLoaded)
+                renderUserMessage();
 
-                else {
-                    String outof = mContext.getResources().getString(R.string.out_of);
-                    String loadok = mContext.getResources().getString(R.string.svg_loaded_ok);
-                    Toast.makeText(getActivity(),
-                            mNumSVGsuccess + outof + mNumSVGLoaded + loadok,
-                            Toast.LENGTH_LONG).show();
-                }
+            else {
+                String outof = mContext.getResources().getString(R.string.out_of);
+                String loadok = mContext.getResources().getString(R.string.svg_loaded_ok);
+                Toast.makeText(getActivity(),
+                        mNumSVGsuccess + outof + mNumSVGLoaded + loadok,
+                        Toast.LENGTH_LONG).show();
             }
         }
     }
@@ -232,7 +238,12 @@ public class TabFragment3 extends ShapeFragment
         String str = SharedPrefUtility.getString(SharedPrefUtility.FRAG_SHAPE, mContext);
         if(null!=str && !str.isEmpty())
         {
+            // truncate if it exceeds 20
+            if(str.length()>20)
+                str = str.substring(0, MAX_SHAPE_COUNT);
+
             String[] shapeMessage = str.split(",");
+            mShapePreview.empty();
             for(String msg : shapeMessage)
             {
                 try {
