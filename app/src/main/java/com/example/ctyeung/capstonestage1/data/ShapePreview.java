@@ -21,17 +21,17 @@ import java.util.Locale;
  */
 public class ShapePreview
 {
-    public ViewGroup layout;
-    protected View view;
-    public boolean isDirty = false;
-    public List<String> shapeMessage;
+    protected View mView;
+    public ViewGroup mLayout;
+    public boolean mIsDirty = false;
+    public List<String> mShapeMessage;
 
     public ShapePreview(View view, int layoutId)
     {
-        shapeMessage = new ArrayList<String>();
-        this.view = view;
-        layout = view.findViewById(layoutId);
-        layout.setVisibility(View.VISIBLE);
+        mShapeMessage = new ArrayList<String>();
+        this.mView = view;
+        mLayout = mView.findViewById(layoutId);
+        mLayout.setVisibility(View.VISIBLE);
     }
 
     /*
@@ -39,38 +39,38 @@ public class ShapePreview
      */
     public View getView()
     {
-        return layout;
+        return mLayout;
     }
 
     public int height()
     {
-        return layout.getHeight();
+        return mLayout.getHeight();
     }
 
     public int width()
     {
-        return layout.getWidth();
+        return mLayout.getWidth();
     }
 
     public int maxShapeHeight()
     {
-        return layout.getHeight();
+        return mLayout.getHeight();
     }
 
     public int maxShapeWidth(boolean plusOne)
     {
         int count = childCount(plusOne);
-        int width = layout.getWidth();
+        int width = mLayout.getWidth();
 
         if(0==count)
             return width;
 
-        return layout.getWidth() / childCount(plusOne);
+        return mLayout.getWidth() / childCount(plusOne);
     }
 
     public int childCount(boolean plusOne)
     {
-       return layout.getChildCount() +
+       return mLayout.getChildCount() +
                ((true==plusOne)? 1:0);
     }
 
@@ -83,18 +83,18 @@ public class ShapePreview
 
     public int paddingX(boolean plusOne)
     {
-        return (layout.getWidth() - childCount(plusOne) * minLength(plusOne)) /2;
+        return (mLayout.getWidth() - childCount(plusOne) * minLength(plusOne)) /2;
     }
 
     public int paddingY(boolean plusOne)
     {
-        return (layout.getHeight() - minLength(plusOne)) / 2;
+        return (mLayout.getHeight() - minLength(plusOne)) / 2;
     }
 
     public void empty()
     {
-        this.layout.removeAllViews();
-        shapeMessage.clear();
+        this.mLayout.removeAllViews();
+        mShapeMessage.clear();
     }
 
     /*
@@ -113,7 +113,7 @@ public class ShapePreview
         for(int i=0; i<count; i++)
         {
             RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(len, len);
-            View view = this.layout.getChildAt(i);
+            View view = this.mLayout.getChildAt(i);
 
             if(ShapeHelper.isEnglish())
                 params.leftMargin = padX + (i * len);
@@ -121,7 +121,7 @@ public class ShapePreview
                 params.rightMargin = padX + (i * len);
 
             params.topMargin = padY;
-            view.setLayoutParams(params);
+            mView.setLayoutParams(params);
         }
     }
 
@@ -131,7 +131,7 @@ public class ShapePreview
      */
     public void insertSVG(ShapeSVG selected)
     {
-        isDirty = true; // view has been updated
+        mIsDirty = true; // view has been updated
 
         int len = this.minLength(true);
         int padX = this.paddingX(true);
@@ -146,7 +146,7 @@ public class ShapePreview
             rllp.rightMargin = padX + this.childCount(false)*len;
 
         // create new addition
-        Context context = view.getContext();
+        Context context = mView.getContext();
         SVGImageView svgImageView = new SVGImageView(context);
         SVG svg = selected.GetSVG();
 
@@ -154,19 +154,19 @@ public class ShapePreview
         if(null!=svg)
         {
             svgImageView.setSVG(svg);
-            this.layout.addView(svgImageView, rllp);
+            this.mLayout.addView(svgImageView, rllp);
 
             // add a click listener for removal
             svgImageView.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View view) {
-                    isDirty = true; // changes has been made
+                    mIsDirty = true; // changes has been made
 
                     // get view id and remove from shapeMessage
-                    int index = layout.indexOfChild(view);
-                    shapeMessage.remove(index);
+                    int index = mLayout.indexOfChild(view);
+                    mShapeMessage.remove(index);
 
                     // delete item from RelativeLayout parent container.
-                    ((ViewGroup) view.getParent()).removeView(view);
+                    ((ViewGroup) mView.getParent()).removeView(view);
                     updateLayout(false);
                 }
             });

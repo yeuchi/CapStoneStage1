@@ -10,9 +10,9 @@ import java.net.URL;
 
 public class NetworkLoader
 {
-    protected OnResponseListener listener;
-    public URL url;
-    protected ShapeSVG shapeSVG;
+    protected OnResponseListener mListener;
+    public URL mUrl;
+    protected ShapeSVG mShapeSVG;
 
     public interface OnResponseListener
     {
@@ -23,9 +23,9 @@ public class NetworkLoader
                          ShapeSVG shapeSVG,
                          URL url)
     {
-        this.shapeSVG = shapeSVG;
-        this.listener = listener;
-        this.url = url;
+        this.mShapeSVG = shapeSVG;
+        this.mListener = listener;
+        this.mUrl = url;
 
         GithubQueryTask task = new GithubQueryTask();
         task.execute(url);
@@ -64,7 +64,7 @@ public class NetworkLoader
         protected void onPostExecute(String str)
         {
             // callback
-            listener.onResponse(shapeSVG, str);
+            mListener.onResponse(mShapeSVG, str);
         }
     }
 }

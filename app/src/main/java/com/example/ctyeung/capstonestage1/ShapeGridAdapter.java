@@ -29,7 +29,7 @@ public class ShapeGridAdapter extends RecyclerView.Adapter<ShapeGridAdapter.Numb
     final private SVGLoadListener mLoadListener;
 
 
-    private int viewHolderCount;
+    private int mViewHolderCount;
     private int mNumberItems;
     private List<ShapeSVG> shapes;
 
@@ -50,7 +50,7 @@ public class ShapeGridAdapter extends RecyclerView.Adapter<ShapeGridAdapter.Numb
        // this.movies = movies;
         mOnClickListener = listener;
         mLoadListener = loadListener;
-        viewHolderCount = 0;
+        mViewHolderCount = 0;
         this.shapes = list;
     }
 
@@ -65,7 +65,7 @@ public class ShapeGridAdapter extends RecyclerView.Adapter<ShapeGridAdapter.Numb
         View view = inflater.inflate(layoutIdForListItem, viewGroup, shouldAttachToParentImmediately);
         NumberViewHolder viewHolder = new NumberViewHolder(view);
 
-        viewHolderCount++;
+        mViewHolderCount++;
         return viewHolder;
     }
 
@@ -120,7 +120,7 @@ public class ShapeGridAdapter extends RecyclerView.Adapter<ShapeGridAdapter.Numb
             viewHolderName.setText(shapeSVG.getName());
             URL url = NetworkUtils.buildSVGUrl(shapeSVG.getPath());
             NetworkLoader loader = new NetworkLoader(this, shapeSVG, url);
-            Log.d(TAG, "onCreateViewHolder: number of ViewHolders created: " + viewHolderCount);
+            Log.d(TAG, "onCreateViewHolder: number of ViewHolders created: " + mViewHolderCount);
         }
 
         public void onResponse(ShapeSVG shapeSVG,

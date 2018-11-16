@@ -11,15 +11,14 @@ import java.util.List;
 
 public class MsgData
 {
-    private Activity mActivity;
     private Context mContext;
-    private Uri uri;
-    public String[] columns = null;
+    private Uri mUri;
+    public String[] mColumns = null;
 
     public MsgData(Context context)
     {
         this.mContext = context;
-        this.uri = MsgContract.CONTENT_URI;
+        this.mUri = MsgContract.CONTENT_URI;
     }
 
     public boolean update(int id,
@@ -32,7 +31,7 @@ public class MsgData
             contentValues.put(columnName, value);
 
             String[] args = {String.valueOf(id)};
-            int success = mContext.getContentResolver().update(this.uri,
+            int success = mContext.getContentResolver().update(this.mUri,
                         contentValues,
                         MsgContract.Columns.COL_ID +"=?",
                         args);
@@ -52,8 +51,8 @@ public class MsgData
         {
             String[] args = {value};
             // query from db
-            Cursor cursor = mContext.getContentResolver().query(this.uri,
-                    columns,
+            Cursor cursor = mContext.getContentResolver().query(this.mUri,
+                    mColumns,
                     columnName + "=?",
                     args,
                     null);
@@ -73,8 +72,8 @@ public class MsgData
     {
         try
         {
-            Cursor cursor = mContext.getContentResolver().query(this.uri,
-                    columns,
+            Cursor cursor = mContext.getContentResolver().query(this.mUri,
+                    mColumns,
                     MsgContract.Columns.COL_TIME_STAMP + " != 'blank'",
                     null,
                     null);
@@ -95,8 +94,8 @@ public class MsgData
         try
         {
             String[] args = {String.valueOf(id)};
-            Cursor cursor = mContext.getContentResolver().query(this.uri,
-                    columns,
+            Cursor cursor = mContext.getContentResolver().query(this.mUri,
+                    mColumns,
                     MsgContract.Columns.COL_ID + "=?",
                     args,
                     null);
@@ -137,7 +136,7 @@ public class MsgData
         try
         {
             ContentValues contentValues = tuple.getContentValues();
-            mContext.getContentResolver().insert(this.uri, contentValues);
+            mContext.getContentResolver().insert(this.mUri, contentValues);
             return true;
         }
         catch (Exception ex)

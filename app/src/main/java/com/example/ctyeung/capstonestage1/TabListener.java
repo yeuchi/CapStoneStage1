@@ -7,11 +7,11 @@ import android.app.ActionBar;
 
 public class TabListener implements ActionBar.TabListener {
 
-    Fragment fragment;
+    Fragment mFragment;
 
     public TabListener(Fragment fragment) {
         // TODO Auto-generated constructor stub
-        this.fragment = fragment;
+        this.mFragment = fragment;
     }
 
     @Override

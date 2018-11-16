@@ -37,10 +37,10 @@ import com.example.ctyeung.capstonestage1.data.SharedPrefUtility;
 public class VoiceAccessFragment extends DialogFragment {
 
     private OnDialogListener mListener;
-    private TextView txtDictation;
+    private TextView mTxtDictation;
 
-    private Button btnOK;
-    private Button btnCancel;
+    private Button mBtnOK;
+    private Button mBtnCancel;
 
     private View mRoot;
     private Context mContext;
@@ -68,8 +68,8 @@ public class VoiceAccessFragment extends DialogFragment {
         mRoot = inflater.inflate(R.layout.fragment_voice_access, container, false);
         mContext = mRoot.getContext();
 
-        txtDictation = mRoot.findViewById(R.id.txt_dictation);
-        txtDictation.setText(mMessage);
+        mTxtDictation = mRoot.findViewById(R.id.txt_dictation);
+        mTxtDictation.setText(mMessage);
         initButtons();
         parseMessage();
 
@@ -78,16 +78,16 @@ public class VoiceAccessFragment extends DialogFragment {
 
     protected void initButtons()
     {
-        btnOK = mRoot.findViewById(R.id.btn_ok);
-        btnOK.setOnClickListener(new View.OnClickListener() {
+        mBtnOK = mRoot.findViewById(R.id.btn_ok);
+        mBtnOK.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mListener.onDialogClick(mCommand, mValue);
             }
         });
 
-        btnCancel = mRoot.findViewById(R.id.btn_cancel);
-        btnCancel.setOnClickListener(new View.OnClickListener() {
+        mBtnCancel = mRoot.findViewById(R.id.btn_cancel);
+        mBtnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view)
             {
@@ -103,7 +103,7 @@ public class VoiceAccessFragment extends DialogFragment {
         mListener = listener;
         mMessage = msg;
 
-        if(null!=txtDictation)
+        if(null!=mTxtDictation)
             parseMessage();
     }
 
@@ -124,7 +124,7 @@ public class VoiceAccessFragment extends DialogFragment {
         }
 
         if(!isCmdOK || !isValueOK)
-            btnOK.setEnabled(false);
+            mBtnOK.setEnabled(false);
     }
 
     protected boolean setCommand(String key)

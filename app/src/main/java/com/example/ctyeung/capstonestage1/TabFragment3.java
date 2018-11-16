@@ -129,7 +129,7 @@ public class TabFragment3 extends ShapeFragment
     {
         // array to string
         String shapeMessage = "";
-        for(String msg : mShapePreview.shapeMessage)
+        for(String msg : mShapePreview.mShapeMessage)
             shapeMessage += msg +",";
 
         // write to sharedPreference
@@ -151,7 +151,7 @@ public class TabFragment3 extends ShapeFragment
         else if(null!=mContext)
         {
             //do when hidden
-            if(null!=mShapePreview && mShapePreview.isDirty) // selected SVG layout
+            if(null!=mShapePreview && mShapePreview.mIsDirty) // selected SVG layout
             {
                 RelativeLayout view = mRoot.findViewById(R.id.shapes_view_group);
                 persist();
@@ -177,7 +177,7 @@ public class TabFragment3 extends ShapeFragment
     @Override
     public void onListItemClick(int clickItemIndex)
     {
-        if(mShapePreview.shapeMessage.size()>20)
+        if(mShapePreview.mShapeMessage.size()>20)
         {
             String msg = mContext.getResources().getString(R.string.msg_max_len_exceeded);
             Toast.makeText(getActivity(),
@@ -191,7 +191,7 @@ public class TabFragment3 extends ShapeFragment
         ShapeSVG selected = mShapes.get(clickItemIndex);
 
         mShapePreview.insertSVG(selected);
-        mShapePreview.shapeMessage.add(Integer.toString(clickItemIndex));
+        mShapePreview.mShapeMessage.add(Integer.toString(clickItemIndex));
 
         // resize existing children
         if(mShapePreview.childCount(false)>0)

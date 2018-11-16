@@ -35,22 +35,22 @@ public class ConfigActivity extends AppCompatActivity
                         CompoundButton.OnCheckedChangeListener,
                         VoiceAccessFragment.OnDialogListener
         {
-    private String clickId;
+    private String mClickId;
     private Context mContext;
-    private Activity activity;
-    private NumberPickerFragment.OnDialogOKListener numListener;
+    private Activity mActivity;
+    private NumberPickerFragment.OnDialogOKListener mNumListener;
     protected SpeechRecognitionHelper mSpeechHelper;
     private VoiceAccessFragment mVoiceDlg;
     private VoiceAccessFragment.OnDialogListener mDlgListener;
 
-    protected RadioGroup radioGroup;
-    protected Button btnWidth;
-    protected Button btnHeight;
-    protected Button btnBorder;
-    protected Button btnParallax;
-    protected Button btnColor1;
-    protected Button btnColor2;
-    protected Button btnColor3;
+    protected RadioGroup mRadioGroup;
+    protected Button mBtnWidth;
+    protected Button mBtnHeight;
+    protected Button mBtnBorder;
+    protected Button mBtnParallax;
+    protected Button mBtnColor1;
+    protected Button mBtnColor2;
+    protected Button mBtnColor3;
 
     @Override
     public void onCheckedChanged(CompoundButton buttonView,
@@ -67,9 +67,9 @@ public class ConfigActivity extends AppCompatActivity
         setContentView(R.layout.activity_config);
         ActionBar ab = getSupportActionBar();
         mContext = this.getApplicationContext();
-        numListener = this;
+        mNumListener = this;
         mDlgListener = this;
-        activity = this;
+        mActivity = this;
 
         // Enable the Up button
         ab.setDisplayHomeAsUpEnabled(true);
@@ -104,8 +104,8 @@ public class ConfigActivity extends AppCompatActivity
      */
     private void initializeButtons()
     {
-        radioGroup = findViewById(R.id.radio_group);
-        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+        mRadioGroup = findViewById(R.id.radio_group);
+        mRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 // save the change !
@@ -125,17 +125,17 @@ public class ConfigActivity extends AppCompatActivity
                 if(null==mSpeechHelper)
                     mSpeechHelper = new SpeechRecognitionHelper();
 
-                mSpeechHelper.run(activity);
+                mSpeechHelper.run(mActivity);
             }
         });
 
         // click handler for interlace width
-        clickId = SharedPrefUtility.INTERLACE_WIDTH;
-        int w = SharedPrefUtility.getDimension(clickId, mContext);
+        mClickId = SharedPrefUtility.INTERLACE_WIDTH;
+        int w = SharedPrefUtility.getDimension(mClickId, mContext);
         onNumberDialogOKClick(w);
 
-        btnWidth = findViewById(R.id.btn_interlace_width);
-        btnWidth.setOnClickListener(new View.OnClickListener() {
+        mBtnWidth = findViewById(R.id.btn_interlace_width);
+        mBtnWidth.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view)
             {
@@ -144,12 +144,12 @@ public class ConfigActivity extends AppCompatActivity
         });
 
         // click handler for image height
-        clickId = SharedPrefUtility.IMAGE_HEIGHT;
-        int h = SharedPrefUtility.getDimension(clickId, mContext);
+        mClickId = SharedPrefUtility.IMAGE_HEIGHT;
+        int h = SharedPrefUtility.getDimension(mClickId, mContext);
         onNumberDialogOKClick(h);
 
-        btnHeight = findViewById(R.id.btn_image_height);
-        btnHeight.setOnClickListener(new View.OnClickListener() {
+        mBtnHeight = findViewById(R.id.btn_image_height);
+        mBtnHeight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view)
             {
@@ -158,12 +158,12 @@ public class ConfigActivity extends AppCompatActivity
         });
 
         // click handler for border offset length
-        clickId = SharedPrefUtility.BORDER_OFFSET;
-        int offset = SharedPrefUtility.getDimension(clickId, mContext);
+        mClickId = SharedPrefUtility.BORDER_OFFSET;
+        int offset = SharedPrefUtility.getDimension(mClickId, mContext);
         onNumberDialogOKClick(offset);
 
-        btnBorder = findViewById(R.id.btn_border_offset);
-        btnBorder.setOnClickListener(new View.OnClickListener() {
+        mBtnBorder = findViewById(R.id.btn_border_offset);
+        mBtnBorder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view)
             {
@@ -172,12 +172,12 @@ public class ConfigActivity extends AppCompatActivity
         });
 
         // click handler for parallax distance
-        clickId = SharedPrefUtility.PARALLAX_DIS;
-        int dis = SharedPrefUtility.getDimension(clickId, mContext);
+        mClickId = SharedPrefUtility.PARALLAX_DIS;
+        int dis = SharedPrefUtility.getDimension(mClickId, mContext);
         onNumberDialogOKClick(dis);
 
-        btnParallax = findViewById(R.id.btn_parallax);
-        btnParallax.setOnClickListener(new View.OnClickListener() {
+        mBtnParallax = findViewById(R.id.btn_parallax);
+        mBtnParallax.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view)
             {
@@ -186,32 +186,32 @@ public class ConfigActivity extends AppCompatActivity
         });
 
         // click handler for color1 selection
-        btnColor1 = findViewById(R.id.btnColor1);
-        btnColor1.setOnClickListener(new View.OnClickListener() {
+        mBtnColor1 = findViewById(R.id.btnColor1);
+        mBtnColor1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view)
             {
-                ColorPopup.launch(btnColor1, mContext, SharedPrefUtility.COLOR1);
+                ColorPopup.launch(mBtnColor1, mContext, SharedPrefUtility.COLOR1);
             }
         });
 
         // click handler for color2 selection
-        btnColor2 = findViewById(R.id.btnColor2);
-        btnColor2.setOnClickListener(new View.OnClickListener() {
+        mBtnColor2 = findViewById(R.id.btnColor2);
+        mBtnColor2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view)
             {
-                ColorPopup.launch(btnColor1, mContext, SharedPrefUtility.COLOR2);
+                ColorPopup.launch(mBtnColor2, mContext, SharedPrefUtility.COLOR2);
             }
         });
 
         // click handler for color3 selection
-        btnColor3 = findViewById(R.id.btnColor3);
-        btnColor3.setOnClickListener(new View.OnClickListener() {
+        mBtnColor3 = findViewById(R.id.btnColor3);
+        mBtnColor3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view)
             {
-                ColorPopup.launch(btnColor3, mContext, SharedPrefUtility.COLOR3);
+                ColorPopup.launch(mBtnColor3, mContext, SharedPrefUtility.COLOR3);
             }
         });
     }
@@ -233,7 +233,7 @@ public class ConfigActivity extends AppCompatActivity
          * handle command
          */
         if(value > 0) {
-            clickId = id;
+            mClickId = id;
             onNumberDialogOKClick(value);
         }
     }
@@ -281,10 +281,10 @@ public class ConfigActivity extends AppCompatActivity
                                        int max)
     {
         String numPicker = getResources().getString(R.string.numberpicker);
-        clickId = id;
+        mClickId = id;
         int value = SharedPrefUtility.getDimension(id, mContext);
         NumberPickerFragment dlg = new NumberPickerFragment();
-        dlg.setParams(numListener, min, max, value);
+        dlg.setParams(mNumListener, min, max, value);
         dlg.show(getSupportFragmentManager(), numPicker);
     }
 
@@ -296,7 +296,7 @@ public class ConfigActivity extends AppCompatActivity
         String prefix=null;
         int id=0;
 
-        switch(clickId)
+        switch(mClickId)
         {
             case SharedPrefUtility.BORDER_OFFSET:
                 prefix = getResources().getString(R.string.border_offset_pixels);
@@ -324,7 +324,7 @@ public class ConfigActivity extends AppCompatActivity
 
         Button button = this.findViewById(id);
         button.setText(prefix + value);
-        SharedPrefUtility.setDimension(clickId, mContext, value);
+        SharedPrefUtility.setDimension(mClickId, mContext, value);
     }
 
     @Override

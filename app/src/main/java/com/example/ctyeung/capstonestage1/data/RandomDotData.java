@@ -20,14 +20,14 @@ public class RandomDotData
         INTERLACED
     }
 
-    private ArrayList<Bitmap> list;
+    private ArrayList<Bitmap> mList;
 
     /*
      * random dot data rendering
      */
     public RandomDotData()
     {
-        list = new ArrayList<Bitmap>();
+        mList = new ArrayList<Bitmap>();
     }
 
     /*
@@ -35,7 +35,7 @@ public class RandomDotData
      */
     public void endQbmp(Bitmap dotBmp)
     {
-        list.add(dotBmp);
+        mList.add(dotBmp);
     }
 
     /*
@@ -55,10 +55,10 @@ public class RandomDotData
      */
     public Bitmap seek(int index)
     {
-        if (index >= list.size())
+        if (index >= mList.size())
             return null;
 
-        return list.get(index);
+        return mList.get(index);
     }
 
     /*
@@ -68,7 +68,7 @@ public class RandomDotData
      */
     public int count()
     {
-        return list.size();
+        return mList.size();
     }
 
     /*

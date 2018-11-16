@@ -20,7 +20,7 @@ public class BaseFragment extends Fragment
     protected Context mContext = null;
     protected View mRoot;
 
-    protected InputMethodManager mgr;
+    protected InputMethodManager mManager;
     protected EditText mEditText;
 
     /*
@@ -49,11 +49,11 @@ public class BaseFragment extends Fragment
         if(null==mContext)
             return;
 
-        if(null==mgr)
-            mgr = (InputMethodManager) mContext.getSystemService(Context.INPUT_METHOD_SERVICE);
+        if(null==mManager)
+            mManager = (InputMethodManager) mContext.getSystemService(Context.INPUT_METHOD_SERVICE);
 
-        mgr.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
-        mgr.showSoftInput(mEditText, InputMethodManager.SHOW_IMPLICIT);
+        mManager.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
+        mManager.showSoftInput(mEditText, InputMethodManager.SHOW_IMPLICIT);
     }
 
     /*
@@ -61,9 +61,9 @@ public class BaseFragment extends Fragment
      */
     protected void hideKeyboard()
     {
-        if(null!=mgr)
+        if(null!=mManager)
         {
-            mgr.hideSoftInputFromWindow(mEditText.getWindowToken(), 0);
+            mManager.hideSoftInputFromWindow(mEditText.getWindowToken(), 0);
         }
     }
 }

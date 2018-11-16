@@ -53,7 +53,7 @@ public class TabFragment4 extends ShapeFragment
 {
     private Context mContext;
     private SharedPrefUtility.DotModeEnum mDotModeEnum;
-    private RandomDotRenderer dotRenderer;
+    private RandomDotRenderer mDotRenderer;
     private View mRoot;
     private int mNumShapes;
     private int mSVGAvailable;
@@ -227,7 +227,7 @@ public class TabFragment4 extends ShapeFragment
                 int i = Integer.parseInt(msg);
                 ShapeSVG shapeSVG = mShapes.get(i);
                 mShapePreview.insertSVG(shapeSVG);
-                mShapePreview.shapeMessage.add(Integer.toString(i));
+                mShapePreview.mShapeMessage.add(Integer.toString(i));
 
                 // resize existing children
                 if(mShapePreview.childCount(false)>0)
@@ -306,16 +306,16 @@ public class TabFragment4 extends ShapeFragment
 
             int longLength = (bitmap.getHeight() > bitmap.getWidth())?bitmap.getHeight() : bitmap.getWidth();
 
-            if (null == dotRenderer)
-                dotRenderer = new RandomDotRenderer(mContext, longLength);
+            if (null == mDotRenderer)
+                mDotRenderer = new RandomDotRenderer(mContext, longLength);
 
             switch (mDotModeEnum) {
                 case INTERLACED:
-                    return dotRenderer.createInterlaced(bitmap);
+                    return mDotRenderer.createInterlaced(bitmap);
 
                 default:
                 case STEREO_PAIR:
-                    return dotRenderer.createStereoPair(bitmap);
+                    return mDotRenderer.createStereoPair(bitmap);
             }
         }
         return null;

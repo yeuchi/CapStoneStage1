@@ -17,12 +17,11 @@ import com.example.ctyeung.capstonestage1.R;
  */
 public class NumberPickerFragment extends DialogFragment {
     private NumberPicker.OnValueChangeListener valueChangeListener;
-
-    private OnDialogOKListener listener;
+    private OnDialogOKListener mListener;
     private NumberPicker numberPicker;
-    private int min = 20;
-    private int max = 60;
-    private int value = 40;
+    private int mMin = 20;
+    private int mMax = 60;
+    private int mValue = 40;
 
     /*
      * parent call back listener
@@ -35,9 +34,9 @@ public class NumberPickerFragment extends DialogFragment {
     private void setNumberValues()
     {
         if(null!=numberPicker) {
-            numberPicker.setMinValue(min);
-            numberPicker.setMaxValue(max);
-            numberPicker.setValue(value);
+            numberPicker.setMinValue(mMin);
+            numberPicker.setMaxValue(mMax);
+            numberPicker.setValue(mValue);
         }
     }
 
@@ -64,7 +63,7 @@ public class NumberPickerFragment extends DialogFragment {
             public void onClick(DialogInterface dialog, int which)
             {
                 int value = numberPicker.getValue();
-                listener.onNumberDialogOKClick(value);
+                mListener.onNumberDialogOKClick(value);
 
                // valueChangeListener.onValueChange(numberPicker,
                 //        numberPicker.getValue(), numberPicker.getValue());
@@ -89,18 +88,18 @@ public class NumberPickerFragment extends DialogFragment {
                           int max,
                           int value)
     {
-        this.listener = listener;
+        this.mListener = listener;
 
-        this.min = min;
-        this.max = max;
-        this.value = value;
+        this.mMin = min;
+        this.mMax = max;
+        this.mValue = value;
 
         setNumberValues();
     }
 
     public NumberPicker.OnValueChangeListener getValueChangeListener()
     {
-        listener.onNumberDialogOKClick(numberPicker.getValue());
+        mListener.onNumberDialogOKClick(numberPicker.getValue());
         return valueChangeListener;
     }
 

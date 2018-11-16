@@ -30,7 +30,7 @@ public class ShapeFragment extends Fragment
     protected Context mContext;
     protected ProgressBar mLoadingIndicator;
 
-    protected ProgressDialog pDialog;
+    protected ProgressDialog mDialog;
     protected String loading = "...";
 
     protected void showSpinner(String msg)
@@ -38,17 +38,17 @@ public class ShapeFragment extends Fragment
         if(null==mContext)
             return;
 
-        if(null==pDialog)
-            pDialog = new ProgressDialog(mContext);
+        if(null==mDialog)
+            mDialog = new ProgressDialog(mContext);
 
-        pDialog.setMessage(msg);
-        pDialog.show();
+        mDialog.setMessage(msg);
+        mDialog.show();
     }
 
     protected void hideSpinner()
     {
-        if(null!=pDialog)
-            pDialog.hide();
+        if(null!=mDialog)
+            mDialog.hide();
     }
     /*
      * SVGs in grid-view is available on network.

@@ -17,16 +17,16 @@ import java.util.List;
 
 public class PreviewContainer
 {
-    public ViewGroup layout;
-    protected View view;
-    public boolean isDirty = false;
+    protected View mView;
+    public ViewGroup mLayout;
+    public boolean mIsDirty = false;
 
     public PreviewContainer(View view,      // fragment view
                             int layoutId)
     {
-        this.view = view;
-        layout = view.findViewById(layoutId);
-        layout.setVisibility(View.VISIBLE);
+        this.mView = view;
+        mLayout = view.findViewById(layoutId);
+        mLayout.setVisibility(View.VISIBLE);
     }
 
     /*
@@ -34,17 +34,17 @@ public class PreviewContainer
      */
     public View getView()
     {
-        return layout;
+        return mLayout;
     }
 
     public int height()
     {
-        return view.getHeight();
+        return mView.getHeight();
     }
 
     public int width()
     {
-        return view.getWidth();
+        return mView.getWidth();
     }
 
     protected int padX = 1;
@@ -68,7 +68,7 @@ public class PreviewContainer
 
     public void insertStereoImage(Bitmap bmp)
     {
-        isDirty = true; // view has been updated
+        mIsDirty = true; // view has been updated
 
         int padY = 1;
 
@@ -89,13 +89,13 @@ public class PreviewContainer
         }
 
         // create new addition
-        Context context = view.getContext();
+        Context context = mView.getContext();
         ImageView imageView = new ImageView(context);
 
         if(null!=imageView)
         {
             imageView.setImageBitmap(bmp);
-            this.layout.addView(imageView, params);
+            this.mLayout.addView(imageView, params);
         }
     }
 
@@ -105,19 +105,19 @@ public class PreviewContainer
          * empty SVG rendering -- if available
          */
         int shapesViewGroupId = R.id.shapes_view_group;
-        RelativeLayout childLayout = view.findViewById(shapesViewGroupId);
+        RelativeLayout childLayout = mView.findViewById(shapesViewGroupId);
         if(null!=childLayout)
             childLayout.removeAllViews();
 
         /*
          * empty random dot images
          */
-        int count = layout.getChildCount();
+        int count = mLayout.getChildCount();
         for(int i=count-1; i>=0; i--)
         {
-            View view = layout.getChildAt(i);
+            View view = mLayout.getChildAt(i);
             if(view.getId() != R.id.shapes_view_group)
-                layout.removeViewAt(i);
+                mLayout.removeViewAt(i);
         }
     }
 }

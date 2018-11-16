@@ -33,9 +33,9 @@ public class ViewerActivity extends AppCompatActivity {
     private PreviewContainer mPreviewContainer;
     private Context mContext;
     private View mRoot;
-    private TextView txtView;
-    private boolean isFirstTime = true;
-    protected ViewTreeObserver.OnGlobalLayoutListener listener = null;
+    private TextView mTxtView;
+    private boolean mIsFirstTime = true;
+    protected ViewTreeObserver.OnGlobalLayoutListener mListener = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,25 +44,25 @@ public class ViewerActivity extends AppCompatActivity {
 
         mContext = this.getBaseContext();
         mRoot = findViewById(R.id.root);
-        txtView = mRoot.findViewById(R.id.txtView);
+        mTxtView = mRoot.findViewById(R.id.txtView);
         mPreviewContainer = new PreviewContainer(mRoot, R.id.image_container);
 
         final ViewTreeObserver viewTreeObserver = mRoot.getViewTreeObserver();
         if (viewTreeObserver.isAlive()) {
 
-            listener = new ViewTreeObserver.OnGlobalLayoutListener() {
+            mListener = new ViewTreeObserver.OnGlobalLayoutListener() {
 
                 /*
                  * This is called ONLY once !!!
                  */
                 @Override
                 public void onGlobalLayout() {
-                    if(isFirstTime)
+                    if(mIsFirstTime)
                     loadRandomDots();
-                    isFirstTime = false;
+                    mIsFirstTime = false;
                 }
             };
-            viewTreeObserver.addOnGlobalLayoutListener(listener);
+            viewTreeObserver.addOnGlobalLayoutListener(mListener);
         }
     }
 
@@ -120,7 +120,7 @@ public class ViewerActivity extends AppCompatActivity {
             return;
         }
 
-        txtView.setText(string);
+        mTxtView.setText(string);
         loadImagePair(left, right);
     }
 

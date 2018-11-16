@@ -15,7 +15,7 @@ import com.example.ctyeung.capstonestage1.data.SharedPrefUtility;
  */
 public class RandomDotRenderer extends BaseRenderer
 {
-    private Bitmap bmpBackground;               // common background dithered image
+    private Bitmap mBmpBackground;               // common background dithered image
     private int mLongLength;
     private BitmapRenderer mBmpRenderer;
 
@@ -39,7 +39,7 @@ public class RandomDotRenderer extends BaseRenderer
         mLongLength +=  RandomDotData.getBorderOffset(mContext)*2 +
                         RandomDotData.getParallaxDistance(mContext);
 
-        bmpBackground = mBmpRenderer.randomDot(mLongLength);
+        mBmpBackground = mBmpRenderer.randomDot(mLongLength);
     }
 
     /*
@@ -158,7 +158,7 @@ public class RandomDotRenderer extends BaseRenderer
          * assume images: text + shape together make a square image
          * NOTE: there maybe 1 or the other; which text or shape would be a square
          */
-        Bitmap bmpDes = bmpBackground.copy(Bitmap.Config.ARGB_8888,true);
+        Bitmap bmpDes = mBmpBackground.copy(Bitmap.Config.ARGB_8888,true);
 
         /*
          * assume text on top of shape - always ?
