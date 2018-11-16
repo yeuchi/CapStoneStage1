@@ -227,7 +227,7 @@ public class TabFragment4 extends ShapeFragment
                 int i = Integer.parseInt(msg);
                 ShapeSVG shapeSVG = mShapes.get(i);
                 mShapePreview.insertSVG(shapeSVG);
-                mShapePreview.mShapeMessage.add(Integer.toString(i));
+                mShapePreview.shapeMessage.add(Integer.toString(i));
 
                 // resize existing children
                 if(mShapePreview.childCount(false)>0)
