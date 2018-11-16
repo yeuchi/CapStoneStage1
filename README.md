@@ -90,6 +90,7 @@ Failure(s) may occur when dictation characters cannot be matched or numeric valu
 ### Widget - image listing
 
 From Widget, a list of send images is presented, below-left.  Each tuple contains id, subject and time stamp.  When user touch select on the list, viewer is launched with the specified selection, below-right.
+
 <img width="200" src="https://user-images.githubusercontent.com/1282659/48574354-95e00f00-e8d4-11e8-8a43-67bf9c70e715.jpg"><img width="400" src="https://user-images.githubusercontent.com/1282659/48595626-25a8ac00-e91b-11e8-8b27-dcfb8cabc475.jpg">
 
 
