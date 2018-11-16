@@ -86,32 +86,28 @@ public class ViewerActivity extends AppCompatActivity {
          * Load widget selection
          */
         int id = this.getIntent().getIntExtra("SELECT_ID", -1);
-        if(id!=-1)
-        {
+        if (id != -1) {
             MsgData msgData = new MsgData(mContext);
             List<MsgTuple> tuples = msgData.query(id);
 
-            if(null!=tuples || tuples.size()>0)
-            {
+            if (null != tuples || tuples.size() > 0) {
                 MsgTuple tuple = tuples.get(0);
-                left = tuple.path + "/"+ BitmapUtil.getShapeName(SharedPrefUtility.FILE_LEFT);
-                right = tuple.path +"/"+ BitmapUtil.getShapeName(SharedPrefUtility.FILE_RIGHT);
-                string = "id:"+id+" subject:"+tuple.subject+" time:"+tuple.timeStamp;
+                left = tuple.path + "/" + BitmapUtil.getShapeName(SharedPrefUtility.FILE_LEFT);
+                right = tuple.path + "/" + BitmapUtil.getShapeName(SharedPrefUtility.FILE_RIGHT);
+                string = "id:" + id + " subject:" + tuple.subject + " time:" + tuple.timeStamp;
             }
         }
 
         /*
          * default file path
          */
-        if(null==left || null==right)
-        {
+        if (null == left || null == right) {
             left = SharedPrefUtility.getString(SharedPrefUtility.FILE_LEFT, mContext);
             right = SharedPrefUtility.getString(SharedPrefUtility.FILE_RIGHT, mContext);
             string = mContext.getResources().getString(R.string.latest);
         }
 
-        if(null==left || null==right)
-        {
+        if (null == left || null == right) {
             String msg = mContext.getResources().getString(R.string.no_image_available);
             Toast.makeText(this,
                     msg,

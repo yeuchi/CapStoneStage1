@@ -47,13 +47,12 @@ public class MainActivity extends AppCompatActivity{
 
         if (extras != null) {
 
-            String str = extras.getString("id");
-            Toast.makeText(mContext, "id:"+str, Toast.LENGTH_SHORT).show();
+            String str = extras.getString(WidgetViewsFactory.KEY_EXTRA);
+            Toast.makeText(mContext, "id:" + str, Toast.LENGTH_SHORT).show();
 
             // launch viewer
             String[] list = str.split(" : ");
-            if(null!=list && list.length==3)
-            {
+            if (null != list && list.length == 3) {
                 int id = Integer.parseInt(list[0]);
                 launchViewer(id);
             }
