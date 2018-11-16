@@ -9,12 +9,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewTreeObserver;
+import android.widget.Toast;
 
 import com.example.ctyeung.capstonestage1.data.PreviewContainer;
 import com.example.ctyeung.capstonestage1.data.SharedPrefUtility;
+import com.example.ctyeung.capstonestage1.database.MsgData;
+import com.example.ctyeung.capstonestage1.database.MsgTuple;
 import com.example.ctyeung.capstonestage1.utilities.BitmapUtil;
 
 import java.io.File;
+import java.util.List;
 
 /*
  * only landscape mode is supported for viewing of either interlaced or stereo-pair
@@ -51,7 +55,7 @@ public class ViewerActivity extends AppCompatActivity {
                 @Override
                 public void onGlobalLayout() {
                     if(isFirstTime)
-                    loadLastRandomDots();
+                    loadRandomDots();
                     isFirstTime = false;
                 }
             };
@@ -68,26 +72,69 @@ public class ViewerActivity extends AppCompatActivity {
      * By default, load the last random-dot-images from file
      * - assume stereo pair for now !!!!
      */
-    protected void loadLastRandomDots()
+    protected void loadRandomDots()
     {
+        String left = null;
+        String right = null;
+
         reset();
 
-        Bitmap bmpLeft = loadFromFile(SharedPrefUtility.FILE_LEFT);
-        Bitmap bmpRight = loadFromFile(SharedPrefUtility.FILE_RIGHT);
+        /*
+         * Load widget selection
+         */
+        int id = this.getIntent().getIntExtra("SELECT_ID", -1);
+        if(id!=-1)
+        {
+            MsgData msgData = new MsgData(mContext);
+            List<MsgTuple> tuples = msgData.query(id);
 
-        if(null!=bmpLeft && null!=bmpRight) {
-            mPreviewContainer.insertStereoImage(bmpLeft);
-            mPreviewContainer.insertStereoImage(bmpRight);
+            if(null!=tuples || tuples.size()>0)
+            {
+                MsgTuple tuple = tuples.get(0);
+                left = tuple.path + "/"+ BitmapUtil.getShapeName(SharedPrefUtility.FILE_LEFT);
+                right = tuple.path +"/"+ BitmapUtil.getShapeName(SharedPrefUtility.FILE_RIGHT);
+            }
         }
+
+        /*
+         * default file path
+         */
+        if(null==left || null==right)
+        {
+            left = SharedPrefUtility.getString(SharedPrefUtility.FILE_LEFT, mContext);
+            right = SharedPrefUtility.getString(SharedPrefUtility.FILE_RIGHT, mContext);
+        }
+
+        if(null==left || null==right)
+        {
+            String msg = mContext.getResources().getString(R.string.no_image_available);
+            Toast.makeText(this,
+                    msg,
+                    Toast.LENGTH_SHORT).show();
+
+            return;
+        }
+
+        loadImagePair(left, right);
     }
 
-    /*
-     * For loading left, right or interlacted image
-     */
-    protected Bitmap loadFromFile(String key)
+    private void loadImagePair(String left,
+                               String right)
     {
-        String path = SharedPrefUtility.getString(key, mContext);
-        Bitmap bmp = BitmapUtil.load(path);
-        return bmp;
+        try {
+            Bitmap bmpLeft = BitmapUtil.load(left);
+            Bitmap bmpRight = BitmapUtil.load(right);
+
+            if (null != bmpLeft && null != bmpRight) {
+                mPreviewContainer.insertStereoImage(bmpLeft);
+                mPreviewContainer.insertStereoImage(bmpRight);
+            }
+        }
+        catch (Exception ex)
+        {
+            Toast.makeText(this,
+                    "load failed:" + ex,
+                    Toast.LENGTH_SHORT).show();
+        }
     }
 }

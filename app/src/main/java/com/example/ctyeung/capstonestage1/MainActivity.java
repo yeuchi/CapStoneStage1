@@ -17,6 +17,7 @@ import com.example.ctyeung.capstonestage1.data.SharedPrefUtility;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 /*
  * https://stackoverflow.com/questions/8854359/exception-open-failed-eacces-permission-denied-on-android
@@ -33,14 +34,46 @@ public class MainActivity extends AppCompatActivity{
         mContext = this;
         initButtons();
         initLocals();
+        getWidgetExtra();
+    }
 
+    /*
+     * Widget selection -- if any
+     */
+    private void getWidgetExtra()
+    {
+        Intent intent = getIntent();
+        Bundle extras = intent.getExtras();
+
+        if (extras != null) {
+
+            String str = extras.getString("extra");
+            Toast.makeText(mContext, "extra:"+str, Toast.LENGTH_SHORT).show();
+
+            // launch viewer
+            String[] list = str.split(" : ");
+            if(null!=list && list.length==3)
+            {
+                int id = Integer.parseInt(list[0]);
+                launchViewer(id);
+            }
+        }
+    }
+
+    /*
+     * launch viewer
+     */
+    private void launchViewer(int id)
+    {
+        Intent intent = new Intent(mContext, ViewerActivity.class);
+        intent.putExtra("SELECT_ID", id);
+        startActivity(intent);
     }
 
     private void initLocals()
     {
         SharedPrefUtility.setIsDirty(SharedPrefUtility.SHAPE_IS_DIRTY, mContext, false);
         SharedPrefUtility.setIsDirty(SharedPrefUtility.TEXT_IS_DIRTY, mContext, false);
-
     }
 
     private void initButtons()
@@ -51,8 +84,7 @@ public class MainActivity extends AppCompatActivity{
         btnViewer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(mContext, ViewerActivity.class);
-                startActivity(intent);
+                launchViewer(-1);
             }
         });
 

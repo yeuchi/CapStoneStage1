@@ -40,6 +40,9 @@
     <string name="unknown">غير معروف</string>
     <string name="value">القيمة:</string>
 
+    <!-- viewer -->
+    <string name="no_image_available">لا توجد صور متاحة</string>
+
     <!-- menu -->
     <string name="configuration">ترتيب</string>
 
@@ -112,4 +115,8 @@
     <string name="star">نجمة</string>
     <string name="truck">شاحنة نقل</string>
     <string name="umbrella">مظلة</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">مرحبا جزء فارغ</string>
+
 </resources>

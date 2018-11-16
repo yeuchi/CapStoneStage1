@@ -40,6 +40,8 @@
     <string name="unknown">Unknown</string>
     <string name="value">Value:</string>
 
+    <!-- viewer -->
+    <string name="no_image_available">No image available</string>
 
     <!-- menu -->
     <string name="configuration">Configuration</string>

@@ -20,24 +20,25 @@ public class HomeScreenWidget extends AppWidgetProvider
     public void onUpdate(Context ctxt,
                          AppWidgetManager appWidgetManager,
                          int[] appWidgetIds) {
-        for (int i=0; i<appWidgetIds.length; i++) {
+        for (int i : appWidgetIds) {
             Intent svcIntent=new Intent(ctxt, HomeScreenService.class);
 
-            svcIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, appWidgetIds[i]);
+            svcIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, i);
             svcIntent.setData(Uri.parse(svcIntent.toUri(Intent.URI_INTENT_SCHEME)));
 
             RemoteViews widget=new RemoteViews(ctxt.getPackageName(),
                     R.layout.home_screen_widget);
 
-            widget.setRemoteAdapter(appWidgetIds[i], R.id.widgetList, svcIntent);
+            widget.setRemoteAdapter(i, R.id.widgetList, svcIntent);
 
             Intent clickIntent=new Intent(ctxt, MainActivity.class);
+            clickIntent.putExtra("SELECT_ID", i);
             PendingIntent intent=PendingIntent.getActivity(ctxt, 0,
                                                             clickIntent,
                                                             PendingIntent.FLAG_UPDATE_CURRENT);
 
             widget.setPendingIntentTemplate(R.id.widgetList, intent);
-            appWidgetManager.updateAppWidget(appWidgetIds[i], widget);
+            appWidgetManager.updateAppWidget(i, widget);
         }
 
         super.onUpdate(ctxt, appWidgetManager, appWidgetIds);
