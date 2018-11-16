@@ -55,7 +55,6 @@ public class TabFragment1 extends BaseFragment
         createDBTuple();
         initTextview();
         initButtonEvents();
-        showKeyboard();
         return mRoot;
     }
 
@@ -65,7 +64,8 @@ public class TabFragment1 extends BaseFragment
     protected void initTextview()
     {
         mEditText = mRoot.findViewById(R.id.txt_subject);
-        mEditText.setText("Subject");
+        mSubject = mContext.getResources().getString(R.string.subject);
+        mEditText.setText(mSubject);
 
         // add change handler
         mEditText.addTextChangedListener(new TextWatcher() {
@@ -93,7 +93,7 @@ public class TabFragment1 extends BaseFragment
 
         // retrieve tuple not send (no timeStamp)
         String columnName = MsgContract.Columns.COL_TIME_STAMP;
-        List<MsgTuple> tuples = mMsgData.query(columnName, "blank");
+        List<MsgTuple> tuples = mMsgData.query(columnName, MsgTuple.BLANK);
 
         SharedPrefUtility.DotModeEnum dotMode = SharedPrefUtility.getDotMode(mContext);
 
@@ -103,7 +103,7 @@ public class TabFragment1 extends BaseFragment
         if(null==tuples || tuples.size()==0) {
             tuple = new MsgTuple();
             tuple.type = dotMode.toString();
-            tuple.subject = "subject";
+            tuple.subject = mSubject;
             mMsgData.insert(tuple);
             tuples = mMsgData.query(columnName, "blank");
         }

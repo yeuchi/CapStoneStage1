@@ -6,13 +6,14 @@ import java.util.List;
 
 public class MsgTuple implements ITuple
 {
+    public static String BLANK = "blank";
     public int id;
-    public String timeStamp="blank";
-    public String subject="blank";
-    public String type="blank";
-    public String header="blank";
-    public String footer="blank";
-    public String path="blank";
+    public String timeStamp=BLANK;
+    public String subject=BLANK;
+    public String type=BLANK;
+    public String header=BLANK;
+    public String footer=BLANK;
+    public String path=BLANK;
 
     public MsgTuple()
     {

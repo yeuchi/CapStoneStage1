@@ -112,13 +112,13 @@ public class TabFragment2 extends BaseFragment
         mTuple = tuples.get(0);
 
         if(null!=mTuple) {
-            String header = (!mTuple.header.contains("blank"))?
+            String header = (!mTuple.header.contains(MsgTuple.BLANK))?
                             mTuple.header:
                             mContext.getResources().getString(R.string.header_default_msg);
 
                 mEditText.setText(header);
 
-            String footer = (!mTuple.header.contains("blank"))?
+            String footer = (!mTuple.header.contains(MsgTuple.BLANK))?
                     mTuple.footer:
                     mContext.getResources().getString(R.string.footer_default_msg);
 
