@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.ViewTreeObserver;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.ctyeung.capstonestage1.data.PreviewContainer;
@@ -32,6 +33,7 @@ public class ViewerActivity extends AppCompatActivity {
     private PreviewContainer mPreviewContainer;
     private Context mContext;
     private View mRoot;
+    private TextView txtView;
     private boolean isFirstTime = true;
     protected ViewTreeObserver.OnGlobalLayoutListener listener = null;
 
@@ -42,6 +44,7 @@ public class ViewerActivity extends AppCompatActivity {
 
         mContext = this.getBaseContext();
         mRoot = findViewById(R.id.root);
+        txtView = mRoot.findViewById(R.id.txtView);
         mPreviewContainer = new PreviewContainer(mRoot, R.id.image_container);
 
         final ViewTreeObserver viewTreeObserver = mRoot.getViewTreeObserver();
@@ -76,7 +79,7 @@ public class ViewerActivity extends AppCompatActivity {
     {
         String left = null;
         String right = null;
-
+        String string = null;
         reset();
 
         /*
@@ -93,6 +96,7 @@ public class ViewerActivity extends AppCompatActivity {
                 MsgTuple tuple = tuples.get(0);
                 left = tuple.path + "/"+ BitmapUtil.getShapeName(SharedPrefUtility.FILE_LEFT);
                 right = tuple.path +"/"+ BitmapUtil.getShapeName(SharedPrefUtility.FILE_RIGHT);
+                string = "id:"+id+" subject:"+tuple.subject+" time:"+tuple.timeStamp;
             }
         }
 
@@ -103,6 +107,7 @@ public class ViewerActivity extends AppCompatActivity {
         {
             left = SharedPrefUtility.getString(SharedPrefUtility.FILE_LEFT, mContext);
             right = SharedPrefUtility.getString(SharedPrefUtility.FILE_RIGHT, mContext);
+            string = mContext.getResources().getString(R.string.latest);
         }
 
         if(null==left || null==right)
@@ -115,6 +120,7 @@ public class ViewerActivity extends AppCompatActivity {
             return;
         }
 
+        txtView.setText(string);
         loadImagePair(left, right);
     }
 

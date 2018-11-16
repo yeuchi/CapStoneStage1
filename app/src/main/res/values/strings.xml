@@ -42,6 +42,7 @@
 
     <!-- viewer -->
     <string name="no_image_available">No image available</string>
+    <string name="latest">latest</string>
 
     <!-- menu -->
     <string name="configuration">Configuration</string>

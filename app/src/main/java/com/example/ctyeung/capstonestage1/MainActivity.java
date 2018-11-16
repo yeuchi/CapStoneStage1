@@ -47,8 +47,8 @@ public class MainActivity extends AppCompatActivity{
 
         if (extras != null) {
 
-            String str = extras.getString("extra");
-            Toast.makeText(mContext, "extra:"+str, Toast.LENGTH_SHORT).show();
+            String str = extras.getString("id");
+            Toast.makeText(mContext, "id:"+str, Toast.LENGTH_SHORT).show();
 
             // launch viewer
             String[] list = str.split(" : ");

@@ -42,6 +42,7 @@
 
     <!-- viewer -->
     <string name="no_image_available">لا توجد صور متاحة</string>
+    <string name="latest">آخر</string>
 
     <!-- menu -->
     <string name="configuration">ترتيب</string>
