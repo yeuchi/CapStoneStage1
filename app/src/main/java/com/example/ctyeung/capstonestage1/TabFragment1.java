@@ -55,6 +55,7 @@ public class TabFragment1 extends BaseFragment
         createDBTuple();
         initTextview();
         initButtonEvents();
+        enableBtnSend();
         return mRoot;
     }
 
@@ -152,18 +153,19 @@ public class TabFragment1 extends BaseFragment
             public void onClick(View v)
             {
                 /*
-                 * send content [email, facebook, etc]
+                 * send content
+                 *  - hide keyboard so user can select destinations [email, facebook, etc]
                  */
                 hideKeyboard();
 
                 share();
-                sendEnable();
+                enableBtnSend();
 
                 if(updateDBTuple()) {
 
                     // create new tuple for additional user composition
                     createDBTuple();
-                    mEditText.setText("Subject");
+                    mEditText.setText(mSubject);
                 }
             }
         });
@@ -180,7 +182,7 @@ public class TabFragment1 extends BaseFragment
         });
     }
 
-    private void sendEnable()
+    private void enableBtnSend()
     {
         if(null==mContext || null==mBtnSend)
             return;
@@ -188,7 +190,17 @@ public class TabFragment1 extends BaseFragment
         Boolean isShapeDirty = SharedPrefUtility.getIsDirty(SharedPrefUtility.SHAPE_IS_DIRTY, mContext);
         Boolean isTextDirty = SharedPrefUtility.getIsDirty(SharedPrefUtility.TEXT_IS_DIRTY, mContext);
         Boolean isEnabled = (isShapeDirty || isTextDirty)? true:false;
-        mBtnSend.setEnabled(isEnabled);
+
+        if(isEnabled)
+        {
+            if(!mBtnSend.isEnabled())
+                mBtnSend.setEnabled(true);
+        }
+        else
+        {
+            if(mBtnSend.isEnabled())
+                mBtnSend.setEnabled(false);
+        }
     }
 
     @Override
@@ -202,7 +214,7 @@ public class TabFragment1 extends BaseFragment
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser)
     {
-        sendEnable();
+        enableBtnSend();
         if (isVisibleToUser)
         {
             showKeyboard();

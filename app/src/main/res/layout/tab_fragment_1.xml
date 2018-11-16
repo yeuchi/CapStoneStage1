@@ -35,7 +35,6 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="121dp"
-        android:enabled="false"
         android:text="@string/btn_send" />
 
     <Button
