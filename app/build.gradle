@@ -33,8 +33,15 @@ dependencies {
     implementation 'com.github.duanhong169:colorpicker:1.1.2'
     implementation files('libs/activation.jar')
 
+
+    // firebase authentication
+    implementation 'com.firebaseui:firebase-ui-auth:4.1.0'
+    implementation 'com.google.firebase:firebase-core:16.0.1'
+
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test:rules:1.0.1';
     androidTestImplementation 'com.android.support.test.espresso:espresso-contrib:3.0.1';
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
 }
+
+apply plugin: 'com.google.gms.google-services'

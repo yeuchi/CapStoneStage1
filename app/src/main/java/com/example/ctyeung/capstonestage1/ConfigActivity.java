@@ -108,11 +108,20 @@ public class ConfigActivity extends AppCompatActivity
         mRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                // save the change !
+                /*
+                 * for the time being...
+                 * ONLY stereo pair rendering is available
+                 */
+
+                /*
                 SharedPrefUtility.DotModeEnum mode = (0==i)?
                         SharedPrefUtility.DotModeEnum.STEREO_PAIR:
                         SharedPrefUtility.DotModeEnum.INTERLACED;
+
                 SharedPrefUtility.setDotMode(mContext, mode);
+                */
+
+                SharedPrefUtility.setDotMode(mContext, SharedPrefUtility.DotModeEnum.STEREO_PAIR);
             }
         });
 

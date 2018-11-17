@@ -22,13 +22,13 @@
             android:id="@+id/radio_interlace_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:checked="true"
             android:text="@string/single_interlace_view"/>
 
         <RadioButton
             android:id="@+id/radio_vr_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:checked="true"
             android:text="@string/virtual_reality_view" />
 
     </RadioGroup>

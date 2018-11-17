@@ -46,6 +46,7 @@
 
     <!-- menu -->
     <string name="configuration">ترتيب</string>
+    <string name="logout">الخروج</string>
 
     <!-- main -->
     <string name="random">عشوائية</string>
