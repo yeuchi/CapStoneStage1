@@ -94,6 +94,15 @@ From Widget, a list of send images is presented, below-left.  Each tuple contain
 
 <img width="200" src="https://user-images.githubusercontent.com/1282659/48574354-95e00f00-e8d4-11e8-8a43-67bf9c70e715.jpg"><img width="400" src="https://user-images.githubusercontent.com/1282659/48595626-25a8ac00-e91b-11e8-8b27-dcfb8cabc475.jpg">
 
+### Firebase - authentication
+
+Firebase authentication has been added.
+Create your own account and replace with your own google-services.json
+<img width="200" src="https://user-images.githubusercontent.com/1282659/48655166-5ea75600-e9d9-11e8-9a3c-082f339a21ce.jpg"><img width="200" src="https://user-images.githubusercontent.com/1282659/48655168-5ea75600-e9d9-11e8-8d15-e0befdbad3c9.jpg"><img width="200" src="https://user-images.githubusercontent.com/1282659/48655167-5ea75600-e9d9-11e8-829a-0031eaeaf537.jpg"><img width="200" src="https://user-images.githubusercontent.com/1282659/48655169-5ea75600-e9d9-11e8-8cd4-3e50fc1275e2.jpg">
+
+https://firebase.google.com/docs/auth/android/firebaseui
+<img width="600" src="https://user-images.githubusercontent.com/1282659/48655098-b09bac00-e9d8-11e8-8b27-bb91ad2a99f8.png">
+<img width="600" src="https://user-images.githubusercontent.com/1282659/48655099-b2fe0600-e9d8-11e8-886b-a388a9058758.png">
 
 
 # Original project instruction
