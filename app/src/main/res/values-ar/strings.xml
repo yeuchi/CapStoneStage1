@@ -33,6 +33,8 @@
     <string name="color2">اللون 2</string>
     <string name="color3">اللون 3</string>
     <string name="numberpicker">رقم المنتقى</string>
+    <string name="access_voice">أمر صوتي</string>
+
 
     <!-- Accessibility - dictation -->
     <string name="dictation">إملاء:</string>

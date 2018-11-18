@@ -29,6 +29,7 @@
         android:layout_alignParentTop="true"
         android:paddingLeft="70dp"
         android:scaleType="fitCenter"
+        android:contentDescription="@null"
         android:src="@drawable/randombackground"
         tools:layout_editor_absoluteX="41dp"
         tools:layout_editor_absoluteY="0dp" />

@@ -33,6 +33,7 @@
     <string name="color2">Color 2</string>
     <string name="color3">Color 3</string>
     <string name="numberpicker">NumberPicker</string>
+    <string name="access_voice">Voice command</string>
 
     <!-- Accessibility - dictation -->
     <string name="dictation">Dictation:</string>

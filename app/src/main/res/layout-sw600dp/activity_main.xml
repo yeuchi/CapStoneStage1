@@ -29,6 +29,7 @@
         android:layout_marginBottom="8dp"
         android:layout_marginTop="8dp"
         android:scaleType="fitCenter"
+        android:contentDescription="@null"
         android:src="@drawable/randombackground"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toLeftOf="@+id/textView2"
