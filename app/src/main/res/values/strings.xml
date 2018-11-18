@@ -103,7 +103,7 @@
     <!-- number picker dialog -->
     <string name="choose_value">Choose Value</string>
     <string name="choose_number">Choose Number</string>
-    <string name="ok">Ok</string>
+    <string name="ok">OK</string>
 
     <!-- Shape icons -->
     <string name="telephone">phone</string>
