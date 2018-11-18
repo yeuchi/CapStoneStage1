@@ -23,7 +23,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/subject"
+            android:hint="@string/subject"
             android:id="@+id/txt_subject"/>
 
     </LinearLayout>

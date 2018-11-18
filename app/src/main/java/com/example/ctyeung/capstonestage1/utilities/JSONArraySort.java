@@ -11,7 +11,6 @@ public class JSONArraySort
 {
     private JSONArray mJsonArray;
     private String mKey;
-    private JSONArray mSorted;
 
     public JSONArraySort(JSONArray jsonArray, String key)
     {
@@ -20,7 +19,7 @@ public class JSONArraySort
     }
 
     public JSONArray sort() {
-        mSorted = new JSONArray();
+        JSONArray sorted = new JSONArray();
 
         // step through all objects
         for (int i = 0; i < mJsonArray.length(); i++) {
@@ -28,9 +27,9 @@ public class JSONArraySort
             String value = JSONhelper.parseValueByKey(json, mKey);
             Double num = Double.parseDouble(value);
             int index = bisection(num);
-            mSorted.put(index);
+            sorted.put(index);
         }
-        return mSorted;
+        return sorted;
     }
 
     /*

@@ -43,10 +43,6 @@ public class SpeechRecognitionHelper {
         return false; // we have no activities to recognize the speech
     }
 
-    /**
-     * Send an Intent with request on speech
-     * @param callerActivity  - Activity, that initiated a request
-     */
     private  void startRecognitionActivity(Activity ownerActivity) {
 
         Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
@@ -61,11 +57,6 @@ public class SpeechRecognitionHelper {
         ownerActivity.startActivityForResult(intent, 1234);
     }
 
-    /**
-     * Asking the permission for installing Google Voice Search.
-     * If permission granted � sent user to Google Play
-     * @param callerActivity � Activity, that initialized installing
-     */
     private  void installGoogleVoiceSearch(final Activity ownerActivity) {
 
         // creating a dialog asking user if he want

@@ -25,14 +25,13 @@ public class WidgetViewsFactory implements RemoteViewsService.RemoteViewsFactory
 
     private static List<String> mItems=null;
     private Context mContext=null;
-    private int mAppWidgetId;
     public static final String KEY_EXTRA = "extra";
 
     public WidgetViewsFactory(Context context,
                               Intent intent) {
         mContext=context;
         setItems();
-        mAppWidgetId=intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,
+        int appWidgetId=intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,
                                         AppWidgetManager.INVALID_APPWIDGET_ID);
     }
 

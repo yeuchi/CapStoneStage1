@@ -50,7 +50,6 @@ public class TabFragment3 extends ShapeFragment
     public final int MAX_SHAPE_COUNT = 20;
     public static String PNG_FILENAME = "shapeSVG.png";
 
-    private ShapeGridAdapter mAdapter;
     private RecyclerView mNumbersList;
     private ShapeGridAdapter.ListItemClickListener mListener;
     private ShapeGridAdapter.SVGLoadListener mLoadListener;
@@ -164,8 +163,8 @@ public class TabFragment3 extends ShapeFragment
      */
     private void populateShapeGrid()
     {
-        mAdapter = new ShapeGridAdapter(mShapes, mListener, mLoadListener);
-        mNumbersList.setAdapter(mAdapter);
+        ShapeGridAdapter adapter = new ShapeGridAdapter(mShapes, mListener, mLoadListener);
+        mNumbersList.setAdapter(adapter);
         mNumbersList.setHasFixedSize(true);
     }
 

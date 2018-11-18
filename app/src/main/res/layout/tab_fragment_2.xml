@@ -15,7 +15,7 @@
         android:layout_height="80dp"
         android:inputType="text|textMultiLine"
         android:gravity="top"
-        android:text="@string/header_default_msg"
+        android:hint="@string/header_default_msg"
         android:id="@+id/txt_msg_header"/>
 
     <TextView
@@ -29,7 +29,7 @@
         android:layout_height="80dp"
         android:inputType="text|textMultiLine"
         android:gravity="top"
-        android:text="@string/footer_default_msg"
+        android:hint="@string/footer_default_msg"
         android:id="@+id/txt_msg_footer"/>
 
 </LinearLayout>

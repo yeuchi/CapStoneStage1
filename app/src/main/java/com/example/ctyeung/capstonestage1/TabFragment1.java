@@ -43,7 +43,6 @@ public class TabFragment1 extends BaseFragment
 {
     private Button mBtnSend;
     private Button mBtnExit;
-    private String mSubject;
     private MsgData mMsgData;
 
     @Override
@@ -65,8 +64,6 @@ public class TabFragment1 extends BaseFragment
     protected void initTextview()
     {
         mEditText = mRoot.findViewById(R.id.txt_subject);
-        mSubject = mContext.getResources().getString(R.string.subject);
-        mEditText.setText(mSubject);
 
         // add change handler
         mEditText.addTextChangedListener(new TextWatcher() {
@@ -104,7 +101,7 @@ public class TabFragment1 extends BaseFragment
         if(null==tuples || tuples.size()==0) {
             tuple = new MsgTuple();
             tuple.type = dotMode.toString();
-            tuple.subject = mSubject;
+            tuple.subject = mContext.getResources().getString(R.string.subject);
             mMsgData.insert(tuple);
             tuples = mMsgData.query(columnName, "blank");
         }
@@ -165,7 +162,7 @@ public class TabFragment1 extends BaseFragment
 
                     // create new tuple for additional user composition
                     createDBTuple();
-                    mEditText.setText(mSubject);
+                    mEditText.setText("");
                 }
             }
         });

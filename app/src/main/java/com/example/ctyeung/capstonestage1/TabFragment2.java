@@ -36,7 +36,6 @@ public class TabFragment2 extends BaseFragment
     public static String PNG_FILENAME = "textSVG.png";
     private EditText mFooter;
     private MsgData mMsgData;
-    private MsgTuple mTuple;
 
     @Override
     public View onCreateView(LayoutInflater inflater,
@@ -109,18 +108,18 @@ public class TabFragment2 extends BaseFragment
                     Toast.LENGTH_SHORT).show();
         }
 
-        mTuple = tuples.get(0);
+        MsgTuple tuple = tuples.get(0);
 
-        if(null!=mTuple) {
-            String header = (!mTuple.header.contains(MsgTuple.BLANK))?
-                            mTuple.header:
-                            mContext.getResources().getString(R.string.header_default_msg);
+        if(null!=tuple) {
+            String header = (!tuple.header.contains(MsgTuple.BLANK))?
+                    tuple.header:
+                            "";
 
                 mEditText.setText(header);
 
-            String footer = (!mTuple.header.contains(MsgTuple.BLANK))?
-                    mTuple.footer:
-                    mContext.getResources().getString(R.string.footer_default_msg);
+            String footer = (!tuple.header.contains(MsgTuple.BLANK))?
+                    tuple.footer:
+                    "";
 
                 mFooter.setText(footer);
         }
