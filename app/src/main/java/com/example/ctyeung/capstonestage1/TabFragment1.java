@@ -5,12 +5,18 @@ import android.app.Application;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.StrictMode;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.LoaderManager;
+import android.support.v4.content.CursorLoader;
 import android.support.v4.content.FileProvider;
+import android.support.v4.content.Loader;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -40,10 +46,13 @@ import java.util.List;
  * Set method of persistence (gmail, facebook, google-drive, etc)
  */
 public class TabFragment1 extends BaseFragment
+        implements LoaderManager.LoaderCallbacks
 {
     private Button mBtnSend;
     private Button mBtnExit;
     private MsgData mMsgData;
+    private MsgTuple mTuple;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -51,11 +60,63 @@ public class TabFragment1 extends BaseFragment
         mContext = mRoot.getContext();
         mMsgData = new MsgData(mContext);
 
-        createDBTuple();
         initTextview();
         initButtonEvents();
         enableBtnSend();
+
+        getLoaderManager().initLoader(1, null, this);
         return mRoot;
+    }
+
+    @NonNull
+    @Override
+    public Loader onCreateLoader(int i, @Nullable Bundle bundle) {
+        String[] args = {MsgTuple.BLANK};
+        CursorLoader cursorLoader = new CursorLoader(mContext,
+                                                    MsgContract.CONTENT_URI,
+                                                    null,
+                                                    MsgContract.Columns.COL_TIME_STAMP+"=?",
+                                                    args,
+                                                    null);
+        return cursorLoader;
+    }
+
+    @Override
+    public void onLoadFinished(@NonNull Loader loader, Object o) {
+
+        List<MsgTuple> tuples = mMsgData.parseResult((Cursor)o);
+
+        SharedPrefUtility.DotModeEnum dotMode = SharedPrefUtility.getDotMode(mContext);
+
+        /*
+         * create a tuple if none available
+         */
+        if(null==tuples || tuples.size()==0)
+        {
+            createDBTuple(dotMode.toString());
+        }
+        else
+        {
+            MsgTuple tuple = tuples.get(0);
+            if(null == mTuple || tuple.id != mTuple.id) {
+                mMsgData.update(tuple.id, MsgContract.Columns.COL_IMAGE_TYPE, dotMode.toString());
+                SharedPrefUtility.setInteger(SharedPrefUtility.TUPLE_ID, mContext, tuple.id);
+            }
+            mTuple = tuple;
+        }
+    }
+
+    @Override
+    public void onLoaderReset(@NonNull Loader loader) {
+
+    }
+
+    protected void createDBTuple(String dotMode)
+    {
+        MsgTuple tuple = new MsgTuple();
+        tuple.type = dotMode.toString();
+        tuple.subject = mContext.getResources().getString(R.string.subject);
+        mMsgData.insert(tuple);
     }
 
     /*
@@ -69,9 +130,7 @@ public class TabFragment1 extends BaseFragment
         mEditText.addTextChangedListener(new TextWatcher() {
 
             public void afterTextChanged(Editable s) {
-
-                int id = SharedPrefUtility.getInteger(SharedPrefUtility.TUPLE_ID, mContext);
-                mMsgData.update(id, MsgContract.Columns.COL_MSG_SUBJECT, s.toString());
+                mMsgData.update(mTuple.id, MsgContract.Columns.COL_MSG_SUBJECT, s.toString());
 
             }
 
@@ -83,46 +142,6 @@ public class TabFragment1 extends BaseFragment
     }
 
     /*
-     * create a tuple in db
-     */
-    protected void createDBTuple()
-    {
-        MsgTuple tuple;
-
-        // retrieve tuple not send (no timeStamp)
-        String columnName = MsgContract.Columns.COL_TIME_STAMP;
-        List<MsgTuple> tuples = mMsgData.query(columnName, MsgTuple.BLANK);
-
-        SharedPrefUtility.DotModeEnum dotMode = SharedPrefUtility.getDotMode(mContext);
-
-        /*
-         * create a tuple if none available
-         */
-        if(null==tuples || tuples.size()==0) {
-            tuple = new MsgTuple();
-            tuple.type = dotMode.toString();
-            tuple.subject = mContext.getResources().getString(R.string.subject);
-            mMsgData.insert(tuple);
-            tuples = mMsgData.query(columnName, "blank");
-        }
-
-        if(null==tuples || tuples.size()==0) {
-            String errMsg = mContext.getResources().getString(R.string.db_create_failed);
-            Toast.makeText(getActivity(),
-                    errMsg,
-                    Toast.LENGTH_LONG).show();
-            return;
-        }
-
-        tuple = tuples.get(0);
-        String name = MsgContract.Columns.COL_IMAGE_TYPE;
-        mMsgData.update(tuple.id, name, dotMode.toString());
-
-        // store id for use in other fragments
-        SharedPrefUtility.setInteger(SharedPrefUtility.TUPLE_ID, mContext, tuple.id);
-    }
-
-    /*
      * When user selects send, update tuple
      */
     protected boolean updateDBTuple()
@@ -130,9 +149,8 @@ public class TabFragment1 extends BaseFragment
         try
         {
             // add a timeStamp as verification of persistence
-            int id = SharedPrefUtility.getInteger(SharedPrefUtility.TUPLE_ID, mContext);
             String timeStamp = DateTimeUtil.getNow();
-            mMsgData.update(id, MsgContract.Columns.COL_TIME_STAMP, timeStamp);
+            mMsgData.update(mTuple.id, MsgContract.Columns.COL_TIME_STAMP, timeStamp);
             return true;
         }
         catch (Exception ex)
@@ -161,7 +179,8 @@ public class TabFragment1 extends BaseFragment
                 if(updateDBTuple()) {
 
                     // create new tuple for additional user composition
-                    createDBTuple();
+                    SharedPrefUtility.DotModeEnum dotMode = SharedPrefUtility.getDotMode(mContext);
+                    createDBTuple(dotMode.toString());
                     mEditText.setText("");
                 }
             }
@@ -241,10 +260,7 @@ public class TabFragment1 extends BaseFragment
 
             emailIntent.setType("image/*");
 
-            int id = SharedPrefUtility.getInteger(SharedPrefUtility.TUPLE_ID, mContext);
-            List<MsgTuple> tuples = mMsgData.query(id);
-
-            if(null==tuples || 0==tuples.size())
+            if(null==mTuple)
             {
                 String msg = mContext.getResources().getString(R.string.db_query_failed);
                 Toast.makeText(getActivity(),
@@ -253,14 +269,12 @@ public class TabFragment1 extends BaseFragment
                 return;
             }
 
-            MsgTuple tuple = tuples.get(0);
-
             // Subject
-            emailIntent.putExtra(Intent.EXTRA_SUBJECT, tuple.subject);
+            emailIntent.putExtra(Intent.EXTRA_SUBJECT, mTuple.subject);
 
             // need to insert image in the middle ...
-            String header = mContext.getResources().getString(R.string.header)+": "+tuple.header;
-            String footer = mContext.getResources().getString(R.string.header)+": "+tuple.footer;
+            String header = mContext.getResources().getString(R.string.header)+": "+mTuple.header;
+            String footer = mContext.getResources().getString(R.string.footer)+": "+mTuple.footer;
 
             emailIntent.putExtra(Intent.EXTRA_TEXT, header + "\n\n" + footer);
 

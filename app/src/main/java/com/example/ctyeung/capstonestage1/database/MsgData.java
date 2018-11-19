@@ -108,7 +108,7 @@ public class MsgData
         }
     }
 
-    protected List<MsgTuple> parseResult(Cursor cursor)
+    public List<MsgTuple> parseResult(Cursor cursor)
     {
         if(null==cursor || 0==cursor.getCount())
             return null;
