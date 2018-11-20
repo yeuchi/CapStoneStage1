@@ -9,6 +9,10 @@ import android.widget.RemoteViews;
 import android.content.Intent;
 import android.net.Uri;
 
+import com.example.ctyeung.capstonestage1.database.MsgTuple;
+
+import java.util.List;
+
 /**
  * Implementation of App Widget functionality.
  * - base on Mark Murphy's example
@@ -16,14 +20,16 @@ import android.net.Uri;
  */
 public class HomeScreenWidget extends AppWidgetProvider
 {
-    @Override
+    //@Override
     public void onUpdate(Context ctxt,
                          AppWidgetManager appWidgetManager,
-                         int[] appWidgetIds) {
+                         int[] appWidgetIds,
+                         String[] tuples) {
         for (int i : appWidgetIds) {
             Intent svcIntent=new Intent(ctxt, HomeScreenService.class);
 
             svcIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_ID, i);
+            svcIntent.putExtra("TUPLES", tuples);
             svcIntent.setData(Uri.parse(svcIntent.toUri(Intent.URI_INTENT_SCHEME)));
 
             RemoteViews widget=new RemoteViews(ctxt.getPackageName(),

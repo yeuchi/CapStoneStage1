@@ -1,5 +1,7 @@
 package com.example.ctyeung.capstonestage1.utilities;
 
+import com.google.gson.Gson;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -80,5 +82,12 @@ public class JSONhelper
             ex.printStackTrace();
         }
         return str;
+    }
+
+    public static String object2JsonString(Object obj)
+    {
+        Gson gson = new Gson();
+        String json = gson.toJson(obj);
+        return json;
     }
 }

@@ -30,24 +30,25 @@ public class WidgetViewsFactory implements RemoteViewsService.RemoteViewsFactory
     public WidgetViewsFactory(Context context,
                               Intent intent) {
         mContext=context;
-        setItems();
+
+        String[] tuples = intent.getStringArrayExtra("TUPLES");
+        setItems(tuples);
         int appWidgetId=intent.getIntExtra(AppWidgetManager.EXTRA_APPWIDGET_ID,
                                         AppWidgetManager.INVALID_APPWIDGET_ID);
     }
 
-    public void setItems()
+    public void setItems(String[] tuples)
     {
         try {
-            MsgData msgData = new MsgData(mContext);
-            List<MsgTuple> tuples = msgData.query();
+            mItems = new ArrayList<String>();
 
-            if (null == tuples || 0 == tuples.size()) {
-                mItems = new ArrayList<String>(Arrays.asList("Empty -- no entry available"));
-            } else {
-                mItems = new ArrayList<String>();
-                for (MsgTuple tuple : tuples) {
-                    mItems.add(tuple.id + " : " + tuple.subject + " : " + tuple.timeStamp);
-                }
+            if(null==tuples || 0==tuples.length)
+                mItems.add("Empty -- no entry available");
+
+            else {
+
+                for (String s : tuples)
+                    mItems.add(s);
             }
         }
         catch (Exception ex)

@@ -101,6 +101,14 @@ public class TabFragment1 extends BaseFragment
             if(null == mTuple || tuple.id != mTuple.id) {
                 mMsgData.update(tuple.id, MsgContract.Columns.COL_IMAGE_TYPE, dotMode.toString());
                 SharedPrefUtility.setInteger(SharedPrefUtility.TUPLE_ID, mContext, tuple.id);
+
+                /*
+                 * update EditText with blank
+                 */
+                if(null!=mTuple) {
+                    mTuple.id = tuple.id;
+                    mEditText.setText("");
+                }
             }
             mTuple = tuple;
         }
@@ -130,8 +138,8 @@ public class TabFragment1 extends BaseFragment
         mEditText.addTextChangedListener(new TextWatcher() {
 
             public void afterTextChanged(Editable s) {
-                mMsgData.update(mTuple.id, MsgContract.Columns.COL_MSG_SUBJECT, s.toString());
-
+                if(null!=mMsgData && null!=mTuple)
+                    mMsgData.update(mTuple.id, MsgContract.Columns.COL_MSG_SUBJECT, s.toString());
             }
 
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
@@ -181,7 +189,6 @@ public class TabFragment1 extends BaseFragment
                     // create new tuple for additional user composition
                     SharedPrefUtility.DotModeEnum dotMode = SharedPrefUtility.getDotMode(mContext);
                     createDBTuple(dotMode.toString());
-                    mEditText.setText("");
                 }
             }
         });
