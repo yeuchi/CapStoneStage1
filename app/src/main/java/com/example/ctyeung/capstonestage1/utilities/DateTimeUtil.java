@@ -7,8 +7,7 @@ import java.util.Date;
 public class DateTimeUtil {
     public static String getNow()
     {
-//        DateFormat dateFormat = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss Z");
-        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        DateFormat dateFormat = DateFormat.getDateTimeInstance();
         Date date = new Date();
         return dateFormat.format(date);
     }
