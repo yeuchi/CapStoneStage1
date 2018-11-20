@@ -15,7 +15,7 @@ android {
         release {
             keyAlias 'key0'
             keyPassword 'c@p$t0n3'
-            storeFile file('release-key.keystore')
+            storeFile file('release.keystore')
             storePassword 'c@p$t0n3'
         }
         debug {
