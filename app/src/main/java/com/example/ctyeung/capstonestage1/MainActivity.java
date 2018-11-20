@@ -25,6 +25,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
+import android.support.v7.widget.Toolbar;
 
 import java.util.Arrays;
 import java.util.List;
@@ -42,6 +43,9 @@ public class MainActivity extends AppCompatActivity{
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(myToolbar);
+
         mContext = this;
         initButtons();
         initLocals();
@@ -187,8 +191,7 @@ public class MainActivity extends AppCompatActivity{
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_tab, menu);
+        getMenuInflater().inflate(R.menu.menu_tab, menu);
         return true;
     }
 
@@ -218,6 +221,7 @@ public class MainActivity extends AppCompatActivity{
         }
         return false;
     }
+
 
     protected void onButtonClickShare()
     {
