@@ -3,7 +3,7 @@
 Random-dot-stereogram technique was first published by Dr. Julesz<sup>[10]</sup> in 1970s.  Since then, Random dot stereogram has experienced surges of popularity.  The algorithm is available from GPU Gems - Chapter 41 Real-Time Stereogram <sup>[0]</sup> and I have already tested it in javascript (available in appendix)<sup>[9]</sup>.
 
 # Introduction
-This repository contains proposal and java source code to satisfy Udacity Android nano-degree capstone project for calendar year 2018.  All code is written with Android Studio 3.1 and tested on Samsung S9 [emulators: Nexus5, Tablet Nexus9] with OS8.0 Oreo, API 28.
+This repository contains proposal and java source code to satisfy Udacity Android nano-degree capstone project for calendar year 2018.  All code is written with Android Studio 3.1 and tested on Samsung S9 and emulators:[Nexus5, Tablet Nexus9] with OS8.0 Oreo, API 28.
 
 # CapStoneStage1
 Udacity Android nano-degree CapStone project stage 1: proposal
